@@ -1,0 +1,46 @@
+/* src/components/IntroHero.css */
+
+.intro-hero {
+	height: 20vh;
+	background: linear-gradient(to right, #000, #111);
+}
+
+.pixel-word {
+	font-size: 6rem;
+	font-weight: 700;
+	letter-spacing: 0.5rem;
+}
+
+.pixel-letter {
+	display: inline-block;
+	opacity: 0;
+	transform: scale(0);
+	animation: zoomIn 0.5s ease forwards;
+}
+
+@keyframes zoomIn {
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.towing-text {
+	margin-top: 1rem;
+	font-size: 2rem;
+	letter-spacing: 0.3rem;
+	animation: fadeInUp 1s ease forwards;
+	opacity: 0;
+	animation-delay: 1.8s;
+}
+
+@keyframes fadeInUp {
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+	from {
+		opacity: 0;
+		transform: translateY(20px);
+	}
+}

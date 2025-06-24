@@ -116,9 +116,15 @@ const Footer = () => {
 					</Row>
 
 					{/* Bottom Footer */}
-					<Row className="mt-5 pt-4 footer-bottom">
-						<Col className="text-center">
-							<p>© {currentYear} Pixel Towing. All Rights Reserved.</p>
+					<Row className="mt-5 pt-4 footer-bottom align-items-center">
+						{/* Copyright on the left */}
+						<Col md={6} className="text-center text-md-start mb-2 mb-md-0">
+							<p className="mb-0">© {currentYear} Pixel Towing. All Rights Reserved.</p>
+						</Col>
+						<Col md={6} className="text-center text-md-end">
+							<a href="mailto:aryan17032@gmail.com" className="footer-credit">
+								Developed by Aryan
+							</a>
 						</Col>
 					</Row>
 				</Container>

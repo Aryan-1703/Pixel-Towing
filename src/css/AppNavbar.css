@@ -1,0 +1,22 @@
+/* AppNavbar.css */
+
+.navbar-custom {
+	/* Smooth transition for background color and other properties */
+	transition: background-color 0.4s ease-in-out, box-shadow 0.4s ease-in-out;
+	background-color: transparent;
+}
+
+.navbar-custom.scrolled {
+	/* Style when the user has scrolled down */
+	background-color: white;
+}
+
+/* Ensure the brand text color is correct on a dark/transparent background */
+.navbar-custom:not(.scrolled) .navbar-brand {
+	color: white;
+}
+
+/* Ensure brand text is correct on a light/solid background */
+.navbar-custom.scrolled .navbar-brand {
+	color: #333;
+}

@@ -41,9 +41,6 @@ const AppNavbar = () => {
 						<Nav.Link as={Link} to="/services" className="fw-medium">
 							Services
 						</Nav.Link>
-						<Nav.Link as={Link} to="/service-areas" className="fw-medium">
-							Service Areas
-						</Nav.Link>
 						<Nav.Link as={Link} to="/contact" className="fw-medium">
 							Contact
 						</Nav.Link>

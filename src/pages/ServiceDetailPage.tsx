@@ -101,7 +101,7 @@ const allServicesData = {
 		icon: Truck,
 		details: [
 			"When your vehicle can't move on its own, 'towing' isn't a one-size-fits-all solution. Using the wrong method can cause severe damage to your transmission, suspension, or bodywork. We assess your specific situation and dispatch the correct truck for the job.",
-			"**For All-Wheel Drive (AWD), 4x4, and low-clearance vehicles**, our flatbed tow trucks are the only safe option. The entire vehicle rests on the bed, ensuring no part of the drivetrain is engaged or stressed during transport. **For standard 2-wheel drive vehicles**, our modern wheel-lift trucks can provide efficient and safe transport. Every vehicle, regardless of the method, is secured with a meticulous multi-point tie-down system for a damage-free journey.",
+			"**For All-Wheel Drive (AWD), 4x4, and low-clearance vehicles** our flatbed and dolllies tow trucks are the only safe option. The entire vehicle rests on the bed, ensuring no part of the drivetrain is engaged or stressed during transport. **For standard 2-wheel drive vehicles** our modern wheel-lift trucks can provide efficient and safe transport. Every vehicle, regardless of the method, is secured with a meticulous multi-point tie-down system for a damage-free journey.",
 		],
 		features: [
 			"Flatbed Towing for AWD, 4x4 & Specialty Cars",

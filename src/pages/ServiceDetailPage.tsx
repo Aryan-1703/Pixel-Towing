@@ -9,7 +9,7 @@ import towing from "../assets/towing.jpg";
 
 const allServicesData = {
 	"accident-recovery": {
-		title: "24/7 Accident Towing & Collision Recovery in [Your City/Region]",
+		title: "24/7 Accident Towing & Collision Recovery in GTA",
 		tagline:
 			"Just Been in an Accident? We Handle the Tow, Secure Storage, and Insurance Hassle.",
 		image: accident,

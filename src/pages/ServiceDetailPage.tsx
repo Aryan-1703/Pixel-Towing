@@ -9,56 +9,71 @@ import towing from "../assets/towing.jpg";
 
 const allServicesData = {
 	"accident-recovery": {
-		// A more powerful title and tagline
-		title: "Accident Management & Recovery",
-		tagline: "From Roadside to Resolution: Your Complete Accident Support Partner.",
+		title: "24/7 Accident Towing & Collision Recovery in [Your City/Region]",
+		tagline:
+			"Just Been in an Accident? We Handle the Tow, Secure Storage, and Insurance Hassle.",
 		image: accident,
 		icon: ShieldAlert,
-		// The new, detailed "story" of your service
 		details: [
-			"In the moments after a collision, confusion and stress are overwhelming. You're faced with questions: What do I do now? What are my rights? Where should my car go? Who do I call first? This is where Pixel Towing becomes more than just a towing service—we become your dedicated accident manager.",
+			"The moments after a car crash are confusing. You need more than just a tow truck—you need an accident recovery partner. Our team specializes in post-accident services, guiding you from the roadside chaos to a clear resolution. We handle the entire process, so you can focus on what's most important: your well-being.",
 
-			"We provide a clear, guided process to protect you and your vehicle, handling the complex logistics so you can focus on your well-being.",
+			"**Step 1: Safe, On-Scene Accident Response**\nYour safety is our priority. When you search for 'accident towing near me,' you need a fast and professional response. Our licensed towing operator will secure the scene and advise you on your rights, including your right to choose your tow provider. Using state-of-the-art flatbed tow trucks and recovery equipment, we'll retrieve your vehicle without causing further damage, a critical step in any car accident cleanup.",
 
-			"**Step 1: Immediate On-Scene Assistance**\nOur first priority is your safety. Upon arrival, our licensed driver will secure the scene. Crucially, we will inform you of your rights, including your right to choose where your vehicle is towed. We will then use our state-of-the-art equipment to recover your vehicle without any further damage, whether it needs a flatbed or a dolly.",
+			"**Step 2: Secure Vehicle Storage & Insurance Coordination**\nThis is where we eliminate your biggest headache. We provide secure vehicle transport to our licensed, camera-monitored storage facility. From there, we take over communication:",
+			"- We immediately contact your insurance provider's claims department for you.\n- We provide all key information: the secure vehicle location, policy details, and police incident number.\n- We schedule the insurance appraiser to inspect your damaged vehicle at our facility. You don't have to worry about coordinating calls or finding the car.",
 
-			"**Step 2: Secure Transport & Insurance Notification**\nThe real hassle begins after the tow, and that's the hassle we eliminate. We transport your vehicle to a secure, licensed, and monitored storage facility. From there, we immediately take on the communication burden:",
-			"- We contact your insurance company's claims department on your behalf.\n- We provide them with all necessary details: the vehicle's secure location, your name, and the police incident number.\n- We formally arrange for their appraiser to come and inspect the vehicle at our facility. You don't have to make a single call about the car's location.",
+			"**Step 3: Managing the Appraisal & Final Steps**\nAfter the insurance adjuster inspects the vehicle, we manage the outcome:",
+			"- **If the vehicle is repairable:** We will coordinate with the auto body shop of your choice to transport the vehicle for repairs.\n- **If the vehicle is deemed a total loss:** Once you settle with your insurer, we handle the final vehicle release directly to them or their designated salvage yard. This frees you from dealing with post-accident storage fees and logistics.",
 
-			"**Step 3: Managing the Appraisal & Resolution**\nOnce the appraiser inspects the vehicle, one of two things will happen:",
-			"- **If the vehicle is repairable:** We coordinate with the body shop of your choice to have the vehicle moved for repairs.\n- **If the vehicle is a total loss:** After you've reached a settlement with your insurer, we manage the final release of the vehicle directly to them. You won't have to worry about storage fees or arranging the final pickup.",
-
-			"With Pixel Towing, the entire logistical nightmare of a post-accident situation is handled by one professional, compassionate team. You make one call—to us.",
+			"With our comprehensive collision towing service, the entire logistical nightmare is handled by one professional team. You make one call, and we manage the rest.",
 		],
-
 		features: [
-			"Complete Insurance Claims Coordination",
-			"Your Right-to-Choose Towing Guidance",
-			"24/7 Emergency Accident Response",
-			"Direct Billing to Most Insurance Providers",
-			"Specialized Recovery Equipment (Flatbed/Dolly)",
-			"Secure, Camera-Monitored Vehicle Storage",
-			"Police Reporting Centre Transportation",
-			"Coordination with Your Chosen Body Shop",
+			"24/7 Emergency Accident & Collision Towing",
+			"Direct Insurance Billing & Claims Assistance",
+			"Damage-Free Recovery (Flatbed & Wheel-Lift Tow Trucks)",
+			"Guidance on Your 'Right to Choose' Your Towing Service",
+			"Secure, Monitored Post-Accident Vehicle Storage",
+			"Liaison with Your Chosen Auto Body Shop",
+			"Wreck and Recovery Services for All Vehicle Types",
+			"Fast Response Times for Roadside Emergencies",
 		],
+
+		cta: {
+			headline: "In an Accident? Call for Immediate Dispatch.",
+			phone_text: "24/7 Emergency Line:",
+			phone_number: "647-673-9755",
+			link_text: "Learn More About Our Process",
+			link_href: "/accident-process",
+		},
 	},
 	lockout: {
-		title: "Precision Lockout Service",
-		tagline: "Access Restored. Vehicle Untouched. Guaranteed.",
+		title: "Emergency Car Lockout Service in Brampton/Mississauga/GTA",
+		tagline:
+			"Locked Keys in Your Car? We Provide Fast, Damage-Free Unlocking, Guaranteed.",
 		image: lockout,
 		icon: KeyRound,
 		details: [
-			"Being locked out is a moment of pure frustration. The solution shouldn't add to your stress. Our technicians are not just locksmiths; they are vehicle entry specialists who treat your car as if it were their own.",
-			"We use a range of specialized, vehicle-specific tools—from high-tech decoders to soft, inflatable air wedges—that interact directly with the lock mechanism, bypassing the door and electronics entirely. This modern, non-destructive approach guarantees zero damage to your paint, window seals, or complex locking systems.",
-			"Whether you have a traditional key, a push-to-start system, or a high-security European model, we have the expertise to get you back inside quickly and safely.",
+			"Locked your keys in the car? It's a frustrating moment, but the solution shouldn't be. As vehicle entry specialists and professional auto locksmiths, we get you back in without adding stress. If you're thinking 'I've locked my keys in my car,' we are the fast, reliable solution you're searching for.",
+			"Our car unlock service uses a range of specialized, vehicle-specific tools—from high-tech Lishi decoders to soft, inflatable air wedges that protect your door frame and weather stripping. This modern, non-destructive approach interacts directly with the lock, guaranteeing zero damage to your paint, window seals, or complex electronic locking systems. This is the safest way to retrieve keys locked in a car.",
+			"Whether your keys are locked in the trunk, you have a push-to-start system with a key fob inside, or you drive a high-security European model (like BMW, Mercedes, Audi), our technicians have the expertise to get you back on the road quickly and safely. We are your local car lockout experts.",
 		],
 		features: [
-			"100% Damage-Free Guarantee",
-			"Expertise with All Makes & Models (Incl. Luxury & European)",
-			"Advanced Non-Destructive Tools",
-			"Key Fob & Transponder Key Solutions",
-			"Rapid Response Times",
+			"100% Damage-Free Car Unlocking Guarantee",
+			"24/7 Emergency Lockout Service & Rapid Response",
+			"Unlocking All Makes & Models (Luxury, European, Domestic)",
+			"Expertise with Keys Locked in Trunk",
+			"Safe Retrieval of Key Fobs, Smart Keys, & Transponders",
+			"Trained & Insured Auto Locksmith Technicians",
 		],
+
+		// NEW SECTION: Clear calls to action (CTAs) to convert searches into customers.
+		cta: {
+			headline: "Stranded? Get Immediate Help!",
+			phone_text: "Call Now for a Fast Quote:",
+			phone_number: "Your-Phone-Number",
+			link_text: "Request Service Online",
+			link_href: "/contact-us",
+		},
 	},
 	"tire-change": {
 		title: "Professional Roadside Tire Service",

@@ -5,7 +5,10 @@ const letters = ["P", "I", "X", "E", "L"];
 
 const IntroHero = () => {
 	return (
-		<section className="intro-hero d-flex align-items-center justify-content-center text-white">
+		<section
+			className="intro-hero d-flex align-items-center justify-content-center text-white"
+			aria-label="Pixel Towing – Professional Tow Truck Service in the GTA"
+		>
 			<Container className="text-center">
 				<div className="pixel-word">
 					{letters.map((letter, index) => (

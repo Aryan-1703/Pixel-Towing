@@ -6,7 +6,8 @@ import "../css/AppNavbar.css";
 
 const AppNavbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
-	// 2. Get the current location object
+	// 1. Fixed: State remains a boolean
+	const [expanded, setExpanded] = useState(false);
 	const location = useLocation();
 
 	useEffect(() => {
@@ -27,26 +28,64 @@ const AppNavbar = () => {
 			variant={isSolid ? "light" : "dark"}
 			expand="lg"
 			fixed="top"
+			// 2. Fixed: Uses the boolean state directly
+			expanded={expanded}
 		>
 			<Container>
-				<Navbar.Brand as={Link} to="/" className="fw-bold fs-4">
-					<span style={{ color: "#FBBF24" }}>PIXEL</span> TOWING
+				{/* BRAND */}
+				<Navbar.Brand
+					as={Link}
+					to="/"
+					className="fw-bold fs-4"
+					onClick={() => setExpanded(false)}
+					title="Pixel Towing Brampton & GTA"
+				>
+					<span style={{ color: "#FBBF24" }}>PIXEL</span> TOWING GTA
 				</Navbar.Brand>
-				<Navbar.Toggle aria-controls="basic-navbar-nav" />
+
+				{/* 3. Fixed: Simplified Toggle Logic (!expanded) */}
+				<Navbar.Toggle
+					aria-controls="basic-navbar-nav"
+					onClick={() => setExpanded(!expanded)}
+				/>
+
 				<Navbar.Collapse id="basic-navbar-nav">
-					<Nav className="ms-auto align-items-center">
-						<Nav.Link as={Link} to="/" className="fw-medium">
+					<Nav className="ms-auto align-items-center text-center">
+						<Nav.Link
+							as={Link}
+							to="/"
+							onClick={() => setExpanded(false)}
+							className="fw-medium mx-2"
+						>
 							Home
 						</Nav.Link>
-						<Nav.Link as={Link} to="/services" className="fw-medium">
+
+						<Nav.Link
+							as={Link}
+							to="/services"
+							onClick={() => setExpanded(false)}
+							className="fw-medium mx-2"
+						>
 							Services
 						</Nav.Link>
-						<Nav.Link as={Link} to="/contact" className="fw-medium">
+
+						<Nav.Link
+							as={Link}
+							to="/contact"
+							onClick={() => setExpanded(false)}
+							className="fw-medium mx-2"
+						>
 							Contact
 						</Nav.Link>
-						<Button href="tel:+16476739755" variant="warning" className="ms-lg-3 fw-bold">
-							<Phone size={16} className="me-2" />
-							Call Now
+
+						{/* Phone Number */}
+						<Button
+							href="tel:+16476739755"
+							variant="warning"
+							className="ms-lg-3 fw-bold mt-3 mt-lg-0 rounded-pill px-4"
+						>
+							<Phone size={18} className="me-2 mb-1" />
+							647-673-9755
 						</Button>
 					</Nav>
 				</Navbar.Collapse>

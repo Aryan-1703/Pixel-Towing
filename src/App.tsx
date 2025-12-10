@@ -5,16 +5,13 @@ import ServicesPage from "./pages/ServicesPage";
 import ServiceDetailPage from "./pages/ServiceDetailPage";
 import ContactPage from "./pages/ContactPage";
 import Footer from "./components/Footer";
-
-const NotFoundPage = () => (
-	<div style={{ paddingTop: "100px" }}>
-		<h1>404 - Page Not Found</h1>
-	</div>
-);
+import ScrollToTop from "./components/ScrollToTop";
+import NotFound from "./pages/NotFound";
 
 function App() {
 	return (
 		<>
+			<ScrollToTop />
 			<AppNavbar />
 			<main>
 				<Routes>
@@ -22,7 +19,7 @@ function App() {
 					<Route path="/services" element={<ServicesPage />} />
 					<Route path="/services/:serviceId" element={<ServiceDetailPage />} />
 					<Route path="/contact" element={<ContactPage />} />
-					<Route path="*" element={<NotFoundPage />} />
+					<Route path="*" element={<NotFound />} />
 				</Routes>
 			</main>
 			<Footer />

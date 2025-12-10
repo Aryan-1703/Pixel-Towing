@@ -1,13 +1,145 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="./src/assets/tow.jpg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Pixel Towing</title>
-  </head>
-  <body>
-    <div id="root"></div>
-    <script type="module" src="/src/main.tsx"></script>
-  </body>
+<!DOCTYPE html>
+<html lang="en-CA">
+	<head>
+		<meta charset="UTF-8" />
+
+		<!-- Viewport -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+		<!-- 1. ROBOTS & INDEXING -->
+		<meta name="robots" content="index, follow, max-image-preview:large" />
+
+		<!-- 2. GEO TAGS (Crucial for Local SEO) -->
+		<!-- These tell bots exactly where you operate -->
+		<meta name="geo.region" content="CA-ON" />
+		<meta name="geo.placename" content="Brampton" />
+		<meta name="geo.position" content="43.7315;-79.7624" />
+		<meta name="ICBM" content="43.7315, -79.7624" />
+
+		<!-- 3. TITLE & DESCRIPTION -->
+		<!-- Front-load "24/7" and location. Keep phone number visible in SERPs. -->
+		<title>Pixel Towing Brampton | 24/7 Tow Truck & Roadside | 647-673-9755</title>
+
+		<meta
+			name="description"
+			content="Need a tow? Pixel Towing offers 24/7 cheap tow truck service, flatbed towing, roadside assistance, and battery boost in Brampton, Mississauga & the GTA. Arriving in 30 mins."
+		/>
+
+		<!-- Note: Google ignores 'meta keywords' now. Content in body matters more. I removed it to keep code clean. -->
+
+		<!-- 4. CANONICAL & FAVICON -->
+		<link rel="canonical" href="https://pixeltowing.com" />
+
+		<!-- Ensure your favicon works on all devices -->
+		<link rel="icon" type="image/png" href="/tow-icon.png" />
+		<link rel="apple-touch-icon" href="/tow-icon.png" />
+
+		<!-- Mobile Browser Color -->
+		<meta name="theme-color" content="#FFD700" />
+
+		<!-- 5. SOCIAL MEDIA CARDS (Open Graph) -->
+		<!-- Important: These Images MUST use the full https domain to work on Facebook/WhatsApp -->
+		<meta property="og:locale" content="en_CA" />
+		<meta property="og:type" content="website" />
+		<meta
+			property="og:title"
+			content="Pixel Towing Brampton - 24/7 Roadside Assistance"
+		/>
+		<meta
+			property="og:description"
+			content="Stuck on the road? We provide fast, affordable towing and roadside assistance in Brampton & Mississauga. Call 647-673-9755."
+		/>
+		<meta property="og:url" content="https://pixeltowing.com/" />
+		<meta property="og:site_name" content="Pixel Towing" />
+		<meta property="og:image" content="https://pixeltowing.com/social-preview.jpg" />
+		<meta property="og:image:alt" content="Pixel Towing Truck Brampton" />
+
+		<!-- Twitter -->
+		<meta name="twitter:card" content="summary_large_image" />
+		<meta name="twitter:title" content="Pixel Towing Brampton | Fast 24/7 Service" />
+		<meta
+			name="twitter:description"
+			content="Towing, Winching, Fuel Delivery & Flat Tires in Brampton. Call us now!"
+		/>
+		<meta name="twitter:image" content="https://pixeltowing.com/social-preview.jpg" />
+
+		<!-- 6. JSON-LD SCHEMA (The "Secret Weapon" for Local SEO) -->
+		<script type="application/ld+json">
+			{
+				"@context": "https://schema.org",
+				"@type": "AutoBot",
+				"@id": "https://pixeltowing.com",
+				"name": "Pixel Towing",
+				"alternateName": "Pixel Towing Brampton",
+				"image": "https://pixeltowing.com/social-preview.jpg",
+				"logo": "https://pixeltowing.com/tow-icon.png",
+				"description": "24/7 reliable towing service and roadside assistance in Brampton, Mississauga, and Toronto. Specializing in accident recovery, flatbed towing, and car lockout services.",
+				"url": "https://pixeltowing.com",
+				"telephone": "+16476739755",
+				"priceRange": "$$",
+				"address": {
+					"@type": "PostalAddress",
+					"streetAddress": "Brampton",
+					"addressLocality": "Brampton",
+					"addressRegion": "ON",
+					"postalCode": "L6R 2L8",
+					"addressCountry": "CA"
+				},
+				"geo": {
+					"@type": "GeoCoordinates",
+					"latitude": 43.7315,
+					"longitude": -79.7624
+				},
+				"areaServed": [
+					{ "@type": "City", "name": "Brampton" },
+					{ "@type": "City", "name": "Mississauga" },
+					{ "@type": "City", "name": "Etobicoke" },
+					{ "@type": "City", "name": "Caledon" },
+					{ "@type": "City", "name": "Toronto" },
+					{ "@type": "City", "name": "Vaughan" }
+				],
+				"openingHoursSpecification": {
+					"@type": "OpeningHoursSpecification",
+					"dayOfWeek": [
+						"Monday",
+						"Tuesday",
+						"Wednesday",
+						"Thursday",
+						"Friday",
+						"Saturday",
+						"Sunday"
+					],
+					"opens": "00:00",
+					"closes": "23:59"
+				},
+				"paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
+				"sameAs": [
+					"https://www.facebook.com/pixel_towing",
+					"https://www.instagram.com/pixel_towing"
+				],
+				"contactPoint": {
+					"@type": "ContactPoint",
+					"telephone": "+1-647-673-9755",
+					"contactType": "emergency",
+					"areaServed": "GTA",
+					"availableLanguage": "en"
+				}
+			}
+		</script>
+	</head>
+
+	<body>
+		<div id="root"></div>
+
+		<!-- Fallback for bots/users without JS -->
+		<noscript>
+			<h1>Pixel Towing Brampton - 24/7 Roadside Service</h1>
+			<p>
+				Call 647-673-9755 for immediate towing, battery boost, and lockout services in
+				Brampton and Mississauga.
+			</p>
+		</noscript>
+
+		<script type="module" src="/src/main.tsx"></script>
+	</body>
 </html>

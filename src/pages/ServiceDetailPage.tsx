@@ -1,6 +1,16 @@
 import { Container, Row, Col, Card, Button, Breadcrumb } from "react-bootstrap";
-import { Link, useParams } from "react-router-dom";
-import { Phone, ShieldAlert, KeyRound, Wrench, Zap, Truck } from "lucide-react";
+import { Link, useParams, Navigate } from "react-router-dom";
+import {
+	Phone,
+	ShieldAlert,
+	KeyRound,
+	Wrench,
+	Zap,
+	Truck,
+	CheckCircle,
+} from "lucide-react";
+import SEO from "../components/SEO"; // SEO Component for Metadata
+
 import lockout from "../assets/lockout.jpg";
 import flatTire from "../assets/flatTire.png";
 import accident from "../assets/accident.jpg";
@@ -9,148 +19,153 @@ import towing from "../assets/towing.jpg";
 
 const allServicesData = {
 	"accident-recovery": {
-		title: "24/7 Accident Towing & Collision Recovery in GTA",
+		title: "Accident Recovery Towing",
+		metaTitle: "Accident Recovery Towing Brampton | Insurance & Collision Assistance",
+		metaDesc:
+			"Immediate accident recovery towing in Brampton & GTA. We handle insurance claims, secure vehicle storage, and towing to collision centers. 24/7 Service.",
 		tagline:
 			"Just Been in an Accident? We Handle the Tow, Secure Storage, and Insurance Hassle.",
 		image: accident,
 		icon: ShieldAlert,
 		details: [
-			"The moments after a car crash are confusing. You need more than just a tow truck—you need an accident recovery partner. Our team specializes in post-accident services, guiding you from the roadside chaos to a clear resolution. We handle the entire process, so you can focus on what's most important: your well-being.",
-
-			"**Step 1: Safe, On-Scene Accident Response**\nYour safety is our priority. When you search for 'accident towing near me,' you need a fast and professional response. Our licensed towing operator will secure the scene and advise you on your rights, including your right to choose your tow provider. Using state-of-the-art flatbed tow trucks and recovery equipment, we'll retrieve your vehicle without causing further damage, a critical step in any car accident cleanup.",
-
-			"**Step 2: Secure Vehicle Storage & Insurance Coordination**\nThis is where we eliminate your biggest headache. We provide secure vehicle transport to our licensed, camera-monitored storage facility. From there, we take over communication:",
-			"- We immediately contact your insurance provider's claims department for you.\n- We provide all key information: the secure vehicle location, policy details, and police incident number.\n- We schedule the insurance appraiser to inspect your damaged vehicle at our facility. You don't have to worry about coordinating calls or finding the car.",
-
-			"**Step 3: Managing the Appraisal & Final Steps**\nAfter the insurance adjuster inspects the vehicle, we manage the outcome:",
-			"- **If the vehicle is repairable:** We will coordinate with the auto body shop of your choice to transport the vehicle for repairs.\n- **If the vehicle is deemed a total loss:** Once you settle with your insurer, we handle the final vehicle release directly to them or their designated salvage yard. This frees you from dealing with post-accident storage fees and logistics.",
-
-			"With our comprehensive collision towing service, the entire logistical nightmare is handled by one professional team. You make one call, and we manage the rest.",
+			"The moments after a car crash are confusing. You need more than just a tow truck—you need an accident recovery partner.",
+			"We manage the entire process, ensuring your vehicle is transported safely to our secure lot or a collision reporting center.",
+			"Our team assists directly with insurance companies, saving you time and stress during a difficult situation.",
 		],
 		features: [
-			"24/7 Emergency Accident & Collision Towing",
-			"Direct Insurance Billing & Claims Assistance",
-			"Damage-Free Recovery (Flatbed & Wheel-Lift Tow Trucks)",
-			"Guidance on Your 'Right to Choose' Your Towing Service",
-			"Secure, Monitored Post-Accident Vehicle Storage",
-			"Liaison with Your Chosen Auto Body Shop",
-			"Wreck and Recovery Services for All Vehicle Types",
-			"Fast Response Times for Roadside Emergencies",
+			"24/7 Emergency Accident Response",
+			"Direct Billing to Insurance Companies",
+			"Secure, Monitored Storage Facility",
+			"Assistance at Collision Reporting Centers",
 		],
-
-		cta: {
-			headline: "In an Accident? Call for Immediate Dispatch.",
-			phone_text: "24/7 Emergency Line:",
-			phone_number: "647-673-9755",
-			link_text: "Learn More About Our Process",
-			link_href: "/accident-process",
-		},
 	},
+
 	lockout: {
-		title: "Emergency Car Lockout Service in Brampton/Mississauga/GTA",
-		tagline:
-			"Locked Keys in Your Car? We Provide Fast, Damage-Free Unlocking, Guaranteed.",
+		title: "Car Lockout Service",
+		metaTitle: "Car Lockout Service Brampton | Keys Locked in Car Help 24/7",
+		metaDesc:
+			"Locked keys in your car in Brampton or Mississauga? Our lockout service opens cars without damage. Fast 20 min arrival. Call now: 647-673-9755.",
+		tagline: "Locked Keys in Your Car? We Provide Fast, Damage-Free Unlocking.",
 		image: lockout,
 		icon: KeyRound,
 		details: [
-			"Locked your keys in the car? It's a frustrating moment, but the solution shouldn't be. As vehicle entry specialists and professional auto locksmiths, we get you back in without adding stress. If you're thinking 'I've locked my keys in my car,' we are the fast, reliable solution you're searching for.",
-			"Our car unlock service uses a range of specialized, vehicle-specific tools—from high-tech Lishi decoders to soft, inflatable air wedges that protect your door frame and weather stripping. This modern, non-destructive approach interacts directly with the lock, guaranteeing zero damage to your paint, window seals, or complex electronic locking systems. This is the safest way to retrieve keys locked in a car.",
-			"Whether your keys are locked in the trunk, you have a push-to-start system with a key fob inside, or you drive a high-security European model (like BMW, Mercedes, Audi), our technicians have the expertise to get you back on the road quickly and safely. We are your local car lockout experts.",
+			"It happens to the best of us. Whether your keys are in the ignition or the trunk, we can help.",
+			"Our technicians use professional Lishi tools and air wedges to unlock your vehicle without scratching the paint or damaging the weather stripping.",
+			"We unlock all makes: BMW, Mercedes, Honda, Toyota, and domestic vehicles.",
 		],
 		features: [
-			"100% Damage-Free Car Unlocking Guarantee",
-			"24/7 Emergency Lockout Service & Rapid Response",
-			"Unlocking All Makes & Models (Luxury, European, Domestic)",
-			"Expertise with Keys Locked in Trunk",
-			"Safe Retrieval of Key Fobs, Smart Keys, & Transponders",
-			"Trained & Insured Auto Locksmith Technicians",
+			"100% Damage-Free Unlocking",
+			"20-30 Minute Arrival Time",
+			"Keys Locked in Trunk Retrieval",
+			"Licensed & Insured Techs",
 		],
-
-		// NEW SECTION: Clear calls to action (CTAs) to convert searches into customers.
-		cta: {
-			headline: "Stranded? Get Immediate Help!",
-			phone_text: "Call Now for a Fast Quote:",
-			phone_number: "Your-Phone-Number",
-			link_text: "Request Service Online",
-			link_href: "/contact-us",
-		},
 	},
+
 	"tire-change": {
-		title: "Professional Roadside Tire Service",
-		tagline: "Your Safety is Our Priority. The Job Done Right.",
+		title: "Roadside Flat Tire Service",
+		metaTitle: "Flat Tire Change Brampton | Mobile Tire Service 24/7",
+		metaDesc:
+			"Flat tire on the highway? We come to you. Pixel Towing provides fast tire changes and air delivery in Brampton, Vaughan, and Toronto. Call 24/7.",
+		tagline: "Your Safety is Our Priority. Don't Risk Changing It on a Busy Highway.",
 		image: flatTire,
 		icon: Wrench,
 		details: [
-			"A flat tire rarely happens in a convenient location. Changing it on the shoulder of a busy road or in the dark is a significant safety risk. Our service is designed to protect you. Our highly visible assistance vehicles create a safe zone around your car while our technicians work.",
-			"We don't just put on the spare; we do it to manufacturer specifications. This includes using a professional-grade impact wrench for removal, a calibrated torque wrench for proper tightening of lug nuts to prevent warping your rotors, and checking the spare's pressure. If your spare is unusable or missing, we provide honest options, including towing you to the nearest trusted tire shop.",
+			"Changing a tire on the side of the 401, 410, or 407 is extremely dangerous. Let us handle it safely.",
+			"We bring commercial jacks and torque wrenches to ensure your spare tire is installed correctly to manufacturer specifications.",
+			"No spare tire? We can tow your vehicle to the nearest tire shop.",
 		],
 		features: [
-			"High-Visibility Roadside Safety Setup",
-			"Calibrated Torque Wrench for Proper Tightening",
-			"Spare Tire Pressure Check & Inflation",
-			"Inspection of Damaged Tire",
-			"Towing to a Tire Shop if Needed",
+			"Highway Safety Protocols",
+			"Wheel Nut Torque Precision",
+			"Spare Tire Air Check",
+			"Towing to Tire Shop Available",
 		],
 	},
+
 	"jump-start": {
-		title: "Safe Battery Boost & Diagnostics",
-		tagline: "The Right Power, The Right Way. Protecting Your Vehicle's Brain.",
+		title: "Car Battery Boost & Jump Start",
+		metaTitle: "Car Battery Boost Brampton | Dead Battery Jump Start Service",
+		metaDesc:
+			"Dead battery in Brampton? We offer 24/7 car battery boosting. Safe for modern cars with electronics. Fast arrival & affordable rates.",
+		tagline: "Safe Boosting That Protects Your Vehicle’s Electronics.",
 		image: jumpStart,
 		icon: Zap,
 		details: [
-			"In a modern vehicle, a jump start is a sensitive procedure. Using improper equipment or technique can send a voltage spike that damages your car's Engine Control Unit (ECU) and other electronics, leading to thousands in repairs. We eliminate that risk.",
-			"Our service trucks are equipped with commercial-grade, microprocessor-controlled jump packs. These units deliver a clean, stable, and correct voltage, safely waking up your battery without ever threatening your car's delicate systems. After the boost, we can perform a quick diagnostic check on your battery and alternator to see if the problem is likely to reoccur, giving you peace of mind.",
+			"Modern vehicles have sensitive computers (ECUs). Using cheap jumper cables can cause electrical damage.",
+			"We use professional-grade booster packs with voltage protection to jump-start your car safely, even in -20°C weather.",
+			"We also test your alternator to see if you need a new battery or just a charge.",
 		],
 		features: [
-			"ECU & Sensitive Electronics Protection",
-			"Microprocessor-Controlled Power Delivery",
-			"Post-Boost Battery & Alternator Check",
-			"Service for Cars, SUVs, Trucks, and Commercial Vehicles",
-			"Guaranteed Safe for All Vehicle Types",
+			"ECU-Safe Boost Equipment",
+			"Battery & Alternator Check",
+			"Underground Garage Capable",
+			"Hybrid Vehicle Boosting",
 		],
 	},
+
 	"vehicle-transport": {
-		title: "Specialized Vehicle Transport",
-		tagline: "The Right Truck and the Right Technique for Your Specific Vehicle.",
+		title: "Flatbed & Breakdown Towing",
+		metaTitle: "Flatbed Tow Truck Brampton | Long Distance & Luxury Towing",
+		metaDesc:
+			"Need a tow truck? We provide flatbed towing for breakdown cars, AWD vehicles, and motorcycles in Brampton & GTA. Damage-free towing guaranteed.",
+		tagline: "The Right Equipment for Every Tow.",
 		image: towing,
 		icon: Truck,
 		details: [
-			"When your vehicle can't move on its own, 'towing' isn't a one-size-fits-all solution. Using the wrong method can cause severe damage to your transmission, suspension, or bodywork. We assess your specific situation and dispatch the correct truck for the job.",
-			"**For All-Wheel Drive (AWD), 4x4, and low-clearance vehicles** our flatbed and dolllies tow trucks are the only safe option. The entire vehicle rests on the bed, ensuring no part of the drivetrain is engaged or stressed during transport. **For standard 2-wheel drive vehicles** our modern wheel-lift trucks can provide efficient and safe transport. Every vehicle, regardless of the method, is secured with a meticulous multi-point tie-down system for a damage-free journey.",
+			"When your car breaks down, you need a truck that won't cause more damage. We dispatch flatbed trucks for AWD and luxury vehicles.",
+			"Our drivers are trained to handle low-clearance sports cars and heavy SUVs.",
+			"We offer both local towing in Brampton/Mississauga and long-distance towing across Ontario.",
 		],
 		features: [
-			"Flatbed Towing for AWD, 4x4 & Specialty Cars",
-			"Modern Wheel-Lift for 2WD Vehicles",
-			"Damage-Free Multi-Point Tie-Down System",
-			"Local & Long-Distance Transport",
-			"Motorcycle & Classic Car Expertise",
+			"Flatbed & Wheel-Lift Trucks",
+			"Long Distance Towing (Ontario-Wide)",
+			"Motorcycle Transport",
+			"Low-Profile Ramp Extensions",
 		],
 	},
 };
 
-// A helper type for our service keys
 type ServiceKey = keyof typeof allServicesData;
 
 const ServiceDetailPage = () => {
 	const { serviceId } = useParams<{ serviceId: ServiceKey }>();
 
-	// If the serviceId is invalid or not found, show a not found message
+	// SEO-Friendly Redirect: If invalid service, go to services listing
 	if (!serviceId || !allServicesData[serviceId]) {
-		return (
-			<Container className="py-5" style={{ marginTop: "56px" }}>
-				<h2>Service Not Found</h2>
-				<p>The service you are looking for does not exist.</p>
-				<Link to="/services">Back to all services</Link>
-			</Container>
-		);
+		return <Navigate to="/services" replace />;
 	}
 
 	const service = allServicesData[serviceId];
 	const IconComponent = service.icon;
 
+	// Structured Data (Service Schema)
+	const structuredData = {
+		"@context": "https://schema.org",
+		"@type": "Service",
+		serviceType: service.title,
+		provider: {
+			"@type": "LocalBusiness",
+			name: "Pixel Towing",
+			telephone: "+16476739755",
+		},
+		areaServed: {
+			"@type": "City",
+			name: "Brampton",
+		},
+		description: service.metaDesc,
+	};
+
 	return (
-		<div style={{ paddingTop: "56px" }}>
-			{/* Breadcrumb Navigation */}
+		<div style={{ paddingTop: "76px" }}>
+			{" "}
+			{/* Adjusted padding for Navbar */}
+			{/* 1. DYNAMIC META TAGS PER SERVICE */}
+			<SEO
+				title={service.metaTitle}
+				description={service.metaDesc}
+				canonical={`https://pixeltowing.com/services/${serviceId}`}
+			/>
+			<script type="application/ld+json">{JSON.stringify(structuredData)}</script>
 			<Container className="pt-4">
 				<Breadcrumb>
 					<Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
@@ -162,83 +177,83 @@ const ServiceDetailPage = () => {
 					<Breadcrumb.Item active>{service.title}</Breadcrumb.Item>
 				</Breadcrumb>
 			</Container>
-
-			<Container className="py-5">
+			<Container className="py-4">
 				<Row className="g-5 align-items-center">
 					<Col lg={6}>
-						<Card className="border-0">
+						<Card className="border-0 shadow-lg overflow-hidden">
 							<Card.Img
-								variant="top"
 								src={service.image}
-								alt={service.title}
-								className="rounded-3 shadow-lg"
+								alt={`${service.title} - Pixel Towing Brampton`} // Added Alt
+								className="img-fluid"
 							/>
 						</Card>
 					</Col>
+
 					<Col lg={6}>
 						<div className="d-flex align-items-center mb-3">
-							<IconComponent className="text-primary me-3" size={40} />
-							<h1 className="display-5 fw-bold mb-0">{service.title}</h1>
+							<div className="bg-primary bg-opacity-10 p-3 rounded-circle me-3">
+								<IconComponent className="text-primary" size={32} />
+							</div>
+							<h1 className="fw-bold mb-0 h2">{service.title}</h1>
 						</div>
-						<p className="lead text-muted mb-4">{service.tagline}</p>
 
-						{/* NEW, ENHANCED RENDERING LOGIC */}
-						{service.details.map((paragraph, index) => {
-							const parts = paragraph.split(/(\*\*.*?\*\*|\n- .*)/g).filter(Boolean);
+						<p className="lead text-primary fw-medium fst-italic">{service.tagline}</p>
 
-							return (
-								<div key={index} className="mb-3">
-									{parts.map((part, partIndex) => {
-										if (part.startsWith("**") && part.endsWith("**")) {
-											// Render as a bold heading
-											return (
-												<h4 key={partIndex} className="mt-3">
-													{part.slice(2, -2)}
-												</h4>
-											);
-										}
-										if (part.startsWith("\n- ")) {
-											return (
-												<li key={partIndex} className="ms-3">
-													{part.slice(3)}
-												</li>
-											);
-										}
-										return <span key={partIndex}>{part}</span>;
-									})}
-								</div>
-							);
-						})}
+						{service.details.map((p, i) => (
+							<p key={i} className="text-secondary lh-lg">
+								{p}
+							</p>
+						))}
+
+						<div className="mt-4">
+							<Button
+								href="tel:+16476739755"
+								variant="warning"
+								size="lg"
+								className="fw-bold rounded-pill shadow-sm px-4"
+							>
+								<Phone size={20} className="me-2 mb-1" />
+								Get {service.title} Now
+							</Button>
+						</div>
 					</Col>
 				</Row>
 
-				<Row className="mt-5 bg-light p-4 rounded-3">
-					<h3 className="mb-3">Key Features of This Service</h3>
-					{service.features.map((feature, index) => (
-						<Col md={6} key={index} className="mb-2">
-							<p>
-								<ShieldAlert size={16} className="text-success me-2" /> {feature}
-							</p>
-						</Col>
-					))}
+				<Row className="mt-5 justify-content-center">
+					<Col lg={10}>
+						<Card className="border-0 bg-light p-4 rounded-4">
+							<h3 className="h4 fw-bold mb-4">Why Choose Pixel for {service.title}?</h3>
+							<Row xs={1} md={2} className="g-3">
+								{service.features.map((feature, i) => (
+									<Col key={i}>
+										<div className="d-flex align-items-center">
+											<CheckCircle
+												size={20}
+												className="text-success me-3 flex-shrink-0"
+											/>
+											<span className="fw-medium">{feature}</span>
+										</div>
+									</Col>
+								))}
+							</Row>
+						</Card>
+					</Col>
 				</Row>
 			</Container>
-
-			{/* Re-usable Call to Action Section */}
-			<div className="py-5 bg-dark text-white text-center">
+			<div className="py-5 bg-dark text-white text-center mt-5">
 				<Container>
-					<h2 className="display-5 fw-bold">Need This Service Now?</h2>
-					<p className="lead text-white-50 mb-4">
-						We are available around the clock to help.
+					<h2 className="fw-bold">Ready to Dispatch?</h2>
+					<p className="lead text-white-50">
+						Our tow trucks are minutes away in Brampton & Mississauga.
 					</p>
 					<Button
 						href="tel:+16476739755"
 						variant="warning"
 						size="lg"
-						className="fw-bold px-5 py-3"
+						className="fw-bold px-5 py-3 rounded-pill"
 					>
 						<Phone className="me-2" />
-						Call for Immediate Assistance
+						Call 647-673-9755
 					</Button>
 				</Container>
 			</div>

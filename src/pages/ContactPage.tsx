@@ -1,8 +1,7 @@
 import { Container, Row, Col, Card, Button, Accordion, Stack } from "react-bootstrap";
-import { Phone, Mail, MapPin, Clock, MessageSquare } from "lucide-react";
+import { Phone, Mail, MapPin, Clock, MessageSquare, ShieldCheck } from "lucide-react";
 import SEO from "../components/SEO";
 
-// SVG Component omitted for brevity, keep your WhatsAppIcon...
 const WhatsAppIcon = () => (
 	<svg
 		role="img"
@@ -20,40 +19,52 @@ const WhatsAppIcon = () => (
 
 const pageStyles = `
   .contact-hero {
-    background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/images/contact-bg.jpg');
+    background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/assets/tow.jpg');
     background-size: cover;
     background-position: center;
+    background-attachment: fixed;
     padding: 6rem 0;
     margin-top: 56px;
     color: white;
   }
   .map-container {
-    height: 350px;
-    border-radius: 0.5rem;
+    height: 400px;
+    border-radius: 1rem;
     overflow: hidden;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
   }
 `;
 
 const ContactPage = () => {
 	return (
 		<>
-			{/* 🔥 CONTACT PAGE SPECIFIC METADATA */}
 			<SEO
-				title="Contact Pixel Towing | Emergency Tow Truck Brampton 24/7"
-				description="Need urgent help? Call Pixel Towing at 647-673-9755. Available 24/7 for towing in Brampton, Mississauga & the GTA."
+				title="Contact Pixel Towing | 24/7 Emergency Tow Truck Brampton"
+				description="Need a tow truck fast? Call Pixel Towing 24/7 for emergency towing in Brampton, Mississauga & the GTA. Insurance-direct accident recovery available."
 				canonical="https://pixeltowing.com/contact"
 			/>
 
 			<style>{pageStyles}</style>
 
-			{/* Hero Section */}
+			{/* HERO SECTION */}
 			<div className="contact-hero text-center">
 				<Container>
-					{/* 🔥 H1 OPTIMIZATION */}
-					<h1 className="display-3 fw-bold">Contact 24/7 Towing Dispatch</h1>
+					<h1 className="display-3 fw-bold">
+						Contact Pixel Towing – 24/7 Emergency Tow Truck in Brampton
+					</h1>
 					<p className="lead text-white-50">
-						Fast Tow Truck Response for Brampton, Mississauga & Toronto.
+						Fast tow truck dispatch across Brampton, Mississauga & the GTA.
 					</p>
+					<div className="mt-4">
+						<Button
+							href="tel:+16476739755"
+							variant="warning"
+							size="lg"
+							className="rounded-pill px-5 fw-bold shadow-lg"
+						>
+							<Phone className="me-2" /> 647-673-9755
+						</Button>
+					</div>
 				</Container>
 			</div>
 
@@ -62,63 +73,61 @@ const ContactPage = () => {
 					<Row className="g-5 align-items-stretch">
 						{/* CONTACT METHODS */}
 						<Col lg={7}>
-							<Card className="p-4 p-md-5 border-0 shadow-lg h-100">
-								<h2 className="text-center fw-bold mb-4">How Can We Help You?</h2>
-								<p className="text-center text-muted mb-5">
-									Fast response times. Open 24 Hours.
+							<Card className="p-4 p-md-5 border-0 shadow-lg h-100 rounded-4">
+								<h2 className="fw-bold mb-4">How Can We Help You?</h2>
+								<p className="text-muted mb-5">
+									Our 24/7 dispatch team sends the nearest tow truck to your live
+									location.
 								</p>
+
 								<Stack gap={4}>
-									{/* Emergency Call */}
-									<div className="d-flex align-items-center p-3 rounded-3 border contact-choice-card bg-white">
-										<Phone size={40} className="text-danger flex-shrink-0 me-4" />
+									<div className="d-flex align-items-center p-4 rounded-4 border bg-white shadow-sm">
+										<Phone size={32} className="text-danger me-4" />
 										<div className="flex-grow-1">
-											<h4 className="mb-1">Emergency Towing</h4>
-											<p className="mb-0 text-muted">
-												Accidents, flatbeds, and breakdowns.
+											<h4 className="fw-bold mb-1">Emergency Towing</h4>
+											<p className="mb-0 text-muted small">
+												Accidents, breakdowns & flatbeds
 											</p>
 										</div>
 										<Button
 											href="tel:+16476739755"
 											variant="danger"
-											className="fw-bold ms-3"
+											className="rounded-pill fw-bold"
 										>
-											647-673-9755
+											Call Now
 										</Button>
 									</div>
 
-									{/* WhatsApp - GREAT for User Experience */}
-									<div className="d-flex align-items-center p-3 rounded-3 border contact-choice-card bg-white">
-										<WhatsAppIcon />
-										<div className="flex-grow-1 ms-4">
-											<h4 className="mb-1">WhatsApp Us</h4>
-											<p className="mb-0 text-muted">
-												Send your Live Location for faster pickup.
-											</p>
+									<div className="d-flex align-items-center p-4 rounded-4 border bg-white shadow-sm">
+										<div className="text-success me-4">
+											<WhatsAppIcon />
+										</div>
+										<div className="flex-grow-1">
+											<h4 className="fw-bold mb-1">WhatsApp Dispatch</h4>
+											<p className="mb-0 text-muted small">Send GPS for faster pickup</p>
 										</div>
 										<Button
 											href="https://wa.link/sq54ln"
 											target="_blank"
-											rel="noopener noreferrer"
 											variant="success"
-											className="fw-bold ms-3 d-flex align-items-center"
+											className="rounded-pill fw-bold"
 										>
 											<MessageSquare size={16} className="me-2" /> Chat
 										</Button>
 									</div>
 
-									{/* Email */}
-									<div className="d-flex align-items-center p-3 rounded-3 border contact-choice-card bg-white">
-										<Mail size={40} className="text-primary flex-shrink-0 me-4" />
+									<div className="d-flex align-items-center p-4 rounded-4 border bg-white shadow-sm">
+										<Mail size={32} className="text-primary me-4" />
 										<div className="flex-grow-1">
-											<h4 className="mb-1">Get a Quote</h4>
-											<p className="mb-0 text-muted">
-												Scheduled long-distance towing quotes.
+											<h4 className="fw-bold mb-1">Scheduled Towing</h4>
+											<p className="mb-0 text-muted small">
+												Long distance & planned transport
 											</p>
 										</div>
 										<Button
 											href="mailto:towing@pixel17.com"
-											variant="primary"
-											className="fw-bold ms-3"
+											variant="outline-primary"
+											className="rounded-pill fw-bold"
 										>
 											Email
 										</Button>
@@ -127,96 +136,81 @@ const ContactPage = () => {
 							</Card>
 						</Col>
 
-						{/* BUSINESS INFO & MAP */}
+						{/* INFO + MAP */}
 						<Col lg={5}>
-							<div className="h-100 d-flex flex-column">
-								<h2 className="fw-bold mb-3">Service Areas</h2>
-								<p className="text-muted">
-									We dispatch immediately to the following locations:
-								</p>
+							<h2 className="fw-bold h4 mb-3">Dispatch Coverage</h2>
+							<p className="text-muted">
+								Mobile tow trucks covering Peel Region & GTA highways.
+							</p>
 
-								<div className="d-flex align-items-start mb-3">
-									<MapPin className="text-primary me-3 mt-1 flex-shrink-0" size={24} />
-									<span>
-										<strong>Covering:</strong>
-										<br />
-										Brampton, Mississauga, Caledon, Toronto, North York, Scarborough,
-										Vaughan & Etobicoke.
-									</span>
-								</div>
+							<div className="d-flex mb-3">
+								<MapPin size={22} className="text-warning me-3" />
+								<span>
+									<strong>Service Area:</strong>
+									<br />
+									Brampton, Mississauga, Toronto, Vaughan, Hwy 401/410/407
+								</span>
+							</div>
 
-								<div className="d-flex align-items-start mb-4">
-									<Clock className="text-primary me-3 mt-1 flex-shrink-0" size={24} />
-									<span>
-										<strong>Hours:</strong>
-										<br />
-										24 Hours a Day, 7 Days a Week, 365 Days a Year
-									</span>
-								</div>
+							<div className="d-flex mb-3">
+								<Clock size={22} className="text-warning me-3" />
+								<span>
+									<strong>Hours:</strong>
+									<br />
+									24/7 – 365 Days
+								</span>
+							</div>
 
-								<div className="map-container mt-auto">
-									<iframe
-										src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92265.29381832973!2d-79.84943960309904!3d43.71694665420367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b15eba6d400e3%3A0x63391d3742468538!2sBrampton%2C%20ON!5e0!3m2!1sen!2sca!4f179"
-										width="100%"
-										height="100%"
-										style={{ border: 0 }}
-										allowFullScreen
-										loading="lazy"
-										referrerPolicy="no-referrer-when-downgrade"
-										title="Brampton Towing Service Area Map"
-									></iframe>
-								</div>
+							<div className="d-flex mb-4">
+								<ShieldCheck size={22} className="text-warning me-3" />
+								<span>
+									<strong>Insurance Billing:</strong>
+									<br />
+									Accident recovery is fully covered — customers pay nothing out of pocket
+								</span>
+							</div>
+
+							<div className="map-container mt-auto">
+								<iframe
+									src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d92265.29381832973!2d-79.84943960309904!3d43.71694665420367!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x882b15eba6d400e3%3A0x63391d3742468538!2sBrampton%2C%20ON!5e0!3m2!1sen!2sca!4f179"
+									width="100%"
+									height="100%"
+									style={{ border: 0 }}
+									allowFullScreen
+									loading="lazy"
+									referrerPolicy="no-referrer-when-downgrade"
+									title="Brampton Towing Service Area Map"
+								></iframe>
 							</div>
 						</Col>
 					</Row>
 				</Container>
 			</div>
 
-			{/* FAQ (Excellent for "People also ask" snippet ranking) */}
+			{/* FAQ */}
 			<div className="py-5 bg-white">
 				<Container>
-					<div className="text-center mb-5">
-						<h2 className="display-5 fw-bold text-dark">Towing FAQ</h2>
-						<p className="lead text-muted">
-							Common questions about our Brampton roadside services.
-						</p>
-					</div>
-					<Row className="justify-content-center">
-						<Col md={10} lg={8}>
-							<Accordion defaultActiveKey="0">
-								<Accordion.Item eventKey="0">
-									<Accordion.Header>
-										How fast can you get a tow truck to Brampton?
-									</Accordion.Header>
-									<Accordion.Body>
-										We typically arrive within 30 minutes in Brampton, Mississauga, and
-										Etobicoke, depending on traffic conditions and weather.
-									</Accordion.Body>
-								</Accordion.Item>
-
-								<Accordion.Item eventKey="1">
-									<Accordion.Header>
-										Do you offer direct billing to insurance?
-									</Accordion.Header>
-									<Accordion.Body>
-										Yes. We work with all major Canadian insurance providers (Intact,
-										Belair, Aviva, etc.). We can often tow your vehicle to the collision
-										center and bill the insurance directly.
-									</Accordion.Body>
-								</Accordion.Item>
-
-								<Accordion.Item eventKey="2">
-									<Accordion.Header>
-										Do you accept Credit/Debit at the roadside?
-									</Accordion.Header>
-									<Accordion.Body>
-										Yes, all our drivers carry POS machines. We accept Visa, Mastercard,
-										Debit, Cash, and e-Transfer.
-									</Accordion.Body>
-								</Accordion.Item>
-							</Accordion>
-						</Col>
-					</Row>
+					<h2 className="text-center fw-bold mb-4">Towing Contact Questions</h2>
+					<Accordion flush>
+						<Accordion.Item eventKey="0">
+							<Accordion.Header>How fast can a tow truck arrive?</Accordion.Header>
+							<Accordion.Body>
+								Average arrival time is 15–30 minutes depending on traffic.
+							</Accordion.Body>
+						</Accordion.Item>
+						<Accordion.Item eventKey="1">
+							<Accordion.Header>Does insurance cover accident towing?</Accordion.Header>
+							<Accordion.Body>
+								Yes. Accident recovery is billed directly to insurance — you pay nothing.
+							</Accordion.Body>
+						</Accordion.Item>
+						<Accordion.Item eventKey="2">
+							<Accordion.Header>What payment methods do you accept?</Accordion.Header>
+							<Accordion.Body>
+								We accept Debit, Credit Cards, Apple Pay, Google Pay & Cash.
+							</Accordion.Body>
+						</Accordion.Item>
+					</Accordion>
 				</Container>
 			</div>
 		</>

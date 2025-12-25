@@ -1,7 +1,7 @@
-import { Container, Row, Col, Card, Button } from "react-bootstrap";
-import { Link } from "react-router-dom"; // Link is key for SEO
+import { Container, Row, Col, Card, Button, Accordion } from "react-bootstrap"; // Added Accordion
+import { Link } from "react-router-dom";
 import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone } from "lucide-react";
-import SEO from "../components/SEO"; // Don't forget this component
+import SEO from "../components/SEO";
 
 import accidentImage from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import lockout from "../assets/lockout.jpg";
@@ -59,9 +59,10 @@ const servicesData = [
 
 const pageStyles = `
   .services-hero {
-    background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('/src/assets/tow.jpg'); 
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/assets/tow.jpg'); /* Darker overlay for better text contrast */
     background-size: cover;
     background-position: center;
+    background-attachment: fixed; /* Parallax Effect */
     padding: 6rem 0;
     margin-top: 56px;
     color: white;
@@ -69,11 +70,8 @@ const pageStyles = `
 `;
 
 const ServicesPage = () => {
-	// navigate hook is no longer needed since we use real Links
-
 	return (
 		<>
-			{/* 1. SEO META TAGS */}
 			<SEO
 				title="Towing Services Brampton | Roadside Assistance & Accident Recovery"
 				description="View our full list of services: Accident Towing, Flatbed Towing, Lockouts, Tire Changes, and Battery Boosts. Available 24/7 in Brampton & GTA."
@@ -84,7 +82,6 @@ const ServicesPage = () => {
 
 			<div className="services-hero text-center">
 				<Container>
-					{/* 2. OPTIMIZED H1 */}
 					<h1 className="display-4 fw-bold">Professional Towing Services</h1>
 					<p className="lead text-white-50">
 						Serving Brampton, Mississauga, and Toronto 24 Hours a Day.
@@ -98,11 +95,11 @@ const ServicesPage = () => {
 						{servicesData.map((s, i) => (
 							<Col key={i}>
 								<Card className="h-100 shadow-sm border-0">
-									{/* 3. IMAGE ALT TEXT */}
 									<Card.Img
 										src={s.image}
 										alt={s.alt}
 										style={{ height: 200, objectFit: "cover" }}
+										loading="lazy" /* 🔥 PERFORMANCE: Lazy Loading */
 									/>
 									<Card.Body className="d-flex flex-column">
 										<Card.Title className="d-flex align-items-center mb-3 h4">
@@ -113,7 +110,6 @@ const ServicesPage = () => {
 											{s.description}
 										</Card.Text>
 
-										{/* 4. REAL LINKS FOR CRAWLING */}
 										<Link to={s.link} className="mt-auto w-100">
 											<Button variant="outline-primary" className="w-100">
 												View Details
@@ -123,6 +119,42 @@ const ServicesPage = () => {
 								</Card>
 							</Col>
 						))}
+					</Row>
+				</Container>
+			</div>
+
+			{/* 🔥 NEW SECTION: GENERAL SERVICE FAQ (Boosts this page specifically) */}
+			<div className="py-5 bg-white">
+				<Container>
+					<div className="text-center mb-5">
+						<h2 className="fw-bold">Common Service Questions</h2>
+					</div>
+					<Row className="justify-content-center">
+						<Col md={8}>
+							<Accordion flush>
+								<Accordion.Item eventKey="0">
+									<Accordion.Header>Which service area do you cover?</Accordion.Header>
+									<Accordion.Body>
+										We provide towing and roadside services across{" "}
+										<strong>
+											Brampton, Mississauga, Caledon, Etobicoke, and the Greater Toronto
+											Area (GTA)
+										</strong>
+										. Long-distance towing is available upon request.
+									</Accordion.Body>
+								</Accordion.Item>
+								<Accordion.Item eventKey="1">
+									<Accordion.Header>
+										Is Pixel Towing licensed and insured?
+									</Accordion.Header>
+									<Accordion.Body>
+										Yes. We are a fully licensed municipal tow operator. Our trucks are
+										inspected, and our drivers are insured for your safety and vehicle
+										protection.
+									</Accordion.Body>
+								</Accordion.Item>
+							</Accordion>
+						</Col>
 					</Row>
 				</Container>
 			</div>

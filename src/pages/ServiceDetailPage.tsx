@@ -1,4 +1,12 @@
-import { Container, Row, Col, Card, Button, Breadcrumb } from "react-bootstrap";
+import {
+	Container,
+	Row,
+	Col,
+	Card,
+	Button,
+	Breadcrumb,
+	Accordion,
+} from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
 import {
 	Phone,
@@ -9,7 +17,7 @@ import {
 	Truck,
 	CheckCircle,
 } from "lucide-react";
-import SEO from "../components/SEO"; // SEO Component for Metadata
+import SEO from "../components/SEO";
 
 import lockout from "../assets/lockout.jpg";
 import flatTire from "../assets/flatTire.png";
@@ -17,26 +25,49 @@ import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import jumpStart from "../assets/jumpStart.jpeg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
 
+// 🔥 DATA STRUCTURE UPDATED WITH FAQs
 const allServicesData = {
 	"accident-recovery": {
-		title: "Accident Recovery Towing",
-		metaTitle: "Accident Recovery Towing Brampton | Insurance & Collision Assistance",
+		title: "Accident Recovery & Claims Management",
+		metaTitle: "Accident Towing & Insurance Claim Help Brampton | 24/7 Recovery",
 		metaDesc:
-			"Immediate accident recovery towing in Brampton & GTA. We handle insurance claims, secure vehicle storage, and towing to collision centers. 24/7 Service.",
-		tagline:
-			"Just Been in an Accident? We Handle the Tow, Secure Storage, and Insurance Hassle.",
+			"In an accident? We handle towing, insurance claims, and total loss negotiations. $0 out-of-pocket with full coverage. Lifetime warranty repairs available.",
+		tagline: "Don't Stress. We Handle the Tow, the Claim, and the Repairs.",
 		image: accident,
 		icon: ShieldAlert,
 		details: [
-			"The moments after a car crash are confusing. You need more than just a tow truck—you need an accident recovery partner.",
-			"We manage the entire process, ensuring your vehicle is transported safely to our secure lot or a collision reporting center.",
-			"Our team assists directly with insurance companies, saving you time and stress during a difficult situation.",
+			"The moments after a crash are chaotic. You don't just need a tow; you need an expert to protect your interests.",
+			"**Complete Insurance Handling:** We assist with opening your claim and managing the paperwork. If you have full coverage, our service is billable directly to your insurer, meaning you pay **$0 out of pocket**.",
+			"**Total Loss Protection:** If your vehicle is a write-off, our team fights to ensure you get **Fair Market Value** for your car, not the low-ball offer.",
+			"**Lifetime Warranty Repairs:** If your car is repairable, we can connect you with certified collision shops that offer a **Lifetime Warranty** on all workmanship and paint.",
 		],
 		features: [
-			"24/7 Emergency Accident Response",
-			"Direct Billing to Insurance Companies",
-			"Secure, Monitored Storage Facility",
-			"Assistance at Collision Reporting Centers",
+			"Direct Insurance Billing ($0 Upfront)",
+			"Total Loss Value Negotiation",
+			"Assistance Opening Claims",
+			"Access to Lifetime Warranty Shops",
+		],
+		faqs: [
+			{
+				question: "Do I have to pay for the tow?",
+				answer:
+					"If you have full coverage insurance, you typically pay nothing. We bill the insurance company directly for the towing, cleanup, and storage fees.",
+			},
+			{
+				question: "What if my car is a Total Loss (Write-off)?",
+				answer:
+					"We can help! We advocate for you to ensure the insurance company pays you the true Fair Market Value for your vehicle, rather than their initial low offer.",
+			},
+			{
+				question: "Can you help fix my car?",
+				answer:
+					"Yes. We work with a network of certified collision repair shops in Brampton and Mississauga that provide a Lifetime Warranty on their repairs. We handle the transport seamlessly.",
+			},
+			{
+				question: "Will you help me open the claim?",
+				answer:
+					"Absolutely. Our team will guide you through the process of reporting the accident, submitting photos, and speaking with your adjuster.",
+			},
 		],
 	},
 
@@ -59,6 +90,23 @@ const allServicesData = {
 			"Keys Locked in Trunk Retrieval",
 			"Licensed & Insured Techs",
 		],
+		faqs: [
+			{
+				question: "Will unlocking damage my car door?",
+				answer:
+					"No. We use specialized air wedges and long-reach tools that apply gentle pressure without bending the door frame or scratching the paint.",
+			},
+			{
+				question: "Can you unlock luxury cars (BMW, Mercedes)?",
+				answer:
+					"Yes. We have specialized Lishi tools designed for high-security German and European locks.",
+			},
+			{
+				question: "How fast can you get here?",
+				answer:
+					"For lockouts in Brampton and Mississauga, we typically arrive in 10-15 minutes.",
+			},
+		],
 	},
 
 	"tire-change": {
@@ -79,6 +127,23 @@ const allServicesData = {
 			"Wheel Nut Torque Precision",
 			"Spare Tire Air Check",
 			"Towing to Tire Shop Available",
+		],
+		faqs: [
+			{
+				question: "Do you provide the spare tire?",
+				answer:
+					"No, we install the spare tire that comes with your vehicle. If you do not have a spare, we can tow you to a tire shop.",
+			},
+			{
+				question: "Can you remove a stripped lug nut?",
+				answer:
+					"Our trucks are equipped with specialized extraction sockets to handle most stripped or stuck lug nuts.",
+			},
+			{
+				question: "Do you fill the tire with air?",
+				answer:
+					"Yes, we always check and inflate your spare tire to the correct PSI before you drive off.",
+			},
 		],
 	},
 
@@ -101,6 +166,23 @@ const allServicesData = {
 			"Underground Garage Capable",
 			"Hybrid Vehicle Boosting",
 		],
+		faqs: [
+			{
+				question: "Will boosting damage my car's computer?",
+				answer:
+					"No. We use voltage-regulated booster packs specifically designed to be safe for modern ECU systems.",
+			},
+			{
+				question: "Can you boost a hybrid vehicle?",
+				answer:
+					"Yes, we are trained to safely boost the 12V startup battery in Hybrid and Electric Vehicles.",
+			},
+			{
+				question: "What if the car still won't start?",
+				answer:
+					"If a boost doesn't work, it may be a starter or alternator issue. We can easily tow you to a mechanic.",
+			},
+		],
 	},
 
 	"vehicle-transport": {
@@ -122,6 +204,23 @@ const allServicesData = {
 			"Motorcycle Transport",
 			"Low-Profile Ramp Extensions",
 		],
+		faqs: [
+			{
+				question: "Is flatbed towing safer?",
+				answer:
+					"Yes. Flatbed towing lifts your entire vehicle off the ground, preventing wear on your transmission and tires. It is the only safe method for AWD vehicles.",
+			},
+			{
+				question: "Can you tow long distance?",
+				answer:
+					"Yes. We offer long-distance towing from Brampton to anywhere in Ontario. Call us for a flat-rate quote.",
+			},
+			{
+				question: "Can you take me (the driver) too?",
+				answer:
+					"Yes, our trucks have clean, comfortable passenger seats. We can transport you alongside your vehicle.",
+			},
+		],
 	},
 };
 
@@ -130,7 +229,6 @@ type ServiceKey = keyof typeof allServicesData;
 const ServiceDetailPage = () => {
 	const { serviceId } = useParams<{ serviceId: ServiceKey }>();
 
-	// SEO-Friendly Redirect: If invalid service, go to services listing
 	if (!serviceId || !allServicesData[serviceId]) {
 		return <Navigate to="/services" replace />;
 	}
@@ -138,34 +236,44 @@ const ServiceDetailPage = () => {
 	const service = allServicesData[serviceId];
 	const IconComponent = service.icon;
 
-	// Structured Data (Service Schema)
+	// Structured Data: Service + FAQ Page
 	const structuredData = {
 		"@context": "https://schema.org",
-		"@type": "Service",
-		serviceType: service.title,
-		provider: {
-			"@type": "LocalBusiness",
-			name: "Pixel Towing",
-			telephone: "+16476739755",
-		},
-		areaServed: {
-			"@type": "City",
-			name: "Brampton",
-		},
-		description: service.metaDesc,
+		"@graph": [
+			{
+				"@type": "Service",
+				serviceType: service.title,
+				provider: {
+					"@type": "AutomotiveBusiness",
+					name: "Pixel Towing",
+					telephone: "+16476739755",
+				},
+				areaServed: { "@type": "City", name: "Brampton" },
+				description: service.metaDesc,
+			},
+			{
+				"@type": "FAQPage",
+				mainEntity: service.faqs.map(faq => ({
+					"@type": "Question",
+					name: faq.question,
+					acceptedAnswer: {
+						"@type": "Answer",
+						text: faq.answer,
+					},
+				})),
+			},
+		],
 	};
 
 	return (
 		<div style={{ paddingTop: "76px" }}>
-			{" "}
-			{/* Adjusted padding for Navbar */}
-			{/* 1. DYNAMIC META TAGS PER SERVICE */}
 			<SEO
 				title={service.metaTitle}
 				description={service.metaDesc}
 				canonical={`https://pixeltowing.com/services/${serviceId}`}
 			/>
 			<script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+
 			<Container className="pt-4">
 				<Breadcrumb>
 					<Breadcrumb.Item linkAs={Link} linkProps={{ to: "/" }}>
@@ -177,14 +285,16 @@ const ServiceDetailPage = () => {
 					<Breadcrumb.Item active>{service.title}</Breadcrumb.Item>
 				</Breadcrumb>
 			</Container>
+
 			<Container className="py-4">
-				<Row className="g-5 align-items-center">
+				<Row className="g-5 align-items-center mb-5">
 					<Col lg={6}>
-						<Card className="border-0 shadow-lg overflow-hidden">
+						<Card className="border-0 shadow-lg overflow-hidden rounded-4">
 							<Card.Img
 								src={service.image}
-								alt={`${service.title} - Pixel Towing Brampton`} // Added Alt
+								alt={`${service.title} - Pixel Towing Brampton`}
 								className="img-fluid"
+								loading="lazy" /* ⚡ Performance Optimization */
 							/>
 						</Card>
 					</Col>
@@ -197,10 +307,12 @@ const ServiceDetailPage = () => {
 							<h1 className="fw-bold mb-0 h2">{service.title}</h1>
 						</div>
 
-						<p className="lead text-primary fw-medium fst-italic">{service.tagline}</p>
+						<p className="lead text-primary fw-medium fst-italic mb-4">
+							{service.tagline}
+						</p>
 
 						{service.details.map((p, i) => (
-							<p key={i} className="text-secondary lh-lg">
+							<p key={i} className="text-secondary lh-lg mb-3">
 								{p}
 							</p>
 						))}
@@ -210,19 +322,20 @@ const ServiceDetailPage = () => {
 								href="tel:+16476739755"
 								variant="warning"
 								size="lg"
-								className="fw-bold rounded-pill shadow-sm px-4"
+								className="fw-bold rounded-pill shadow-sm px-5"
 							>
 								<Phone size={20} className="me-2 mb-1" />
-								Get {service.title} Now
+								Call Now for {service.title}
 							</Button>
 						</div>
 					</Col>
 				</Row>
 
+				{/* FEATURE HIGHLIGHTS */}
 				<Row className="mt-5 justify-content-center">
 					<Col lg={10}>
-						<Card className="border-0 bg-light p-4 rounded-4">
-							<h3 className="h4 fw-bold mb-4">Why Choose Pixel for {service.title}?</h3>
+						<Card className="border-0 bg-light p-4 rounded-4 shadow-sm mb-5">
+							<h3 className="h5 fw-bold mb-4 text-dark">Why Choose Pixel Towing?</h3>
 							<Row xs={1} md={2} className="g-3">
 								{service.features.map((feature, i) => (
 									<Col key={i}>
@@ -231,7 +344,7 @@ const ServiceDetailPage = () => {
 												size={20}
 												className="text-success me-3 flex-shrink-0"
 											/>
-											<span className="fw-medium">{feature}</span>
+											<span className="fw-medium text-dark">{feature}</span>
 										</div>
 									</Col>
 								))}
@@ -239,7 +352,23 @@ const ServiceDetailPage = () => {
 						</Card>
 					</Col>
 				</Row>
+
+				{/* 🔥 SERVICE SPECIFIC FAQ SECTION */}
+				<Row className="justify-content-center">
+					<Col lg={8}>
+						<h3 className="h4 fw-bold mb-4 text-center">Frequently Asked Questions</h3>
+						<Accordion flush className="border rounded-3 overflow-hidden">
+							{service.faqs.map((faq, idx) => (
+								<Accordion.Item eventKey={idx.toString()} key={idx}>
+									<Accordion.Header className="fw-bold">{faq.question}</Accordion.Header>
+									<Accordion.Body className="text-secondary">{faq.answer}</Accordion.Body>
+								</Accordion.Item>
+							))}
+						</Accordion>
+					</Col>
+				</Row>
 			</Container>
+
 			<div className="py-5 bg-dark text-white text-center mt-5">
 				<Container>
 					<h2 className="fw-bold">Ready to Dispatch?</h2>

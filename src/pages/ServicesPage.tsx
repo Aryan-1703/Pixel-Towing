@@ -3,11 +3,11 @@ import { Link } from "react-router-dom"; // Link is key for SEO
 import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone } from "lucide-react";
 import SEO from "../components/SEO"; // Don't forget this component
 
-import accidentImage from "../assets/accident.jpg";
+import accidentImage from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import lockout from "../assets/lockout.jpg";
 import flatTire from "../assets/flatTire.png";
 import jumpStart from "../assets/jumpStart.jpeg";
-import towing from "../assets/towing.jpg";
+import towing from "../assets/flatbed-towing-brampton.jpg";
 
 const servicesData = [
 	{

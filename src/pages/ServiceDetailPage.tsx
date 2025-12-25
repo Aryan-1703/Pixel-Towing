@@ -13,9 +13,9 @@ import SEO from "../components/SEO"; // SEO Component for Metadata
 
 import lockout from "../assets/lockout.jpg";
 import flatTire from "../assets/flatTire.png";
-import accident from "../assets/accident.jpg";
+import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import jumpStart from "../assets/jumpStart.jpeg";
-import towing from "../assets/towing.jpg";
+import towing from "../assets/flatbed-towing-brampton.jpg";
 
 const allServicesData = {
 	"accident-recovery": {

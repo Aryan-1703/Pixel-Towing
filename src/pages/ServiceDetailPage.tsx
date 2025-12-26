@@ -24,6 +24,7 @@ import flatTire from "../assets/flatTire.png";
 import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import jumpStart from "../assets/jumpStart.jpeg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
+import scrap from "../assets/cash for car.jpg";
 
 // 🔥 DATA STRUCTURE UPDATED WITH FAQs
 const allServicesData = {
@@ -86,7 +87,7 @@ const allServicesData = {
 		],
 		features: [
 			"100% Damage-Free Unlocking",
-			"20-30 Minute Arrival Time",
+			"5-10 Minute Arrival Time",
 			"Keys Locked in Trunk Retrieval",
 			"Licensed & Insured Techs",
 		],
@@ -219,6 +220,48 @@ const allServicesData = {
 				question: "Can you take me (the driver) too?",
 				answer:
 					"Yes, our trucks have clean, comfortable passenger seats. We can transport you alongside your vehicle.",
+			},
+		],
+	},
+	"scrap-car-removal": {
+		title: "Cash for Scrap Cars & Free Removal",
+		metaTitle: "Scrap Car Removal Brampton | Cash for Junk Cars & Free Tow",
+		metaDesc:
+			"We buy junk cars in Brampton & Mississauga! Get an instant cash offer + FREE towing. Same-day pickup for scrap cars, vans, and trucks.",
+		tagline: "Turn That Clunker Into Cash Today. We Tow It Away for Free.",
+		image: scrap,
+		icon: Truck,
+		details: [
+			"Stop looking at that rust bucket in your driveway. Pixel Towing pays cash for unwanted vehicles and hauls them away at no cost to you.",
+			"**How It Works:** Since we are a towing company first, we don't have to hire a middleman. This means we can offer you **competitive cash payouts** while providing **100% Free Towing**.",
+			"We accept all vehicles: Accident damage, non-runners, no wheels, high mileage, or just old. We handle the eco-friendly recycling process.",
+		],
+		features: [
+			"Instant Cash Offers",
+			"Free Same-Day Pickup (Save $120)",
+			"We Buy Any Condition",
+			"Ownership Transfer Help",
+		],
+		faqs: [
+			{
+				question: "How much will you pay for my car?",
+				answer:
+					"Offers are based on the **vehicle's weight** and **current metal market prices**. Call us with the Make/Model, and we will give you a fair, upfront cash offer over the phone.",
+			},
+			{
+				question: "Do I have to pay for the tow?",
+				answer:
+					"Never. Many competitors deduct the towing fee from your payout. At Pixel Towing, **removal is completely free**, putting more cash in your pocket.",
+			},
+			{
+				question: "What documents do I need?",
+				answer:
+					"You simply need the vehicle ownership (green slip). If you have lost it, let our dispatcher know, and we can guide you through the alternative process.",
+			},
+			{
+				question: "Do you take cars that don't start?",
+				answer:
+					"Yes! We bring our flatbed or wheel-lift trucks to remove the vehicle, even if it has no wheels or keys.",
 			},
 		],
 	},
@@ -373,7 +416,7 @@ const ServiceDetailPage = () => {
 				<Container>
 					<h2 className="fw-bold">Ready to Dispatch?</h2>
 					<p className="lead text-white-50">
-						Our tow trucks are minutes away in Brampton & Mississauga.
+						Our tow trucks are minutes away in Brampton, Mississauga, Caledon.
 					</p>
 					<Button
 						href="tel:+16476739755"

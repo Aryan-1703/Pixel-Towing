@@ -40,7 +40,7 @@ const ContactPage = () => {
 		<>
 			<SEO
 				title="Contact Pixel Towing | 24/7 Emergency Tow Truck Brampton"
-				description="Need a tow truck fast? Call Pixel Towing 24/7 for emergency towing in Brampton, Mississauga & the GTA. Insurance-direct accident recovery available."
+				description="Need a tow truck fast? Call Pixel Towing 24/7 for emergency towing in Brampton, Mississauga, Caledon & the GTA. Insurance-direct accident recovery available."
 				canonical="https://pixeltowing.com/contact"
 			/>
 
@@ -53,7 +53,7 @@ const ContactPage = () => {
 						Contact Pixel Towing – 24/7 Emergency Tow Truck in Brampton
 					</h1>
 					<p className="lead text-white-50">
-						Fast tow truck dispatch across Brampton, Mississauga & the GTA.
+						Fast tow truck dispatch across Brampton, Mississauga, Caledon & the GTA.
 					</p>
 					<div className="mt-4">
 						<Button
@@ -148,7 +148,7 @@ const ContactPage = () => {
 								<span>
 									<strong>Service Area:</strong>
 									<br />
-									Brampton, Mississauga, Toronto, Vaughan, Hwy 401/410/407
+									Brampton, Mississauga, Caledon, Toronto, Vaughan, Hwy 410/407
 								</span>
 							</div>
 
@@ -207,7 +207,7 @@ const ContactPage = () => {
 						<Accordion.Item eventKey="2">
 							<Accordion.Header>What payment methods do you accept?</Accordion.Header>
 							<Accordion.Body>
-								We accept Debit, Credit Cards, Apple Pay, Google Pay & Cash.
+								We accept E-Transfer, Debit, Credit Cards, Apple Pay, Google Pay & Cash.
 							</Accordion.Body>
 						</Accordion.Item>
 					</Accordion>

@@ -1,12 +1,13 @@
 import { Container, Row, Col, Card, Button, Accordion } from "react-bootstrap"; // Added Accordion
 import { Link } from "react-router-dom";
-import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone } from "lucide-react";
+import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone, Banknote } from "lucide-react";
 import SEO from "../components/SEO";
 
 import accidentImage from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import lockout from "../assets/lockout.jpg";
 import flatTire from "../assets/flatTire.png";
 import jumpStart from "../assets/jumpStart.jpeg";
+import scrap from "../assets/scrap-car.jpg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
 
 const servicesData = [
@@ -55,6 +56,15 @@ const servicesData = [
 		icon: Truck,
 		alt: "Flatbed tow truck loading a broken down car",
 	},
+	{
+		title: "Scrap Car Removal",
+		description:
+			"We pay top cash for junk cars. Free towing and same-day pickup included.",
+		image: scrap, // Reuse towing image or specific scrap image
+		link: "/services/scrap-car-removal",
+		icon: Banknote,
+		alt: "Scrap car removal tow truck",
+	},
 ];
 
 const pageStyles = `
@@ -84,7 +94,7 @@ const ServicesPage = () => {
 				<Container>
 					<h1 className="display-4 fw-bold">Professional Towing Services</h1>
 					<p className="lead text-white-50">
-						Serving Brampton, Mississauga, and Toronto 24 Hours a Day.
+						Serving Brampton, Mississauga, Caledon and Toronto 24 Hours a Day.
 					</p>
 				</Container>
 			</div>

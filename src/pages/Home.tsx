@@ -30,7 +30,7 @@ import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
 import flatTire from "../assets/flatTire.png";
 
-// ⚡ PERFORMANCE: Data moved outside component to prevent re-creation on every render
+// DATA: Performance Optimized (Moved Outside)
 const HOME_SERVICES = [
 	{
 		title: "Accident Recovery",
@@ -44,7 +44,7 @@ const HOME_SERVICES = [
 	{
 		title: "Roadside Assistance",
 		description:
-			"Flat tire change, car battery boost, and lockout services. 30-minute ETA in the GTA.",
+			"Flat tire change, car battery boost, and lockout services. 15-20 minute ETA.",
 		icon: Wrench,
 		link: "/services",
 		image: flatTire,
@@ -71,7 +71,7 @@ const GOOGLE_REVIEWS = [
 	},
 	{
 		name: "Mike Chen",
-		text: "Pixel Towing was quick and reliable on the 410. Best towing service!",
+		text: "Pixel Towing was quick and reliable on the 401. Best towing service!",
 		rating: 5,
 		date: "1 month ago",
 		verified: true,
@@ -85,6 +85,26 @@ const GOOGLE_REVIEWS = [
 	},
 ];
 
+// 🔥 COMPETITOR KILLER: The Massive Keyword List (Abrams Strategy)
+const FULL_SERVICE_LIST = [
+	"Local Towing Brampton",
+	"Long Distance Towing",
+	"24 Hour Flatbed",
+	"Motorcycle Towing",
+	"Underground Garage Extraction",
+	"Winch-Out Service",
+	"Ditch Pull-Out",
+	"Off Road Recovery",
+	"Junk Car Removal",
+	"Flat Tire Repair",
+	"Car Battery Jump Start",
+	"Emergency Fuel Delivery",
+	"Vehicle Lockout Service",
+	"Accident Management",
+	"Luxury Car Transport",
+	"Scrap Car Recycling",
+];
+
 const Home = () => {
 	const [isVisible, setIsVisible] = useState(false);
 	const [pixelLetters, setPixelLetters] = useState(["", "", "", "", ""]);
@@ -93,8 +113,6 @@ const Home = () => {
 
 	useEffect(() => {
 		setIsVisible(true);
-
-		// Animation for "PIXEL" letters (Optimized to reduce renders)
 		const letters = ["P", "I", "X", "E", "L"];
 		const timers: ReturnType<typeof setTimeout>[] = [];
 
@@ -111,7 +129,6 @@ const Home = () => {
 
 		const towTimer = setTimeout(() => setShowTowing(true), 2000);
 
-		// ⚡ Cleanup function to prevent memory leaks
 		return () => {
 			timers.forEach(clearTimeout);
 			clearTimeout(towTimer);
@@ -121,22 +138,20 @@ const Home = () => {
 	useEffect(() => {
 		const interval = setInterval(() => {
 			setCurrentReview(prev => (prev + 1) % GOOGLE_REVIEWS.length);
-		}, 6000); // ⚡ Slowed down carousel to 6s for better reading & performance
+		}, 6000);
 		return () => clearInterval(interval);
 	}, []);
 
 	return (
 		<div className="bg-light">
 			<SEO
-				title="Pixel Towing Brampton | 24/7 Tow Truck & Roadside Assistance"
-				description="Looking for a tow truck in Brampton? Pixel Towing offers 24/7 accident recovery, flat tire service, and battery boosts across Mississauga & GTA. Call 647-673-9755."
+				title="Pixel Towing Brampton | 24/7 Tow Truck & Roadside | 15 Min ETA"
+				description="#1 Tow Truck Service in Brampton. Fast 15-min ETA. Accident Recovery, Lockouts, Battery Boost & Flatbed Towing. Licensed Municipal Tower. Call 647-673-9755."
 				canonical="https://pixeltowing.com/"
 			/>
 
-			{/* Inline styles specifically for backgrounds are fine, layout is in CSS */}
 			<style type="text/css">
 				{`
-                /* ⚡ PERFORMANCE: Used fixed background for Parallax instead of JS Scroll Listener */
                 .hero-section {
                     background: linear-gradient(to bottom right, #1e293b, #1e3a8a, #111827);
                 }
@@ -152,8 +167,7 @@ const Home = () => {
                     text-shadow: 0 0 35px rgba(255, 215, 0, 0.4);
                 }
                 .contact-section-bg {
-                    background-color: #111;
-                    /* ⚡ Lazy Loaded Parallax background via CSS */
+                    background: #111;
                     background-image: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/assets/towing.jpg'); 
                     background-size: cover;
                     background-attachment: fixed;
@@ -164,7 +178,6 @@ const Home = () => {
 			{/* HERO SECTION */}
 			<section className="hero-section text-center">
 				<div className="hero-overlay" />
-
 				<Container
 					className={`position-relative ${isVisible ? "opacity-100" : "opacity-0"}`}
 				>
@@ -176,7 +189,6 @@ const Home = () => {
 								</div>
 							))}
 						</Stack>
-
 						<div
 							className={`h2 fw-light text-warning ${
 								showTowing ? "opacity-100" : "opacity-0"
@@ -188,15 +200,15 @@ const Home = () => {
 					</div>
 
 					<h1 className="display-4 mb-4 fw-bold text-white">
-						24/7 Tow Truck in Brampton & GTA
+						Top Rated Tow Truck in Brampton & GTA
 					</h1>
 
 					<p
 						className="lead mb-5 text-white-50 mx-auto"
 						style={{ maxWidth: "42rem", fontSize: "1.25rem" }}
 					>
-						Fast arrival times for Brampton, Mississauga, Caledon, Toronto, Vaughan &
-						Scarborough.
+						<strong>15-Minute Arrival.</strong> Trusted by Peel Region Drivers for
+						Accident Recovery & Roadside Assistance.
 					</p>
 
 					<Stack
@@ -217,7 +229,7 @@ const Home = () => {
 							to="/services"
 							className="btn btn-outline-light btn-lg rounded-pill px-5 py-3 w-100 w-md-auto"
 						>
-							View Services
+							Our Services
 						</Link>
 					</Stack>
 				</Container>
@@ -227,9 +239,9 @@ const Home = () => {
 			<section className="py-5 bg-white">
 				<Container>
 					<div className="text-center mb-5">
-						<h2 className="display-5 fw-bold">Why Pixel Towing?</h2>
+						<h2 className="display-5 fw-bold">Why Brampton Chooses Pixel?</h2>
 						<p className="lead text-muted">
-							Brampton's trusted choice for reliable & honest roadside service.
+							Licensed, Insured, and Trusted by your neighbors.
 						</p>
 					</div>
 
@@ -237,32 +249,53 @@ const Home = () => {
 						<Col md={4}>
 							<Card className="p-4 border-0 h-100 shadow-sm bg-light">
 								<Award size={56} className="text-warning mx-auto mb-3" />
-								<h3 className="h4 fw-bold">Accident Assistance</h3>
+								<h3 className="h4 fw-bold">Certified & Licensed</h3>
 								<p className="text-muted mb-0">
-									We guide you through the insurance claim process and tow to the
-									Collision Reporting Center.
+									Fully licensed municipal tow operators working alongside{" "}
+									<strong>Peel Regional Police</strong> guidelines.
 								</p>
 							</Card>
 						</Col>
 						<Col md={4}>
 							<Card className="p-4 border-0 h-100 shadow-sm bg-light">
 								<Clock size={56} className="text-primary mx-auto mb-3" />
-								<h3 className="h4 fw-bold">30 Min Arrival</h3>
+								<h3 className="h4 fw-bold">15-Min Response</h3>
 								<p className="text-muted mb-0">
-									Strategic trucks stationed in Brampton & Mississauga mean we arrive
-									faster.
+									Faster than the competition. Our strategic location near Hwy 410 ensures
+									rapid response.
 								</p>
 							</Card>
 						</Col>
 						<Col md={4}>
 							<Card className="p-4 border-0 h-100 shadow-sm bg-light">
 								<Shield size={56} className="text-success mx-auto mb-3" />
-								<h3 className="h4 fw-bold">Damage-Free</h3>
+								<h3 className="h4 fw-bold">Price Guarantee</h3>
 								<p className="text-muted mb-0">
-									Premium flatbed tow trucks designed for low-clearance & AWD vehicles.
+									Transparent pricing. No hidden hook-up fees or surprise charges. What we
+									quote is what you pay.
 								</p>
 							</Card>
 						</Col>
+					</Row>
+				</Container>
+			</section>
+
+			{/* 🔥 NEW SECTION: THE "FULL LIST" (Competitor Killer) */}
+			<section className="py-5 bg-dark text-white">
+				<Container>
+					<div className="text-center mb-5">
+						<h2 className="fw-bold text-warning">We Tow It All - Big or Small</h2>
+						<p className="text-white-50">Complete breakdown and recovery services.</p>
+					</div>
+					<Row xs={1} md={2} lg={4} className="g-3">
+						{FULL_SERVICE_LIST.map((item, idx) => (
+							<Col key={idx}>
+								<div className="d-flex align-items-center bg-secondary bg-opacity-25 p-3 rounded">
+									<CheckCircle size={18} className="text-warning me-2 flex-shrink-0" />
+									<span className="small fw-bold">{item}</span>
+								</div>
+							</Col>
+						))}
 					</Row>
 				</Container>
 			</section>
@@ -271,9 +304,9 @@ const Home = () => {
 			<section className="py-5 bg-white services-section">
 				<Container>
 					<div className="text-center mb-5">
-						<h2 className="display-4 fw-bold">Our Services</h2>
+						<h2 className="display-4 fw-bold">Core Services</h2>
 						<p className="lead text-muted mx-auto" style={{ maxWidth: "45rem" }}>
-							Towing • Flatbeds • Accidents • Scrap Car • Boost • Lockout • Fuel
+							Professional 24/7 Solutions for Accidents & Breakdowns.
 						</p>
 					</div>
 
@@ -286,7 +319,7 @@ const Home = () => {
 											src={service.image}
 											alt={service.alt}
 											className="service-card-img rounded-4"
-											loading="lazy" /* ⚡ Performance: Lazy loads these images */
+											loading="lazy"
 										/>
 										<Card.ImgOverlay className="d-flex flex-column justify-content-end p-4 service-card-overlay">
 											<div className="bg-dark bg-opacity-50 rounded-3 p-3 backdrop-blur">
@@ -296,7 +329,7 @@ const Home = () => {
 													{service.description}
 												</p>
 												<span className="fw-bold text-warning small">
-													LEARN MORE <ArrowRight size={14} />
+													DETAILS <ArrowRight size={14} />
 												</span>
 											</div>
 										</Card.ImgOverlay>
@@ -305,25 +338,15 @@ const Home = () => {
 							</Col>
 						))}
 					</Row>
-
-					<div className="text-center mt-5">
-						<Link to="/services">
-							<Button variant="outline-dark" className="rounded-pill px-4">
-								View All Services
-							</Button>
-						</Link>
-					</div>
 				</Container>
 			</section>
 
-			{/* REVIEWS CAROUSEL */}
+			{/* REVIEWS */}
 			<section className="py-5 bg-light">
 				<Container>
 					<div className="text-center mb-5">
-						<h2 className="display-6 fw-bold">5-Star Google Reviews</h2>
-						<p className="text-muted">See what your Brampton neighbors are saying.</p>
+						<h2 className="display-6 fw-bold">Verified Google Reviews</h2>
 					</div>
-
 					<Carousel
 						activeIndex={currentReview}
 						onSelect={i => setCurrentReview(i)}
@@ -350,20 +373,7 @@ const Home = () => {
 											))}
 										</div>
 										<p className="h4 fst-italic text-secondary mb-4">"{review.text}"</p>
-										<div className="d-flex align-items-center justify-content-center">
-											<div
-												className="bg-primary text-white rounded-circle me-3 fw-bold d-flex align-items-center justify-content-center"
-												style={{ width: 40, height: 40 }}
-											>
-												{review.name.charAt(0)}
-											</div>
-											<div className="text-start">
-												<div className="fw-bold text-dark">{review.name}</div>
-												<small className="text-muted">
-													{review.date} • Verified Customer
-												</small>
-											</div>
-										</div>
+										<div className="fw-bold text-dark">- {review.name}</div>
 									</Card.Body>
 								</Card>
 							</Carousel.Item>
@@ -372,96 +382,50 @@ const Home = () => {
 				</Container>
 			</section>
 
-			{/* FAQ SECTION */}
+			{/* FAQ & LOCATION */}
 			<section className="py-5 bg-white">
 				<Container>
 					<div className="text-center mb-5">
-						<h2 className="fw-bold display-6">Frequently Asked Questions</h2>
-						<p className="text-muted">
-							Answers to common towing questions in Brampton, Mississauga & the GTA.
-						</p>
+						<h2 className="fw-bold display-6">Brampton Towing FAQ</h2>
 					</div>
 					<Row className="justify-content-center">
 						<Col md={10} lg={8}>
 							<Accordion flush>
-								{/* KEYWORD: TOW TRUCK COST BRAMPTON */}
 								<Accordion.Item eventKey="0">
 									<Accordion.Header>
 										How much does a tow truck cost in Brampton?
 									</Accordion.Header>
 									<Accordion.Body>
-										Our rates are affordable and transparent starting from $100. We charge a flat hook-up fee
-										plus a per-kilometer rate. Unlike some providers, Pixel Towing has{" "}
-										<strong>no hidden fees</strong>. Call <strong>647-673-9755</strong>{" "}
-										for an immediate, upfront quote based on your location and vehicle
-										type.
+										Our rates are transparent. Flat hook-up fee + km rate. No hidden
+										costs. Call <strong>647-673-9755</strong> for a free quote.
 									</Accordion.Body>
 								</Accordion.Item>
-
-								{/* KEYWORD: 24/7 & HIGHWAYS */}
 								<Accordion.Item eventKey="1">
 									<Accordion.Header>
-										Are you open right now (24/7 Service)?
+										Can you tow from underground parking?
 									</Accordion.Header>
 									<Accordion.Body>
-										Yes! We operate <strong>24 hours a day, 7 days a week</strong>,
-										including holidays. Whether you are stuck on Highway 410, the 407 ETR,
-										or a residential street in Peel Region at 3 AM, our dispatch team is
-										ready to help.
+										Yes. We have specialized <strong>Low Clearance Trucks</strong> for
+										condos, Bramalea City Centre, and Square One parking garages.
 									</Accordion.Body>
 								</Accordion.Item>
-
-								{/* KEYWORD: ETA (Time to Arrival) */}
 								<Accordion.Item eventKey="2">
-									<Accordion.Header>
-										How long will it take for the truck to arrive?
-									</Accordion.Header>
+									<Accordion.Header>How fast is your response time?</Accordion.Header>
 									<Accordion.Body>
-										Our standard ETA for Brampton and Mississauga is{" "}
-										<strong>10 to 20 minutes</strong>, depending on traffic and weather.
-										When you call, we use GPS tracking to dispatch the nearest truck to
-										your location immediately.
+										We pride ourselves on being faster than the competition. Our ETA is
+										typically <strong>15-20 minutes</strong> in Brampton, Caledon and
+										North Mississauga.
 									</Accordion.Body>
 								</Accordion.Item>
-
-								{/* KEYWORD: LOW CLEARANCE / PARKING GARAGE (Very important in GTA) */}
 								<Accordion.Item eventKey="3">
 									<Accordion.Header>
-										Can you tow a car from an underground parking garage?
+										Do I have to pay for accident towing?
 									</Accordion.Header>
 									<Accordion.Body>
-										Yes. We have specialized <strong>Low-Clearance Tow Trucks</strong>{" "}
-										designed specifically for condo underground parking garages and
-										shopping centers (like Square One or Bramalea City Centre). We can
-										extract your vehicle safely without damage.
-									</Accordion.Body>
-								</Accordion.Item>
-
-								{/* KEYWORD: INSURANCE & ACCIDENTS */}
-								<Accordion.Item eventKey="5">
-									<Accordion.Header>
-										Do I have to pay out of pocket for accident recovery?
-									</Accordion.Header>
-									<Accordion.Body>
-										In most accident recovery situations, the cost is{" "}
-										<strong>fully covered by your insurance company</strong>. We work
-										directly with all major insurance providers to handle the billing and
-										tow your car to the Collision Reporting Center or repair shop, meaning
-										you usually pay $0 out of pocket at the roadside.
-									</Accordion.Body>
-								</Accordion.Item>
-
-								{/* KEYWORD: PAYMENTS (Transactional) */}
-								<Accordion.Item eventKey="6">
-									<Accordion.Header>What payment methods do you accept?</Accordion.Header>
-									<Accordion.Body>
-										For services not covered by insurance (like breakdowns or battery
-										boosts), we accept
-										<strong>
-											{" "}
-											E-Transfer, Visa, MasterCard, American Express, Debit, Cash, and Apple Pay
-										</strong>
-										. Our drivers carry secure mobile payment terminals.
+										In most accident recovery cases,{" "}
+										<strong>insurance covers the entire towing cost</strong>. Customers
+										typically pay <strong>nothing out of pocket</strong>. We handle
+										insurance coordination so you don’t have to.
 									</Accordion.Body>
 								</Accordion.Item>
 							</Accordion>
@@ -470,58 +434,74 @@ const Home = () => {
 				</Container>
 			</section>
 
-			{/* SEO TEXT BLOCK */}
-			<section className="py-5 bg-light border-top seo-block">
+			{/* NEIGHBORHOOD SEO BLOCK */}
+			<section className="py-5 bg-white border-top">
 				<Container>
 					<Row>
-						<Col lg={8} className="mx-auto text-center text-md-start">
-							<h2 className="fw-bold h3 mb-4 text-dark">
-								Premier Tow Truck & Roadside Company in Peel Region
-							</h2>
+						<Col lg={10} className="mx-auto">
+							<h2 className="fw-bold mb-4">Trusted Towing Company in Brampton, ON</h2>
+
 							<p className="text-secondary mb-3">
-								Pixel Towing is locally owned, serving{" "}
-								<strong>Brampton, Mississauga, and Caledon</strong>. We are moments away
-								from <strong>Steeles Ave, Hurontario St, and Highway 410</strong>.
+								Pixel Towing is a locally owned and operated towing company proudly
+								serving Brampton, Mississauga, and Caledon. We specialize in fast,
+								reliable towing and roadside assistance for accidents, breakdowns, and
+								emergency situations.
 							</p>
-							<h3 className="h5 fw-bold text-dark mt-4 mb-3">Neighbourhoods We Serve:</h3>
-							<ul className="text-secondary list-unstyled d-flex flex-wrap justify-content-center justify-content-md-start">
-								<li className="w-50 w-md-33 mb-2">
-									<CheckCircle size={14} className="text-success me-1" /> Downtown
-									Brampton
-								</li>
-								<li className="w-50 w-md-33 mb-2">
-									<CheckCircle size={14} className="text-success me-1" /> Castlemore &
-									Gore
-								</li>
-								<li className="w-50 w-md-33 mb-2">
-									<CheckCircle size={14} className="text-success me-1" /> Mount Pleasant
-								</li>
-								<li className="w-50 w-md-33 mb-2">
-									<CheckCircle size={14} className="text-success me-1" /> Bramalea
-								</li>
-								<li className="w-50 w-md-33 mb-2">
-									<CheckCircle size={14} className="text-success me-1" /> Springdale
-								</li>
-							</ul>
+
+							<p className="text-secondary mb-3">
+								Whether you need a{" "}
+								<Link to="/services" className="text-decoration-underline text-secondary">
+									tow truck in Brampton
+								</Link>{" "}
+								after an accident, a
+								<Link
+									to="/services/vehicle-transport"
+									className="text-decoration-underline text-secondary"
+								>
+									{" "}
+									flatbed tow
+								</Link>{" "}
+								for an AWD vehicle, or emergency{" "}
+								<Link
+									to="/services/lockout"
+									className="text-decoration-underline text-secondary"
+								>
+									roadside assistance
+								</Link>
+								, our licensed operators are available 24 hours a day, 7 days a week.
+							</p>
+
+							<p className="text-secondary mb-3">
+								Our team follows Peel Regional Police towing guidelines and works directly
+								with insurance providers during accident recovery. In many accident cases,{" "}
+								<strong>insurance covers the full towing cost</strong>, meaning{" "}
+								<strong>customers pay nothing out of pocket</strong>.
+							</p>
+
+							<p className="text-secondary">
+								If you’re searching for a <strong>tow truck near you in Brampton</strong>,
+								Pixel Towing delivers fast response times, transparent pricing, and
+								professional service every time.
+							</p>
 						</Col>
 					</Row>
 				</Container>
 			</section>
 
-			{/* CTA */}
+			{/* FINAL CTA */}
 			<section className="py-5 contact-section-bg text-center text-white">
 				<Container>
-					<h2 className="display-4 fw-bold mb-3">Stuck on the Road?</h2>
+					<h2 className="display-4 fw-bold mb-3">Emergency? Call Now.</h2>
 					<p className="lead text-white-50 mb-4 mx-auto" style={{ maxWidth: "600px" }}>
-						Fast ETA for Brampton, Mississauga, and Highway 410/407.
+						15-Minute Response for Brampton, Mississauga & Hwy 410.
 					</p>
 					<Button
 						href="tel:+16476739755"
 						variant="light"
 						size="lg"
-						className="fw-bold rounded-pill px-5 py-3 text-dark shadow-lg zoom-hover"
+						className="fw-bold rounded-pill px-5 py-3 text-dark shadow-lg"
 					>
-						<Phone className="me-2" /> Call 647-673-9755 Now
+						<Phone className="me-2" /> Call 647-673-9755
 					</Button>
 				</Container>
 			</section>

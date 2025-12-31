@@ -8,6 +8,7 @@ import {
 	Accordion,
 } from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import {
 	Phone,
 	ShieldAlert,
@@ -24,9 +25,9 @@ import flatTire from "../assets/flatTire.png";
 import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import jumpStart from "../assets/jumpStart.jpeg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
-import scrap from "../assets/cash for car.jpg";
+import scrap from "../assets/cash for car.jpg"; // Ensure this filename matches your actual file
 
-// 🔥 DATA STRUCTURE UPDATED WITH FAQs
+// 🔥 DATA STRUCTURE
 const allServicesData = {
 	"accident-recovery": {
 		title: "Accident Recovery & Claims Management",
@@ -285,6 +286,7 @@ const ServiceDetailPage = () => {
 		"@graph": [
 			{
 				"@type": "Service",
+				"@id": `https://pixeltowing.com/services/${serviceId}#service`, // Added unique ID
 				serviceType: service.title,
 				provider: {
 					"@type": "AutomotiveBusiness",
@@ -296,6 +298,7 @@ const ServiceDetailPage = () => {
 			},
 			{
 				"@type": "FAQPage",
+				"@id": `https://pixeltowing.com/services/${serviceId}#faq`, // Added unique ID to separate graph nodes
 				mainEntity: service.faqs.map(faq => ({
 					"@type": "Question",
 					name: faq.question,
@@ -315,7 +318,11 @@ const ServiceDetailPage = () => {
 				description={service.metaDesc}
 				canonical={`https://pixeltowing.com/services/${serviceId}`}
 			/>
-			<script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+
+			{/* 🔥 IMPORTANT: Wrap Schema in Helmet so it refreshes when route changes */}
+			<Helmet>
+				<script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+			</Helmet>
 
 			<Container className="pt-4">
 				<Breadcrumb>

@@ -28,9 +28,9 @@
 		<!-- Canonical -->
 		<link rel="canonical" href="https://pixeltowing.com/" />
 
-		<!-- Icons -->
-		<link rel="icon" type="image/png" href="src/assets/tow.jpg" />
-		<link rel="apple-touch-icon" href="src/assets/tow.jpg" />
+		<!-- Icons (MUST be in /public) -->
+		<link rel="icon" type="image/jpg" href="/tow.jpg" />
+		<link rel="apple-touch-icon" href="/tow.jpg" />
 
 		<!-- Theme Color -->
 		<meta name="theme-color" content="#852085" />
@@ -63,12 +63,12 @@
 		<script type="application/ld+json">
 			{
 				"@context": "https://schema.org",
-				"@type": "AutomotiveBusiness",
+				"@type": "TowingService",
 				"@id": "https://pixeltowing.com/#localbusiness",
 				"name": "Pixel Towing",
 				"alternateName": "Pixel Towing Brampton",
 				"url": "https://pixeltowing.com",
-				"logo": "https://pixeltowing.com/tow-icon.png",
+				"logo": "https://pixeltowing.com/tow.png",
 				"image": "https://pixeltowing.com/social-preview.jpg",
 				"description": "24/7 towing and roadside assistance in Brampton, Mississauga, and the GTA. Specializing in flatbed towing, accident recovery, lockouts, and battery boost services.",
 				"telephone": "+16476739755",
@@ -84,6 +84,7 @@
 					"latitude": 43.7315,
 					"longitude": -79.7624
 				},
+				"hasMap": "https://www.google.com/maps/place/Pixel+Towing",
 				"areaServed": [
 					{ "@type": "City", "name": "Brampton" },
 					{ "@type": "City", "name": "Mississauga" },
@@ -107,7 +108,10 @@
 					"closes": "23:59"
 				},
 				"paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
-				"sameAs": ["https://www.instagram.com/pixel_towing"]
+				"sameAs": [
+					"https://www.instagram.com/pixel_towing",
+					"https://www.google.com/maps/place/Pixel+Towing"
+				]
 			}
 		</script>
 	</head>
@@ -115,7 +119,7 @@
 	<body>
 		<div id="root"></div>
 
-		<!-- No-JS fallback (SEO-safe) -->
+		<!-- No-JS fallback -->
 		<noscript>
 			<h1>Pixel Towing Brampton – 24/7 Emergency Tow Truck</h1>
 			<p>

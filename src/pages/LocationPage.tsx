@@ -4,7 +4,7 @@ import { Phone, CheckCircle, Truck, Wrench, ShieldAlert } from "lucide-react";
 import SEO from "../components/SEO";
 
 // Images (Reuse existing assets)
-import heroBg from "../assets/tow.jpg";
+import heroBg from "/tow.jpg";
 import flatbedImg from "../assets/flatbed-towing-brampton.jpg";
 
 // 🌍 DYNAMIC CITY DATA

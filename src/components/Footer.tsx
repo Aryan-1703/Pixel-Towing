@@ -112,6 +112,9 @@ const Footer: React.FC = () => {
 									<Link to="/contact">Get a Quote</Link>
 								</li>
 								<li>
+									<Link to="/review">Leave a Review</Link>
+								</li>
+								<li>
 									<a href="/sitemap.xml" target="_blank" rel="noopener noreferrer">
 										Sitemap
 									</a>

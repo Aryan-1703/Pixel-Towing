@@ -9,6 +9,7 @@ import ServiceDetailPage from "./pages/ServiceDetailPage";
 import LocationPage from "./pages/LocationPage";
 import ContactPage from "./pages/ContactPage";
 import NotFound from "./pages/NotFound";
+import ReviewPage from "./pages/ReviewPage";
 
 function App() {
 	return (
@@ -23,6 +24,7 @@ function App() {
 					{/* SEO Location Pages */}
 					<Route path="/locations/:cityId" element={<LocationPage />} />
 					<Route path="/contact" element={<ContactPage />} />
+					<Route path="/review" element={<ReviewPage />} />
 					{/* 404 */}
 					<Route path="*" element={<NotFound />} />
 				</Routes>

@@ -182,6 +182,30 @@ const Footer: React.FC = () => {
 											<Link to="/locations/toronto" className="service-area-pill">
 												Toronto
 											</Link>
+											<Link
+												to="/locations/georgetown"
+												className="service-area-pill text-white text-decoration-none"
+											>
+												Georgetown
+											</Link>
+											<Link
+												to="/locations/halton-hills"
+												className="service-area-pill text-white text-decoration-none"
+											>
+												Halton Hills
+											</Link>
+											<Link
+												to="/locations/acton"
+												className="service-area-pill text-white text-decoration-none"
+											>
+												Acton
+											</Link>
+											<Link
+												to="/locations/erin"
+												className="service-area-pill text-white text-decoration-none"
+											>
+												Erin
+											</Link>
 										</div>
 									</div>
 								</div>

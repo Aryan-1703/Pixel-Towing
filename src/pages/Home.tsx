@@ -442,10 +442,12 @@ const Home = () => {
 							<h2 className="fw-bold mb-4">Trusted Towing Company in Brampton, ON</h2>
 
 							<p className="text-secondary mb-3">
-								Pixel Towing is a locally owned and operated towing company proudly
-								serving Brampton, Mississauga, and Caledon. We specialize in fast,
-								reliable towing and roadside assistance for accidents, breakdowns, and
-								emergency situations.
+								Pixel Towing is locally owned, serving{" "}
+								<strong>Brampton, Mississauga, and Caledon</strong>. We have expanded our
+								service area to cover <strong>Halton Hills, Georgetown, and Acton</strong>
+								. Whether you are on{" "}
+								<strong>Hwy 410, Steeles Ave, or Trafalgar Rd</strong>, we are minutes
+								away.
 							</p>
 
 							<p className="text-secondary mb-3">

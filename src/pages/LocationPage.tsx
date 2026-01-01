@@ -57,6 +57,34 @@ const CITY_DATA: Record<
 		landmarks: "North York, Scarborough, and Etobicoke",
 		desc: "Need a tow in Toronto? Pixel Towing offers 24/7 local and long-distance towing across the GTA. Service is available once vehicles are moved off highways and onto city or service roads.",
 	},
+	georgetown: {
+		name: "Georgetown",
+		title: "Georgetown Towing Service",
+		highways: "Guelph Street & Trafalgar Road",
+		landmarks: "Georgetown Hospital, Downtown, and Glen Williams",
+		desc: "Stuck in Georgetown? Pixel Towing offers fast local towing and long-distance transport to Brampton or Toronto. We specialize in winch-outs along Trafalgar Rd.",
+	},
+	acton: {
+		name: "Acton",
+		title: "Acton Towing & Recovery",
+		highways: "Hwy 7 & Hwy 25",
+		landmarks: "Fairy Lake, Main Street",
+		desc: "Whether you need a boost at Sobeys or broke down on Highway 7, our trucks serve Acton 24/7. We provide affordable towing back to the city or local garages.",
+	},
+	"halton-hills": {
+		name: "Halton Hills",
+		title: "Halton Hills Tow Truck",
+		highways: "Steeles Ave & 10th Line",
+		landmarks: "Toronto Premium Outlets",
+		desc: "Covering the entire Halton Hills region. From Acton to Georgetown, we handle roadside emergencies, ditch recoveries, and flatbed transport safely.",
+	},
+	erin: {
+		name: "Erin",
+		title: "Erin & Hillsburgh Towing",
+		highways: "Wellington Road 124",
+		landmarks: "Erin Fairgrounds & Main St",
+		desc: "Reliable towing for Erin and Hillsburgh. We understand the rural roads and handle winching and winter recovery expertly. Long-distance towing available.",
+	},
 };
 
 const LocationPage = () => {

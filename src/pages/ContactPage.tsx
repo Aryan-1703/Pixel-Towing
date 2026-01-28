@@ -125,7 +125,7 @@ const ContactPage = () => {
 											</p>
 										</div>
 										<Button
-											href="mailto:towing@pixel17.com"
+											href="mailto:info@pixeltowing.com"
 											variant="outline-primary"
 											className="rounded-pill fw-bold"
 										>

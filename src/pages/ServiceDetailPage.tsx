@@ -8,7 +8,7 @@ import {
 	Accordion,
 } from "react-bootstrap";
 import { Link, useParams, Navigate } from "react-router-dom";
-import { Helmet } from "react-helmet-async";
+import { Helmet } from "react-helmet-async"; // ✅ Keeps Schema Safe
 import {
 	Phone,
 	ShieldAlert,
@@ -25,88 +25,103 @@ import flatTire from "../assets/flatTire.png";
 import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import jumpStart from "../assets/jumpStart.jpeg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
-import scrap from "../assets/cash for car.jpg"; // Ensure this filename matches your actual file
+import scrap from "../assets/cash for car.jpg";
 
 // 🔥 DATA STRUCTURE
 const allServicesData = {
 	"accident-recovery": {
-		title: "Accident Recovery & Claims Management",
-		metaTitle: "Accident Towing & Insurance Claim Help Brampton | 24/7 Recovery",
+		title: "24/7 Accident & Collision Recovery (Insurance Approved)",
+		metaTitle: "Accident Towing Brampton | Collision Reporting Center & Claims Help",
 		metaDesc:
-			"In an accident? We handle towing, insurance claims, and total loss negotiations. $0 out-of-pocket with full coverage. Lifetime warranty repairs available.",
-		tagline: "Don't Stress. We Handle the Tow, the Claim, and the Repairs.",
+			"In a crash? We guide you through the Collision Reporting Center process, insurance claims, and vehicle repairs. $0 out-of-pocket for insured drivers. Call 647-673-9755.",
+		tagline: "Don't Panic. We Handle the Tow, the Police Report, and the Repair.",
 		image: accident,
 		icon: ShieldAlert,
 		details: [
-			"The moments after a crash are chaotic. You don't just need a tow; you need an expert to protect your interests.",
-			"**Complete Insurance Handling:** We assist with opening your claim and managing the paperwork. If you have full coverage, our service is billable directly to your insurer, meaning you pay **$0 out of pocket**.",
-			"**Total Loss Protection:** If your vehicle is a write-off, our team fights to ensure you get **Fair Market Value** for your car, not the low-ball offer.",
-			"**Lifetime Warranty Repairs:** If your car is repairable, we can connect you with certified collision shops that offer a **Lifetime Warranty** on all workmanship and paint.",
+			"**STOP. Don't let police or 'chaser' tow trucks pressure you.** You have the right to choose who touches your vehicle.",
+			"**Step 1: The Collision Reporting Center (CRC):** By law in Peel and Toronto, you often must report accidents. We don't just drop you off; we tow your car to the CRC, wait with you, and **help you fill out the police report** correctly to protect your liability.",
+			"**Step 2: Claims & Billing:** We work directly with your insurance provider (Intact, Belair, Aviva, etc.) to cover the tow and storage fees. In almost all full-coverage cases, you pay **$0 out of pocket**.",
+			"**Step 3: Vehicle Repair Strategy:** If you don't have a mechanic, don't worry. We can transport your vehicle to our network of **Manufacturer-Certified Collision Centers**. These facilities offer **Lifetime Warranties** on paint and bodywork, arrange your Rental Car, and can often cover your insurance deductible.",
 		],
 		features: [
-			"Direct Insurance Billing ($0 Upfront)",
-			"Total Loss Value Negotiation",
-			"Assistance Opening Claims",
-			"Access to Lifetime Warranty Shops",
+			"Direct Insurance Billing ($0 to you)",
+			"Assistance at Collision Reporting Center",
+			"Free Rental Car Arrangement Support",
+			"Lifetime Warranty Repair Network",
 		],
 		faqs: [
 			{
-				question: "Do I have to pay for the tow?",
+				question: "What should I do immediately after an accident?",
 				answer:
-					"If you have full coverage insurance, you typically pay nothing. We bill the insurance company directly for the towing, cleanup, and storage fees.",
+					"**1. Stay Calm.** 2. Call Pixel Towing at 647-673-9755. 3. Do not sign anything from other tow trucks on scene. We will secure the scene, deal with the police, and protect your vehicle.",
 			},
 			{
-				question: "What if my car is a Total Loss (Write-off)?",
+				question: "Do I have to go to the police pound or my dealer?",
 				answer:
-					"We can help! We advocate for you to ensure the insurance company pays you the true Fair Market Value for your vehicle, rather than their initial low offer.",
+					"**NO.** Dealerships often have limited storage, and police pounds charge insane fees. It is smarter to tow to a certified collision shop or the Reporting Center. We will guide you to the option that saves you the most money.",
 			},
 			{
-				question: "Can you help fix my car?",
+				question: "Will you help me deal with my insurance company?",
 				answer:
-					"Yes. We work with a network of certified collision repair shops in Brampton and Mississauga that provide a Lifetime Warranty on their repairs. We handle the transport seamlessly.",
+					"Yes. Insurance adjusters try to minimize payouts. We act as your advocate to ensure your car is repaired with OEM (Original) parts, or if it is totaled, that you get the Fair Market Value payout you deserve.",
 			},
 			{
-				question: "Will you help me open the claim?",
+				question: "Who pays for the tow?",
 				answer:
-					"Absolutely. Our team will guide you through the process of reporting the accident, submitting photos, and speaking with your adjuster.",
+					"Your insurance company. We send the bill directly to them. If you have valid collision coverage, we generally do not ask for payment from you at the roadside.",
+			},
+			{
+				question: "Do you offer a warranty on repairs?",
+				answer:
+					"While we are the towing service, the **Certified Collision Centers** we recommend offer a Lifetime Warranty on all bodywork and paint, ensuring your car returns to pre-accident condition.",
 			},
 		],
 	},
 
 	lockout: {
-		title: "Car Lockout Service",
-		metaTitle: "Car Lockout Service Brampton | Keys Locked in Car Help 24/7",
+		title: "Emergency Car Lockout Service (No Damage)",
+		metaTitle: "Car Lockout Service Brampton & GTA | Keys Locked in Car | 15 Min ETA",
 		metaDesc:
-			"Locked keys in your car in Brampton or Mississauga? Our lockout service opens cars without damage. Fast 20 min arrival. Call now: 647-673-9755.",
-		tagline: "Locked Keys in Your Car? We Provide Fast, Damage-Free Unlocking.",
+			"Keys locked in car? Pixel Towing unlocks cars in Brampton, Mississauga & Toronto fast. Non-destructive methods, luxury car safe, 24/7 Service. Call 647-673-9755.",
+		tagline: "Keys Locked Inside? Engine Running? We Unlock It FAST.",
 		image: lockout,
 		icon: KeyRound,
 		details: [
-			"It happens to the best of us. Whether your keys are in the ignition or the trunk, we can help.",
-			"Our technicians use professional Lishi tools and air wedges to unlock your vehicle without scratching the paint or damaging the weather stripping.",
-			"We unlock all makes: BMW, Mercedes, Honda, Toyota, and domestic vehicles.",
+			"It happens to the best of us. Whether your engine is running, your child is locked inside, or you simply lost your keys, panic sets in quickly. We are the calm in your chaos.",
+			"**100% Damage-Free Guarantee:** Unlike amateurs who use coat hangers, our certified technicians use specialized **Lishi picks, air wedges, and long-reach tools**. We unlock your door without scratching the paint, bending the frame, or damaging weather stripping.",
+			"**We Unlock All Makes & Models:** From standard sedans (Civic, Corolla) to high-security luxury vehicles (BMW, Mercedes, Audi) and even heavy-duty trucks.",
 		],
 		features: [
-			"100% Damage-Free Unlocking",
-			"5-10 Minute Arrival Time",
-			"Keys Locked in Trunk Retrieval",
-			"Licensed & Insured Techs",
+			"15-Minute Rapid Response",
+			"Child/Pet Emergency Priority",
+			"Zero-Damage Air Wedge Method",
+			"Luxury & German Car Specialist",
 		],
 		faqs: [
 			{
-				question: "Will unlocking damage my car door?",
+				question: "Will unlocking the car scratch my paint?",
 				answer:
-					"No. We use specialized air wedges and long-reach tools that apply gentle pressure without bending the door frame or scratching the paint.",
+					"Absolutely not. We use soft, rubberized air wedges and coated tools specifically designed to protect your vehicle's finish. We guarantee zero damage.",
 			},
 			{
-				question: "Can you unlock luxury cars (BMW, Mercedes)?",
+				question: "My car is running / A child is inside. Can you help?",
 				answer:
-					"Yes. We have specialized Lishi tools designed for high-security German and European locks.",
+					"**YES. Call 647-673-9755 immediately.** We prioritize 'engine-running' and 'occupant-locked' calls above all others and will dispatch the nearest truck instantly.",
 			},
 			{
-				question: "How fast can you get here?",
+				question: "Can you open luxury cars (BMW, Mercedes, Audi)?",
 				answer:
-					"For lockouts in Brampton and Mississauga, we typically arrive in 10-15 minutes.",
+					"Yes. Luxury cars have 'deadlock' security features that normal tow truck drivers cannot open. We carry specialized Lishi decoders to pick these high-security locks without triggering the anti-theft lockdown.",
+			},
+			{
+				question: "Do you unlock semi-trucks or RVs?",
+				answer:
+					"Yes, our heavy-duty division can unlock Semi-truck cabs, RVs, Box trucks, and Buses using commercial lockout tools.",
+			},
+			{
+				question: "Do you make keys if I lost them completely?",
+				answer:
+					"We primarily focus on *unlocking* vehicles where the keys are inside. If your keys are totally lost, we can tow your vehicle to a dealership or coordinate with our partner automotive locksmith for key cutting.",
 			},
 		],
 	},
@@ -226,9 +241,9 @@ const allServicesData = {
 	},
 	"scrap-car-removal": {
 		title: "Cash for Scrap Cars & Free Removal",
-		metaTitle: "Scrap Car Removal Brampton | Cash for Junk Cars & Free Tow",
+		metaTitle: "Cash for Scrap Cars Brampton & Caledon | We Pay Top Dollar + Free Tow",
 		metaDesc:
-			"We buy junk cars in Brampton & Mississauga! Get an instant cash offer + FREE towing. Same-day pickup for scrap cars, vans, and trucks.",
+			"Get instant CASH for junk cars. We beat dealer prices in Brampton, Mississauga & Caledon. Free towing included. Same-day pickup. Call 647-673-9755.",
 		tagline: "Turn That Clunker Into Cash Today. We Tow It Away for Free.",
 		image: scrap,
 		icon: Truck,
@@ -280,25 +295,34 @@ const ServiceDetailPage = () => {
 	const service = allServicesData[serviceId];
 	const IconComponent = service.icon;
 
-	// Structured Data: Service + FAQ Page
+	// 🔥 STRUCTURED DATA: Added full address block to fix Google Search Console error
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@graph": [
 			{
 				"@type": "Service",
-				"@id": `https://pixeltowing.com/services/${serviceId}#service`, // Added unique ID
+				"@id": `https://pixeltowing.com/services/${serviceId}#service`,
 				serviceType: service.title,
 				provider: {
 					"@type": "AutomotiveBusiness",
 					name: "Pixel Towing",
 					telephone: "+16476739755",
+					image: "https://pixeltowing.com/tow-icon.png", // Added
+					priceRange: "$$", // Added
+					address: {
+						// ✅ FIXED: Missing Address added here
+						"@type": "PostalAddress",
+						addressLocality: "Brampton",
+						addressRegion: "ON",
+						addressCountry: "CA",
+					},
 				},
 				areaServed: { "@type": "City", name: "Brampton" },
 				description: service.metaDesc,
 			},
 			{
 				"@type": "FAQPage",
-				"@id": `https://pixeltowing.com/services/${serviceId}#faq`, // Added unique ID to separate graph nodes
+				"@id": `https://pixeltowing.com/services/${serviceId}#faq`,
 				mainEntity: service.faqs.map(faq => ({
 					"@type": "Question",
 					name: faq.question,
@@ -319,7 +343,7 @@ const ServiceDetailPage = () => {
 				canonical={`https://pixeltowing.com/services/${serviceId}`}
 			/>
 
-			{/* 🔥 IMPORTANT: Wrap Schema in Helmet so it refreshes when route changes */}
+			{/* 🔥 SCHEMA WRAPPER */}
 			<Helmet>
 				<script type="application/ld+json">{JSON.stringify(structuredData)}</script>
 			</Helmet>

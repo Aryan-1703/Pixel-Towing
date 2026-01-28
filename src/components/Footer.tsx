@@ -160,9 +160,9 @@ const Footer: React.FC = () => {
 									<span className="footer-phone">647-673-9755</span>
 								</a>
 
-								<a href="mailto:towing@pixel17.com" className="d-flex align-items-center">
+								<a href="mailto:info@pixeltowing.com" className="d-flex align-items-center">
 									<Mail size={18} className="me-3 text-secondary" />
-									towing@pixel17.com
+									info@pixeltowing.com
 								</a>
 
 								<div className="d-flex align-items-start">

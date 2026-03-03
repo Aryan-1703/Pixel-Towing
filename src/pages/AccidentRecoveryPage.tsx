@@ -1,4 +1,13 @@
-import { Container, Row, Col, Card, Button, Accordion, Stack, Badge } from "react-bootstrap";
+import {
+	Container,
+	Row,
+	Col,
+	Card,
+	Button,
+	Accordion,
+	Stack,
+	Badge,
+} from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
 import {
@@ -11,7 +20,6 @@ import {
 	AlertTriangle,
 	FileText,
 	DollarSign,
-	Clock,
 	Award,
 	MessageSquare,
 } from "lucide-react";
@@ -55,12 +63,30 @@ const collisionSchema = {
 				"@type": "OfferCatalog",
 				name: "Collision & Accident Recovery Services",
 				itemListElement: [
-					{ "@type": "Offer", itemOffered: { "@type": "Service", name: "Accident Towing & Recovery" } },
-					{ "@type": "Offer", itemOffered: { "@type": "Service", name: "Collision Repair with OEM Parts" } },
-					{ "@type": "Offer", itemOffered: { "@type": "Service", name: "Deductible Assistance Program" } },
-					{ "@type": "Offer", itemOffered: { "@type": "Service", name: "Same-Day Rental Car" } },
-					{ "@type": "Offer", itemOffered: { "@type": "Service", name: "Total Loss Claim Advocacy" } },
-					{ "@type": "Offer", itemOffered: { "@type": "Service", name: "Lifetime Warranty on Repairs" } },
+					{
+						"@type": "Offer",
+						itemOffered: { "@type": "Service", name: "Accident Towing & Recovery" },
+					},
+					{
+						"@type": "Offer",
+						itemOffered: { "@type": "Service", name: "Collision Repair with OEM Parts" },
+					},
+					{
+						"@type": "Offer",
+						itemOffered: { "@type": "Service", name: "Deductible Assistance Program" },
+					},
+					{
+						"@type": "Offer",
+						itemOffered: { "@type": "Service", name: "Same-Day Rental Car" },
+					},
+					{
+						"@type": "Offer",
+						itemOffered: { "@type": "Service", name: "Total Loss Claim Advocacy" },
+					},
+					{
+						"@type": "Offer",
+						itemOffered: { "@type": "Service", name: "Lifetime Warranty on Repairs" },
+					},
 				],
 			},
 		},
@@ -257,12 +283,13 @@ const AccidentRecoveryPage = () => {
 								GTA's #1 Full-Service Collision Centre
 							</Badge>
 							<h1 className="display-4 fw-bold mb-4 lh-sm">
-								Accident in Brampton or GTA?<br />
+								Accident in Brampton or GTA?
+								<br />
 								<span style={{ color: "#FBBF24" }}>One Call Handles Everything.</span>
 							</h1>
 							<p className="lead text-white-50 mb-4">
-								Tow Truck → Collision Reporting → Bodyshop Repair → Rental Car.
-								All under one roof. OEM parts. Lifetime warranty. Deductible assistance available.
+								Tow Truck → Collision Reporting → Bodyshop Repair → Rental Car. All under
+								one roof. OEM parts. Lifetime warranty. Deductible assistance available.
 								Your insurance pays — you choose where your car goes.
 							</p>
 
@@ -275,8 +302,11 @@ const AccidentRecoveryPage = () => {
 									"✅ Same-Day Rental Car",
 									"✅ Total Loss Advocacy",
 									"✅ All Ontario Insurers Accepted",
-								].map((b) => (
-									<span key={b} className="badge bg-white text-dark px-3 py-2 rounded-pill fw-normal">
+								].map(b => (
+									<span
+										key={b}
+										className="badge bg-white text-dark px-3 py-2 rounded-pill fw-normal"
+									>
 										{b}
 									</span>
 								))}
@@ -321,7 +351,7 @@ const AccidentRecoveryPage = () => {
 										{ icon: "3️⃣", text: "Call 647-673-9755 — we come to you" },
 										{ icon: "4️⃣", text: "Don't sign anything from other trucks" },
 										{ icon: "5️⃣", text: "We handle the CRC, rental & repairs" },
-									].map((step) => (
+									].map(step => (
 										<div key={step.icon} className="d-flex align-items-center gap-3">
 											<span style={{ fontSize: "1.4rem" }}>{step.icon}</span>
 											<span className="text-dark fw-medium">{step.text}</span>
@@ -331,7 +361,10 @@ const AccidentRecoveryPage = () => {
 								<hr />
 								<div className="text-center">
 									<div className="text-muted small mb-1">Dispatch available 24/7</div>
-									<a href="tel:+16476739755" className="h4 fw-bold text-dark text-decoration-none">
+									<a
+										href="tel:+16476739755"
+										className="h4 fw-bold text-dark text-decoration-none"
+									>
 										647-673-9755
 									</a>
 								</div>
@@ -345,7 +378,9 @@ const AccidentRecoveryPage = () => {
 			<section className="py-5 bg-white">
 				<Container>
 					<div className="text-center mb-5">
-						<h2 className="display-5 fw-bold">Why Accident Victims Choose Pixel Towing</h2>
+						<h2 className="display-5 fw-bold">
+							Why Accident Victims Choose Pixel Towing
+						</h2>
 						<p className="lead text-muted mx-auto" style={{ maxWidth: "640px" }}>
 							We're not just a tow company. We're a full collision solution — and every
 							advantage below is available to you the moment you call.
@@ -370,16 +405,19 @@ const AccidentRecoveryPage = () => {
 				<Container>
 					<Row className="align-items-center g-5">
 						<Col lg={6}>
-							<Badge bg="warning" text="dark" className="rounded-pill mb-3">Ontario Law</Badge>
+							<Badge bg="warning" text="dark" className="rounded-pill mb-3">
+								Ontario Law
+							</Badge>
 							<h2 className="display-6 fw-bold text-white mb-4">
 								Your Insurance Company Cannot Tell You Which Shop to Use
 							</h2>
 							<p className="text-white-50 mb-3">
 								This is the most important thing to know after a collision in Ontario.
-								Under provincial insurance regulations, your insurer can <em>suggest</em> a
-								preferred collision centre — but they cannot legally require you to use it.
-								You have the right to choose any licensed shop. That right is yours regardless
-								of your policy type, your insurer, or what you're told at the scene.
+								Under provincial insurance regulations, your insurer can <em>suggest</em>{" "}
+								a preferred collision centre — but they cannot legally require you to use
+								it. You have the right to choose any licensed shop. That right is yours
+								regardless of your policy type, your insurer, or what you're told at the
+								scene.
 							</p>
 							<p className="text-white-50 mb-4">
 								Insurance-preferred shops operate on insurer-negotiated rates. That
@@ -393,7 +431,7 @@ const AccidentRecoveryPage = () => {
 									"You choose the repair shop — not their preferred facility",
 									"You choose the rental company — not their approved vendor",
 									"You negotiate the total loss value — don't accept the first offer",
-								].map((right) => (
+								].map(right => (
 									<div key={right} className="d-flex align-items-start gap-3">
 										<CheckCircle size={20} className="text-warning mt-1 flex-shrink-0" />
 										<span className="text-white">{right}</span>
@@ -417,11 +455,15 @@ const AccidentRecoveryPage = () => {
 			<section className="py-5 bg-light">
 				<Container>
 					<div className="text-center mb-5">
-						<h2 className="display-6 fw-bold">How Our Accident-to-Repair Process Works</h2>
-						<p className="text-muted">From the crash scene to your restored vehicle — we handle every step.</p>
+						<h2 className="display-6 fw-bold">
+							How Our Accident-to-Repair Process Works
+						</h2>
+						<p className="text-muted">
+							From the crash scene to your restored vehicle — we handle every step.
+						</p>
 					</div>
 					<Row xs={1} md={2} lg={3} className="g-4">
-						{PROCESS_STEPS.map((step) => (
+						{PROCESS_STEPS.map(step => (
 							<Col key={step.num}>
 								<Card className="border-0 shadow-sm h-100 rounded-4 p-4 bg-white">
 									<div
@@ -455,7 +497,10 @@ const AccidentRecoveryPage = () => {
 				<Container>
 					<Row className="justify-content-center">
 						<Col lg={9}>
-							<Card className="border-0 rounded-4 shadow-lg p-5" style={{ borderLeft: "5px solid #EF4444" }}>
+							<Card
+								className="border-0 rounded-4 shadow-lg p-5"
+								style={{ borderLeft: "5px solid #EF4444" }}
+							>
 								<div className="d-flex align-items-center mb-4 gap-3">
 									<AlertTriangle size={40} className="text-danger flex-shrink-0" />
 									<h2 className="h3 fw-bold mb-0">
@@ -476,10 +521,13 @@ const AccidentRecoveryPage = () => {
 										"Local market comparables above average",
 										"Pre-accident condition (new tires, brakes, etc.)",
 										"Replacement cost vs. depreciated book value",
-									].map((item) => (
+									].map(item => (
 										<Col key={item} sm={6} className="mb-2">
 											<div className="d-flex align-items-start gap-2">
-												<CheckCircle size={16} className="text-success mt-1 flex-shrink-0" />
+												<CheckCircle
+													size={16}
+													className="text-success mt-1 flex-shrink-0"
+												/>
 												<span className="text-secondary small">{item}</span>
 											</div>
 										</Col>
@@ -510,7 +558,10 @@ const AccidentRecoveryPage = () => {
 				<Container>
 					<Row className="justify-content-center">
 						<Col lg={9}>
-							<Card className="border-0 rounded-4 shadow-lg p-5" style={{ borderLeft: "5px solid #10B981" }}>
+							<Card
+								className="border-0 rounded-4 shadow-lg p-5"
+								style={{ borderLeft: "5px solid #10B981" }}
+							>
 								<div className="d-flex align-items-center mb-4 gap-3">
 									<DollarSign size={40} className="text-success flex-shrink-0" />
 									<h2 className="h3 fw-bold mb-0">
@@ -518,17 +569,17 @@ const AccidentRecoveryPage = () => {
 									</h2>
 								</div>
 								<p className="text-secondary mb-3">
-									One of the biggest pain points after an accident is the deductible —
-									the amount you pay out of pocket before insurance covers the rest.
-									Standard deductibles in Ontario typically run $500–$1,000 or more.
+									One of the biggest pain points after an accident is the deductible — the
+									amount you pay out of pocket before insurance covers the rest. Standard
+									deductibles in Ontario typically run $500–$1,000 or more.
 								</p>
 								<p className="text-secondary mb-4">
 									Through our insurer relationships and repair volume, we are able to
 									assist qualifying clients with their deductible — either fully waiving
 									it or reducing it significantly. This is a legitimate program available
 									to clients who bring their vehicle to our bodyshop. Eligibility depends
-									on your claim type and insurer. Call us and we'll tell you within minutes
-									if your claim qualifies.
+									on your claim type and insurer. Call us and we'll tell you within
+									minutes if your claim qualifies.
 								</p>
 								<div className="d-flex flex-wrap gap-3">
 									<Button
@@ -561,7 +612,9 @@ const AccidentRecoveryPage = () => {
 				<Container>
 					<Row className="justify-content-center">
 						<Col lg={9}>
-							<h2 className="fw-bold text-center mb-2">Collision & Accident Recovery FAQ</h2>
+							<h2 className="fw-bold text-center mb-2">
+								Collision & Accident Recovery FAQ
+							</h2>
 							<p className="text-muted text-center mb-5">
 								Everything you need to know — answered honestly.
 							</p>
@@ -587,7 +640,8 @@ const AccidentRecoveryPage = () => {
 						Accident Recovery & Collision Repair — All GTA Areas
 					</h3>
 					<p className="text-center text-muted small mb-4">
-						We respond to accident scenes and provide full collision repair services across:
+						We respond to accident scenes and provide full collision repair services
+						across:
 					</p>
 					<div className="d-flex flex-wrap justify-content-center gap-2">
 						{[
@@ -601,7 +655,7 @@ const AccidentRecoveryPage = () => {
 							{ name: "Halton Hills", path: "/locations/halton-hills" },
 							{ name: "Acton", path: "/locations/acton" },
 							{ name: "Erin", path: "/locations/erin" },
-						].map((area) => (
+						].map(area => (
 							<Link
 								key={area.path}
 								to={area.path}
@@ -620,53 +674,80 @@ const AccidentRecoveryPage = () => {
 					<Row className="justify-content-center">
 						<Col lg={9}>
 							<h2 className="fw-bold mb-4">
-								Brampton & GTA's Collision Repair Experts — Tow, Repair, Rental Under One Roof
+								Brampton & GTA's Collision Repair Experts — Tow, Repair, Rental Under One
+								Roof
 							</h2>
 							<p className="text-secondary mb-3">
 								Pixel Towing is not just a tow truck company. We are Brampton's only
-								full-service accident solution — combining a 24/7 tow truck fleet, a certified
-								collision repair bodyshop, and our own rental car fleet under one operation.
-								When you're in an accident anywhere in the GTA, one call to{" "}
-								<a href="tel:+16476739755" className="fw-bold text-dark">647-673-9755</a> puts
-								all of that in motion simultaneously.
+								full-service accident solution — combining a 24/7 tow truck fleet, a
+								certified collision repair bodyshop, and our own rental car fleet under
+								one operation. When you're in an accident anywhere in the GTA, one call to{" "}
+								<a href="tel:+16476739755" className="fw-bold text-dark">
+									647-673-9755
+								</a>{" "}
+								puts all of that in motion simultaneously.
 							</p>
 							<p className="text-secondary mb-3">
 								We built this model because we saw how the standard process fails drivers:
-								insurance dispatches a tow company to an insurance-preferred shop, repairs are
-								done with aftermarket parts to save money for the insurer, the rental takes two
-								days to arrange, and the driver — who just went through something stressful —
-								has to coordinate between three different companies while their car sits. We
-								eliminated that entirely.
+								insurance dispatches a tow company to an insurance-preferred shop, repairs
+								are done with aftermarket parts to save money for the insurer, the rental
+								takes two days to arrange, and the driver — who just went through
+								something stressful — has to coordinate between three different companies
+								while their car sits. We eliminated that entirely.
 							</p>
 							<p className="text-secondary mb-3">
 								Every vehicle we repair leaves our shop with a{" "}
 								<strong>lifetime workmanship warranty</strong>. We use{" "}
 								<strong>OEM (Original Equipment Manufacturer) parts</strong> exclusively —
 								the same components your car was built with. We work directly with every
-								major Ontario insurer to handle billing so you're not chasing anyone.
-								And through our deductible assistance program, many clients pay little
-								to nothing out of pocket.
+								major Ontario insurer to handle billing so you're not chasing anyone. And
+								through our deductible assistance program, many clients pay little to
+								nothing out of pocket.
 							</p>
 							<p className="text-secondary mb-3">
 								If your vehicle has been declared a{" "}
-								<Link to="/blog/total-loss-vehicle-ontario-guide" className="text-decoration-underline text-secondary">
+								<Link
+									to="/blog/total-loss-vehicle-ontario-guide"
+									className="text-decoration-underline text-secondary"
+								>
 									total loss
 								</Link>
-								, we advocate on your behalf for a fair market valuation — because the first
-								offer from insurance rarely is one. We've helped drivers across{" "}
-								<Link to="/locations/mississauga" className="text-decoration-underline text-secondary">Mississauga</Link>,{" "}
-								<Link to="/locations/caledon" className="text-decoration-underline text-secondary">Caledon</Link>,{" "}
-								<Link to="/locations/etobicoke" className="text-decoration-underline text-secondary">Etobicoke</Link>,
-								and the rest of the GTA get meaningfully more than their opening settlement.
+								, we advocate on your behalf for a fair market valuation — because the
+								first offer from insurance rarely is one. We've helped drivers across{" "}
+								<Link
+									to="/locations/mississauga"
+									className="text-decoration-underline text-secondary"
+								>
+									Mississauga
+								</Link>
+								,{" "}
+								<Link
+									to="/locations/caledon"
+									className="text-decoration-underline text-secondary"
+								>
+									Caledon
+								</Link>
+								,{" "}
+								<Link
+									to="/locations/etobicoke"
+									className="text-decoration-underline text-secondary"
+								>
+									Etobicoke
+								</Link>
+								, and the rest of the GTA get meaningfully more than their opening
+								settlement.
 							</p>
 							<p className="text-secondary">
 								Whether you're searching for <strong>collision repair near me</strong>,{" "}
 								<strong>accident towing Brampton</strong>,{" "}
 								<strong>bodyshop Brampton deductible waived</strong>, or{" "}
-								<strong>total loss car GTA</strong> — the answer is the same.
-								Call Pixel Towing at{" "}
-								<a href="tel:+16476739755" className="fw-bold text-dark">647-673-9755</a>.
-								We handle everything from the moment of impact to the day you pick up your car.
+								<strong>total loss car GTA</strong> — the answer is the same. Call Pixel
+								Towing at{" "}
+								<a href="tel:+16476739755" className="fw-bold text-dark">
+									647-673-9755
+								</a>
+								. We handle everything from the moment of impact to the day you pick up
+								your car.
 							</p>
 						</Col>
 					</Row>
@@ -687,7 +768,11 @@ const AccidentRecoveryPage = () => {
 						Tow truck, collision reporting, bodyshop with lifetime warranty, deductible
 						assistance, OEM parts, same-day rental — one call, we handle all of it.
 					</p>
-					<Stack gap={3} direction="horizontal" className="justify-content-center flex-wrap">
+					<Stack
+						gap={3}
+						direction="horizontal"
+						className="justify-content-center flex-wrap"
+					>
 						<Button
 							href="tel:+16476739755"
 							variant="warning"
@@ -709,7 +794,8 @@ const AccidentRecoveryPage = () => {
 						</Button>
 					</Stack>
 					<p className="text-white-50 small mt-4">
-						Serving Brampton · Mississauga · Caledon · Etobicoke · Vaughan · Toronto · Georgetown · Halton Hills
+						Serving Brampton · Mississauga · Caledon · Etobicoke · Vaughan · Toronto ·
+						Georgetown · Halton Hills
 					</p>
 				</Container>
 			</section>

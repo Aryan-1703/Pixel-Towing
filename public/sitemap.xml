@@ -8,6 +8,19 @@
     <priority>1.0</priority>
   </url>
 
+  <!-- TIER 1.5: ACCIDENT/COLLISION — highest commercial value page -->
+  <url>
+    <loc>https://pixeltowing.com/accident-recovery</loc>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/collision-repair</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
   <url>
     <loc>https://pixeltowing.com/services</loc>
     <changefreq>weekly</changefreq>
@@ -19,17 +32,24 @@
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
+
   <url>
     <loc>https://pixeltowing.com/review</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
-  <!-- TIER 2: SERVICE PAGES (The Money Keywords) -->
+  <url>
+    <loc>https://pixeltowing.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- TIER 2: SERVICE PAGES -->
   <url>
     <loc>https://pixeltowing.com/services/accident-recovery</loc>
     <changefreq>weekly</changefreq>
-    <priority>0.85</priority>
+    <priority>0.9</priority>
   </url>
 
   <url>
@@ -55,14 +75,14 @@
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
-  
+
   <url>
     <loc>https://pixeltowing.com/services/scrap-car-removal</loc>
     <changefreq>weekly</changefreq>
     <priority>0.85</priority>
   </url>
 
-  <!-- TIER 3: CITY LANDING PAGES (Local SEO Power) -->
+  <!-- TIER 3: CITY LANDING PAGES -->
   <url>
     <loc>https://pixeltowing.com/locations/mississauga</loc>
     <changefreq>monthly</changefreq>
@@ -74,7 +94,7 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://pixeltowing.com/locations/etobicoke</loc>
     <changefreq>monthly</changefreq>
@@ -92,25 +112,84 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://pixeltowing.com/locations/georgetown</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://pixeltowing.com/locations/acton</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://pixeltowing.com/locations/halton-hills</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+
   <url>
     <loc>https://pixeltowing.com/locations/erin</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
+  </url>
+
+  <!-- TIER 4: BLOG POSTS -->
+  <url>
+    <loc>https://pixeltowing.com/blog/what-to-do-after-car-accident-brampton</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/total-loss-vehicle-ontario-guide</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/oem-vs-aftermarket-parts-collision-repair</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/deductible-waived-collision-repair-brampton</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/collision-repair-rental-car-brampton</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/ontario-towing-laws-driver-rights</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/dead-battery-vs-bad-alternator</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/how-to-avoid-predatory-towing-gta</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://pixeltowing.com/blog/car-insurance-towing-coverage-ontario</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.7</priority>
   </url>
 
 </urlset>

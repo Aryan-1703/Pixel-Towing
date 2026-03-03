@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, Button } from "react-bootstrap";
-import { Phone } from "lucide-react";
+import { Phone, ShieldAlert } from "lucide-react";
 import "../css/AppNavbar.css";
 
 const AppNavbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
-	// 1. Fixed: State remains a boolean
 	const [expanded, setExpanded] = useState(false);
 	const location = useLocation();
 
@@ -28,22 +27,19 @@ const AppNavbar = () => {
 			variant={isSolid ? "light" : "dark"}
 			expand="lg"
 			fixed="top"
-			// 2. Fixed: Uses the boolean state directly
 			expanded={expanded}
 		>
 			<Container>
-				{/* BRAND */}
 				<Navbar.Brand
 					as={Link}
 					to="/"
 					className="fw-bold fs-4"
 					onClick={() => setExpanded(false)}
-					title="Pixel Towing Brampton & GTA"
+					title="Pixel Towing Brampton & GTA — 24/7 Tow Truck & Collision Repair"
 				>
 					<span style={{ color: "#FBBF24" }}>PIXEL</span> TOWING GTA
 				</Navbar.Brand>
 
-				{/* 3. Fixed: Simplified Toggle Logic (!expanded) */}
 				<Navbar.Toggle
 					aria-controls="basic-navbar-nav"
 					onClick={() => setExpanded(!expanded)}
@@ -55,34 +51,55 @@ const AppNavbar = () => {
 							as={Link}
 							to="/"
 							onClick={() => setExpanded(false)}
-							className="fw-medium mx-2"
+							className="fw-medium mx-1"
 						>
 							Home
+						</Nav.Link>
+
+						{/* ACCIDENT RECOVERY — highlighted as primary CTA in nav */}
+						<Nav.Link
+							as={Link}
+							to="/accident-recovery"
+							onClick={() => setExpanded(false)}
+							className="fw-bold mx-1"
+							style={{ color: "#DC2626" }}
+						>
+							<ShieldAlert size={15} className="me-1 mb-1" />
+							Accident Recovery
 						</Nav.Link>
 
 						<Nav.Link
 							as={Link}
 							to="/services"
 							onClick={() => setExpanded(false)}
-							className="fw-medium mx-2"
+							className="fw-medium mx-1"
 						>
 							Services
 						</Nav.Link>
 
 						<Nav.Link
 							as={Link}
+							to="/blog"
+							onClick={() => setExpanded(false)}
+							className="fw-medium mx-1"
+						>
+							Blog
+						</Nav.Link>
+
+						<Nav.Link
+							as={Link}
 							to="/contact"
 							onClick={() => setExpanded(false)}
-							className="fw-medium mx-2"
+							className="fw-medium mx-1"
 						>
 							Contact
 						</Nav.Link>
 
-						{/* Phone Number */}
 						<Button
 							href="tel:+16476739755"
 							variant="warning"
 							className="ms-lg-3 fw-bold mt-3 mt-lg-0 rounded-pill px-4"
+							aria-label="Call Pixel Towing 647-673-9755"
 						>
 							<Phone size={18} className="me-2 mb-1" />
 							647-673-9755

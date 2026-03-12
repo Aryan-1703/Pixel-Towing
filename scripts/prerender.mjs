@@ -80,8 +80,12 @@ async function prerenderRoute(page, route) {
   // networkidle0 guarantees JS is loaded; this gap lets React finish rendering.
   await new Promise((r) => setTimeout(r, 1500));
 
-  // Get fully rendered HTML
-  const html = await page.content();
+  // Get fully rendered HTML — retry once if Helmet hasn't injected yet
+  let html = await page.content();
+  if (!html.includes('data-rh="true"')) {
+    await new Promise((r) => setTimeout(r, 1000));
+    html = await page.content();
+  }
 
   // Determine output path
   const outputDir =

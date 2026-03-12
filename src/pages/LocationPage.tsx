@@ -339,6 +339,7 @@ const LocationPage = () => {
 	const structuredData = {
 		"@context": "https://schema.org",
 		"@type": "TowingService",
+		"@id": `https://pixeltowing.com/locations/${cityId}#towingservice`,
 		name: `Pixel Towing ${city.name}`,
 		telephone: "+16476739755",
 		url: `https://pixeltowing.com/locations/${cityId}`,
@@ -365,7 +366,7 @@ const LocationPage = () => {
 		<div className="bg-light">
 			<SEO
 				title={`${city.name} Towing Service | 15–20 Min ETA | Pixel Towing 647-673-9755`}
-				description={`Looking for a tow truck in ${city.name}? Fast 24/7 accident recovery, flatbed towing, and roadside assistance near ${city.landmarks}. Licensed & insured. Call 647-673-9755.`}
+				description={`24/7 towing in ${city.name}. Fast accident recovery, flatbed towing & roadside assistance. 15–20 min ETA. Licensed & insured. Call 647-673-9755.`}
 				canonical={`https://pixeltowing.com/locations/${cityId}`}
 			/>
 			<Helmet>

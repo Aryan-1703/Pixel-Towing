@@ -12,7 +12,7 @@ export const BLOG_POSTS = [
 		title: "What To Do After a Car Accident in Brampton — Call a Tow Truck Before You Call Insurance",
 		metaTitle: "What To Do After a Car Accident in Brampton | Pixel Towing",
 		excerpt:
-			"Most Brampton drivers make one costly mistake after an accident: they call insurance first. Here's why calling your own tow company first protects you — and what to do step by step.",
+			"Most drivers make one costly mistake after an accident: calling insurance first. Here's why calling your tow company first protects you.",
 		category: "Know Your Rights",
 		categoryColor: "warning",
 		date: "January 15, 2025",
@@ -160,7 +160,7 @@ Pixel Towing operates in full compliance with Ontario's TSSEA. Licensed, insured
 		title: "Dead Car Battery vs Bad Alternator: How to Tell the Difference",
 		metaTitle: "Dead Battery vs Bad Alternator | Pixel Towing Brampton",
 		excerpt:
-			"Your car won't start — but is it the battery or the alternator? Before you buy a new battery, read this. A Brampton tow truck driver explains the symptoms of each.",
+			"Your car won't start — battery or alternator? Before buying a new battery, read this. A Brampton tow truck driver explains the symptoms of each.",
 		category: "Car Tips",
 		categoryColor: "success",
 		date: "February 20, 2025",
@@ -210,7 +210,7 @@ A failing alternator will destroy an otherwise healthy battery over weeks. A hea
 		title: "How to Avoid Predatory Tow Trucks in the GTA — A Real Insider Guide",
 		metaTitle: "How to Avoid Predatory Tow Trucks in the GTA | Pixel Towing",
 		excerpt:
-			"The GTA has a known predatory towing problem. Here's exactly how it works, what to say when a tow truck shows up uninvited, and how to protect yourself and your wallet.",
+			"The GTA has a known predatory towing problem. Here's how it works, what to say when a tow truck shows up uninvited, and how to protect yourself.",
 		category: "Consumer Protection",
 		categoryColor: "danger",
 		date: "March 1, 2025",
@@ -264,7 +264,7 @@ Pixel Towing is a licensed, transparent operator. We never chase accidents. Call
 		title: "Does Car Insurance Cover Towing in Ontario? (And Do You Have to Use Their Shop?)",
 		metaTitle: "Does Car Insurance Cover Towing in Ontario? | Pixel Towing",
 		excerpt:
-			"Accident towing, breakdown towing, rental cars, repair shops — what does your Ontario car insurance actually cover, and what choices do you still have? A complete guide from a Brampton tow operator.",
+			"What does Ontario car insurance actually cover for towing, repairs & rentals? And what choices do you still have? A guide from Brampton's own tow operator.",
 		category: "Insurance",
 		categoryColor: "info",
 		date: "March 10, 2025",
@@ -328,7 +328,7 @@ Your coverage doesn't change based on these choices. The claim outcome is the sa
 		title: "My Car Is a Total Loss in Ontario — What Happens Next & How to Get More Money",
 		metaTitle: "Total Loss Vehicle Ontario: What Happens Next | Pixel Towing",
 		excerpt:
-			"Insurance declared your car a total loss? The first settlement offer is almost never the best one. Here's how total loss valuation works in Ontario and exactly what to do to get fair market value.",
+			"Insurance declared your car a total loss? The first offer is rarely the best. Here's how Ontario total loss valuation works and what to do next.",
 		category: "Total Loss",
 		categoryColor: "danger",
 		date: "March 15, 2025",
@@ -400,7 +400,7 @@ Because we operate our own rental fleet and work directly with insurers, we can 
 		title: "OEM vs Aftermarket Parts for Collision Repair — Why It Matters for Your Safety and Resale Value",
 		metaTitle: "OEM vs Aftermarket Parts for Collision Repair | Pixel Towing",
 		excerpt:
-			"After an accident, what goes back on your car matters more than most people realize. Here's the real difference between OEM and aftermarket parts — and why insurance-preferred shops often use the cheaper option.",
+			"OEM vs aftermarket parts — here's the real difference and why it matters for your safety, warranty, and resale value after a collision repair in Brampton.",
 		category: "Repair Knowledge",
 		categoryColor: "primary",
 		date: "March 20, 2025",
@@ -457,7 +457,7 @@ In Ontario, you can request OEM parts for your repair. If insurance approves onl
 		title: "Deductible Waived on Collision Repair in Brampton — Is It Legitimate?",
 		metaTitle: "Deductible Waived on Collision Repair Brampton | Pixel Towing",
 		excerpt:
-			"You've seen the signs: 'We waive your deductible.' But is it legal in Ontario? What's the catch? And how does it actually work? A straight answer from a Brampton collision shop.",
+			"You've seen the signs: 'We waive your deductible.' Is it legal in Ontario? What's the catch? A straight answer from a Brampton collision shop.",
 		category: "Deductible Help",
 		categoryColor: "success",
 		date: "April 1, 2025",
@@ -514,7 +514,7 @@ Deductible assistance is real, it's offered by reputable shops, and in many case
 		title: "How to Get a Rental Car Immediately After an Accident in Brampton — Without Waiting for Insurance",
 		metaTitle: "Rental Car After Accident Brampton | No Wait | Pixel Towing",
 		excerpt:
-			"The 24–48 hour insurance rental pre-authorization process leaves you stranded when you need a car most. Here's how to skip it entirely and get into a rental the same day.",
+			"The 24–48 hour insurance rental pre-authorization leaves you stranded. Here's how to skip it and get a rental car the same day after an accident in Brampton.",
 		category: "Rental Car",
 		categoryColor: "info",
 		date: "April 8, 2025",

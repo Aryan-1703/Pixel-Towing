@@ -22,6 +22,7 @@ import {
 	MapPin,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import { Helmet } from "react-helmet-async";
 import "../css/Home.css";
 
 // Images
@@ -121,10 +122,14 @@ const Home = () => {
 	return (
 		<div className="bg-light">
 			<SEO
-				title="Pixel Towing Brampton | #1 Tow Truck & Roadside | 15 Min ETA | 647-673-9755"
+				title="Pixel Towing Brampton | #1 Tow Truck & Roadside | 15 Min ETA"
 				description="#1 Tow Truck Service in Brampton. Fast 15-min ETA. Accident Recovery, Lockouts, Battery Boost & Flatbed Towing. Licensed Municipal Tower. Call 647-673-9755."
 				canonical="https://pixeltowing.com/"
 			/>
+			<Helmet>
+				<script type="application/ld+json">{JSON.stringify({"@context":"https://schema.org","@type":"TowingService","@id":"https://pixeltowing.com/#localbusiness","name":"Pixel Towing","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"4","bestRating":"5","worstRating":"1"}})}</script>
+				<script type="application/ld+json">{JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","@id":"https://pixeltowing.com/#faq","mainEntity":[{"@type":"Question","name":"How much does a tow truck cost in Brampton?","acceptedAnswer":{"@type":"Answer","text":"We charge a flat hook-up fee plus a per-kilometre rate with zero hidden charges. For accident recovery with valid insurance coverage, you typically pay $0 out of pocket — we bill your insurer directly. Call 647-673-9755 for a free quote."}},{"@type":"Question","name":"Can you tow from underground parking in Brampton?","acceptedAnswer":{"@type":"Answer","text":"Yes. We have specialized low-clearance trucks built for condo parkades, Bramalea City Centre, Shoppers World, and Square One parking garages."}},{"@type":"Question","name":"How fast is your tow truck response time?","acceptedAnswer":{"@type":"Answer","text":"Our average ETA is 15–20 minutes anywhere in Brampton, North Mississauga, and Caledon. We station trucks near Hwy 410 and Hwy 50 for maximum coverage of Peel Region."}},{"@type":"Question","name":"Do I have to pay for accident towing in Ontario?","acceptedAnswer":{"@type":"Answer","text":"In most accident recovery cases, your insurance covers the full towing cost. Customers with valid collision or comprehensive coverage typically pay nothing out of pocket. We work directly with all major Ontario insurers."}},{"@type":"Question","name":"Do you tow AWD and luxury vehicles?","acceptedAnswer":{"@type":"Answer","text":"Yes — we use flatbed trucks for all AWD (Subaru, Audi Quattro, BMW xDrive, etc.) and luxury vehicles. All four wheels off the ground, zero drivetrain damage."}}]})}</script>
+			</Helmet>
 
 			<style type="text/css">{`
 				/* CSS-ONLY hero animation - no JS, no LCP penalty */

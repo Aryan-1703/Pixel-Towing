@@ -257,7 +257,7 @@ const AccidentRecoveryPage = () => {
 		<div style={{ paddingTop: "76px" }}>
 			<SEO
 				title="Accident Recovery Brampton | Deductible Waived | OEM Parts | Pixel Towing"
-				description="Got into an accident in Brampton or GTA? Pixel Towing handles towing, collision repair with OEM parts, deductible assistance, same-day rental & total loss advocacy. Lifetime warranty. Call 647-673-9755."
+				description="Accident in Brampton? Pixel Towing handles towing, OEM collision repair, deductible assistance & same-day rental. Lifetime warranty on repairs. Call 647-673-9755."
 				canonical="https://pixeltowing.com/accident-recovery"
 			/>
 

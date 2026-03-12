@@ -1,4 +1,4 @@
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
@@ -25,7 +25,7 @@ function App() {
 					<Route path="/services" element={<ServicesPage />} />
 					{/* Dedicated high-priority accident/collision page */}
 					<Route path="/accident-recovery" element={<AccidentRecoveryPage />} />
-					<Route path="/collision-repair" element={<AccidentRecoveryPage />} />
+					<Route path="/collision-repair" element={<Navigate to="/accident-recovery" replace />} />
 					<Route path="/services/:serviceId" element={<ServiceDetailPage />} />
 					{/* SEO Location Pages */}
 					<Route path="/locations/:cityId" element={<LocationPage />} />

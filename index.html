@@ -6,8 +6,7 @@
 		<!-- Viewport -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-		<!-- Robots -->
-		<meta name="robots" content="index, follow, max-image-preview:large" />
+		<!-- Robots are set per-page by React Helmet / prerender.mjs — no global fallback -->
 
 		<!-- Geo (Local SEO Reinforcement) -->
 		<meta name="geo.region" content="CA-ON" />
@@ -15,18 +14,10 @@
 		<meta name="geo.position" content="43.7315;-79.7624" />
 		<meta name="ICBM" content="43.7315, -79.7624" />
 
-		<!-- Title & Description -->
-		<title>
-			Pixel Towing Brampton | 24/7 Tow Truck & Roadside Assistance | 647-673-9755
-		</title>
+		<!-- Title (fallback — overridden per-page by React Helmet / react-snap pre-rendering) -->
+		<title>Pixel Towing Brampton | 24/7 Tow Truck & Roadside Assistance | 647-673-9755</title>
 
-		<meta
-			name="description"
-			content="Pixel Towing offers fast 24/7 tow truck service, flatbed towing, roadside assistance, battery boost, and lockouts in Brampton, Mississauga, Caledon & the GTA. Call 647-673-9755."
-		/>
-
-		<!-- Canonical -->
-		<link rel="canonical" href="https://pixeltowing.com/" />
+		<!-- Description and canonical are injected per-page by react-snap / React Helmet — no static fallbacks to avoid duplicates -->
 
 		<!-- Icons (MUST be in /public) -->
 		<link rel="icon" type="image/jpg" href="/tow.jpg" />

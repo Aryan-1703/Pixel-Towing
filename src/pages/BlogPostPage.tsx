@@ -77,7 +77,7 @@ const BlogPostPage = () => {
 	return (
 		<div style={{ paddingTop: "76px" }} className="bg-light">
 			<SEO
-				title={`${post.title} | Pixel Towing Brampton`}
+				title={post.metaTitle || `${post.title} | Pixel Towing Brampton`}
 				description={post.excerpt}
 				canonical={`https://pixeltowing.com/blog/${post.slug}`}
 			/>

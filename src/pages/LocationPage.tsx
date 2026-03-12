@@ -1,5 +1,6 @@
 import { useParams, Navigate, Link } from "react-router-dom";
 import { Container, Row, Col, Button, Card, Accordion } from "react-bootstrap";
+import { Helmet } from "react-helmet-async";
 import { Phone, CheckCircle, Truck, Wrench, ShieldAlert, MapPin, Clock } from "lucide-react";
 import SEO from "../components/SEO";
 
@@ -367,7 +368,9 @@ const LocationPage = () => {
 				description={`Looking for a tow truck in ${city.name}? Fast 24/7 accident recovery, flatbed towing, and roadside assistance near ${city.landmarks}. Licensed & insured. Call 647-673-9755.`}
 				canonical={`https://pixeltowing.com/locations/${cityId}`}
 			/>
+			<Helmet>
 			<script type="application/ld+json">{JSON.stringify(structuredData)}</script>
+		</Helmet>
 
 			{/* HERO */}
 			<section

@@ -86,6 +86,7 @@ const ReviewPage = () => {
 				title="Pixel Towing Reviews | 5-Star Tow Truck Brampton — Real Google Reviews"
 				description="Read verified customer reviews for Pixel Towing Brampton. 5-star rated tow truck service in Brampton, Mississauga, and the GTA. Leave your own Google review."
 				canonical="https://pixeltowing.com/review"
+				noindex={true}
 			/>
 
 			<Helmet>

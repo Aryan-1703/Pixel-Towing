@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Navbar, Nav, Container, Button } from "react-bootstrap";
+import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
 import { Phone, ShieldAlert } from "lucide-react";
 import "../css/AppNavbar.css";
 
@@ -76,6 +76,28 @@ const AppNavbar = () => {
 						>
 							Services
 						</Nav.Link>
+
+						<NavDropdown
+							title="Locations"
+							id="locations-dropdown"
+							className="fw-medium mx-1"
+						>
+							{[
+								{ name: "Mississauga", path: "/locations/mississauga" },
+								{ name: "Caledon", path: "/locations/caledon" },
+								{ name: "Etobicoke", path: "/locations/etobicoke" },
+								{ name: "Vaughan", path: "/locations/vaughan" },
+								{ name: "Toronto", path: "/locations/toronto" },
+								{ name: "Georgetown", path: "/locations/georgetown" },
+								{ name: "Halton Hills", path: "/locations/halton-hills" },
+								{ name: "Acton", path: "/locations/acton" },
+								{ name: "Erin", path: "/locations/erin" },
+							].map(loc => (
+								<NavDropdown.Item key={loc.path} as={Link} to={loc.path} onClick={() => setExpanded(false)}>
+									{loc.name}
+								</NavDropdown.Item>
+							))}		
+						</NavDropdown>
 
 						<Nav.Link
 							as={Link}

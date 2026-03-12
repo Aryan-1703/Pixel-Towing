@@ -1,11 +1,13 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import { createRoot, hydrateRoot } from "react-dom/client";
 import App from "./App";
 import { BrowserRouter } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { HelmetProvider } from "react-helmet-async";
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+const rootElement = document.getElementById("root")!;
+
+const app = (
 	<React.StrictMode>
 		<HelmetProvider>
 			<BrowserRouter>
@@ -14,3 +16,10 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
 		</HelmetProvider>
 	</React.StrictMode>
 );
+
+// If react-snap pre-rendered this page, hydrate it; otherwise mount fresh
+if (rootElement.hasChildNodes()) {
+	hydrateRoot(rootElement, app);
+} else {
+	createRoot(rootElement).render(app);
+}

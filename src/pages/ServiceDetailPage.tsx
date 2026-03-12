@@ -44,6 +44,7 @@ const allServicesData = {
 	"accident-recovery": {
 		title: "Accident Recovery — Towing, Repairs & Rental Under One Roof",
 		metaTitle: "Accident Towing Brampton | Bodyshop + Rental Car Same Day | Pixel Towing",
+		canonical: "https://pixeltowing.com/accident-recovery",
 		metaDesc:
 			"Got into an accident in Brampton? Call Pixel Towing first. We handle the tow, CRC report, repairs at our own bodyshop, AND get you a rental car immediately — all under one roof. 647-673-9755.",
 		tagline:
@@ -395,7 +396,7 @@ const ServiceDetailPage = () => {
 			<SEO
 				title={service.metaTitle}
 				description={service.metaDesc}
-				canonical={`https://pixeltowing.com/services/${serviceId}`}
+				canonical={(service as { canonical?: string }).canonical ?? `https://pixeltowing.com/services/${serviceId}`}
 			/>
 
 			<Helmet>

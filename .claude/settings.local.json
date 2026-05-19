@@ -1,0 +1,34 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node -e \"const fs=require\\(''fs''\\); const f=fs.readFileSync\\(fs.readdirSync\\(''.''\\).find\\(x=>x.endsWith\\(''.js''\\)\\),''utf8''\\); const m=f.match\\(/\\\\w\\\\?\\\\.\\\\w/g\\); console.log\\(''optional chaining:'', m ? m.length : 0, ''examples:'', m ? m.slice\\(0,5\\) : []\\)\")",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const f=fs.readFileSync\\(fs.readdirSync\\(''.''\\).find\\(x=>x.endsWith\\(''.js''\\)\\),''utf8''\\); const m=f.match\\(/[^?]\\\\?\\\\?[^?=]/g\\); console.log\\(''nullish coalescing:'', m ? m.length : 0, ''examples:'', m ? m.slice\\(0,5\\) : []\\)\")",
+      "Bash(taskkill /F /IM chrome.exe /T)",
+      "Bash(taskkill /F /IM chromium.exe /T)",
+      "Bash(taskkill /F /IM chrome.exe)",
+      "Bash(taskkill /F /IM chromium.exe)",
+      "Bash(Get-Process -Name \"chrome\",\"chromium\" -ErrorAction SilentlyContinue)",
+      "Bash(Stop-Process -Force)",
+      "Bash(fuser \"d:/Repo/Pixel-Towing/dist/assets\")",
+      "Bash(cmd /c \"tasklist /fi \"\"imagename eq chrome.exe\"\" 2>&1 | head -5\")",
+      "Bash(cmd /c tasklist)",
+      "Bash(node -e \"const fs=require\\(''fs''\\); const path=require\\(''path''\\); try { fs.rmSync\\(''d:/Repo/Pixel-Towing/dist'', {recursive:true, force:true}\\); console.log\\(''deleted''\\); } catch\\(e\\) { console.log\\(''error:'', e.message\\); }\")",
+      "Bash(powershell -Command \"Get-Process -Name ''chrome'',''chromium'' -ErrorAction SilentlyContinue | Stop-Process -Force; Start-Sleep 2; Remove-Item -Path ''D:\\\\Repo\\\\Pixel-Towing\\\\dist'' -Recurse -Force -ErrorAction SilentlyContinue; Write-Host ''done''\")",
+      "Bash(powershell -Command \"Start-Sleep 2; Remove-Item -Path ''D:\\\\Repo\\\\Pixel-Towing\\\\dist'' -Recurse -Force; Write-Host ''removed''\")",
+      "Bash(powershell -Command \"Remove-Item -Path ''''D:\\\\Repo\\\\Pixel-Towing\\\\dist'''' -Recurse -Force -ErrorAction SilentlyContinue; Write-Host ''''done''''\")",
+      "Bash(powershell -Command \"Get-ChildItem ''D:\\\\Repo\\\\Pixel-Towing\\\\dist'' -Recurse | Remove-Item -Force -Recurse -ErrorAction SilentlyContinue; Remove-Item ''D:\\\\Repo\\\\Pixel-Towing\\\\dist'' -Force -Recurse -ErrorAction SilentlyContinue; Write-Host ''cleared''\")",
+      "Bash(cmd.exe /c \"rmdir /s /q D:\\\\Repo\\\\Pixel-Towing\\\\dist\\\\assets\")",
+      "Bash(node -e \":*)",
+      "Bash(powershell -Command \"Remove-Item -Path ''''D:\\\\Repo\\\\Pixel-Towing\\\\dist\\\\assets_old'''' -Recurse -Force -ErrorAction SilentlyContinue; Write-Host ''''cleanup done''''\")",
+      "Bash(curl -sI -L --max-redirs 5 https://pixeltowing.com/contact)",
+      "Bash(curl -sI https://pixeltowing.com/services)",
+      "Bash(curl -sI https://pixeltowing.com/services/accident-recovery)",
+      "Bash(curl -sI https://pixeltowing.com/locations/georgetown)",
+      "Bash(curl -s https://pixeltowing.com/contact/)",
+      "Bash(curl -sI https://pixeltowing.com/contact/)",
+      "Bash(curl -s https://pixeltowing.com/robots.txt)",
+      "Bash(curl -sI https://www.pixeltowing.com/)",
+      "Bash(curl -sI http://pixeltowing.com/)"
+    ]
+  }
+}

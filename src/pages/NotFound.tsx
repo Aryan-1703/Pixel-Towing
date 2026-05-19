@@ -6,7 +6,12 @@ import SEO from "../components/SEO";
 const NotFound = () => {
     return (
         <Container className="text-center d-flex flex-column align-items-center justify-content-center" style={{ minHeight: "80vh", paddingTop: "80px" }}>
-            <SEO title="Page Not Found | Pixel Towing" description="Error 404 - Page not found." />
+            <SEO
+                title="Page Not Found | Pixel Towing"
+                description="Error 404 - Page not found."
+                canonical="https://pixeltowing.com/"
+                noindex
+            />
             
             <h1 className="display-1 fw-bold text-warning">404</h1>
             <h2 className="mb-4">Page Not Found</h2>

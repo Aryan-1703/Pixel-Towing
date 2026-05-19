@@ -76,16 +76,22 @@ async function prerenderRoute(page, route) {
   // networkidle0 waits for all network requests to finish, then React renders
   await page.goto(url, { waitUntil: "networkidle0", timeout: 30000 });
 
-  // Give React + React Helmet additional time to update the <head>.
-  // networkidle0 guarantees JS is loaded; this gap lets React finish rendering.
-  await new Promise((r) => setTimeout(r, 1500));
-
-  // Get fully rendered HTML — retry once if Helmet hasn't injected yet
-  let html = await page.content();
-  if (!html.includes('data-rh="true"')) {
-    await new Promise((r) => setTimeout(r, 1000));
-    html = await page.content();
+  // Wait until react-helmet-async has injected the canonical link, retrying
+  // until it appears or we hit the timeout. Cold-start renders sometimes need
+  // multiple seconds before Helmet flushes into the DOM.
+  try {
+    await page.waitForFunction(
+      () => !!document.querySelector('link[rel="canonical"][data-rh="true"]'),
+      { timeout: 10000, polling: 200 }
+    );
+  } catch {
+    // fall through — we'll report this as a warning below
   }
+
+  // Small additional buffer so any sibling Helmet tags settle in the head
+  await new Promise((r) => setTimeout(r, 250));
+
+  const html = await page.content();
 
   // Determine output path
   const outputDir =
@@ -124,10 +130,14 @@ async function main() {
       try {
         const html = await prerenderRoute(page, route);
 
-        // Verify the SEO title was injected by Helmet
-        const hasHelmetTitle = html.includes('data-rh="true"');
-        const status = hasHelmetTitle ? "✅" : "⚠️ ";
-        console.log(`  ${status} [${i + 1}/${ROUTES.length}] ${route}`);
+        // Verify the canonical was injected by Helmet — without it, the page
+        // ships with the static fallback title and no canonical, which is
+        // exactly the SEO regression we just fixed.
+        const hasCanonical = html.includes('rel="canonical"') && html.includes('data-rh="true"');
+        if (!hasCanonical) {
+          throw new Error("Helmet canonical not injected");
+        }
+        console.log(`  ✅ [${i + 1}/${ROUTES.length}] ${route}`);
         passed++;
       } catch (err) {
         console.error(`  ❌ [${i + 1}/${ROUTES.length}] ${route} — ${err.message}`);

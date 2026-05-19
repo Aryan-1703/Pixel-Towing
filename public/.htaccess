@@ -1,0 +1,81 @@
+# ============================================================
+# Pixel Towing — Apache / LiteSpeed config
+#
+# Goal: every URL in sitemap.xml returns HTTP 200 with no
+# redirect hop, so Google can index canonical URLs cleanly.
+# ============================================================
+
+# Disable Apache's built-in DirectorySlash behavior.
+# Without this, requests for /contact get a 301 to /contact/
+# (the trailing-slash form), which breaks our canonical tags.
+<IfModule mod_dir.c>
+  DirectorySlash Off
+  DirectoryIndex index.html
+</IfModule>
+
+RewriteEngine On
+
+# ---- 1. Force HTTPS ----------------------------------------
+RewriteCond %{HTTPS} !=on
+RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# ---- 2. Force non-www --------------------------------------
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
+
+# ---- 2a. Permanent URL consolidations (server-side 301) ----
+# /collision-repair was renamed to /accident-recovery; React Router
+# also handles this client-side, but crawlers need a real 301.
+RewriteRule ^collision-repair/?$ /accident-recovery [L,R=301]
+
+# ---- 3. Strip trailing slash for directory URLs ------------
+# Anyone arriving at /contact/ gets 301'd to /contact so the
+# canonical form is the only indexable version.
+RewriteCond %{REQUEST_FILENAME} -d
+RewriteRule ^(.+?)/$ /$1 [L,R=301]
+
+# ---- 4. Serve /path internally from /path/index.html -------
+# (no client-visible redirect — URL stays /path)
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}/index.html -f
+RewriteRule ^(.+?)/?$ /$1/index.html [L]
+
+# ---- 5. SPA fallback for unknown routes --------------------
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^ /index.html [L]
+
+# ---- 6. Caching --------------------------------------------
+<IfModule mod_headers.c>
+  # Hashed Vite assets: cache forever
+  <FilesMatch "\.(?:js|css|woff2?|svg|jpe?g|png|webp|gif|ico)$">
+    Header set Cache-Control "public, max-age=31536000, immutable"
+  </FilesMatch>
+  # HTML: always revalidate so prerender updates ship fast
+  <FilesMatch "\.html$">
+    Header set Cache-Control "public, max-age=0, must-revalidate"
+  </FilesMatch>
+  # XML (sitemap): short cache
+  <FilesMatch "\.xml$">
+    Header set Cache-Control "public, max-age=3600"
+  </FilesMatch>
+</IfModule>
+
+# ---- 7. Security headers -----------------------------------
+<IfModule mod_headers.c>
+  Header set X-Content-Type-Options "nosniff"
+  Header set X-Frame-Options "SAMEORIGIN"
+  Header set Referrer-Policy "strict-origin-when-cross-origin"
+  Header set Permissions-Policy "interest-cohort=()"
+</IfModule>
+
+# ---- 8. Compression ----------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/xml text/plain
+  AddOutputFilterByType DEFLATE application/javascript application/json
+  AddOutputFilterByType DEFLATE application/xml application/rss+xml
+  AddOutputFilterByType DEFLATE image/svg+xml font/woff font/woff2
+</IfModule>
+
+# ---- 9. Custom 404 (served by SPA fallback above) ----------
+ErrorDocument 404 /index.html

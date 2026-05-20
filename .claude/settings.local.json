@@ -28,7 +28,11 @@
       "Bash(curl -sI https://pixeltowing.com/contact/)",
       "Bash(curl -s https://pixeltowing.com/robots.txt)",
       "Bash(curl -sI https://www.pixeltowing.com/)",
-      "Bash(curl -sI http://pixeltowing.com/)"
+      "Bash(curl -sI http://pixeltowing.com/)",
+      "WebFetch(domain:developers.google.com)",
+      "Bash(python3 -c ' *)",
+      "Bash(node -e ' *)",
+      "Bash(grep -oE '\\\\{\"@type\":\"BreadcrumbList\"[^}]+itemListElement.{0,400}' dist/services/accident-recovery/index.html)"
     ]
   }
 }

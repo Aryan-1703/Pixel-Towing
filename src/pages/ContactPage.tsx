@@ -109,6 +109,7 @@ const ContactPage = () => {
 										<Button
 											href="https://wa.link/sq54ln"
 											target="_blank"
+											rel="noopener noreferrer"
 											variant="success"
 											className="rounded-pill fw-bold"
 										>

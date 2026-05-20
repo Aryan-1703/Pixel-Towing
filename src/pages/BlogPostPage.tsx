@@ -51,27 +51,40 @@ const BlogPostPage = () => {
 
 	const articleSchema = {
 		"@context": "https://schema.org",
-		"@type": "Article",
-		headline: post.title,
-		description: post.excerpt,
-		author: {
-			"@type": "Organization",
-			name: "Pixel Towing",
-			url: "https://pixeltowing.com",
-		},
-		publisher: {
-			"@type": "Organization",
-			name: "Pixel Towing",
-			logo: {
-				"@type": "ImageObject",
-				url: "https://pixeltowing.com/tow.png",
+		"@graph": [
+			{
+				"@type": "Article",
+				headline: post.title,
+				description: post.excerpt,
+				author: {
+					"@type": "Organization",
+					name: "Pixel Towing",
+					url: "https://pixeltowing.com",
+				},
+				publisher: {
+					"@type": "Organization",
+					name: "Pixel Towing",
+					logo: {
+						"@type": "ImageObject",
+						url: "https://pixeltowing.com/tow.png",
+					},
+				},
+				datePublished: post.date,
+				mainEntityOfPage: {
+					"@type": "WebPage",
+					"@id": `https://pixeltowing.com/blog/${post.slug}`,
+				},
 			},
-		},
-		datePublished: post.date,
-		mainEntityOfPage: {
-			"@type": "WebPage",
-			"@id": `https://pixeltowing.com/blog/${post.slug}`,
-		},
+			{
+				"@type": "BreadcrumbList",
+				"@id": `https://pixeltowing.com/blog/${post.slug}#breadcrumb`,
+				itemListElement: [
+					{ "@type": "ListItem", position: 1, name: "Home", item: "https://pixeltowing.com/" },
+					{ "@type": "ListItem", position: 2, name: "Blog", item: "https://pixeltowing.com/blog" },
+					{ "@type": "ListItem", position: 3, name: post.title, item: `https://pixeltowing.com/blog/${post.slug}` },
+				],
+			},
+		],
 	};
 
 	return (
@@ -152,8 +165,9 @@ const BlogPostPage = () => {
 													<Link
 														to={`/blog/${related.slug}`}
 														className="btn btn-sm btn-outline-dark rounded-pill mt-2"
+														aria-label={`Read article: ${related.title}`}
 													>
-														Read <ArrowRight size={13} />
+														Read article <ArrowRight size={13} />
 													</Link>
 												</Card.Body>
 											</Card>

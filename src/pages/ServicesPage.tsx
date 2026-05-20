@@ -27,7 +27,7 @@ const servicesData = [
 		image: lockout,
 		link: "/services/lockout",
 		icon: KeyRound,
-		alt: "Professional unlocking car door",
+		alt: "Pixel Towing technician unlocking car door without damage in Brampton",
 	},
 	{
 		title: "Flat Tire Change",
@@ -36,7 +36,7 @@ const servicesData = [
 		image: flatTire,
 		link: "/services/tire-change",
 		icon: Wrench,
-		alt: "Mechanic changing flat tire on roadside",
+		alt: "Roadside flat tire change service on Brampton highway",
 	},
 	{
 		title: "Battery Boost / Jump Start",
@@ -45,7 +45,7 @@ const servicesData = [
 		image: jumpStart,
 		link: "/services/jump-start",
 		icon: Zap,
-		alt: "Jump starting a dead car battery",
+		alt: "Pixel Towing technician jump-starting dead car battery in Brampton",
 	},
 	{
 		title: "Vehicle Breakdown Towing",
@@ -54,7 +54,7 @@ const servicesData = [
 		image: towing,
 		link: "/services/vehicle-transport",
 		icon: Truck,
-		alt: "Flatbed tow truck loading a broken down car",
+		alt: "Flatbed tow truck loading broken-down AWD vehicle in Brampton",
 	},
 	{
 		title: "Scrap Car Removal",
@@ -63,7 +63,7 @@ const servicesData = [
 		image: scrap, // Reuse towing image or specific scrap image
 		link: "/services/scrap-car-removal",
 		icon: Banknote,
-		alt: "Scrap car removal tow truck",
+		alt: "Pixel Towing flatbed picking up scrap car for free removal in Brampton",
 	},
 ];
 
@@ -83,8 +83,8 @@ const ServicesPage = () => {
 	return (
 		<>
 			<SEO
-				title="Towing Services Brampton | Roadside Assistance & Accident Recovery"
-				description="View our full list of services: Accident Towing, Flatbed Towing, Lockouts, Tire Changes, and Battery Boosts. Available 24/7 in Brampton & GTA."
+				title="Towing Services Brampton | 24/7 Roadside & Accident"
+				description="Pixel Towing Brampton — accident recovery, lockouts, flat tire change, battery boost, flatbed & scrap removal. 24/7 GTA dispatch. Call 647-673-9755."
 				canonical="https://pixeltowing.com/services"
 			/>
 
@@ -92,7 +92,7 @@ const ServicesPage = () => {
 
 			<div className="services-hero text-center">
 				<Container>
-					<h1 className="display-4 fw-bold">Professional Towing Services</h1>
+					<h1 className="display-4 fw-bold">Brampton Towing &amp; Roadside Services</h1>
 					<p className="lead text-white-50">
 						Serving Brampton, Mississauga, Caledon and Toronto 24 Hours a Day.
 					</p>
@@ -120,9 +120,13 @@ const ServicesPage = () => {
 											{s.description}
 										</Card.Text>
 
-										<Link to={s.link} className="mt-auto w-100">
+										<Link
+											to={s.link}
+											className="mt-auto w-100"
+											aria-label={`View details for ${s.title}`}
+										>
 											<Button variant="outline-primary" className="w-100">
-												View Details
+												View {s.title} details
 											</Button>
 										</Link>
 									</Card.Body>

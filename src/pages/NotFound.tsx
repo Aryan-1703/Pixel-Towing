@@ -7,14 +7,14 @@ const NotFound = () => {
     return (
         <Container className="text-center d-flex flex-column align-items-center justify-content-center" style={{ minHeight: "80vh", paddingTop: "80px" }}>
             <SEO
-                title="Page Not Found | Pixel Towing"
-                description="Error 404 - Page not found."
+                title="Page Not Found | Pixel Towing Brampton 24/7"
+                description="This page doesn't exist. If you're stranded, call Pixel Towing Brampton at 647-673-9755 — we dispatch a tow truck 24/7 across the GTA."
                 canonical="https://pixeltowing.com/"
                 noindex
             />
-            
-            <h1 className="display-1 fw-bold text-warning">404</h1>
-            <h2 className="mb-4">Page Not Found</h2>
+
+            <div className="display-1 fw-bold text-warning" aria-hidden="true">404</div>
+            <h1 className="mb-4">Page Not Found</h1>
             <p className="lead text-muted mb-5">
                 The page you are looking for doesn't exist. <br />
                 If you are stranded, please call us immediately.

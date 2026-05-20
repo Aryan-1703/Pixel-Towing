@@ -256,7 +256,7 @@ const AccidentRecoveryPage = () => {
 	return (
 		<div style={{ paddingTop: "76px" }}>
 			<SEO
-				title="Accident Recovery Brampton | Deductible Waived | OEM Parts | Pixel Towing"
+				title="Accident Recovery Brampton | OEM Parts | Free Rental"
 				description="Accident in Brampton? Pixel Towing handles towing, OEM collision repair, deductible assistance & same-day rental. Lifetime warranty on repairs. Call 647-673-9755."
 				canonical="https://pixeltowing.com/accident-recovery"
 			/>
@@ -325,6 +325,7 @@ const AccidentRecoveryPage = () => {
 								<Button
 									href="https://wa.link/sq54ln"
 									target="_blank"
+									rel="noopener noreferrer"
 									variant="outline-light"
 									size="lg"
 									className="fw-bold rounded-pill px-4 py-3"
@@ -594,6 +595,7 @@ const AccidentRecoveryPage = () => {
 									<Button
 										href="https://wa.link/sq54ln"
 										target="_blank"
+										rel="noopener noreferrer"
 										variant="outline-success"
 										className="fw-bold rounded-pill px-4"
 										size="lg"

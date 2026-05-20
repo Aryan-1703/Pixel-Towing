@@ -338,34 +338,47 @@ const LocationPage = () => {
 
 	const structuredData = {
 		"@context": "https://schema.org",
-		"@type": "TowingService",
-		"@id": `https://pixeltowing.com/locations/${cityId}#towingservice`,
-		name: `Pixel Towing ${city.name}`,
-		telephone: "+16476739755",
-		url: `https://pixeltowing.com/locations/${cityId}`,
-		address: {
-			"@type": "PostalAddress",
-			addressLocality: city.name,
-			addressRegion: city.province,
-			addressCountry: "CA",
-		},
-		areaServed: {
-			"@type": "City",
-			name: city.name,
-		},
-		description: `24/7 Tow Truck and Roadside Assistance in ${city.name}. Serving ${city.highways}.`,
-		openingHoursSpecification: {
-			"@type": "OpeningHoursSpecification",
-			dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-			opens: "00:00",
-			closes: "23:59",
-		},
+		"@graph": [
+			{
+				"@type": "TowingService",
+				"@id": `https://pixeltowing.com/locations/${cityId}#towingservice`,
+				name: `Pixel Towing ${city.name}`,
+				telephone: "+16476739755",
+				url: `https://pixeltowing.com/locations/${cityId}`,
+				address: {
+					"@type": "PostalAddress",
+					addressLocality: city.name,
+					addressRegion: city.province,
+					addressCountry: "CA",
+				},
+				areaServed: {
+					"@type": "City",
+					name: city.name,
+				},
+				description: `24/7 Tow Truck and Roadside Assistance in ${city.name}. Serving ${city.highways}.`,
+				openingHoursSpecification: {
+					"@type": "OpeningHoursSpecification",
+					dayOfWeek: ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
+					opens: "00:00",
+					closes: "23:59",
+				},
+			},
+			{
+				"@type": "BreadcrumbList",
+				"@id": `https://pixeltowing.com/locations/${cityId}#breadcrumb`,
+				itemListElement: [
+					{ "@type": "ListItem", position: 1, name: "Home", item: "https://pixeltowing.com/" },
+					{ "@type": "ListItem", position: 2, name: "Service Areas", item: "https://pixeltowing.com/services" },
+					{ "@type": "ListItem", position: 3, name: `${city.name} Towing`, item: `https://pixeltowing.com/locations/${cityId}` },
+				],
+			},
+		],
 	};
 
 	return (
 		<div className="bg-light">
 			<SEO
-				title={`${city.name} Towing Service | 15–20 Min ETA | Pixel Towing 647-673-9755`}
+				title={`${city.name} Tow Truck | 24/7 Towing | 15-Min ETA`}
 				description={`24/7 towing in ${city.name}. Fast accident recovery, flatbed towing & roadside assistance. 15–20 min ETA. Licensed & insured. Call 647-673-9755.`}
 				canonical={`https://pixeltowing.com/locations/${cityId}`}
 			/>
@@ -439,7 +452,7 @@ const LocationPage = () => {
 								<Button href="tel:+16476739755" variant="warning" className="rounded-pill fw-bold px-4">
 									<Phone size={16} className="me-2" /> Call Now
 								</Button>
-								<Button href="https://wa.link/sq54ln" target="_blank" variant="outline-success" className="rounded-pill px-4">
+								<Button href="https://wa.link/sq54ln" target="_blank" rel="noopener noreferrer" variant="outline-success" className="rounded-pill px-4">
 									WhatsApp
 								</Button>
 							</div>

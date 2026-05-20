@@ -615,8 +615,9 @@ const BlogPage = () => {
 										<Link
 											to={`/blog/${post.slug}`}
 											className="btn btn-sm btn-outline-dark rounded-pill"
+											aria-label={`Read article: ${post.title}`}
 										>
-											Read <ArrowRight size={13} />
+											Read article <ArrowRight size={13} />
 										</Link>
 									</div>
 								</Card.Body>

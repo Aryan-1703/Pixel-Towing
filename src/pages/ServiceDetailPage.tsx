@@ -43,10 +43,10 @@ const SERVICE_CITIES = [
 const allServicesData = {
 	"accident-recovery": {
 		title: "Accident Recovery — Towing, Repairs & Rental Under One Roof",
-		metaTitle: "Accident Towing Brampton | Bodyshop + Rental Car Same Day | Pixel Towing",
+		metaTitle: "Accident Towing Brampton | Bodyshop + Rental | 24/7",
 		canonical: "https://pixeltowing.com/accident-recovery",
 		metaDesc:
-			"Got into an accident in Brampton? Call Pixel Towing first. We handle the tow, CRC report, repairs at our own bodyshop, AND get you a rental car immediately — all under one roof. 647-673-9755.",
+			"Accident in Brampton? Pixel Towing handles the tow, CRC report, OEM bodyshop repairs, and same-day rental — one call. Call 647-673-9755.",
 		tagline:
 			"One Call. Tow Truck + Bodyshop + Rental Car. We Handle Everything So You Don't Have To.",
 		image: accident,
@@ -101,7 +101,7 @@ const allServicesData = {
 
 	lockout: {
 		title: "Emergency Car Lockout Service (No Damage Guaranteed)",
-		metaTitle: "Car Lockout Service Brampton & GTA | Keys Locked in Car | 647-673-9755",
+		metaTitle: "Car Lockout Brampton | Keys Locked in Car | 24/7",
 		metaDesc:
 			"Keys locked in your car in Brampton or GTA? Pixel Towing unlocks all makes and models with zero damage. Luxury car safe. 15-20 min ETA. Call 647-673-9755.",
 		tagline: "Keys Locked Inside? Engine Running? We Unlock It FAST — Zero Damage.",
@@ -151,8 +151,7 @@ const allServicesData = {
 
 	"tire-change": {
 		title: "Roadside Flat Tire Change Service",
-		metaTitle:
-			"Flat Tire Change Brampton | Mobile Roadside Tire Service 24/7 | 647-673-9755",
+		metaTitle: "Flat Tire Change Brampton | 24/7 Mobile Service",
 		metaDesc:
 			"Flat tire on Hwy 410 or in Brampton? We come to you. Safe roadside tire change, spare installation with proper torque, 24/7 service. Call 647-673-9755.",
 		tagline: "Your Safety is Our Priority. Don't Risk Changing It on a Busy Highway.",
@@ -197,7 +196,7 @@ const allServicesData = {
 
 	"jump-start": {
 		title: "Car Battery Boost & Jump Start Service",
-		metaTitle: "Car Battery Boost Brampton | Dead Battery Jump Start 24/7 | 647-673-9755",
+		metaTitle: "Car Battery Boost Brampton | Dead Battery Jump Start",
 		metaDesc:
 			"Dead battery in Brampton or Mississauga? ECU-safe battery boost with voltage protection. 15-20 min ETA. Alternator check included. Call 647-673-9755.",
 		tagline: "ECU-Safe Boosting That Protects Your Vehicle's Electronics.",
@@ -241,7 +240,7 @@ const allServicesData = {
 
 	"vehicle-transport": {
 		title: "Flatbed & Breakdown Towing",
-		metaTitle: "Flatbed Tow Truck Brampton | Long Distance & AWD Towing | Pixel Towing",
+		metaTitle: "Flatbed Tow Truck Brampton | AWD & Long Distance",
 		metaDesc:
 			"Professional flatbed towing in Brampton for breakdown cars, AWD vehicles, luxury cars, and motorcycles. Ontario-wide long-distance towing. Call 647-673-9755.",
 		tagline: "The Right Equipment for Every Tow — Flatbed, Wheel-Lift, and Low-Profile.",
@@ -286,10 +285,9 @@ const allServicesData = {
 
 	"scrap-car-removal": {
 		title: "Cash for Scrap Cars & Free Removal — Brampton",
-		metaTitle:
-			"Cash for Scrap Cars Brampton & GTA | Free Tow + Top Dollar | 647-673-9755",
+		metaTitle: "Cash for Scrap Cars Brampton | Free Tow + Top Dollar",
 		metaDesc:
-			"Get instant CASH for your junk car in Brampton. We beat dealer prices, tow it away for FREE, and handle ownership transfer. Same-day pickup available. Call 647-673-9755.",
+			"Cash for your junk car in Brampton. We beat dealer prices, tow it away FREE, and handle ownership transfer. Same-day pickup. 647-673-9755.",
 		tagline: "Turn That Clunker Into Cash Today. Free Towing. Same-Day Pickup.",
 		image: scrap,
 		imageAlt: "Scrap car removal tow truck picking up junk car in Brampton Ontario",
@@ -387,6 +385,30 @@ const ServiceDetailPage = () => {
 						text: faq.answer,
 					},
 				})),
+			},
+			{
+				"@type": "BreadcrumbList",
+				"@id": `https://pixeltowing.com/services/${serviceId}#breadcrumb`,
+				itemListElement: [
+					{
+						"@type": "ListItem",
+						position: 1,
+						name: "Home",
+						item: "https://pixeltowing.com/",
+					},
+					{
+						"@type": "ListItem",
+						position: 2,
+						name: "Services",
+						item: "https://pixeltowing.com/services",
+					},
+					{
+						"@type": "ListItem",
+						position: 3,
+						name: service.title,
+						item: `https://pixeltowing.com/services/${serviceId}`,
+					},
+				],
 			},
 		],
 	};

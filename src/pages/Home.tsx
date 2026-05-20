@@ -732,6 +732,7 @@ const Home = () => {
 						<Button
 							href="https://wa.link/sq54ln"
 							target="_blank"
+							rel="noopener noreferrer"
 							variant="outline-light"
 							size="lg"
 							className="fw-bold rounded-pill px-5 py-3"

@@ -17,8 +17,10 @@ import { fileURLToPath } from "url";
 
 const __dirname = fileURLToPath(new URL(".", import.meta.url));
 const DIST = resolve(__dirname, "../dist");
-const PORT = 3999;
-const BASE_URL = `http://localhost:${PORT}`;
+// 0 = let the OS pick a free port, so concurrent or leftover builds can't collide
+const PORT = Number(process.env.PRERENDER_PORT) || 0;
+const HOST = "127.0.0.1";
+let BASE_URL = "";
 
 // All routes to pre-render
 const ROUTES = [
@@ -56,14 +58,16 @@ const ROUTES = [
 
 // Start static file server
 function startServer() {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const server = createServer((req, res) => {
       handler(req, res, {
         public: DIST,
         rewrites: [{ source: "**", destination: "/index.html" }],
       });
     });
-    server.listen(PORT, () => {
+    server.once("error", reject);
+    server.listen(PORT, HOST, () => {
+      BASE_URL = `http://${HOST}:${server.address().port}`;
       console.log(`  Static server running at ${BASE_URL}`);
       resolve(server);
     });

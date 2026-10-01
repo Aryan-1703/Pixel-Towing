@@ -34,5 +34,8 @@
     "libxrender1",
     "libxss1",
     "libxtst6"
-  ]
+  ],
+  "deploy": {
+    "startCommand": "node server.mjs"
+  }
 }

@@ -2,6 +2,9 @@ import React from "react";
 import { Container, Row, Col, Stack, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin, Shield } from "lucide-react";
+import { BUSINESS, COMPLIANCE } from "../content/site";
+import { SERVICE_AREAS } from "../content/cities";
+import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
 
 const footerStyles = `
   .footer-bg {
@@ -56,6 +59,35 @@ const footerStyles = `
   }
 `;
 
+/**
+ * Ontario TSSEA website disclosure (legal name, operating name, certificate,
+ * maximum rate schedule). Renders only the details that have been filled in
+ * from real MTO documents in src/content/site.ts.
+ */
+const ComplianceInfo = () => {
+	const { legalName, operatingName, towOperatorCertificateNumber, certificateCopyPath, maximumRateSchedulePath } =
+		COMPLIANCE;
+	if (!legalName && !towOperatorCertificateNumber) return null;
+
+	return (
+		<Row className="mt-4">
+			<Col>
+				<h5 className="footer-title">Business &amp; Licensing Information</h5>
+				<p className="small mb-1">
+					{legalName && <>Legal name: {legalName} · </>}
+					Operating name: {operatingName}
+					{towOperatorCertificateNumber && <> · Ontario tow operator certificate no. {towOperatorCertificateNumber}</>}
+				</p>
+				<p className="small mb-0">
+					{certificateCopyPath && <a href={certificateCopyPath}>View our tow operator certificate</a>}
+					{certificateCopyPath && maximumRateSchedulePath && " · "}
+					{maximumRateSchedulePath && <a href={maximumRateSchedulePath}>View our maximum rate schedule</a>}
+				</p>
+			</Col>
+		</Row>
+	);
+};
+
 const Footer: React.FC = () => {
 	const currentYear = new Date().getFullYear();
 
@@ -79,14 +111,14 @@ const Footer: React.FC = () => {
 							</p>
 
 							<Button
-								href="tel:+16476739755"
+								href={BUSINESS.phoneHref}
 								variant="warning"
 								size="lg"
 								className="fw-bold text-dark w-100 shadow-sm"
 								aria-label="Call Pixel Towing Dispatch"
 							>
 								<Phone size={20} className="me-2" />
-								Call 647-673-9755
+								Call {BUSINESS.phoneDisplay}
 							</Button>
 
 							<div className="d-flex align-items-center mt-3 text-white">
@@ -130,26 +162,13 @@ const Footer: React.FC = () => {
 							<h5 className="footer-title">Our Services</h5>
 							<Stack as="ul" gap={2} className="list-unstyled">
 								<li>
-									<Link to="/accident-recovery">Accident Recovery</Link>
+									<Link to={ACCIDENT_RECOVERY.path}>{ACCIDENT_RECOVERY.label}</Link>
 								</li>
-								<li>
-									<Link to="/services/vehicle-transport">Flatbed Towing</Link>
-								</li>
-								<li>
-									<Link to="/services/lockout">Car Lockout</Link>
-								</li>
-								<li>
-									<Link to="/services/tire-change">Flat Tire Change</Link>
-								</li>
-								<li>
-									<Link to="/services/jump-start">Battery Boost</Link>
-								</li>
-								<li>
-									<Link to="/services">Fuel Delivery</Link>
-								</li>
-								<li>
-									<Link to="/services/scrap-car-removal">Scrap Car Removal</Link>
-								</li>
+								{SERVICE_SLUGS.map(slug => (
+									<li key={slug}>
+										<Link to={servicePath(slug)}>{SERVICE_LINKS[slug].label}</Link>
+									</li>
+								))}
 							</Stack>
 						</Col>
 
@@ -158,14 +177,14 @@ const Footer: React.FC = () => {
 							<h5 className="footer-title">Contact Dispatch</h5>
 
 							<Stack gap={3}>
-								<a href="tel:+16476739755" className="d-flex align-items-center">
+								<a href={BUSINESS.phoneHref} className="d-flex align-items-center">
 									<Phone size={18} className="me-3 text-warning" />
-									<span className="footer-phone">647-673-9755</span>
+									<span className="footer-phone">{BUSINESS.phoneDisplay}</span>
 								</a>
 
-								<a href="mailto:info@pixeltowing.com" className="d-flex align-items-center">
+								<a href={`mailto:${BUSINESS.email}`} className="d-flex align-items-center">
 									<Mail size={18} className="me-3 text-secondary" />
-									info@pixeltowing.com
+									{BUSINESS.email}
 								</a>
 
 								<div className="d-flex align-items-start">
@@ -173,44 +192,13 @@ const Footer: React.FC = () => {
 									<div>
 										<strong className="text-white d-block mb-2">Service Areas:</strong>
 										<div className="d-flex flex-wrap">
-											<Link to="/locations/mississauga" className="service-area-pill">
-												Mississauga
-											</Link>
-											<Link to="/locations/caledon" className="service-area-pill">
-												Caledon
-											</Link>
-											<Link to="/locations/etobicoke" className="service-area-pill">
-												Etobicoke
-											</Link>
-											<Link to="/locations/vaughan" className="service-area-pill">
-												Vaughan
-											</Link>
-											<Link to="/locations/toronto" className="service-area-pill">
-												Toronto
-											</Link>
-											<Link
-												to="/locations/georgetown"
-												className="service-area-pill text-white text-decoration-none"
-											>
-												Georgetown
-											</Link>
-											<Link
-												to="/locations/halton-hills"
-												className="service-area-pill text-white text-decoration-none"
-											>
-												Halton Hills
-											</Link>
-											<Link
-												to="/locations/acton"
-												className="service-area-pill text-white text-decoration-none"
-											>
-												Acton
-											</Link>
-											<Link
-												to="/locations/erin"
-												className="service-area-pill text-white text-decoration-none"
-											>
-												Erin
+											{SERVICE_AREAS.map(area => (
+												<Link key={area.path} to={area.path} className="service-area-pill">
+													{area.name}
+												</Link>
+											))}
+											<Link to="/locations" className="service-area-pill">
+												All areas
 											</Link>
 										</div>
 									</div>
@@ -218,6 +206,8 @@ const Footer: React.FC = () => {
 							</Stack>
 						</Col>
 					</Row>
+
+					<ComplianceInfo />
 
 					{/* FOOTER BOTTOM */}
 					<Row className="mt-5 pt-4 footer-bottom align-items-center">

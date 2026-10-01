@@ -1,92 +1,96 @@
-import { Container, Row, Col, Card, Button, Accordion } from "react-bootstrap"; // Added Accordion
+import { Container, Row, Col, Card, Button, Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone, Banknote } from "lucide-react";
+import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone, Banknote, type LucideIcon } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
+import { IMAGES, type SiteImage } from "../assets/images";
+import { BUSINESS, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
+import { ACCIDENT_RECOVERY, SERVICE_LINKS, servicePath } from "../content/services";
 
-import accidentImage from "../assets/tow-truck-accident-recovery-brampton.jpg";
-import lockout from "../assets/lockout.jpg";
-import flatTire from "../assets/flatTire.png";
-import jumpStart from "../assets/jumpStart.jpeg";
-import scrap from "../assets/scrap-car.jpg";
-import towing from "../assets/flatbed-towing-brampton.jpg";
+interface ServiceCard {
+	title: string;
+	description: string;
+	image: SiteImage;
+	link: string;
+	/** Descriptive anchor text for the card's link. */
+	anchor: string;
+	icon: LucideIcon;
+}
 
-const servicesData = [
+const SERVICE_CARDS: readonly ServiceCard[] = [
 	{
-		title: "Accident & Collision Recovery",
-		description:
-			"24/7 rapid accident response. We handle police reports and tow directly to collision centers.",
-		image: accidentImage,
-		link: "/accident-recovery",
+		title: "Accident Towing & Recovery",
+		description: "24/7 accident towing, help getting to a Collision Reporting Centre, and delivery to the repair shop you choose.",
+		image: IMAGES.accidentTowing,
+		link: ACCIDENT_RECOVERY.path,
+		anchor: ACCIDENT_RECOVERY.anchor,
 		icon: ShieldAlert,
-		alt: "Car accident towing scene in Brampton",
 	},
 	{
-		title: "Vehicle Lockout Service",
-		description:
-			"Locked your keys in the car? Fast, damage-free unlocking for all makes and models.",
-		image: lockout,
-		link: "/services/lockout",
+		title: "Car Lockout Service",
+		description: "Keys locked in the car? Professional entry tools designed to minimize the risk of damage.",
+		image: IMAGES.carLockout,
+		link: servicePath("lockout"),
+		anchor: SERVICE_LINKS.lockout.anchor,
 		icon: KeyRound,
-		alt: "Pixel Towing technician unlocking car door without damage in Brampton",
 	},
 	{
 		title: "Flat Tire Change",
-		description:
-			"Don't struggle with a jack. We come to you and install your spare tire safely.",
-		image: flatTire,
-		link: "/services/tire-change",
+		description: "We come to you and fit your spare, tightened to specification.",
+		image: IMAGES.flatTireChange,
+		link: servicePath("tire-change"),
+		anchor: SERVICE_LINKS["tire-change"].anchor,
 		icon: Wrench,
-		alt: "Roadside flat tire change service on Brampton highway",
 	},
 	{
 		title: "Battery Boost / Jump Start",
-		description:
-			"Dead battery? We provide safe boosting with voltage-protected equipment.",
-		image: jumpStart,
-		link: "/services/jump-start",
+		description: "Dead battery? A boost with a professional booster pack and a basic charging check.",
+		image: IMAGES.batteryBoost,
+		link: servicePath("jump-start"),
+		anchor: SERVICE_LINKS["jump-start"].anchor,
 		icon: Zap,
-		alt: "Pixel Towing technician jump-starting dead car battery in Brampton",
 	},
 	{
-		title: "Vehicle Breakdown Towing",
-		description:
-			"Flatbed towing for mechanical failures. Safe for AWD, Luxury, and 4x4 vehicles.",
-		image: towing,
-		link: "/services/vehicle-transport",
+		title: "Flatbed & Breakdown Towing",
+		description: "Flatbed towing for breakdowns, commonly preferred for AWD and many 4WD vehicles. Local and long distance.",
+		image: IMAGES.flatbedTowing,
+		link: servicePath("vehicle-transport"),
+		anchor: SERVICE_LINKS["vehicle-transport"].anchor,
 		icon: Truck,
-		alt: "Flatbed tow truck loading broken-down AWD vehicle in Brampton",
 	},
 	{
 		title: "Scrap Car Removal",
-		description:
-			"We pay top cash for junk cars. Free towing and same-day pickup included.",
-		image: scrap, // Reuse towing image or specific scrap image
-		link: "/services/scrap-car-removal",
+		description: "An upfront cash offer and free towing for vehicles you no longer need.",
+		image: IMAGES.scrapCarRemoval,
+		link: servicePath("scrap-car-removal"),
+		anchor: SERVICE_LINKS["scrap-car-removal"].anchor,
 		icon: Banknote,
-		alt: "Pixel Towing flatbed picking up scrap car for free removal in Brampton",
 	},
 ];
 
+// Fixed backgrounds are janky (and ignored by iOS) on phones — desktop only.
 const pageStyles = `
   .services-hero {
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/tow.jpg'); /* Darker overlay for better text contrast */
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/tow.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed; /* Parallax Effect */
     padding: 6rem 0;
     margin-top: 56px;
     color: white;
   }
+  @media (min-width: 992px) {
+    .services-hero { background-attachment: fixed; }
+  }
 `;
 
 const ServicesPage = () => {
+	const pageUrl = absoluteUrl("/services");
 	return (
 		<>
 			<SEO
 				title="Towing Services Brampton | 24/7 Roadside | Pixel Towing"
-				description="Pixel Towing Brampton — accident recovery, lockouts, flat tire change, battery boost, flatbed & scrap removal. 24/7 GTA dispatch. Call 647-673-9755."
-				canonical="https://pixeltowing.com/services"
+				description="Pixel Towing Brampton — accident towing, car lockouts, flat tire changes, battery boosts, flatbed towing and scrap car removal. 24/7 dispatch: 647-673-9755."
+				canonical={pageUrl}
 			/>
 
 			<style>{pageStyles}</style>
@@ -95,45 +99,35 @@ const ServicesPage = () => {
 				<Container>
 					<h1 className="display-4 fw-bold">Brampton Towing &amp; Roadside Services</h1>
 					<p className="lead text-white-50">
-						Serving Brampton, Mississauga, Caledon and Toronto 24 Hours a Day.
+						Serving Brampton, Mississauga, Caledon and the GTA 24 hours a day.
 					</p>
 				</Container>
 			</div>
 
-			<Breadcrumbs
-				trail={[{ name: "Home", to: "/" }, { name: "Services" }]}
-				currentUrl="https://pixeltowing.com/services"
-			/>
+			<Breadcrumbs trail={[{ name: "Home", to: "/" }, { name: "Services" }]} currentUrl={pageUrl} />
 
 			<div className="py-5 bg-light">
 				<Container>
 					<Row xs={1} md={2} lg={3} className="g-4">
-						{servicesData.map((s, i) => (
-							<Col key={i}>
+						{SERVICE_CARDS.map(s => (
+							<Col key={s.link}>
 								<Card className="h-100 shadow-sm border-0">
 									<Card.Img
-										src={s.image}
-										alt={s.alt}
+										src={s.image.src}
+										alt={s.image.alt}
+										width={s.image.width}
+										height={s.image.height}
 										style={{ height: 200, objectFit: "cover" }}
-										loading="lazy" /* 🔥 PERFORMANCE: Lazy Loading */
+										loading="lazy"
 									/>
 									<Card.Body className="d-flex flex-column">
-										<Card.Title className="d-flex align-items-center mb-3 h4">
+										<h2 className="d-flex align-items-center mb-3 h4">
 											<s.icon className="me-2 text-primary" size={24} />
 											{s.title}
-										</Card.Title>
-										<Card.Text className="text-muted flex-grow-1">
-											{s.description}
-										</Card.Text>
-
-										<Link
-											to={s.link}
-											className="mt-auto w-100"
-											aria-label={`View details for ${s.title}`}
-										>
-											<Button variant="outline-primary" className="w-100">
-												View {s.title} details
-											</Button>
+										</h2>
+										<Card.Text className="text-muted flex-grow-1">{s.description}</Card.Text>
+										<Link to={s.link} className="btn btn-outline-primary w-100 mt-auto">
+											{s.anchor}
 										</Link>
 									</Card.Body>
 								</Card>
@@ -143,7 +137,6 @@ const ServicesPage = () => {
 				</Container>
 			</div>
 
-			{/* 🔥 NEW SECTION: GENERAL SERVICE FAQ (Boosts this page specifically) */}
 			<div className="py-5 bg-white">
 				<Container>
 					<div className="text-center mb-5">
@@ -153,25 +146,17 @@ const ServicesPage = () => {
 						<Col md={8}>
 							<Accordion flush>
 								<Accordion.Item eventKey="0">
-									<Accordion.Header>Which service area do you cover?</Accordion.Header>
+									<Accordion.Header>Which areas do you cover?</Accordion.Header>
 									<Accordion.Body>
-										We provide towing and roadside services across{" "}
-										<strong>
-											Brampton, Mississauga, Caledon, Etobicoke, and the Greater Toronto
-											Area (GTA)
-										</strong>
-										. Long-distance towing is available upon request.
+										We're based in Brampton and serve Peel Region and nearby GTA, Halton and
+										Wellington communities. See all of our{" "}
+										<Link to="/locations">towing service areas</Link>. Long-distance towing is
+										available on request.
 									</Accordion.Body>
 								</Accordion.Item>
 								<Accordion.Item eventKey="1">
-									<Accordion.Header>
-										Is Pixel Towing licensed and insured?
-									</Accordion.Header>
-									<Accordion.Body>
-										Yes. We are a fully licensed municipal tow operator. Our trucks are
-										inspected, and our drivers are insured for your safety and vehicle
-										protection.
-									</Accordion.Body>
+									<Accordion.Header>How quickly can you get to me?</Accordion.Header>
+									<Accordion.Body>{DISPATCH_MESSAGE.full}</Accordion.Body>
 								</Accordion.Item>
 							</Accordion>
 						</Col>
@@ -181,18 +166,11 @@ const ServicesPage = () => {
 
 			<div className="py-5 bg-dark text-white text-center">
 				<Container>
-					<h2 className="fw-bold">Need Immediate Roadside Help?</h2>
-					<p className="lead text-white-50 mb-4">
-						Our emergency dispatch is standing by. Fast ETA guaranteed.
-					</p>
-					<Button
-						href="tel:+16476739755"
-						variant="warning"
-						size="lg"
-						className="fw-bold px-5 py-3 rounded-pill"
-					>
+					<h2 className="fw-bold">Need Roadside Help Now?</h2>
+					<p className="lead text-white-50 mb-4">{DISPATCH_MESSAGE.short} — call any time.</p>
+					<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold px-5 py-3 rounded-pill">
 						<Phone className="me-2" />
-						Call 647-673-9755
+						Call {BUSINESS.phoneDisplay}
 					</Button>
 				</Container>
 			</div>

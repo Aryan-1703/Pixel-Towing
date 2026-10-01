@@ -3,7 +3,7 @@ import { Container, Breadcrumb } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 
-const SITE_ORIGIN = "https://pixeltowing.com";
+import { SITE_ORIGIN } from "../content/site";
 
 export interface Crumb {
 	/** Visible label. */

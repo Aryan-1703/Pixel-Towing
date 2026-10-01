@@ -2,6 +2,8 @@ import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
 import { Phone, ShieldAlert } from "lucide-react";
+import { SERVICE_AREAS } from "../content/cities";
+import { BUSINESS } from "../content/site";
 import "../css/AppNavbar.css";
 
 const AppNavbar = () => {
@@ -35,7 +37,7 @@ const AppNavbar = () => {
 					to="/"
 					className="fw-bold fs-4"
 					onClick={() => setExpanded(false)}
-					title="Pixel Towing Brampton & GTA — 24/7 Tow Truck & Collision Repair"
+					title="Pixel Towing — 24/7 tow truck in Brampton and the GTA"
 				>
 					<span style={{ color: "#FBBF24" }}>PIXEL</span> TOWING GTA
 				</Navbar.Brand>
@@ -82,21 +84,15 @@ const AppNavbar = () => {
 							id="locations-dropdown"
 							className="fw-medium mx-1"
 						>
-							{[
-								{ name: "Mississauga", path: "/locations/mississauga" },
-								{ name: "Caledon", path: "/locations/caledon" },
-								{ name: "Etobicoke", path: "/locations/etobicoke" },
-								{ name: "Vaughan", path: "/locations/vaughan" },
-								{ name: "Toronto", path: "/locations/toronto" },
-								{ name: "Georgetown", path: "/locations/georgetown" },
-								{ name: "Halton Hills", path: "/locations/halton-hills" },
-								{ name: "Acton", path: "/locations/acton" },
-								{ name: "Erin", path: "/locations/erin" },
-							].map(loc => (
-								<NavDropdown.Item key={loc.path} as={Link} to={loc.path} onClick={() => setExpanded(false)}>
-									{loc.name}
+							<NavDropdown.Item as={Link} to="/locations" onClick={() => setExpanded(false)} className="fw-bold">
+								All service areas
+							</NavDropdown.Item>
+							<NavDropdown.Divider />
+							{SERVICE_AREAS.map(area => (
+								<NavDropdown.Item key={area.path} as={Link} to={area.path} onClick={() => setExpanded(false)}>
+									{area.name}
 								</NavDropdown.Item>
-							))}		
+							))}
 						</NavDropdown>
 
 						<Nav.Link
@@ -118,13 +114,13 @@ const AppNavbar = () => {
 						</Nav.Link>
 
 						<Button
-							href="tel:+16476739755"
+							href={BUSINESS.phoneHref}
 							variant="warning"
 							className="ms-lg-3 fw-bold mt-3 mt-lg-0 rounded-pill px-4"
-							aria-label="Call Pixel Towing 647-673-9755"
+							aria-label={`Call Pixel Towing ${BUSINESS.phoneDisplay}`}
 						>
 							<Phone size={18} className="me-2 mb-1" />
-							647-673-9755
+							{BUSINESS.phoneDisplay}
 						</Button>
 					</Nav>
 				</Navbar.Collapse>

@@ -5,57 +5,91 @@ a {
 	text-decoration: none;
 }
 
-/* ⚡ PERFORMANCE: Hardware Acceleration for Animations */
-.hero-section,
-.hero-section h1,
-.services-section .card {
-	will-change: transform, opacity;
-}
-
-/* ANIMATIONS */
-@keyframes fadeInUp {
-	from {
-		transform: translateY(20px);
-		opacity: 0;
-	}
-	to {
-		transform: translateY(0);
-		opacity: 1;
-	}
-}
-
-/* HERO SECTION */
+/* HERO
+   Only the decorative PIXEL / TOWING SERVICE branding animates. The H1, intro
+   copy and call buttons render fully visible on first paint (LCP). */
 .hero-section {
+	background: linear-gradient(to bottom right, #1e293b, #1e3a8a, #111827);
 	min-height: 90vh;
 	display: flex;
-	flex-direction: column;
 	align-items: center;
 	justify-content: center;
 	position: relative;
-	/* ⚡ PERFORMANCE: This does parallax without JavaScript */
-	background-attachment: fixed;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
+	text-align: center;
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
 }
 
-.hero-section h1 {
-	font-size: clamp(2.5rem, 5vw, 4.5rem);
-	animation: fadeInUp 1s ease-in-out;
+.hero-overlay {
+	background-color: rgba(0, 0, 0, 0.45);
+	position: absolute;
+	inset: 0;
 }
 
-.hero-section p,
-.hero-section a,
-.hero-section .btn {
-	animation: fadeInUp 1.2s ease-in-out;
+.hero-section h1 {
+	font-size: clamp(2.25rem, 5vw, 4rem);
+}
+
+.pixel-letter-css {
+	background: linear-gradient(45deg, #ffd700, #ffa500, #ff6347);
+	-webkit-background-clip: text;
+	background-clip: text;
+	-webkit-text-fill-color: transparent;
+	text-shadow: none;
+	display: inline-block;
+	opacity: 0;
+	transform: scale(0.5);
+	animation: pixelReveal 0.5s ease forwards;
+}
+.pixel-letter-css:nth-child(1) { animation-delay: 0.1s; }
+.pixel-letter-css:nth-child(2) { animation-delay: 0.3s; }
+.pixel-letter-css:nth-child(3) { animation-delay: 0.5s; }
+.pixel-letter-css:nth-child(4) { animation-delay: 0.7s; }
+.pixel-letter-css:nth-child(5) { animation-delay: 0.9s; }
+
+@keyframes pixelReveal {
+	to {
+		opacity: 1;
+		transform: scale(1);
+	}
+}
+
+.towing-reveal {
+	opacity: 0;
+	animation: fadeUp 0.8s ease 1.2s forwards;
+}
+
+@keyframes fadeUp {
+	from {
+		opacity: 0;
+		transform: translateY(12px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.contact-section-bg {
+	background: #111;
+}
+
+/* SERVICE AREA CARDS */
+.area-card {
+	transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+.area-card:hover {
+	background: #1e3a8a !important;
+	transform: translateY(-2px);
+}
+.area-card:hover .text-dark,
+.area-card:hover .text-muted {
+	color: #fff !important;
 }
 
 /* SERVICES CARDS */
 .services-section .card {
-	transition: transform 0.2s ease-out, box-shadow 0.2s ease-out; /* ⚡ Faster transition */
+	transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
 	overflow: hidden;
-	backface-visibility: hidden; /* Prevents flickering */
 }
 
 .services-section .card:hover {
@@ -83,7 +117,7 @@ a {
 }
 
 .accordion-button:focus {
-	box-shadow: none; /* Removes laggy glow effect */
+	box-shadow: none;
 	border-color: #fbbf24;
 }
 
@@ -92,12 +126,4 @@ a {
 }
 .accordion-button:not(.collapsed)::after {
 	filter: sepia(100%) hue-rotate(5deg) saturate(500%);
-}
-
-/* SEO CONTENT BLOCK */
-.seo-block {
-	line-height: 1.8;
-}
-.seo-block h3 {
-	margin-top: 1.5rem;
 }

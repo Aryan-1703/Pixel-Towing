@@ -5,8 +5,9 @@ import { Phone, Mail, Shield, BookOpen } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { AUTHOR } from "../content/author";
+import { BUSINESS_REF, absoluteUrl } from "../content/site";
 
-const PAGE_URL = "https://pixeltowing.com/about";
+const PAGE_URL = absoluteUrl("/about");
 
 const TOPICS = [
 	{
@@ -37,11 +38,7 @@ const AboutPage = () => {
 		name: AUTHOR.name,
 		jobTitle: AUTHOR.jobTitle,
 		url: PAGE_URL,
-		worksFor: {
-			"@type": "Organization",
-			name: "Pixel Towing",
-			url: "https://pixeltowing.com",
-		},
+		worksFor: BUSINESS_REF,
 		email: "mailto:info@pixeltowing.com",
 		telephone: "+16476739755",
 	};

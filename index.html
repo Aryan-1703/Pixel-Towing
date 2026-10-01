@@ -2,120 +2,26 @@
 <html lang="en-CA">
 	<head>
 		<meta charset="UTF-8" />
-
-		<!-- Viewport -->
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-		<!-- Robots are set per-page by React Helmet / prerender.mjs — no global fallback -->
-
-		<!-- Geo (Local SEO Reinforcement) -->
-		<meta name="geo.region" content="CA-ON" />
-		<meta name="geo.placename" content="Brampton" />
-		<meta name="geo.position" content="43.7315;-79.7624" />
-		<meta name="ICBM" content="43.7315, -79.7624" />
-
-		<!-- Title (fallback — overridden per-page by React Helmet / react-snap pre-rendering) -->
-		<title>Pixel Towing Brampton | 24/7 Tow Truck & Roadside Assistance | 647-673-9755</title>
-
-		<!-- Description and canonical are injected per-page by react-snap / React Helmet — no static fallbacks to avoid duplicates -->
-
-		<!-- Icons (MUST be in /public) -->
-		<link rel="icon" type="image/jpg" href="/tow.jpg" />
+		<link rel="icon" type="image/jpeg" href="/tow.jpg" />
 		<link rel="apple-touch-icon" href="/tow.jpg" />
-
-		<!-- Theme Color -->
 		<meta name="theme-color" content="#852085" />
-
-		<!-- Open Graph -->
-		<meta property="og:locale" content="en_CA" />
-		<meta property="og:type" content="website" />
-		<meta property="og:title" content="Pixel Towing Brampton | 24/7 Tow Truck Service" />
-		<meta
-			property="og:description"
-			content="Need a tow? We provide fast, affordable towing & roadside assistance in Brampton & the GTA. Call 647-673-9755."
-		/>
-		<meta property="og:url" content="https://pixeltowing.com/" />
-		<meta property="og:site_name" content="Pixel Towing" />
-		<meta property="og:image" content="https://pixeltowing.com/tow.jpg" />
-		<meta property="og:image:alt" content="Pixel Towing Truck in Brampton" />
-
-		<!-- Twitter -->
-		<meta name="twitter:card" content="summary_large_image" />
-		<meta name="twitter:title" content="Pixel Towing Brampton | 24/7 Emergency Towing" />
-		<meta
-			name="twitter:description"
-			content="Flatbed towing, roadside assistance & accident recovery in Brampton. Call now."
-		/>
-		<meta name="twitter:image" content="https://pixeltowing.com/tow.jpg" />
-
-		<!-- =========================
-		     LOCAL BUSINESS SCHEMA
-		========================== -->
-		<script type="application/ld+json">
-			{
-				"@context": "https://schema.org",
-				"@type": "TowingService",
-				"@id": "https://pixeltowing.com/#localbusiness",
-				"name": "Pixel Towing",
-				"alternateName": "Pixel Towing Brampton",
-				"url": "https://pixeltowing.com",
-				"logo": "https://pixeltowing.com/tow.jpg",
-				"image": "https://pixeltowing.com/tow.jpg",
-				"description": "24/7 towing and roadside assistance in Brampton, Mississauga, and the GTA. Specializing in flatbed towing, accident recovery, lockouts, and battery boost services.",
-				"telephone": "+16476739755",
-				"priceRange": "$$",
-				"address": {
-					"@type": "PostalAddress",
-					"addressLocality": "Brampton",
-					"addressRegion": "ON",
-					"addressCountry": "CA"
-				},
-				"geo": {
-					"@type": "GeoCoordinates",
-					"latitude": 43.7315,
-					"longitude": -79.7624
-				},
-				"hasMap": "https://www.google.com/maps/place/Pixel+Towing",
-				"areaServed": [
-					{ "@type": "City", "name": "Brampton" },
-					{ "@type": "City", "name": "Mississauga" },
-					{ "@type": "City", "name": "Toronto" },
-					{ "@type": "City", "name": "Etobicoke" },
-					{ "@type": "City", "name": "Caledon" },
-					{ "@type": "City", "name": "Vaughan" }
-				],
-				"openingHoursSpecification": {
-					"@type": "OpeningHoursSpecification",
-					"dayOfWeek": [
-						"Monday",
-						"Tuesday",
-						"Wednesday",
-						"Thursday",
-						"Friday",
-						"Saturday",
-						"Sunday"
-					],
-					"opens": "00:00",
-					"closes": "23:59"
-				},
-				"paymentAccepted": ["Cash", "Credit Card", "Debit Card"],
-				"sameAs": [
-					"https://www.instagram.com/pixel_towing",
-					"https://www.google.com/maps/place/Pixel+Towing"
-				]
-			}
-		</script>
+		<!--
+			Minimal fallback only. Every page's title, description, robots, canonical,
+			Open Graph / Twitter tags and JSON-LD come from src/components/SEO.tsx and
+			BusinessSchema.tsx, and are baked into each page by scripts/prerender.mjs.
+		-->
+		<title>Pixel Towing</title>
 	</head>
 
 	<body>
 		<div id="root"></div>
 
-		<!-- No-JS fallback -->
 		<noscript>
-			<p><strong>Pixel Towing Brampton &#8211; 24/7 Emergency Tow Truck</strong></p>
+			<p><strong>Pixel Towing &#8211; 24/7 Tow Truck in Brampton</strong></p>
 			<p>
-				Call <strong>647-673-9755</strong> for fast towing, roadside assistance, flatbed
-				towing, and battery boost services in Brampton and the GTA.
+				Call <a href="tel:+16476739755">647-673-9755</a> for towing and roadside assistance
+				in Brampton and the GTA.
 			</p>
 		</noscript>
 

@@ -1,849 +1,413 @@
-import {
-	Container,
-	Row,
-	Col,
-	Card,
-	Button,
-	Accordion,
-	Stack,
-	Badge,
-} from "react-bootstrap";
+import { Container, Row, Col, Card, Button, Accordion, Stack, Badge } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import {
-	Phone,
-	CheckCircle,
-	ShieldAlert,
-	Car,
-	Wrench,
-	Star,
-	AlertTriangle,
-	FileText,
-	DollarSign,
-	Award,
-	MessageSquare,
-} from "lucide-react";
+import { Phone, CheckCircle, ShieldAlert, Car, Wrench, FileText, DollarSign, Award, MessageSquare } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
+import TowZoneNotice from "../components/TowZoneNotice";
+import { IMAGES } from "../assets/images";
+import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
+import { SERVICE_AREAS } from "../content/cities";
 
-import accidentImg from "../assets/tow-truck-accident-recovery-brampton.jpg";
-import towingImg from "../assets/flatbed-towing-brampton.jpg";
+const PAGE_URL = absoluteUrl("/accident-recovery");
+const PEEL_COLLISION_REPORTING_URL =
+	"https://www.peelpolice.ca/reporting-records/report-a-crime-or-incident/collision-reporting/";
+const FSRA_CLAIMS_URL =
+	"https://www.fsrao.ca/consumers/auto-insurance/protect-yourself/after-accident-understanding-claims-process";
 
-// ============================================================
-// COLLISION SCHEMA — maximum rich snippet coverage
-// ============================================================
-const collisionSchema = {
+const accidentServiceSchema = {
 	"@context": "https://schema.org",
-	"@graph": [
-		{
-			"@type": "AutoBodyShop",
-			"@id": "https://pixeltowing.com/accident-recovery#bodyshop",
-			name: "Pixel Towing & Collision Centre",
-			telephone: "+16476739755",
-			url: "https://pixeltowing.com/accident-recovery",
-			image: "https://pixeltowing.com/tow.jpg",
-			priceRange: "$$",
-			description:
-				"Full-service accident recovery, collision repair, OEM parts, deductible assistance, and same-day rental cars in Brampton and the GTA. We handle the entire insurance process for you.",
-			address: {
-				"@type": "PostalAddress",
-				addressLocality: "Brampton",
-				addressRegion: "ON",
-				addressCountry: "CA",
-			},
-			areaServed: [
-				{ "@type": "City", name: "Brampton" },
-				{ "@type": "City", name: "Mississauga" },
-				{ "@type": "City", name: "Toronto" },
-				{ "@type": "City", name: "Caledon" },
-				{ "@type": "City", name: "Etobicoke" },
-				{ "@type": "City", name: "Vaughan" },
-				{ "@type": "City", name: "Halton Hills" },
-			],
-			hasOfferCatalog: {
-				"@type": "OfferCatalog",
-				name: "Collision & Accident Recovery Services",
-				itemListElement: [
-					{
-						"@type": "Offer",
-						itemOffered: { "@type": "Service", name: "Accident Towing & Recovery" },
-					},
-					{
-						"@type": "Offer",
-						itemOffered: { "@type": "Service", name: "Collision Repair with OEM Parts" },
-					},
-					{
-						"@type": "Offer",
-						itemOffered: { "@type": "Service", name: "Deductible Assistance Program" },
-					},
-					{
-						"@type": "Offer",
-						itemOffered: { "@type": "Service", name: "Same-Day Rental Car" },
-					},
-					{
-						"@type": "Offer",
-						itemOffered: { "@type": "Service", name: "Total Loss Claim Advocacy" },
-					},
-					{
-						"@type": "Offer",
-						itemOffered: { "@type": "Service", name: "Lifetime Warranty on Repairs" },
-					},
-				],
-			},
-		},
-		{
-			"@type": "FAQPage",
-			"@id": "https://pixeltowing.com/accident-recovery#faq",
-			mainEntity: [
-				{
-					"@type": "Question",
-					name: "Is my deductible waived if I use Pixel Towing's bodyshop?",
-					acceptedAnswer: {
-						"@type": "Answer",
-						text: "In many cases, yes — partially or fully. Through our insurer relationships and repair volume, we are able to assist with deductible costs in qualifying claims. Call us to discuss your specific situation.",
-					},
-				},
-				{
-					"@type": "Question",
-					name: "Do I have to use my insurance company's preferred shop after an accident?",
-					acceptedAnswer: {
-						"@type": "Answer",
-						text: "Your insurer can recommend a shop. FSRA, Ontario's insurance regulator, states that as long as your insurer approves the estimate, you may have your vehicle repaired at the repair shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company.",
-					},
-				},
-				{
-					"@type": "Question",
-					name: "What does OEM parts repair mean?",
-					acceptedAnswer: {
-						"@type": "Answer",
-						text: "OEM (Original Equipment Manufacturer) parts are the exact same components your car was built with at the factory. They maintain your vehicle's safety ratings, fit, and resale value. Many insurance-preferred shops use aftermarket alternatives to reduce costs — we use OEM parts as standard.",
-					},
-				},
-				{
-					"@type": "Question",
-					name: "My car might be a total loss — what should I do?",
-					acceptedAnswer: {
-						"@type": "Answer",
-						text: "Don't accept the first offer from insurance. Total loss valuations are negotiable. We help clients understand the fair market value of their vehicle and advocate for a higher payout when the initial offer is below market. Call us before signing anything.",
-					},
-				},
-			],
-		},
-	],
+	"@type": "Service",
+	"@id": `${PAGE_URL}#service`,
+	name: "Accident Towing and Recovery",
+	serviceType: "Accident towing",
+	description:
+		"24/7 accident towing in Brampton and the GTA, with Collision Reporting Centre drop-off and optional collision repair and rental coordination.",
+	url: PAGE_URL,
+	image: absoluteUrl(IMAGES.accidentTowing.src),
+	provider: BUSINESS_REF,
+	areaServed: SERVICE_AREAS.map(area => ({ "@type": "City", name: area.name })),
 };
 
-// ============================================================
-// WHAT WE OFFER — the full collision advantage list
-// ============================================================
-const COLLISION_ADVANTAGES = [
+const ADVANTAGES = [
 	{
-		icon: Award,
+		icon: ShieldAlert,
 		color: "text-warning",
-		title: "Lifetime Warranty on All Repairs",
-		desc: "Every repair at our bodyshop carries a lifetime workmanship warranty. Paint, panels, structural work — if it ever fails due to our repair, we fix it at no cost. No other shop in Brampton matches this.",
-	},
-	{
-		icon: DollarSign,
-		color: "text-success",
-		title: "Deductible Assistance (Waived or Reduced)",
-		desc: "In many qualifying claims, we are able to assist with your deductible — partially or fully. This is legitimate, legal, and based on our relationships with insurers and repair volume. Ask us about your eligibility when you call.",
+		title: "Collision Reporting Centre Drop-Off",
+		desc: "If your vehicle can't be driven, we can tow it to a Collision Reporting Centre so you can make your report, then on to the shop you choose.",
 	},
 	{
 		icon: Wrench,
 		color: "text-primary",
-		title: "OEM Parts Only — Not Aftermarket",
-		desc: "Insurance-preferred shops often use aftermarket parts to keep costs down. We use Original Equipment Manufacturer parts exclusively — the same parts your car was built with. This protects your safety ratings and resale value.",
+		title: "Collision Repair Coordination",
+		desc: "Repairs at a collision facility we have an interest in, with OEM parts as our standard where they're available and approved on your estimate. Ask us for the written warranty terms.",
 	},
 	{
 		icon: Car,
-		color: "text-purple",
-		title: "Same-Day Rental Car From Our Own Fleet",
-		desc: "We operate our own rental fleet. While insurance pre-authorization typically takes 24–48 hours, we put you in a vehicle the same day you call — and handle the billing with insurance afterward.",
+		color: "text-success",
+		title: "Rental Vehicles",
+		desc: "Rental vehicles through a business we have an interest in — often the same day, subject to availability. What your insurer pays depends on your coverage.",
+	},
+	{
+		icon: DollarSign,
+		color: "text-success",
+		title: "Deductible Help on Some Claims",
+		desc: "On some claims we can reduce our own repair price to help with your deductible. It is never billed to your insurer and is written into your repair paperwork.",
 	},
 	{
 		icon: FileText,
 		color: "text-danger",
-		title: "Total Loss Advocacy — Fight for Fair Market Value",
-		desc: "If your vehicle is written off, the first offer from insurance is rarely the best offer. We review your vehicle's actual market value, comparable sales, and pre-accident condition to help you negotiate a fair payout. Don't sign anything until you've talked to us.",
+		title: "Total-Loss Support",
+		desc: "If your car is written off, we can move it out of a storage yard and explain what to ask your insurer. See our total loss guide.",
 	},
 	{
-		icon: ShieldAlert,
+		icon: Award,
 		color: "text-warning",
-		title: "Collision Reporting Centre — We Go With You",
-		desc: "We don't drop your car and leave. We tow you to Peel's Collision Reporting Centre — the Brampton centre is at Shoppers World, 499 Main St. S — wait with you, and help you complete the report correctly. How your CRC report is written affects your claim.",
+		title: "Disclosure Up Front",
+		desc: "We tell you about our interest in the repair facility and rental fleet before any referral. You can choose any other shop or rental company.",
 	},
-];
+] as const;
 
 const PROCESS_STEPS = [
 	{
 		num: "01",
-		title: "Call Us First — Before Insurance",
-		desc: "You have the legal right to choose your tow company and your repair shop. Call 647-673-9755. We arrive in 15–20 minutes and take control of the scene so you don't have to.",
+		title: "Make Sure Everyone Is Safe",
+		desc: "Call 911 if anyone is hurt. Move out of traffic if you can. Then call us — 24/7.",
 	},
 	{
 		num: "02",
-		title: "We Secure Your Vehicle & Handle the CRC",
-		desc: "We tow your vehicle safely and accompany you through the Collision Reporting Centre process. Your report is filed correctly the first time.",
+		title: "We Tow Your Vehicle",
+		desc: "Outside the highway tow zones, we tow your vehicle to a Collision Reporting Centre if needed, then to the shop you choose.",
 	},
 	{
 		num: "03",
-		title: "Rental Car Same Day",
-		desc: "You need to get to work and get on with your life. We get you into a rental from our own fleet the same day — no waiting for insurance to pre-authorize.",
+		title: "Report and Open Your Claim",
+		desc: "Report the collision if required and open a claim with your insurer. Ask what your policy covers for towing, repairs and a rental.",
 	},
 	{
 		num: "04",
-		title: "Repair Assessment & Insurance Coordination",
-		desc: "Our estimator assesses the damage and builds the repair file. We communicate directly with your adjuster — you don't spend hours on hold with insurance.",
+		title: "Repair and Rental (Optional)",
+		desc: "If you choose our repair facility, our estimator builds the repair file and works with your adjuster. A rental can be arranged subject to availability and coverage.",
 	},
-	{
-		num: "05",
-		title: "Repair With OEM Parts + Deductible Discussion",
-		desc: "Repairs begin using manufacturer-original parts. We discuss deductible assistance options with you based on your claim. Lifetime warranty applies to all work.",
-	},
-	{
-		num: "06",
-		title: "You Pick Up a Fully Restored Vehicle",
-		desc: "Your car is returned to pre-accident condition, detailed, and ready. If the repair ever fails, the lifetime warranty means we fix it — no argument.",
-	},
-];
+] as const;
+
+const COLLISION_REPORTING_ANSWER =
+	"Ontario's Highway Traffic Act requires a collision to be reported to police when anyone is injured, when combined damage exceeds $2,000, or when there is damage to highway property. In Peel Region (Brampton and Mississauga), Peel Regional Police currently direct drivers to call 911 if anyone needs to go to hospital or there is any sign of criminality; to report collisions over $2,000 with no injuries at a Collision Reporting Centre (within 48 hours if the vehicle can be driven); and, under $2,000, to report the details to their insurer. Peel publishes current centre locations and hours on its collision reporting page, and procedures can change, so check it before you go.";
 
 const FAQS = [
+	{ q: "When do I have to report a collision in Brampton or Mississauga?", a: COLLISION_REPORTING_ANSWER },
 	{
-		q: "When do I have to report a collision in Ontario?",
-		a: "Ontario's Highway Traffic Act requires a collision to be reported to police when anyone is injured, when combined damage exceeds $2,000, or when highway property is damaged. Peel Regional Police direct drivers whose vehicles have over $5,000 in combined damage to report immediately at a Collision Reporting Centre; below that, Peel's guidance is to contact your insurer about your options. Peel's Brampton centre is at Shoppers World, 499 Main St. S, Unit 189A, with additional centres at 11 Division (3030 Erin Mills Pkwy) and Peel headquarters (7150 Mississauga Rd). Requirements and hours change, so check the Peel Regional Police collision reporting page for current guidance. We tow you there and stay with you through the report.",
+		q: "Who decides which tow truck takes my car?",
+		a: "Outside Ontario's restricted highway tow zones, you do: an operator needs your consent before towing and must disclose its maximum rate schedule. On tow-zone sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, only the ministry's contracted operator can tow you off the highway; once you're outside the zone you can choose the next tow company and destination.",
 	},
 	{
 		q: "Do I have to use my insurance company's preferred shop?",
-		a: "Your insurer can recommend a 'preferred' collision centre, but FSRA — Ontario's insurance regulator — states that as long as your insurer approves the estimate, you may have your vehicle repaired at the shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company. Preferred shops work within insurance-negotiated rates, which often means aftermarket parts and timelines that suit the insurer, not you. We work in your interest. Check your own policy wording and FSRA's claims guidance for the details that apply to your claim.",
+		a: "No. Your insurer can recommend a shop, but FSRA — Ontario's insurance regulator — states that as long as your insurer approves the estimate, you may have your vehicle repaired at the shop of your choice. Check your policy wording and FSRA's claims guidance for the details that apply to your claim.",
 	},
 	{
-		q: "Is my deductible really waived or reduced?",
-		a: "In many qualifying cases, yes. Through our insurer relationships and repair volume, we can assist with deductible costs on qualifying claims — this is a legitimate program and not out of pocket for the insurer. Eligibility depends on your specific claim and insurer. Call us and we'll tell you immediately if you qualify.",
-	},
-	{
-		q: "What's the difference between OEM and aftermarket parts?",
-		a: "OEM (Original Equipment Manufacturer) parts are made by or for your car's manufacturer — the exact same parts it left the factory with. Aftermarket parts are made by third parties to fit your car. They're cheaper, which is why insurance-preferred shops use them. The difference shows in fit, finish, longevity, and sometimes in safety ratings. We use OEM parts as standard on every repair.",
-	},
-	{
-		q: "My car might be a total loss. What should I do?",
-		a: "First — don't accept the first offer insurance gives you. Total loss valuations are negotiable and the initial offer is often below actual market value. We review your vehicle's real market comparables, pre-accident condition, recent upgrades, and low mileage factors to build a case for a higher payout. We've helped clients receive significantly more than the opening offer. Call us before signing anything.",
-	},
-	{
-		q: "Can I get a rental car immediately after my accident?",
-		a: "Yes. Because we operate our own rental fleet, we can put you in a vehicle the same day you call — often within a few hours of your accident. When insurance arranges a rental, the pre-authorization process typically takes 24–48 business hours. We skip that by handling the billing with insurance after the fact.",
-	},
-	{
-		q: "What does the lifetime warranty actually cover?",
-		a: "Our lifetime workmanship warranty covers all repairs performed at our bodyshop — paint, body panels, structural repairs, and part installations. If any covered repair fails or shows defects due to our work, we repair it at no charge to you, for as long as you own the vehicle. This is transferable to a new owner if you sell the car, which also protects resale value.",
-	},
-	{
-		q: "How long will my car repair take?",
-		a: "Repair time depends on damage severity and parts availability. Minor to moderate damage typically takes 5–10 business days. We keep you updated throughout and provide a rental car for the full duration so you're never without transportation.",
-	},
-	{
-		q: "Do you handle all insurance companies in Ontario?",
-		a: "Yes. We work directly with all major Ontario insurers including Intact, Aviva, Belair Direct, TD Insurance, Economical, Desjardins, CAA, Gore Mutual, and others. We submit the repair file and invoice directly — you don't have to chase anyone.",
+		q: "Will my insurance pay for the tow, repair and rental?",
+		a: "Coverage depends on your policy and the circumstances of the claim. Rental coverage, for example, is usually optional coverage with daily and total limits. Ask your insurer what applies before you authorize work.",
 	},
 	{
 		q: "What if the other driver was at fault?",
-		a: "If the other driver was at fault, their insurance (via DCPD — Direct Compensation Property Damage) covers your repairs. This doesn't change anything about your right to choose your shop, your rental, or your tow company. Call us and we handle the coordination regardless of fault.",
+		a: "In Ontario, damage to your own vehicle is usually claimed through your own insurer under Direct Compensation – Property Damage (DCPD) to the extent you're not at fault, if your policy includes DCPD coverage. Your insurer will explain how fault affects your claim. It doesn't change your right to choose your repair shop.",
 	},
 	{
-		q: "Is this only for cars or do you handle trucks and SUVs too?",
-		a: "We handle all passenger vehicles — sedans, SUVs, pickup trucks, minivans, luxury vehicles, and leased vehicles. For commercial trucks or fleet vehicles, call us to discuss your specific requirements.",
+		q: "Can you really help with my deductible?",
+		a: "Sometimes. On some claims we can reduce our own repair price to help with your deductible. That reduction comes out of our price only, is never billed to your insurer, and is written into your repair authorization. We'll tell you whether your claim qualifies before you commit.",
 	},
-];
+	{
+		q: "My car might be a total loss. What should I do?",
+		a: "Ask your insurer for the valuation report and the comparable vehicles used, and gather service records and photos showing your car's condition before the collision. Our total loss guide walks through the process.",
+	},
+	{
+		q: "How long will repairs take?",
+		a: "It depends on the damage and parts availability. Your estimator will give you a timeline once the vehicle has been assessed and keep you updated as it changes.",
+	},
+] as const;
 
-// ============================================================
-// COMPONENT
-// ============================================================
-const AccidentRecoveryPage = () => {
-	return (
-		<div style={{ paddingTop: "76px" }}>
-			<SEO
-				title="Accident Towing Brampton | 24/7 Recovery | Pixel Towing"
-				description="Accident in Brampton? Pixel Towing provides 24/7 accident towing, Collision Reporting Centre assistance, collision repair coordination and rental support. Call 647-673-9755."
-				canonical="https://pixeltowing.com/accident-recovery"
-			/>
-
-			<Helmet>
-				<script type="application/ld+json">{JSON.stringify(collisionSchema)}</script>
-			</Helmet>
-
-			{/* ======== HERO ======== */}
-			<section
-				className="text-white"
-				style={{
-					background: `linear-gradient(rgba(10,14,30,0.88), rgba(10,14,30,0.88)), url(${accidentImg})`,
-					backgroundSize: "cover",
-					backgroundPosition: "center",
-					paddingTop: "5rem",
-					paddingBottom: "5rem",
-				}}
-			>
-				<Container>
-					<Row className="align-items-center g-5">
-						<Col lg={7}>
-							<Badge bg="warning" text="dark" className="rounded-pill mb-3 px-3 py-2">
-								Full-Service Collision Centre &mdash; Tow, Repair & Rental
-							</Badge>
-							<h1 className="display-4 fw-bold mb-4 lh-sm">
-								Accident in Brampton or GTA?
-								<br />
-								<span style={{ color: "#FBBF24" }}>One Call Handles Everything.</span>
-							</h1>
-							<p className="lead text-white-50 mb-4">
-								Tow Truck → Collision Reporting → Bodyshop Repair → Rental Car. All under
-								one roof. OEM parts. Lifetime warranty. Deductible assistance available.
-								Your insurance pays — you choose where your car goes.
-							</p>
-
-							{/* Quick benefit pills */}
-							<div className="d-flex flex-wrap gap-2 mb-5">
-								{[
-									"✅ Deductible Waived/Reduced",
-									"✅ OEM Parts — Not Aftermarket",
-									"✅ Lifetime Warranty",
-									"✅ Same-Day Rental Car",
-									"✅ Total Loss Advocacy",
-									"✅ All Ontario Insurers Accepted",
-								].map(b => (
-									<span
-										key={b}
-										className="badge bg-white text-dark px-3 py-2 rounded-pill fw-normal"
-									>
-										{b}
-									</span>
-								))}
-							</div>
-
-							<Stack gap={3} direction="horizontal" className="flex-wrap">
-								<Button
-									href="tel:+16476739755"
-									variant="warning"
-									size="lg"
-									className="fw-bold rounded-pill px-5 py-3 shadow-lg"
-								>
-									<Phone size={20} className="me-2" />
-									Call Now — 647-673-9755
-								</Button>
-								<Button
-									href="https://wa.link/sq54ln"
-									target="_blank"
-									rel="noopener noreferrer"
-									variant="outline-light"
-									size="lg"
-									className="fw-bold rounded-pill px-4 py-3"
-								>
-									<MessageSquare size={18} className="me-2" />
-									WhatsApp Us
-								</Button>
-							</Stack>
-
-							<p className="text-white-50 small mt-3">
-								⚡ 15-min response · 24/7 · All Peel Region & GTA
-							</p>
-						</Col>
-
-						<Col lg={5}>
-							<Card className="border-0 rounded-4 shadow-lg p-4 bg-white">
-								<h3 className="h5 fw-bold mb-4 text-dark text-center">
-									🚗 Just Had an Accident?
-								</h3>
-								<Stack gap={3}>
-									{[
-										{ icon: "1️⃣", text: "Stay calm — check for injuries" },
-										{ icon: "2️⃣", text: "Move to safety & turn on hazards" },
-										{ icon: "3️⃣", text: "Call 647-673-9755 — we come to you" },
-										{ icon: "4️⃣", text: "Don't sign anything from other trucks" },
-										{ icon: "5️⃣", text: "We handle the CRC, rental & repairs" },
-									].map(step => (
-										<div key={step.icon} className="d-flex align-items-center gap-3">
-											<span style={{ fontSize: "1.4rem" }}>{step.icon}</span>
-											<span className="text-dark fw-medium">{step.text}</span>
-										</div>
-									))}
-								</Stack>
-								<hr />
-								<div className="text-center">
-									<div className="text-muted small mb-1">Dispatch available 24/7</div>
-									<a
-										href="tel:+16476739755"
-										className="h4 fw-bold text-dark text-decoration-none"
-									>
-										647-673-9755
-									</a>
-								</div>
-							</Card>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			<Breadcrumbs
-				trail={[
-					{ name: "Home", to: "/" },
-					{ name: "Services", to: "/services" },
-					{ name: "Accident Recovery" },
-				]}
-				currentUrl="https://pixeltowing.com/accident-recovery"
-			/>
-
-			{/* ======== THE FULL ADVANTAGE LIST ======== */}
-			<section className="py-5 bg-white">
-				<Container>
-					<div className="text-center mb-5">
-						<h2 className="display-5 fw-bold">
-							Why Accident Victims Choose Pixel Towing
-						</h2>
-						<p className="lead text-muted mx-auto" style={{ maxWidth: "640px" }}>
-							We're not just a tow company. We're a full collision solution — and every
-							advantage below is available to you the moment you call.
-						</p>
-					</div>
-					<Row xs={1} md={2} lg={3} className="g-4">
-						{COLLISION_ADVANTAGES.map((item, i) => (
-							<Col key={i}>
-								<Card className="border-0 shadow-sm h-100 rounded-4 p-4">
-									<item.icon size={40} className={`${item.color} mb-3`} />
-									<h3 className="h5 fw-bold mb-2">{item.title}</h3>
-									<p className="text-muted small mb-0">{item.desc}</p>
-								</Card>
-							</Col>
-						))}
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== YOUR RIGHTS SECTION ======== */}
-			<section className="py-5" style={{ background: "#0f172a" }}>
-				<Container>
-					<Row className="align-items-center g-5">
-						<Col lg={6}>
-							<Badge bg="warning" text="dark" className="rounded-pill mb-3">
-								Ontario Law
-							</Badge>
-							<h2 className="display-6 fw-bold text-white mb-4">
-								Your Insurance Company Can Suggest a Shop — You Choose It
-							</h2>
-							<p className="text-white-50 mb-3">
-								This is one of the most important things to know after a collision in
-								Ontario. FSRA, the province's insurance regulator, states that as long as
-								your insurer approves the estimate, you may have your vehicle repaired at
-								the repair shop of your choice — and that you have the right to choose a
-								repair shop, tow operator or vehicle rental company. Your insurer can
-								suggest a preferred collision centre; the choice remains yours.
-							</p>
-							<p className="text-white-50 mb-4">
-								Insurance-preferred shops operate on insurer-negotiated rates. That
-								structure incentivizes lower repair costs — which can mean non-OEM parts,
-								shortcuts on structural work, and a process designed for the insurer's
-								convenience, not yours.
-							</p>
-							<div className="d-flex flex-column gap-3">
-								{[
-									"You choose the tow company — not insurance dispatch",
-									"You choose the repair shop — not their preferred facility",
-									"You choose the rental company — not their approved vendor",
-									"You negotiate the total loss value — don't accept the first offer",
-								].map(right => (
-									<div key={right} className="d-flex align-items-start gap-3">
-										<CheckCircle size={20} className="text-warning mt-1 flex-shrink-0" />
-										<span className="text-white">{right}</span>
-									</div>
-								))}
-							</div>
-						</Col>
-						<Col lg={6}>
-							<img
-								src={towingImg}
-								alt="Pixel Towing flatbed tow truck recovering accident vehicle in Brampton GTA"
-								className="img-fluid rounded-4 shadow-lg"
-								loading="lazy"
-							/>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== OWNERSHIP DISCLOSURE (Ontario towing rules) ======== */}
-			<section className="py-4 bg-light border-top border-bottom">
-				<Container>
-					<Row className="justify-content-center">
-						<Col lg={9}>
-							<div className="d-flex align-items-start gap-3">
-								<FileText size={20} className="text-secondary flex-shrink-0 mt-1" />
-								<div>
-									<h2 className="h6 fw-bold text-uppercase text-secondary mb-2">
-										Disclosure of Interest
-									</h2>
-									<p className="text-secondary small mb-0">
-										Pixel Towing has an ownership and operating interest in the collision
-										repair facility and the rental vehicle fleet referred to on this page.
-										We disclose that relationship before any towing, storage or related
-										payment is requested, and you are free to choose a different repair
-										shop, storage facility or rental provider at any time. Ontario tow
-										operators are required to tell customers about any interest they have
-										in a business or facility they refer them to.
-									</p>
-								</div>
-							</div>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== HOW IT WORKS — 6 STEPS ======== */}
-			<section className="py-5 bg-light">
-				<Container>
-					<div className="text-center mb-5">
-						<h2 className="display-6 fw-bold">
-							How Our Accident-to-Repair Process Works
-						</h2>
-						<p className="text-muted">
-							From the crash scene to your restored vehicle — we handle every step.
-						</p>
-					</div>
-					<Row xs={1} md={2} lg={3} className="g-4">
-						{PROCESS_STEPS.map(step => (
-							<Col key={step.num}>
-								<Card className="border-0 shadow-sm h-100 rounded-4 p-4 bg-white">
-									<div
-										className="fw-bold mb-3"
-										style={{ fontSize: "2.5rem", color: "#FBBF24", lineHeight: 1 }}
-									>
-										{step.num}
-									</div>
-									<h3 className="h5 fw-bold mb-2">{step.title}</h3>
-									<p className="text-muted small mb-0">{step.desc}</p>
-								</Card>
-							</Col>
-						))}
-					</Row>
-					<div className="text-center mt-5">
-						<Button
-							href="tel:+16476739755"
-							variant="dark"
-							size="lg"
-							className="fw-bold rounded-pill px-5 py-3 shadow"
-						>
+const Hero = () => (
+	<section
+		className="text-white"
+		style={{
+			background: `linear-gradient(rgba(10,14,30,0.88), rgba(10,14,30,0.88)), url(${IMAGES.accidentTowing.src})`,
+			backgroundSize: "cover",
+			backgroundPosition: "center",
+			paddingTop: "5rem",
+			paddingBottom: "5rem",
+		}}
+	>
+		<Container>
+			<Row className="align-items-center g-5">
+				<Col lg={7}>
+					<Badge bg="warning" text="dark" className="rounded-pill mb-3 px-3 py-2">
+						24/7 Accident Towing — Brampton & GTA
+					</Badge>
+					<h1 className="display-4 fw-bold mb-4 lh-sm">
+						Accident in Brampton or the GTA?
+						<br />
+						<span style={{ color: "#FBBF24" }}>We'll Tow It and Help With What's Next.</span>
+					</h1>
+					<p className="lead text-white-50 mb-4">
+						Accident towing, Collision Reporting Centre drop-off, and — if you choose — collision
+						repair and rental coordination. You decide where your vehicle goes.
+					</p>
+					<Stack gap={3} direction="horizontal" className="flex-wrap">
+						<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg">
 							<Phone size={20} className="me-2" />
-							Start the Process — Call 647-673-9755
-						</Button>
-					</div>
-				</Container>
-			</section>
-
-			{/* ======== TOTAL LOSS SECTION ======== */}
-			<section className="py-5 bg-white">
-				<Container>
-					<Row className="justify-content-center">
-						<Col lg={9}>
-							<Card
-								className="border-0 rounded-4 shadow-lg p-5"
-								style={{ borderLeft: "5px solid #EF4444" }}
-							>
-								<div className="d-flex align-items-center mb-4 gap-3">
-									<AlertTriangle size={40} className="text-danger flex-shrink-0" />
-									<h2 className="h3 fw-bold mb-0">
-										Car a Total Loss? Don't Accept the First Offer.
-									</h2>
-								</div>
-								<p className="text-secondary mb-3">
-									When insurance declares your vehicle a total loss, they calculate a
-									settlement based on their own valuation method. That first offer is a
-									starting point — not a final answer. Insurers routinely undervalue
-									vehicles by failing to account for:
-								</p>
-								<Row className="mb-4">
-									{[
-										"Recent upgrades or aftermarket features",
-										"Low mileage relative to vehicle age",
-										"Documented maintenance history",
-										"Local market comparables above average",
-										"Pre-accident condition (new tires, brakes, etc.)",
-										"Replacement cost vs. depreciated book value",
-									].map(item => (
-										<Col key={item} sm={6} className="mb-2">
-											<div className="d-flex align-items-start gap-2">
-												<CheckCircle
-													size={16}
-													className="text-success mt-1 flex-shrink-0"
-												/>
-												<span className="text-secondary small">{item}</span>
-											</div>
-										</Col>
-									))}
-								</Row>
-								<p className="text-secondary mb-4">
-									We've helped clients in Brampton and the GTA receive significantly more
-									than the initial total loss offer by building a proper valuation case.
-									<strong> Call us before you sign the total loss settlement.</strong>
-								</p>
-								<Button
-									href="tel:+16476739755"
-									variant="danger"
-									className="fw-bold rounded-pill px-5"
-									size="lg"
-								>
-									<Phone size={18} className="me-2" />
-									Talk to Us Before You Sign — 647-673-9755
-								</Button>
-							</Card>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== DEDUCTIBLE SECTION ======== */}
-			<section className="py-5 bg-light">
-				<Container>
-					<Row className="justify-content-center">
-						<Col lg={9}>
-							<Card
-								className="border-0 rounded-4 shadow-lg p-5"
-								style={{ borderLeft: "5px solid #10B981" }}
-							>
-								<div className="d-flex align-items-center mb-4 gap-3">
-									<DollarSign size={40} className="text-success flex-shrink-0" />
-									<h2 className="h3 fw-bold mb-0">
-										Deductible Waived or Reduced — Ask Us How
-									</h2>
-								</div>
-								<p className="text-secondary mb-3">
-									One of the biggest pain points after an accident is the deductible — the
-									amount you pay out of pocket before insurance covers the rest. Standard
-									deductibles in Ontario typically run $500–$1,000 or more.
-								</p>
-								<p className="text-secondary mb-4">
-									Through our insurer relationships and repair volume, we are able to
-									assist qualifying clients with their deductible — either fully waiving
-									it or reducing it significantly. This is a legitimate program available
-									to clients who bring their vehicle to our bodyshop. Eligibility depends
-									on your claim type and insurer. Call us and we'll tell you within
-									minutes if your claim qualifies.
-								</p>
-								<div className="d-flex flex-wrap gap-3">
-									<Button
-										href="tel:+16476739755"
-										variant="success"
-										className="fw-bold rounded-pill px-5"
-										size="lg"
-									>
-										<Phone size={18} className="me-2" />
-										Check Your Deductible Eligibility — Free Call
-									</Button>
-									<Button
-										href="https://wa.link/sq54ln"
-										target="_blank"
-										rel="noopener noreferrer"
-										variant="outline-success"
-										className="fw-bold rounded-pill px-4"
-										size="lg"
-									>
-										WhatsApp to Ask
-									</Button>
-								</div>
-							</Card>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== FAQ ======== */}
-			<section className="py-5 bg-white">
-				<Container>
-					<Row className="justify-content-center">
-						<Col lg={9}>
-							<h2 className="fw-bold text-center mb-2">
-								Collision & Accident Recovery FAQ
-							</h2>
-							<p className="text-muted text-center mb-5">
-								Everything you need to know — answered honestly.
-							</p>
-							<Accordion flush className="border rounded-4 overflow-hidden">
-								{FAQS.map((faq, i) => (
-									<Accordion.Item eventKey={String(i)} key={i}>
-										<Accordion.Header>{faq.q}</Accordion.Header>
-										<Accordion.Body className="text-secondary lh-lg">
-											{faq.a}
-										</Accordion.Body>
-									</Accordion.Item>
-								))}
-							</Accordion>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== SERVICE AREAS FOR THIS PAGE ======== */}
-			<section className="py-4 bg-light border-top">
-				<Container>
-					<h3 className="h5 fw-bold text-center mb-3">
-						Accident Recovery & Collision Repair — All GTA Areas
-					</h3>
-					<p className="text-center text-muted small mb-4">
-						We respond to accident scenes and provide full collision repair services
-						across:
-					</p>
-					<div className="d-flex flex-wrap justify-content-center gap-2">
-						{[
-							{ name: "Brampton", path: "/" },
-							{ name: "Mississauga", path: "/locations/mississauga" },
-							{ name: "Caledon", path: "/locations/caledon" },
-							{ name: "Etobicoke", path: "/locations/etobicoke" },
-							{ name: "Vaughan", path: "/locations/vaughan" },
-							{ name: "Toronto", path: "/locations/toronto" },
-							{ name: "Georgetown", path: "/locations/georgetown" },
-							{ name: "Halton Hills", path: "/locations/halton-hills" },
-							{ name: "Acton", path: "/locations/acton" },
-							{ name: "Erin", path: "/locations/erin" },
-						].map(area => (
-							<Link
-								key={area.path}
-								to={area.path}
-								className="btn btn-sm btn-outline-secondary rounded-pill"
-							>
-								{area.name}
-							</Link>
-						))}
-					</div>
-				</Container>
-			</section>
-
-			{/* ======== SEO TEXT BLOCK ======== */}
-			<section className="py-5 bg-white border-top">
-				<Container>
-					<Row className="justify-content-center">
-						<Col lg={9}>
-							<h2 className="fw-bold mb-4">
-								Brampton & GTA's Collision Repair Experts — Tow, Repair, Rental Under One
-								Roof
-							</h2>
-							<p className="text-secondary mb-3">
-								Pixel Towing is not just a tow truck company. We are Brampton's only
-								full-service accident solution — combining a 24/7 tow truck fleet, a
-								certified collision repair bodyshop, and our own rental car fleet under
-								one operation. When you're in an accident anywhere in the GTA, one call to{" "}
-								<a href="tel:+16476739755" className="fw-bold text-dark">
-									647-673-9755
-								</a>{" "}
-								puts all of that in motion simultaneously.
-							</p>
-							<p className="text-secondary mb-3">
-								We built this model because we saw how the standard process fails drivers:
-								insurance dispatches a tow company to an insurance-preferred shop, repairs
-								are done with aftermarket parts to save money for the insurer, the rental
-								takes two days to arrange, and the driver — who just went through
-								something stressful — has to coordinate between three different companies
-								while their car sits. We eliminated that entirely.
-							</p>
-							<p className="text-secondary mb-3">
-								Every vehicle we repair leaves our shop with a{" "}
-								<strong>lifetime workmanship warranty</strong>. We use{" "}
-								<strong>OEM (Original Equipment Manufacturer) parts</strong> exclusively —
-								the same components your car was built with. We work directly with every
-								major Ontario insurer to handle billing so you're not chasing anyone. And
-								through our deductible assistance program, many clients pay little to
-								nothing out of pocket.
-							</p>
-							<p className="text-secondary mb-3">
-								If your vehicle has been declared a{" "}
-								<Link
-									to="/blog/total-loss-vehicle-ontario-guide"
-									className="text-decoration-underline text-secondary"
-								>
-									total loss
-								</Link>
-								, we advocate on your behalf for a fair market valuation — because the
-								first offer from insurance rarely is one. We've helped drivers across{" "}
-								<Link
-									to="/locations/mississauga"
-									className="text-decoration-underline text-secondary"
-								>
-									Mississauga
-								</Link>
-								,{" "}
-								<Link
-									to="/locations/caledon"
-									className="text-decoration-underline text-secondary"
-								>
-									Caledon
-								</Link>
-								,{" "}
-								<Link
-									to="/locations/etobicoke"
-									className="text-decoration-underline text-secondary"
-								>
-									Etobicoke
-								</Link>
-								, and the rest of the GTA get meaningfully more than their opening
-								settlement.
-							</p>
-							<p className="text-secondary">
-								Whether you're searching for <strong>collision repair near me</strong>,{" "}
-								<strong>accident towing Brampton</strong>,{" "}
-								<strong>bodyshop Brampton deductible waived</strong>, or{" "}
-								<strong>total loss car GTA</strong> — the answer is the same. Call Pixel
-								Towing at{" "}
-								<a href="tel:+16476739755" className="fw-bold text-dark">
-									647-673-9755
-								</a>
-								. We handle everything from the moment of impact to the day you pick up
-								your car.
-							</p>
-						</Col>
-					</Row>
-				</Container>
-			</section>
-
-			{/* ======== FINAL CTA ======== */}
-			<section
-				className="py-5 text-white text-center"
-				style={{ background: "linear-gradient(135deg, #0f172a, #1e3a8a)" }}
-			>
-				<Container>
-					<Star size={32} className="text-warning mb-3" fill="currentColor" />
-					<h2 className="display-5 fw-bold mb-3">
-						In an Accident? Call Us Before Anyone Else.
-					</h2>
-					<p className="lead text-white-50 mb-4 mx-auto" style={{ maxWidth: "580px" }}>
-						Tow truck, collision reporting, bodyshop with lifetime warranty, deductible
-						assistance, OEM parts, same-day rental — one call, we handle all of it.
-					</p>
-					<Stack
-						gap={3}
-						direction="horizontal"
-						className="justify-content-center flex-wrap"
-					>
-						<Button
-							href="tel:+16476739755"
-							variant="warning"
-							size="lg"
-							className="fw-bold rounded-pill px-5 py-3 shadow-lg text-dark"
-						>
-							<Phone size={22} className="me-2" />
-							647-673-9755 — Call Now
+							Call Now — {BUSINESS.phoneDisplay}
 						</Button>
 						<Button
-							href="https://wa.link/sq54ln"
+							href={BUSINESS.whatsappUrl}
 							target="_blank"
+							rel="noopener noreferrer"
 							variant="outline-light"
 							size="lg"
 							className="fw-bold rounded-pill px-4 py-3"
 						>
 							<MessageSquare size={18} className="me-2" />
-							WhatsApp Dispatch
+							WhatsApp Us
 						</Button>
 					</Stack>
-					<p className="text-white-50 small mt-4">
-						Serving Brampton · Mississauga · Caledon · Etobicoke · Vaughan · Toronto ·
-						Georgetown · Halton Hills
+					<p className="text-white-50 small mt-3">{DISPATCH_MESSAGE.full}</p>
+				</Col>
+				<Col lg={5}>
+					<Card className="border-0 rounded-4 shadow-lg p-4 bg-white">
+						<h2 className="h5 fw-bold mb-4 text-dark text-center">Just Had an Accident?</h2>
+						<ol className="text-dark fw-medium mb-0 ps-3">
+							<li className="mb-2">Check for injuries — call 911 if anyone is hurt</li>
+							<li className="mb-2">Move out of traffic and turn on your hazards</li>
+							<li className="mb-2">Photograph the scene and exchange details</li>
+							<li className="mb-2">Don't sign anything you haven't read</li>
+							<li>Call {BUSINESS.phoneDisplay} for a tow</li>
+						</ol>
+					</Card>
+				</Col>
+			</Row>
+		</Container>
+	</section>
+);
+
+const AdvantagesSection = () => (
+	<section className="py-5 bg-white">
+		<Container>
+			<div className="text-center mb-5">
+				<h2 className="display-5 fw-bold">More Than a Tow — If You Want It</h2>
+				<p className="lead text-muted mx-auto" style={{ maxWidth: "640px" }}>
+					Every option below is your choice. You can use us for the tow only.
+				</p>
+			</div>
+			<Row xs={1} md={2} lg={3} className="g-4">
+				{ADVANTAGES.map(item => (
+					<Col key={item.title}>
+						<Card className="border-0 shadow-sm h-100 rounded-4 p-4">
+							<item.icon size={40} className={`${item.color} mb-3`} />
+							<h3 className="h5 fw-bold mb-2">{item.title}</h3>
+							<p className="text-muted small mb-0">{item.desc}</p>
+						</Card>
+					</Col>
+				))}
+			</Row>
+		</Container>
+	</section>
+);
+
+const RIGHTS = [
+	{
+		title: "Towing",
+		text: "Outside the highway tow zones, you choose the tow company and destination, and the operator needs your consent and must disclose its maximum rates.",
+	},
+	{
+		title: "Repair-shop choice",
+		text: "FSRA says that as long as your insurer approves the estimate, you may use the repair shop of your choice.",
+	},
+	{
+		title: "Rental coverage",
+		text: "You can choose your rental company. What your insurer pays depends on your coverage and its limits.",
+	},
+	{
+		title: "Collision reporting",
+		text: "Set by the Highway Traffic Act and, locally, Peel Regional Police procedure — see the FAQ below.",
+	},
+] as const;
+
+const RightsSection = () => (
+	<section className="py-5" style={{ background: "#0f172a" }}>
+		<Container>
+			<Row className="align-items-center g-5">
+				<Col lg={6}>
+					<Badge bg="warning" text="dark" className="rounded-pill mb-3">
+						Ontario rules
+					</Badge>
+					<h2 className="display-6 fw-bold text-white mb-4">Four Separate Sets of Rules</h2>
+					<div className="d-flex flex-column gap-3">
+						{RIGHTS.map(right => (
+							<div key={right.title} className="d-flex align-items-start gap-3">
+								<CheckCircle size={20} className="text-warning mt-1 flex-shrink-0" />
+								<span className="text-white-50">
+									<strong className="text-white">{right.title}:</strong> {right.text}
+								</span>
+							</div>
+						))}
+					</div>
+					<p className="text-white-50 small mt-4 mb-0">
+						Sources:{" "}
+						<a href={FSRA_CLAIMS_URL} target="_blank" rel="noopener noreferrer" className="text-warning">
+							FSRA claims guidance
+						</a>{" "}
+						·{" "}
+						<a href={PEEL_COLLISION_REPORTING_URL} target="_blank" rel="noopener noreferrer" className="text-warning">
+							Peel Regional Police collision reporting
+						</a>{" "}
+						· <Link to="/blog/ontario-towing-laws-driver-rights" className="text-warning">Ontario towing laws explained</Link>
 					</p>
-				</Container>
-			</section>
-		</div>
-	);
-};
+				</Col>
+				<Col lg={6}>
+					<img
+						src={IMAGES.flatbedTowing.src}
+						alt={IMAGES.flatbedTowing.alt}
+						width={IMAGES.flatbedTowing.width}
+						height={IMAGES.flatbedTowing.height}
+						className="img-fluid rounded-4 shadow-lg mb-4"
+						style={{ height: "auto" }}
+						loading="lazy"
+					/>
+					<TowZoneNotice className="bg-white" />
+				</Col>
+			</Row>
+		</Container>
+	</section>
+);
+
+const DisclosureSection = () => (
+	<section className="py-4 bg-light border-top border-bottom">
+		<Container>
+			<Row className="justify-content-center">
+				<Col lg={9}>
+					<div className="d-flex align-items-start gap-3">
+						<FileText size={20} className="text-secondary flex-shrink-0 mt-1" />
+						<div>
+							<h2 className="h6 fw-bold text-uppercase text-secondary mb-2">Disclosure of Interest</h2>
+							<p className="text-secondary small mb-0">
+								Pixel Towing has an ownership and operating interest in the collision repair
+								facility and the rental vehicle fleet referred to on this page. We disclose that
+								relationship before any referral, and you are free to choose a different repair
+								shop, storage facility or rental provider at any time. Ontario tow operators are
+								required to tell customers about any interest they have in a business or facility
+								they refer them to.
+							</p>
+						</div>
+					</div>
+				</Col>
+			</Row>
+		</Container>
+	</section>
+);
+
+const ProcessSection = () => (
+	<section className="py-5 bg-light">
+		<Container>
+			<div className="text-center mb-5">
+				<h2 className="display-6 fw-bold">How It Works</h2>
+			</div>
+			<Row xs={1} md={2} lg={4} className="g-4">
+				{PROCESS_STEPS.map(step => (
+					<Col key={step.num}>
+						<Card className="border-0 shadow-sm h-100 rounded-4 p-4 bg-white">
+							<div className="fw-bold mb-3" style={{ fontSize: "2.5rem", color: "#FBBF24", lineHeight: 1 }}>
+								{step.num}
+							</div>
+							<h3 className="h5 fw-bold mb-2">{step.title}</h3>
+							<p className="text-muted small mb-0">{step.desc}</p>
+						</Card>
+					</Col>
+				))}
+			</Row>
+		</Container>
+	</section>
+);
+
+const FaqSection = () => (
+	<section className="py-5 bg-white">
+		<Container>
+			<Row className="justify-content-center">
+				<Col lg={9}>
+					<h2 className="fw-bold text-center mb-5">Accident Towing — Frequently Asked Questions</h2>
+					<Accordion flush className="border rounded-4 overflow-hidden">
+						{FAQS.map((faq, i) => (
+							<Accordion.Item eventKey={String(i)} key={faq.q}>
+								<Accordion.Header>{faq.q}</Accordion.Header>
+								<Accordion.Body className="text-secondary lh-lg">{faq.a}</Accordion.Body>
+							</Accordion.Item>
+						))}
+					</Accordion>
+					<p className="text-muted small mt-4">
+						Further reading:{" "}
+						<Link to="/blog/what-to-do-after-car-accident-brampton">what to do after a car accident in Brampton</Link>,{" "}
+						<Link to="/blog/total-loss-vehicle-ontario-guide">total loss vehicles in Ontario</Link> and{" "}
+						<Link to="/blog/car-insurance-towing-coverage-ontario">insurance coverage for towing</Link>. This page
+						is general information, not legal or insurance advice.
+					</p>
+				</Col>
+			</Row>
+		</Container>
+	</section>
+);
+
+const AreasAndCta = () => (
+	<>
+		<section className="py-4 bg-light border-top">
+			<Container>
+				<h2 className="h5 fw-bold text-center mb-3">Accident Towing Service Areas</h2>
+				<div className="d-flex flex-wrap justify-content-center gap-2">
+					{SERVICE_AREAS.map(area => (
+						<Link key={area.path} to={area.path} className="btn btn-sm btn-outline-secondary rounded-pill">
+							Tow truck in {area.name}
+						</Link>
+					))}
+				</div>
+			</Container>
+		</section>
+		<section className="py-5 text-white text-center" style={{ background: "linear-gradient(135deg, #0f172a, #1e3a8a)" }}>
+			<Container>
+				<h2 className="display-5 fw-bold mb-3">Need Accident Towing Now?</h2>
+				<p className="lead text-white-50 mb-4 mx-auto" style={{ maxWidth: "580px" }}>
+					{DISPATCH_MESSAGE.full}
+				</p>
+				<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg text-dark">
+					<Phone size={22} className="me-2" />
+					{BUSINESS.phoneDisplay} — Call Now
+				</Button>
+			</Container>
+		</section>
+	</>
+);
+
+const AccidentRecoveryPage = () => (
+	<div style={{ paddingTop: "76px" }}>
+		<SEO
+			title="Accident Towing Brampton | 24/7 Recovery | Pixel Towing"
+			description="Accident in Brampton? Pixel Towing provides 24/7 accident towing, Collision Reporting Centre drop-off, and optional repair and rental coordination. Call 647-673-9755."
+			canonical={PAGE_URL}
+			image={IMAGES.accidentTowing.src}
+			imageAlt={IMAGES.accidentTowing.alt}
+		/>
+		<Helmet>
+			<script type="application/ld+json">{JSON.stringify(accidentServiceSchema)}</script>
+		</Helmet>
+
+		<Hero />
+		<Breadcrumbs
+			trail={[{ name: "Home", to: "/" }, { name: "Services", to: "/services" }, { name: "Accident Recovery" }]}
+			currentUrl={PAGE_URL}
+		/>
+		<AdvantagesSection />
+		<RightsSection />
+		<DisclosureSection />
+		<ProcessSection />
+		<FaqSection />
+		<AreasAndCta />
+	</div>
+);
 
 export default AccidentRecoveryPage;

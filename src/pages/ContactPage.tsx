@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button, Accordion, Stack } from "react-bootstrap";
 import { Phone, Mail, MapPin, Clock, MessageSquare, ShieldCheck } from "lucide-react";
 import SEO from "../components/SEO";
+import { DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
 
 const WhatsAppIcon = () => (
 	<svg
@@ -22,10 +23,13 @@ const pageStyles = `
     background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/tow.jpg');
     background-size: cover;
     background-position: center;
-    background-attachment: fixed;
     padding: 6rem 0;
     margin-top: 56px;
     color: white;
+  }
+  /* Fixed backgrounds are janky (and ignored by iOS) on phones — desktop only. */
+  @media (min-width: 992px) {
+    .contact-hero { background-attachment: fixed; }
   }
   .map-container {
     height: 400px;
@@ -40,8 +44,8 @@ const ContactPage = () => {
 		<>
 			<SEO
 				title="Contact Pixel Towing | 24/7 Tow Truck Brampton"
-				description="Need a tow truck fast? Call Pixel Towing 24/7 for emergency towing in Brampton, Mississauga, Caledon & the GTA. Insurance-direct accident recovery available."
-				canonical="https://pixeltowing.com/contact"
+				description="Contact Pixel Towing 24/7 by phone, WhatsApp or email for towing and roadside assistance in Brampton, Mississauga, Caledon and the GTA. Call 647-673-9755."
+				canonical={absoluteUrl("/contact")}
 			/>
 
 			<style>{pageStyles}</style>
@@ -141,7 +145,7 @@ const ContactPage = () => {
 						<Col lg={5}>
 							<h2 className="fw-bold h4 mb-3">Dispatch Coverage</h2>
 							<p className="text-muted">
-								Mobile tow trucks covering Peel Region & GTA highways.
+								Mobile tow trucks covering Peel Region and the GTA.
 							</p>
 
 							<div className="d-flex mb-3">
@@ -149,7 +153,7 @@ const ContactPage = () => {
 								<span>
 									<strong>Service Area:</strong>
 									<br />
-									Brampton, Mississauga, Caledon, Toronto, Vaughan, Hwy 410/407
+									Brampton, Mississauga, Caledon, Toronto, Vaughan and nearby areas
 								</span>
 							</div>
 
@@ -165,9 +169,9 @@ const ContactPage = () => {
 							<div className="d-flex mb-4">
 								<ShieldCheck size={22} className="text-warning me-3" />
 								<span>
-									<strong>Insurance Billing:</strong>
+									<strong>Insurance:</strong>
 									<br />
-									Accident recovery is fully covered — customers pay nothing out of pocket
+									Coverage depends on your policy and the circumstances of the claim
 								</span>
 							</div>
 
@@ -196,13 +200,15 @@ const ContactPage = () => {
 						<Accordion.Item eventKey="0">
 							<Accordion.Header>How fast can a tow truck arrive?</Accordion.Header>
 							<Accordion.Body>
-								Average arrival time is 15–30 minutes depending on traffic.
+								{DISPATCH_MESSAGE.full}
 							</Accordion.Body>
 						</Accordion.Item>
 						<Accordion.Item eventKey="1">
 							<Accordion.Header>Does insurance cover accident towing?</Accordion.Header>
 							<Accordion.Body>
-								Yes. Accident recovery is billed directly to insurance — you pay nothing.
+								It may. Coverage depends on your policy and the circumstances of the claim, so
+								check with your insurer or broker. Breakdown towing is usually covered only by a
+								roadside assistance add-on or membership.
 							</Accordion.Body>
 						</Accordion.Item>
 						<Accordion.Item eventKey="2">

@@ -5,10 +5,12 @@
  * the content, so the byline, the Article schema's author node and the author
  * page all read from here.
  */
+import { absoluteUrl } from "./site";
+
 export const AUTHOR = {
 	name: "Aryan Talpada",
 	jobTitle: "Owner and Tow Operator",
 	/** Site-relative author page — used as the schema author `url`. */
-	url: "https://pixeltowing.com/about",
+	url: absoluteUrl("/about"),
 	location: "Brampton, Ontario",
 } as const;

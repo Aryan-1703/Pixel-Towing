@@ -115,6 +115,9 @@ const Footer: React.FC = () => {
 									<Link to="/review">Leave a Review</Link>
 								</li>
 								<li>
+									<Link to="/about">About the Author</Link>
+								</li>
+								<li>
 									<a href="/sitemap.xml" target="_blank" rel="noopener noreferrer">
 										Sitemap
 									</a>
@@ -127,7 +130,7 @@ const Footer: React.FC = () => {
 							<h5 className="footer-title">Our Services</h5>
 							<Stack as="ul" gap={2} className="list-unstyled">
 								<li>
-									<Link to="/services/accident-recovery">Accident Recovery</Link>
+									<Link to="/accident-recovery">Accident Recovery</Link>
 								</li>
 								<li>
 									<Link to="/services/vehicle-transport">Flatbed Towing</Link>

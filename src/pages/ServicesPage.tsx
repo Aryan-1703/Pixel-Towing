@@ -2,6 +2,7 @@ import { Container, Row, Col, Card, Button, Accordion } from "react-bootstrap"; 
 import { Link } from "react-router-dom";
 import { ShieldAlert, KeyRound, Wrench, Zap, Truck, Phone, Banknote } from "lucide-react";
 import SEO from "../components/SEO";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 import accidentImage from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import lockout from "../assets/lockout.jpg";
@@ -16,7 +17,7 @@ const servicesData = [
 		description:
 			"24/7 rapid accident response. We handle police reports and tow directly to collision centers.",
 		image: accidentImage,
-		link: "/services/accident-recovery",
+		link: "/accident-recovery",
 		icon: ShieldAlert,
 		alt: "Car accident towing scene in Brampton",
 	},
@@ -69,7 +70,7 @@ const servicesData = [
 
 const pageStyles = `
   .services-hero {
-    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/assets/tow.jpg'); /* Darker overlay for better text contrast */
+    background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)), url('/tow.jpg'); /* Darker overlay for better text contrast */
     background-size: cover;
     background-position: center;
     background-attachment: fixed; /* Parallax Effect */
@@ -83,7 +84,7 @@ const ServicesPage = () => {
 	return (
 		<>
 			<SEO
-				title="Towing Services Brampton | 24/7 Roadside & Accident"
+				title="Towing Services Brampton | 24/7 Roadside | Pixel Towing"
 				description="Pixel Towing Brampton — accident recovery, lockouts, flat tire change, battery boost, flatbed & scrap removal. 24/7 GTA dispatch. Call 647-673-9755."
 				canonical="https://pixeltowing.com/services"
 			/>
@@ -98,6 +99,11 @@ const ServicesPage = () => {
 					</p>
 				</Container>
 			</div>
+
+			<Breadcrumbs
+				trail={[{ name: "Home", to: "/" }, { name: "Services" }]}
+				currentUrl="https://pixeltowing.com/services"
+			/>
 
 			<div className="py-5 bg-light">
 				<Container>

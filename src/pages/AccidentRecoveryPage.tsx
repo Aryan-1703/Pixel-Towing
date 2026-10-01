@@ -24,6 +24,7 @@ import {
 	MessageSquare,
 } from "lucide-react";
 import SEO from "../components/SEO";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 import accidentImg from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import towingImg from "../assets/flatbed-towing-brampton.jpg";
@@ -40,7 +41,7 @@ const collisionSchema = {
 			name: "Pixel Towing & Collision Centre",
 			telephone: "+16476739755",
 			url: "https://pixeltowing.com/accident-recovery",
-			image: "https://pixeltowing.com/tow.png",
+			image: "https://pixeltowing.com/tow.jpg",
 			priceRange: "$$",
 			description:
 				"Full-service accident recovery, collision repair, OEM parts, deductible assistance, and same-day rental cars in Brampton and the GTA. We handle the entire insurance process for you.",
@@ -107,7 +108,7 @@ const collisionSchema = {
 					name: "Do I have to use my insurance company's preferred shop after an accident?",
 					acceptedAnswer: {
 						"@type": "Answer",
-						text: "No. Under Ontario insurance regulations, you have the legal right to choose any licensed collision repair facility. Your insurer can recommend a shop but cannot force you to use it.",
+						text: "Your insurer can recommend a shop. FSRA, Ontario's insurance regulator, states that as long as your insurer approves the estimate, you may have your vehicle repaired at the repair shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company.",
 					},
 				},
 				{
@@ -169,7 +170,7 @@ const COLLISION_ADVANTAGES = [
 		icon: ShieldAlert,
 		color: "text-warning",
 		title: "Collision Reporting Centre — We Go With You",
-		desc: "We don't drop your car and leave. We tow you to the CRC at 7750 Hurontario St, wait with you, and help you complete the report correctly. How your CRC report is written affects your claim — this matters.",
+		desc: "We don't drop your car and leave. We tow you to Peel's Collision Reporting Centre — the Brampton centre is at Shoppers World, 499 Main St. S — wait with you, and help you complete the report correctly. How your CRC report is written affects your claim.",
 	},
 ];
 
@@ -208,8 +209,12 @@ const PROCESS_STEPS = [
 
 const FAQS = [
 	{
+		q: "When do I have to report a collision in Ontario?",
+		a: "Ontario's Highway Traffic Act requires a collision to be reported to police when anyone is injured, when combined damage exceeds $2,000, or when highway property is damaged. Peel Regional Police direct drivers whose vehicles have over $5,000 in combined damage to report immediately at a Collision Reporting Centre; below that, Peel's guidance is to contact your insurer about your options. Peel's Brampton centre is at Shoppers World, 499 Main St. S, Unit 189A, with additional centres at 11 Division (3030 Erin Mills Pkwy) and Peel headquarters (7150 Mississauga Rd). Requirements and hours change, so check the Peel Regional Police collision reporting page for current guidance. We tow you there and stay with you through the report.",
+	},
+	{
 		q: "Do I have to use my insurance company's preferred shop?",
-		a: "No — this is one of the most important things to know after an accident in Ontario. Your insurer can recommend a 'preferred' collision centre, but cannot legally require you to use it. You have the right to choose any licensed repair facility. Preferred shops work within insurance-negotiated rates, which often means aftermarket parts and timelines that suit the insurer, not you. We work in your interest.",
+		a: "Your insurer can recommend a 'preferred' collision centre, but FSRA — Ontario's insurance regulator — states that as long as your insurer approves the estimate, you may have your vehicle repaired at the shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company. Preferred shops work within insurance-negotiated rates, which often means aftermarket parts and timelines that suit the insurer, not you. We work in your interest. Check your own policy wording and FSRA's claims guidance for the details that apply to your claim.",
 	},
 	{
 		q: "Is my deductible really waived or reduced?",
@@ -256,8 +261,8 @@ const AccidentRecoveryPage = () => {
 	return (
 		<div style={{ paddingTop: "76px" }}>
 			<SEO
-				title="Accident Recovery Brampton | OEM Parts | Free Rental"
-				description="Accident in Brampton? Pixel Towing handles towing, OEM collision repair, deductible assistance & same-day rental. Lifetime warranty on repairs. Call 647-673-9755."
+				title="Accident Towing Brampton | 24/7 Recovery | Pixel Towing"
+				description="Accident in Brampton? Pixel Towing provides 24/7 accident towing, Collision Reporting Centre assistance, collision repair coordination and rental support. Call 647-673-9755."
 				canonical="https://pixeltowing.com/accident-recovery"
 			/>
 
@@ -280,7 +285,7 @@ const AccidentRecoveryPage = () => {
 					<Row className="align-items-center g-5">
 						<Col lg={7}>
 							<Badge bg="warning" text="dark" className="rounded-pill mb-3 px-3 py-2">
-								GTA's #1 Full-Service Collision Centre
+								Full-Service Collision Centre &mdash; Tow, Repair & Rental
 							</Badge>
 							<h1 className="display-4 fw-bold mb-4 lh-sm">
 								Accident in Brampton or GTA?
@@ -375,6 +380,15 @@ const AccidentRecoveryPage = () => {
 				</Container>
 			</section>
 
+			<Breadcrumbs
+				trail={[
+					{ name: "Home", to: "/" },
+					{ name: "Services", to: "/services" },
+					{ name: "Accident Recovery" },
+				]}
+				currentUrl="https://pixeltowing.com/accident-recovery"
+			/>
+
 			{/* ======== THE FULL ADVANTAGE LIST ======== */}
 			<section className="py-5 bg-white">
 				<Container>
@@ -410,15 +424,15 @@ const AccidentRecoveryPage = () => {
 								Ontario Law
 							</Badge>
 							<h2 className="display-6 fw-bold text-white mb-4">
-								Your Insurance Company Cannot Tell You Which Shop to Use
+								Your Insurance Company Can Suggest a Shop — You Choose It
 							</h2>
 							<p className="text-white-50 mb-3">
-								This is the most important thing to know after a collision in Ontario.
-								Under provincial insurance regulations, your insurer can <em>suggest</em>{" "}
-								a preferred collision centre — but they cannot legally require you to use
-								it. You have the right to choose any licensed shop. That right is yours
-								regardless of your policy type, your insurer, or what you're told at the
-								scene.
+								This is one of the most important things to know after a collision in
+								Ontario. FSRA, the province's insurance regulator, states that as long as
+								your insurer approves the estimate, you may have your vehicle repaired at
+								the repair shop of your choice — and that you have the right to choose a
+								repair shop, tow operator or vehicle rental company. Your insurer can
+								suggest a preferred collision centre; the choice remains yours.
 							</p>
 							<p className="text-white-50 mb-4">
 								Insurance-preferred shops operate on insurer-negotiated rates. That
@@ -447,6 +461,33 @@ const AccidentRecoveryPage = () => {
 								className="img-fluid rounded-4 shadow-lg"
 								loading="lazy"
 							/>
+						</Col>
+					</Row>
+				</Container>
+			</section>
+
+			{/* ======== OWNERSHIP DISCLOSURE (Ontario towing rules) ======== */}
+			<section className="py-4 bg-light border-top border-bottom">
+				<Container>
+					<Row className="justify-content-center">
+						<Col lg={9}>
+							<div className="d-flex align-items-start gap-3">
+								<FileText size={20} className="text-secondary flex-shrink-0 mt-1" />
+								<div>
+									<h2 className="h6 fw-bold text-uppercase text-secondary mb-2">
+										Disclosure of Interest
+									</h2>
+									<p className="text-secondary small mb-0">
+										Pixel Towing has an ownership and operating interest in the collision
+										repair facility and the rental vehicle fleet referred to on this page.
+										We disclose that relationship before any towing, storage or related
+										payment is requested, and you are free to choose a different repair
+										shop, storage facility or rental provider at any time. Ontario tow
+										operators are required to tell customers about any interest they have
+										in a business or facility they refer them to.
+									</p>
+								</div>
+							</div>
 						</Col>
 					</Row>
 				</Container>

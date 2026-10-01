@@ -3,6 +3,7 @@ import { Container, Row, Col, Button, Card, Accordion } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { Phone, CheckCircle, Truck, Wrench, ShieldAlert, MapPin, Clock } from "lucide-react";
 import SEO from "../components/SEO";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 import heroBg from "/tow.jpg";
 import flatbedImg from "../assets/flatbed-towing-brampton.jpg";
@@ -378,8 +379,8 @@ const LocationPage = () => {
 	return (
 		<div className="bg-light">
 			<SEO
-				title={`${city.name} Tow Truck | 24/7 Towing | 15-Min ETA`}
-				description={`24/7 towing in ${city.name}. Fast accident recovery, flatbed towing & roadside assistance. 15–20 min ETA. Licensed & insured. Call 647-673-9755.`}
+				title={`Tow Truck ${city.name} | 24/7 Towing | Pixel Towing`}
+				description={`24/7 towing in ${city.name} — accident recovery, flatbed towing, lockouts and roadside assistance. Licensed and insured. Call 647-673-9755.`}
 				canonical={`https://pixeltowing.com/locations/${cityId}`}
 			/>
 			<Helmet>
@@ -405,7 +406,7 @@ const LocationPage = () => {
 						24/7 Tow Truck in {city.name}
 					</h1>
 					<p className="lead text-white-50 mb-2 mx-auto" style={{ maxWidth: "680px" }}>
-						Fastest arrival times on {city.highways}.
+						24/7 dispatch to {city.highways}.
 					</p>
 					<p className="text-white-50 small mb-4">
 						Serving {city.neighborhoods}
@@ -420,6 +421,16 @@ const LocationPage = () => {
 					</Button>
 				</Container>
 			</section>
+
+			<Breadcrumbs
+				trail={[
+					{ name: "Home", to: "/" },
+					{ name: "Service Areas", to: "/services" },
+					{ name: `${city.name} Towing` },
+				]}
+				currentUrl={`https://pixeltowing.com/locations/${cityId}`}
+				withSchema={false}
+			/>
 
 			{/* MAIN CONTENT */}
 			<section className="py-5 bg-white">
@@ -510,7 +521,7 @@ const LocationPage = () => {
 									Immediate accident towing on {city.highways}. Insurance billed directly.
 									You pay $0 in most cases.
 								</p>
-								<Link to="/services/accident-recovery" className="btn btn-sm btn-outline-danger rounded-pill stretched-link">
+								<Link to="/accident-recovery" className="btn btn-sm btn-outline-danger rounded-pill stretched-link">
 									Details
 								</Link>
 							</Card>

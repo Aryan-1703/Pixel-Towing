@@ -19,7 +19,7 @@ const WhatsAppIcon = () => (
 
 const pageStyles = `
   .contact-hero {
-    background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/assets/tow.jpg');
+    background: linear-gradient(rgba(17, 24, 39, 0.8), rgba(17, 24, 39, 0.8)), url('/tow.jpg');
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
@@ -39,7 +39,7 @@ const ContactPage = () => {
 	return (
 		<>
 			<SEO
-				title="Contact Pixel Towing | 24/7 Emergency Tow Truck Brampton"
+				title="Contact Pixel Towing | 24/7 Tow Truck Brampton"
 				description="Need a tow truck fast? Call Pixel Towing 24/7 for emergency towing in Brampton, Mississauga, Caledon & the GTA. Insurance-direct accident recovery available."
 				canonical="https://pixeltowing.com/contact"
 			/>

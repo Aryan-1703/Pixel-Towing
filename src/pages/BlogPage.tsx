@@ -2,6 +2,7 @@ import { Container, Row, Col, Card, Badge, Button } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { Calendar, Clock, ArrowRight, Phone } from "lucide-react";
 import SEO from "../components/SEO";
+import Breadcrumbs from "../components/Breadcrumbs";
 
 // ============================================================
 // BLOG POST DATA — informational content targeting pre-need queries
@@ -16,6 +17,9 @@ export const BLOG_POSTS = [
 		category: "Know Your Rights",
 		categoryColor: "warning",
 		date: "January 15, 2025",
+		datePublished: "2025-01-15",
+		dateModified: "2026-09-30",
+		reviewedNote: "Reviewed September 2026 against current Peel Regional Police collision-reporting guidance.",
 		readTime: "7 min read",
 		content: `
 ## The Most Expensive Mistake You Can Make After an Accident
@@ -28,13 +32,13 @@ You had every right to make different choices. Most drivers simply don't know th
 
 ## Your Legal Rights in Ontario After an Accident
 
-Under Ontario law and insurance regulations, you have the right to:
+Two separate sets of rules apply here, and it helps to keep them apart.
 
-- **Choose your own tow company** — no one on scene can force you to use a specific tower
-- **Choose your own repair shop** — your insurer can suggest a preferred facility, but cannot legally require you to use it
-- **Choose your own rental car vendor** — you're not obligated to use whoever insurance recommends
+**Towing is governed by Ontario's Towing and Storage Safety and Enforcement Act.** No one can tow your vehicle without your consent, and operators must give you their maximum rates when asking for it. You choose which company tows your vehicle and where it goes. See [Ontario: know your rights when getting a tow](https://www.ontario.ca/page/know-your-rights-when-getting-tow).
 
-This applies even if the accident wasn't your fault. These rights exist regardless of your insurer, your policy type, or what anyone on scene tells you.
+**Repairs and rentals are an insurance question.** FSRA, Ontario's insurance regulator, states that as long as your insurance company approves the estimate, you may have your vehicle repaired at the repair shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company. Your insurer may suggest a preferred shop; that is a suggestion, not a requirement. See [FSRA: after an accident — understanding the claims process](https://www.fsrao.ca/consumers/auto-insurance/protect-yourself/after-accident-understanding-claims-process).
+
+Your own policy wording governs the specifics of your claim, so read it or ask your insurer if anything is unclear.
 
 ## What Happens When Insurance Dispatches Everything
 
@@ -52,7 +56,7 @@ None of this is illegal. But it's worth knowing you have options.
 Pixel Towing is a full-service accident solution. When you call us first:
 
 1. **We respond to the scene in 15–20 minutes** and secure your vehicle
-2. **We take you through the Collision Reporting Centre** process at 7750 Hurontario St — wait with you, help you fill out the report correctly
+2. **We take you through the Collision Reporting Centre** process at Peel's Shoppers World centre in Brampton — wait with you, help you fill out the report correctly
 3. **Your car goes to our own certified bodyshop** — OEM parts, lifetime workmanship warranty, repairs done in your interest
 4. **You get a rental vehicle from our own fleet the same day** — no waiting for insurance pre-authorization
 5. **We handle the insurance billing** — we deal directly with your insurer so you don't have to
@@ -87,7 +91,11 @@ While waiting for us:
 
 ### Step 6: The Collision Reporting Centre
 
-For accidents with over $2,000 in damage in Peel Region, you must file a report at a CRC. We tow your car there and walk through it with you. The CRC for Brampton is at **7750 Hurontario Street**.
+Ontario's Highway Traffic Act requires a collision to be reported to police when anyone is injured, when combined damage exceeds $2,000, or when highway property is damaged. Peel Regional Police direct drivers whose vehicles have **over $5,000 in combined damage** to report immediately at a Collision Reporting Centre. Below that, Peel's guidance is to contact your insurance company about your options.
+
+Peel's Brampton Collision Reporting Centre is at **Shoppers World, 499 Main St. S, Unit 189A**. There are also centres at 11 Division (3030 Erin Mills Pkwy, Mississauga) and Peel headquarters (7150 Mississauga Rd, Mississauga). We tow your car there and walk through the report with you.
+
+Reporting rules and centre hours change — check [Peel Regional Police collision reporting](https://www.peelpolice.ca/en/report-it/collision-reporting-centres.aspx) for current requirements before you go.
 
 ### Step 7: Notify Your Insurance
 
@@ -100,59 +108,83 @@ After you've spoken with us and the scene is handled, call your insurer to open 
 	},
 	{
 		slug: "ontario-towing-laws-driver-rights",
-		title: "Ontario Towing Laws: Your Rights When Your Car Is Towed (Bill 258)",
-		metaTitle: "Ontario Towing Laws & Driver Rights (Bill 258) | Pixel Towing",
+		title: "Ontario Towing Laws: Your Rights Under the TSSEA",
+		metaTitle: "Ontario Towing Laws & Your Rights (TSSEA) | Pixel Towing",
 		excerpt:
-			"Ontario's Towing and Storage Safety and Enforcement Act protects drivers from predatory towing. Here's what you need to know before you ever need a tow truck.",
+			"Ontario's Towing and Storage Safety and Enforcement Act, 2021 protects drivers from predatory towing. Here's what you need to know before you ever need a tow truck.",
 		category: "Ontario Law",
 		categoryColor: "primary",
 		date: "February 3, 2025",
+		datePublished: "2025-02-03",
+		dateModified: "2026-09-30",
+		reviewedNote: "Reviewed September 2026 against current Ontario government guidance.",
 		readTime: "7 min read",
 		content: `
 ## Ontario's Towing Laws: What Every Driver Should Know
 
-Ontario has some of the most consumer-friendly towing regulations in North America, thanks to **Bill 258 — the Towing and Storage Safety and Enforcement Act (TSSEA)**. Here's what this means for you.
+Towing in Ontario is governed by the **Towing and Storage Safety and Enforcement Act, 2021 (TSSEA)**, which was enacted as Schedule 3 of Bill 282, the Moving Ontarians More Safely Act, 2021. You will sometimes see the law referred to by a bill number — the name that matters is the TSSEA.
+
+The TSSEA and its regulations set out certificate requirements, a code of conduct, and customer-protection rules that every tow operator in the province has to follow.
+
+### Certificates Are Mandatory
+
+Under the TSSEA, you need a certificate to provide towing or vehicle storage services in Ontario. There are three types: a **tow operator certificate**, a **tow truck driver certificate**, and a **vehicle storage operator certificate**.
+
+Operators must display their name and certificate number on every tow truck they operate, and must display their legal name, operating name, email address, telephone number and a copy of their certificate in any premises open to the public and on any website or social media they maintain.
+
+That means you can check who you are dealing with before the truck arrives.
 
 ### Your Right to Choose Your Tow Truck
 
-Under Ontario law, no tow truck driver can move your vehicle without your consent. Even at an accident scene, you have the right to:
+No tow truck driver can move your vehicle without your consent. Even at a collision scene, you have the right to:
 - Choose which company tows your vehicle
 - Choose where the vehicle is taken
-- Not sign anything under duress
+- Decline to sign anything you have not read
 
-If a tow truck driver pressures you or starts hooking your vehicle before you agree, this is illegal. You can refuse and call the company of your choice.
+Operators must give you their maximum rates when asking for your consent to tow, and drivers must properly document that consent.
 
-### Regulated Towing Rates
+### Rates and Invoices
 
-Under the TSSEA, towing and storage companies in Ontario must:
-- Provide a written estimate before towing
-- Charge regulated rates (set by the province)
-- Not charge more than the quoted amount without consent
-- Accept multiple forms of payment including credit and debit
+Ontario tow operators file a **maximum rate schedule** and must publish it. Under the province's requirements:
+- An operator cannot charge for a service that does not appear on their maximum rate schedule
+- An operator cannot charge more than their maximum rate for any service
+- An operator cannot request payment before giving you a proper invoice
 
-### Storage Fee Caps
+### Disclosure and Referrals
 
-Before Bill 258, some unethical companies would accumulate massive storage fees before you could retrieve your vehicle. Now, storage fees are capped, and towing companies must give you reasonable access to retrieve your belongings within 24 hours.
+If a tow operator refers you to a storage lot, a repair shop, or any other business, they must tell you about any interest they have in that person, business or facility. Operators are also prohibited from receiving compensation or a benefit for advice or information that leads to further towing, storage, appraisal, repair or wrecking work.
+
+Ask the question directly: do you have an interest in the shop you are sending my car to? You are entitled to a straight answer.
 
 ### What "Predatory Towing" Looks Like
 
 Watch out for these red flags:
-- Tow trucks that arrive before police at an accident scene (they monitor scanners)
-- Drivers who refuse to tell you where they're taking your car
+- Tow trucks that arrive before police at a collision scene
+- Drivers who refuse to tell you where they are taking your car
 - Demands for cash-only payment
-- Pressure to sign documents quickly
-- Threats that your car will be left behind if you don't agree immediately
+- Pressure to sign documents quickly, or to sign blank forms
+- Threats that your car will be left behind if you do not agree immediately
 
 ### How to Protect Yourself
 
 1. **Save a tow company number in your phone** before you need one — like 647-673-9755 (Pixel Towing)
-2. **Ask for written rates** before any tow begins
-3. **Never sign blank forms**
-4. **Call your insurance company** — they often have preferred tow providers
+2. **Ask for the maximum rate schedule** before any tow begins
+3. **Never sign blank or unread forms**
+4. **Ask whether the operator has an interest** in the shop or storage lot they recommend
+5. **Check the certificate** — it should be on the truck and on the operator's website
+
+### Official Sources
+
+Rules and procedures change. Check the current guidance directly:
+- [Ontario: towing and vehicle storage requirements](https://www.ontario.ca/page/towing-and-vehicle-storage-requirements)
+- [Ontario: know your rights when getting a tow](https://www.ontario.ca/page/know-your-rights-when-getting-tow)
+- [Ontario: get a towing or vehicle storage certificate](https://www.ontario.ca/page/get-towing-vehicle-storage-certificate)
+
+This article is general information about Ontario's towing rules, not legal advice.
 
 ---
 
-Pixel Towing operates in full compliance with Ontario's TSSEA. Licensed, insured, and transparent pricing — always. Call **647-673-9755**.
+Pixel Towing operates under Ontario's TSSEA requirements. Licensed, insured, and transparent pricing — always. Call **647-673-9755**.
     `,
 	},
 	{
@@ -164,6 +196,7 @@ Pixel Towing operates in full compliance with Ontario's TSSEA. Licensed, insured
 		category: "Car Tips",
 		categoryColor: "success",
 		date: "February 20, 2025",
+		datePublished: "2025-02-20",
 		readTime: "5 min read",
 		content: `
 ## Dead Battery vs Bad Alternator — How to Tell
@@ -214,6 +247,7 @@ A failing alternator will destroy an otherwise healthy battery over weeks. A hea
 		category: "Consumer Protection",
 		categoryColor: "danger",
 		date: "March 1, 2025",
+		datePublished: "2025-03-01",
 		readTime: "6 min read",
 		content: `
 ## How Predatory Towing Works in the GTA — And How to Stop It
@@ -268,6 +302,7 @@ Pixel Towing is a licensed, transparent operator. We never chase accidents. Call
 		category: "Insurance",
 		categoryColor: "info",
 		date: "March 10, 2025",
+		datePublished: "2025-03-10",
 		readTime: "8 min read",
 		content: `
 ## Does Ontario Car Insurance Cover Towing?
@@ -332,6 +367,7 @@ Your coverage doesn't change based on these choices. The claim outcome is the sa
 		category: "Total Loss",
 		categoryColor: "danger",
 		date: "March 15, 2025",
+		datePublished: "2025-03-15",
 		readTime: "9 min read",
 		content: `
 ## Your Car Has Been Written Off — Here's What That Actually Means
@@ -404,6 +440,7 @@ Because we operate our own rental fleet and work directly with insurers, we can 
 		category: "Repair Knowledge",
 		categoryColor: "primary",
 		date: "March 20, 2025",
+		datePublished: "2025-03-20",
 		readTime: "6 min read",
 		content: `
 ## What Are OEM Parts?
@@ -461,6 +498,7 @@ In Ontario, you can request OEM parts for your repair. If insurance approves onl
 		category: "Deductible Help",
 		categoryColor: "success",
 		date: "April 1, 2025",
+		datePublished: "2025-04-01",
 		readTime: "5 min read",
 		content: `
 ## "We'll Waive Your Deductible" — What Does That Actually Mean?
@@ -518,6 +556,7 @@ Deductible assistance is real, it's offered by reputable shops, and in many case
 		category: "Rental Car",
 		categoryColor: "info",
 		date: "April 8, 2025",
+		datePublished: "2025-04-08",
 		readTime: "5 min read",
 		content: `
 ## The Rental Car Gap Nobody Warns You About
@@ -575,6 +614,11 @@ const BlogPage = () => {
 				title="Towing Tips & Driver Resources | Pixel Towing Brampton Blog"
 				description="Learn your rights, understand Ontario towing laws, and get expert car tips from Brampton's trusted tow truck company. Free guides from Pixel Towing."
 				canonical="https://pixeltowing.com/blog"
+			/>
+
+			<Breadcrumbs
+				trail={[{ name: "Home", to: "/" }, { name: "Blog" }]}
+				currentUrl="https://pixeltowing.com/blog"
 			/>
 
 			{/* HERO */}

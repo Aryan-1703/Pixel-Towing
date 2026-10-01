@@ -45,9 +45,11 @@ No blog = no topical authority in Google's eyes.
 - "Predatory towing GTA" → consumer protection query
 - "Car insurance towing coverage Ontario" → insurance query, very high value
 
-### 4. Review Schema (ReviewPage.tsx)
-Old page had no schema — Google couldn't show star ratings in search results.
-**Fix:** AggregateRating schema + individual Review schema = eligible for rich snippets (stars in Google results).
+### 4. Review Schema (ReviewPage.tsx) — REVERSED, September 2026
+This previously added AggregateRating + Review schema to chase star ratings.
+That was removed: Google does not allow self-serving review markup for a
+business reviewing itself, so it was never eligible for review stars. Genuine
+reviews stay visible on the page and link out to the real Google profile.
 
 ### 5. Service → City Cross-Links (ServiceDetailPage.tsx)
 Services and locations were silos. No link from "battery boost" to "Mississauga".

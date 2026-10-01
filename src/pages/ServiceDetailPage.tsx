@@ -11,7 +11,6 @@ import { Link, useParams, Navigate } from "react-router-dom";
 import { Helmet } from "react-helmet-async";
 import {
 	Phone,
-	ShieldAlert,
 	KeyRound,
 	Wrench,
 	Zap,
@@ -23,7 +22,6 @@ import SEO from "../components/SEO";
 
 import lockout from "../assets/lockout.jpg";
 import flatTire from "../assets/flatTire.png";
-import accident from "../assets/tow-truck-accident-recovery-brampton.jpg";
 import jumpStart from "../assets/jumpStart.jpeg";
 import towing from "../assets/flatbed-towing-brampton.jpg";
 import scrap from "../assets/cash for car.jpg";
@@ -41,67 +39,9 @@ const SERVICE_CITIES = [
 ];
 
 const allServicesData = {
-	"accident-recovery": {
-		title: "Accident Recovery — Towing, Repairs & Rental Under One Roof",
-		metaTitle: "Accident Towing Brampton | Bodyshop + Rental | 24/7",
-		canonical: "https://pixeltowing.com/accident-recovery",
-		metaDesc:
-			"Accident in Brampton? Pixel Towing handles the tow, CRC report, OEM bodyshop repairs, and same-day rental — one call. Call 647-673-9755.",
-		tagline:
-			"One Call. Tow Truck + Bodyshop + Rental Car. We Handle Everything So You Don't Have To.",
-		image: accident,
-		imageAlt:
-			"Tow truck recovering crashed vehicle at accident scene in Brampton Ontario",
-		icon: ShieldAlert,
-		details: [
-			"**Call us before you call anyone else.** Most drivers don't realize they have the legal right to choose their own tow company, their own repair shop, and their own rental car — regardless of what insurance suggests. In Ontario, your insurer cannot force you to use their preferred vendors. That right belongs to you.",
-			"**What most people don't know:** When you call your insurance company first, their dispatch team connects you with their preferred tow company and their preferred body shop — facilities that work within insurance-negotiated rates. Those shops are incentivized to keep repair costs low, which can mean aftermarket parts instead of manufacturer-original ones. You have no obligation to go that route.",
-			"**What we offer instead:** Pixel Towing is a one-stop accident solution. We tow your vehicle, take you through the Collision Reporting Centre process, repair your car at **our own certified bodyshop**, and get you into a **rental vehicle from our own fleet the same day** — no waiting for insurance pre-authorization.",
-			"**Your insurance still pays.** None of this means you go out of pocket. We work directly with all major Ontario insurers (Intact, Aviva, Belair, Economical, TD, Desjardins). Your coverage applies regardless of which licensed shop and tow company you choose — that's the law.",
-		],
-		features: [
-			"Tow + Bodyshop + Rental — One Phone Call",
-			"Same-Day Rental Car (No Insurance Wait)",
-			"OEM Parts at Our Own Certified Bodyshop",
-			"We Handle the Entire Insurance Claim For You",
-		],
-		faqs: [
-			{
-				question: "Why should I call Pixel Towing before my insurance company?",
-				answer:
-					"You have every right to call us first — and it's often in your best interest. When insurance dispatches a tow, they send their preferred company to their preferred shop. When you call us, you choose where your car goes and who fixes it. We tow it, repair it at our own bodyshop with OEM parts, and get you a rental the same day. Your insurance still covers everything — the difference is you stay in control of the process.",
-			},
-			{
-				question: "Do I have the right to choose my own repair shop in Ontario?",
-				answer:
-					"Yes — this is protected under Ontario insurance regulations. Your insurer can suggest a 'preferred shop' but cannot legally force you to use one. You have the right to choose any licensed collision repair facility. We recommend choosing a shop that works in your interest, not the insurer's.",
-			},
-			{
-				question: "Can I get a rental car right away without waiting for insurance?",
-				answer:
-					"Yes. Because we operate our own rental fleet, we can put you in a vehicle the same day — often within hours of your accident. When insurance arranges the rental, there's typically a 24–48 hour approval process. We skip that entirely and sort the billing with insurance afterward.",
-			},
-			{
-				question: "What is the Collision Reporting Centre and do I have to go?",
-				answer:
-					"In Peel Region and Toronto, you must report accidents with over $2,000 in damage to a Collision Reporting Centre (CRC). We tow your car there, wait with you, and help you fill out the report correctly — which matters a lot for how your claim is processed. The nearest CRC for Brampton is at 7750 Hurontario Street.",
-			},
-			{
-				question: "Will my insurance rates go up if I use your bodyshop?",
-				answer:
-					"Your rates are affected by the accident claim itself — not by which licensed shop repairs your car. Whether the insurer's shop or ours does the work, the claim outcome is the same for your premium. What changes is the quality of parts used and who advocates for you during the repair process.",
-			},
-			{
-				question: "Do you service accident scenes on Hwy 410 and Hwy 50 in Brampton?",
-				answer:
-					"Yes. Hwy 410 and Hwy 50 are our highest-priority corridors. We respond to accident scenes on these highways as a top priority.",
-			},
-		],
-	},
-
 	lockout: {
 		title: "Emergency Car Lockout Service (No Damage Guaranteed)",
-		metaTitle: "Car Lockout Brampton | Keys Locked in Car | 24/7",
+		metaTitle: "Car Lockout Brampton | 24/7 Vehicle Unlocking | Pixel Towing",
 		metaDesc:
 			"Keys locked in your car in Brampton or GTA? Pixel Towing unlocks all makes and models with zero damage. Luxury car safe. 15-20 min ETA. Call 647-673-9755.",
 		tagline: "Keys Locked Inside? Engine Running? We Unlock It FAST — Zero Damage.",
@@ -151,7 +91,7 @@ const allServicesData = {
 
 	"tire-change": {
 		title: "Roadside Flat Tire Change Service",
-		metaTitle: "Flat Tire Change Brampton | 24/7 Mobile Service",
+		metaTitle: "Flat Tire Change Brampton | 24/7 Roadside Help | Pixel Towing",
 		metaDesc:
 			"Flat tire on Hwy 410 or in Brampton? We come to you. Safe roadside tire change, spare installation with proper torque, 24/7 service. Call 647-673-9755.",
 		tagline: "Your Safety is Our Priority. Don't Risk Changing It on a Busy Highway.",
@@ -196,7 +136,7 @@ const allServicesData = {
 
 	"jump-start": {
 		title: "Car Battery Boost & Jump Start Service",
-		metaTitle: "Car Battery Boost Brampton | Dead Battery Jump Start",
+		metaTitle: "Battery Boost Brampton | 24/7 Jump Start | Pixel Towing",
 		metaDesc:
 			"Dead battery in Brampton or Mississauga? ECU-safe battery boost with voltage protection. 15-20 min ETA. Alternator check included. Call 647-673-9755.",
 		tagline: "ECU-Safe Boosting That Protects Your Vehicle's Electronics.",
@@ -240,9 +180,9 @@ const allServicesData = {
 
 	"vehicle-transport": {
 		title: "Flatbed & Breakdown Towing",
-		metaTitle: "Flatbed Tow Truck Brampton | AWD & Long Distance",
+		metaTitle: "Flatbed Towing Brampton | AWD & Long Distance | Pixel Towing",
 		metaDesc:
-			"Professional flatbed towing in Brampton for breakdown cars, AWD vehicles, luxury cars, and motorcycles. Ontario-wide long-distance towing. Call 647-673-9755.",
+			"Need flatbed towing in Brampton? We transport AWD, 4WD, luxury, low-clearance vehicles and motorcycles, plus long-distance towing across Ontario. Call 647-673-9755.",
 		tagline: "The Right Equipment for Every Tow — Flatbed, Wheel-Lift, and Low-Profile.",
 		image: towing,
 		imageAlt:
@@ -285,7 +225,7 @@ const allServicesData = {
 
 	"scrap-car-removal": {
 		title: "Cash for Scrap Cars & Free Removal — Brampton",
-		metaTitle: "Cash for Scrap Cars Brampton | Free Tow + Top Dollar",
+		metaTitle: "Scrap Car Removal Brampton | Free Towing | Pixel Towing",
 		metaDesc:
 			"Cash for your junk car in Brampton. We beat dealer prices, tow it away FREE, and handle ownership transfer. Same-day pickup. 647-673-9755.",
 		tagline: "Turn That Clunker Into Cash Today. Free Towing. Same-Day Pickup.",
@@ -356,7 +296,7 @@ const ServiceDetailPage = () => {
 					"@type": "AutomotiveBusiness",
 					name: "Pixel Towing",
 					telephone: "+16476739755",
-					image: "https://pixeltowing.com/tow.png",
+					image: "https://pixeltowing.com/tow.jpg",
 					priceRange: "$$",
 					address: {
 						"@type": "PostalAddress",
@@ -418,7 +358,7 @@ const ServiceDetailPage = () => {
 			<SEO
 				title={service.metaTitle}
 				description={service.metaDesc}
-				canonical={(service as { canonical?: string }).canonical ?? `https://pixeltowing.com/services/${serviceId}`}
+				canonical={`https://pixeltowing.com/services/${serviceId}`}
 			/>
 
 			<Helmet>

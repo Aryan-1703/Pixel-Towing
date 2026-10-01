@@ -1,5 +1,4 @@
 import { Container, Card, Button, Stack, Row, Col } from "react-bootstrap";
-import { Helmet } from "react-helmet-async";
 import { Star, MessageSquareWarning, ThumbsUp, Quote } from "lucide-react";
 import SEO from "../components/SEO";
 
@@ -53,33 +52,6 @@ const REVIEWS = [
 ];
 
 const ReviewPage = () => {
-	// Aggregate Rating Schema
-	const aggregateSchema = {
-		"@context": "https://schema.org",
-		"@type": "TowingService",
-		"@id": "https://pixeltowing.com/#localbusiness",
-		name: "Pixel Towing",
-		telephone: "+16476739755",
-		aggregateRating: {
-			"@type": "AggregateRating",
-			ratingValue: "5",
-			reviewCount: String(REVIEWS.length),
-			bestRating: "5",
-			worstRating: "1",
-		},
-		review: REVIEWS.map((r) => ({
-			"@type": "Review",
-			author: { "@type": "Person", name: r.name },
-			datePublished: r.date,
-			reviewRating: {
-				"@type": "Rating",
-				ratingValue: String(r.rating),
-				bestRating: "5",
-			},
-			reviewBody: r.text,
-		})),
-	};
-
 	return (
 		<div className="bg-light" style={{ minHeight: "80vh", paddingTop: "80px" }}>
 			<SEO
@@ -88,11 +60,6 @@ const ReviewPage = () => {
 				canonical="https://pixeltowing.com/review"
 				noindex={true}
 			/>
-
-			<Helmet>
-				<script type="application/ld+json">{JSON.stringify(aggregateSchema)}</script>
-			</Helmet>
-
 			{/* HERO */}
 			<div className="py-5 text-center text-white" style={{ background: "linear-gradient(135deg, #1e293b, #1e3a8a)" }}>
 				<Container>

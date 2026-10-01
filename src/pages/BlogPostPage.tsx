@@ -4,6 +4,33 @@ import { Helmet } from "react-helmet-async";
 import { Phone, Calendar, Clock, ChevronLeft, ArrowRight } from "lucide-react";
 import SEO from "../components/SEO";
 import { BLOG_POSTS } from "./BlogPage";
+import { AUTHOR } from "../content/author";
+
+// Renders **bold** and [text](url) inside a line of body copy.
+// External links get rel="noopener" + target so gov sources open cleanly.
+const renderInline = (text: string, keyPrefix: string): React.ReactNode[] => {
+	const tokens = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
+	return tokens.filter(Boolean).map((token, i) => {
+		const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(token);
+		if (link) {
+			const isExternal = link[2].startsWith("http");
+			return (
+				<a
+					key={`${keyPrefix}-${i}`}
+					href={link[2]}
+					{...(isExternal
+						? { target: "_blank", rel: "noopener noreferrer" }
+						: {})}
+				>
+					{link[1]}
+				</a>
+			);
+		}
+		const bold = /^\*\*([^*]+)\*\*$/.exec(token);
+		if (bold) return <strong key={`${keyPrefix}-${i}`}>{bold[1]}</strong>;
+		return <span key={`${keyPrefix}-${i}`}>{token}</span>;
+	});
+};
 
 // Simple markdown-like renderer
 const renderContent = (content: string) => {
@@ -21,19 +48,15 @@ const renderContent = (content: string) => {
 		} else if (line.startsWith("- ")) {
 			elements.push(
 				<li key={key++} className="mb-2 ms-3">
-					{line.slice(2).replace(/\*\*(.*?)\*\*/g, "$1")}
+					{renderInline(line.slice(2), `li${key}`)}
 				</li>
 			);
 		} else if (line.trim() === "") {
 			elements.push(<div key={key++} className="mb-2" />);
 		} else {
-			// Process bold
-			const parts = line.split(/\*\*(.*?)\*\*/g);
 			elements.push(
 				<p key={key++} className="text-secondary lh-lg mb-3">
-					{parts.map((part, i) =>
-						i % 2 === 1 ? <strong key={i}>{part}</strong> : part
-					)}
+					{renderInline(line, `p${key}`)}
 				</p>
 			);
 		}
@@ -57,19 +80,23 @@ const BlogPostPage = () => {
 				headline: post.title,
 				description: post.excerpt,
 				author: {
-					"@type": "Organization",
-					name: "Pixel Towing",
-					url: "https://pixeltowing.com",
+					"@type": "Person",
+					name: AUTHOR.name,
+					jobTitle: AUTHOR.jobTitle,
+					url: AUTHOR.url,
 				},
 				publisher: {
 					"@type": "Organization",
 					name: "Pixel Towing",
 					logo: {
 						"@type": "ImageObject",
-						url: "https://pixeltowing.com/tow.png",
+						url: "https://pixeltowing.com/tow.jpg",
 					},
 				},
-				datePublished: post.date,
+				datePublished: post.datePublished,
+				...("dateModified" in post && post.dateModified
+					? { dateModified: post.dateModified }
+					: {}),
 				mainEntityOfPage: {
 					"@type": "WebPage",
 					"@id": `https://pixeltowing.com/blog/${post.slug}`,
@@ -123,8 +150,19 @@ const BlogPostPage = () => {
 							<span className="d-flex align-items-center gap-1">
 								<Clock size={14} /> {post.readTime}
 							</span>
-							<span>By Pixel Towing — Brampton, ON</span>
+							<span>
+								By{" "}
+								<Link to="/about" className="text-muted">
+									{AUTHOR.name}
+								</Link>{" "}
+								— Pixel Towing, {AUTHOR.location}
+							</span>
 						</div>
+						{"reviewedNote" in post && post.reviewedNote && (
+							<p className="text-muted small fst-italic mb-4">
+								{post.reviewedNote}
+							</p>
+						)}
 
 						{/* Article body */}
 						<Card className="border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5 bg-white">
@@ -181,7 +219,7 @@ const BlogPostPage = () => {
 						<div className="mt-5 p-4 bg-white rounded-4 shadow-sm">
 							<h4 className="h6 fw-bold text-muted text-uppercase mb-3">Our Services</h4>
 							<div className="d-flex flex-wrap gap-2">
-								<Link to="/services/accident-recovery" className="btn btn-sm btn-outline-secondary rounded-pill">Accident Recovery</Link>
+								<Link to="/accident-recovery" className="btn btn-sm btn-outline-secondary rounded-pill">Accident Recovery</Link>
 								<Link to="/services/lockout" className="btn btn-sm btn-outline-secondary rounded-pill">Car Lockout</Link>
 								<Link to="/services/jump-start" className="btn btn-sm btn-outline-secondary rounded-pill">Battery Boost</Link>
 								<Link to="/services/tire-change" className="btn btn-sm btn-outline-secondary rounded-pill">Tire Change</Link>

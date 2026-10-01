@@ -36,7 +36,7 @@ const HOME_SERVICES = [
 		description:
 			"Fast accident towing, insurance reporting assistance, and collision center delivery in Brampton.",
 		icon: ShieldAlert,
-		link: "/services/accident-recovery",
+		link: "/accident-recovery",
 		image: accident,
 		alt: "Tow truck lifting crashed car at accident scene in Brampton Ontario",
 	},
@@ -122,12 +122,11 @@ const Home = () => {
 	return (
 		<div className="bg-light">
 			<SEO
-				title="Pixel Towing Brampton | #1 Tow Truck & Roadside | 15 Min ETA"
-				description="#1 Tow Truck Service in Brampton. Fast 15-min ETA. Accident Recovery, Lockouts, Battery Boost & Flatbed Towing. Licensed Municipal Tower. Call 647-673-9755."
+				title="24/7 Tow Truck Brampton | Roadside & Towing | Pixel Towing"
+				description="Need a tow truck in Brampton? Pixel Towing provides 24/7 emergency towing, accident recovery, flatbed towing and roadside assistance across Brampton and the GTA. Call 647-673-9755."
 				canonical="https://pixeltowing.com/"
 			/>
 			<Helmet>
-				<script type="application/ld+json">{JSON.stringify({"@context":"https://schema.org","@type":"TowingService","@id":"https://pixeltowing.com/#localbusiness","name":"Pixel Towing","aggregateRating":{"@type":"AggregateRating","ratingValue":"5.0","reviewCount":"4","bestRating":"5","worstRating":"1"}})}</script>
 				<script type="application/ld+json">{JSON.stringify({"@context":"https://schema.org","@type":"FAQPage","@id":"https://pixeltowing.com/#faq","mainEntity":[{"@type":"Question","name":"How much does a tow truck cost in Brampton?","acceptedAnswer":{"@type":"Answer","text":"We charge a flat hook-up fee plus a per-kilometre rate with zero hidden charges. For accident recovery with valid insurance coverage, you typically pay $0 out of pocket — we bill your insurer directly. Call 647-673-9755 for a free quote."}},{"@type":"Question","name":"Can you tow from underground parking in Brampton?","acceptedAnswer":{"@type":"Answer","text":"Yes. We have specialized low-clearance trucks built for condo parkades, Bramalea City Centre, Shoppers World, and Square One parking garages."}},{"@type":"Question","name":"How fast is your tow truck response time?","acceptedAnswer":{"@type":"Answer","text":"Our average ETA is 15–20 minutes anywhere in Brampton, North Mississauga, and Caledon. We station trucks near Hwy 410 and Hwy 50 for maximum coverage of Peel Region."}},{"@type":"Question","name":"Do I have to pay for accident towing in Ontario?","acceptedAnswer":{"@type":"Answer","text":"In most accident recovery cases, your insurance covers the full towing cost. Customers with valid collision or comprehensive coverage typically pay nothing out of pocket. We work directly with all major Ontario insurers."}},{"@type":"Question","name":"Do you tow AWD and luxury vehicles?","acceptedAnswer":{"@type":"Answer","text":"Yes — we use flatbed trucks for all AWD (Subaru, Audi Quattro, BMW xDrive, etc.) and luxury vehicles. All four wheels off the ground, zero drivetrain damage."}}]})}</script>
 			</Helmet>
 
@@ -214,13 +213,12 @@ const Home = () => {
 
 					<div className="hero-content mt-4">
 						<h1 className="display-4 fw-bold text-white mb-4">
-							Brampton's #1 Tow Truck & Roadside Assistance
+							24/7 Tow Truck & Roadside Assistance in Brampton
 						</h1>
 
 						<p className="lead mb-5 text-white-50 mx-auto" style={{ maxWidth: "42rem" }}>
-							<strong className="text-white">15-Minute Arrival.</strong> Trusted by Peel
-							Region Drivers for Accident Recovery, Lockouts & Flatbed Towing. Available
-							24/7.
+							Fast emergency towing, accident recovery, flatbed towing and roadside
+							assistance across Brampton and the GTA. Available 24/7.
 						</p>
 
 						<Stack
@@ -323,6 +321,18 @@ const Home = () => {
 						</Col>
 					</Row>
 
+					{/* Ownership disclosure — Ontario tow operators must disclose an
+					    interest in a facility they refer customers to. */}
+					<p className="text-muted small mt-4 mb-0">
+						Disclosure: Pixel Towing has an ownership and operating interest in the
+						collision repair facility and rental fleet described above. You are free to
+						choose a different repair shop or rental provider.{" "}
+						<Link to="/accident-recovery" className="text-muted">
+							Read our full disclosure
+						</Link>
+						.
+					</p>
+
 					{/* Consumer rights callout */}
 					<div
 						className="mt-5 p-4 rounded-4 border border-warning"
@@ -334,11 +344,13 @@ const Home = () => {
 									💡 Most drivers don't know this about their rights in Ontario
 								</h3>
 								<p className="text-secondary mb-0">
-									Your insurance company cannot legally force you to use their preferred
-									tow company, their preferred repair shop, or their rental vendor. That
-									choice is yours. Exercising it often means faster repairs, a rental car
-									in hours not days, and your car fixed with the parts it was built with —
-									while your insurance still covers the bill.
+									Under Ontario's towing rules, no one can tow your vehicle without your
+									consent — the tow company and the destination are your choice. For
+									repairs, FSRA says that as long as your insurer approves the estimate,
+									you may use the repair shop you choose, and you also have the right to
+									choose a tow operator and rental company. Exercising that choice often
+									means faster repairs and a rental in hours rather than days — while
+									your insurance still covers the bill.
 								</p>
 							</Col>
 							<Col md={4} className="text-center mt-3 mt-md-0">
@@ -600,7 +612,7 @@ const Home = () => {
 										to="/blog/what-to-do-after-car-accident-brampton"
 										className="btn btn-sm btn-outline-warning rounded-pill"
 									>
-										Read More →
+										What to do after a Brampton accident →
 									</Link>
 								</Card.Body>
 							</Card>
@@ -613,13 +625,13 @@ const Home = () => {
 										Ontario Towing Laws: Your Rights When You're Towed
 									</h5>
 									<p className="text-muted small">
-										Bill 258 explained — how to protect yourself from predatory towers.
+										The TSSEA explained — how to protect yourself from predatory towers.
 									</p>
 									<Link
 										to="/blog/ontario-towing-laws-driver-rights"
 										className="btn btn-sm btn-outline-primary rounded-pill"
 									>
-										Read More →
+										Ontario towing laws &amp; your rights →
 									</Link>
 								</Card.Body>
 							</Card>
@@ -636,7 +648,7 @@ const Home = () => {
 										to="/blog/dead-battery-vs-bad-alternator"
 										className="btn btn-sm btn-outline-success rounded-pill"
 									>
-										Read More →
+										Dead battery vs alternator →
 									</Link>
 								</Card.Body>
 							</Card>
@@ -665,16 +677,18 @@ const Home = () => {
 								vehicle from <strong>our own fleet — the same day</strong>.
 							</p>
 							<p className="text-secondary mb-3">
-								Under Ontario law, you are not obligated to use your insurance company's
-								preferred tow company or repair shop. You have the right to choose — and
-								choosing a single provider who handles everything from the crash scene to
-								your repaired car being returned to you means fewer phone calls, less
-								stress, and repairs done to the standard <em>you</em> expect.
+								Under Ontario's towing rules, no one can tow your vehicle without your
+								consent — you choose the tow company and where your vehicle goes. On the
+								repair side, FSRA (Ontario's insurance regulator) states that as long as
+								your insurer approves the estimate, you may have your vehicle repaired at
+								the shop of your choice. Choosing a single provider who handles everything
+								from the crash scene to your repaired car being returned means fewer phone
+								calls, less stress, and repairs done to the standard <em>you</em> expect.
 							</p>
 							<p className="text-secondary mb-3">
 								Whether you need a{" "}
 								<Link
-									to="/services/accident-recovery"
+									to="/accident-recovery"
 									className="text-decoration-underline text-secondary"
 								>
 									tow truck after an accident

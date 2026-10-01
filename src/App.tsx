@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import ReviewPage from "./pages/ReviewPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
+import AboutPage from "./pages/AboutPage";
 
 function App() {
 	return (
@@ -26,12 +27,18 @@ function App() {
 					{/* Dedicated high-priority accident/collision page */}
 					<Route path="/accident-recovery" element={<AccidentRecoveryPage />} />
 					<Route path="/collision-repair" element={<Navigate to="/accident-recovery" replace />} />
+					{/* Consolidated duplicate: /services/accident-recovery -> /accident-recovery (server-side 301 in .htaccess) */}
+					<Route
+						path="/services/accident-recovery"
+						element={<Navigate to="/accident-recovery" replace />}
+					/>
 					<Route path="/services/:serviceId" element={<ServiceDetailPage />} />
 					{/* SEO Location Pages */}
 					<Route path="/locations/:cityId" element={<LocationPage />} />
 					{/* Blog */}
 					<Route path="/blog" element={<BlogPage />} />
 					<Route path="/blog/:slug" element={<BlogPostPage />} />
+					<Route path="/about" element={<AboutPage />} />
 					<Route path="/contact" element={<ContactPage />} />
 					<Route path="/review" element={<ReviewPage />} />
 					{/* 404 */}

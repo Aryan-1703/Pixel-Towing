@@ -28,6 +28,10 @@ RewriteRule ^ https://%1%{REQUEST_URI} [L,R=301]
 # also handles this client-side, but crawlers need a real 301.
 RewriteRule ^collision-repair/?$ /accident-recovery [L,R=301]
 
+# /services/accident-recovery duplicated /accident-recovery (same search intent).
+# /accident-recovery is the surviving canonical page.
+RewriteRule ^services/accident-recovery/?$ /accident-recovery [L,R=301]
+
 # ---- 3. Strip trailing slash for directory URLs ------------
 # Anyone arriving at /contact/ gets 301'd to /contact so the
 # canonical form is the only indexable version.
@@ -44,6 +48,14 @@ RewriteRule ^(.+?)/?$ /$1/index.html [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule ^ /index.html [L]
+
+# ---- 5a. Explicit MIME types --------------------------------
+# Some hosts serve .xml as octet-stream, which stops crawlers
+# from parsing sitemap.xml.
+<IfModule mod_mime.c>
+  AddType application/xml .xml
+  AddType text/plain .txt
+</IfModule>
 
 # ---- 6. Caching --------------------------------------------
 <IfModule mod_headers.c>

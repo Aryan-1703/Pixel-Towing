@@ -25,7 +25,6 @@ const ROUTES = [
   "/",
   "/services",
   "/accident-recovery",
-  "/services/accident-recovery",
   "/services/lockout",
   "/services/tire-change",
   "/services/jump-start",
@@ -46,6 +45,7 @@ const ROUTES = [
   "/blog/oem-vs-aftermarket-parts-collision-repair",
   "/blog/deductible-waived-collision-repair-brampton",
   "/blog/collision-repair-rental-car-brampton",
+  "/about",
   "/contact",
   "/review",
   "/locations/etobicoke",
@@ -70,8 +70,10 @@ function startServer() {
   });
 }
 
-// Pre-render a single route
-async function prerenderRoute(page, route) {
+const MAX_ATTEMPTS = 3;
+
+// Capture a route's rendered HTML. Returns null if Helmet never flushed.
+async function captureRoute(page, route) {
   const url = `${BASE_URL}${route}`;
   // networkidle0 waits for all network requests to finish, then React renders
   await page.goto(url, { waitUntil: "networkidle0", timeout: 30000 });
@@ -85,13 +87,32 @@ async function prerenderRoute(page, route) {
       { timeout: 10000, polling: 200 }
     );
   } catch {
-    // fall through — we'll report this as a warning below
+    return null;
   }
 
   // Small additional buffer so any sibling Helmet tags settle in the head
   await new Promise((r) => setTimeout(r, 250));
 
-  const html = await page.content();
+  return page.content();
+}
+
+// Pre-render a single route, retrying the whole navigation when Helmet has not
+// flushed. The first route of a run reliably loses this race on a cold V8 /
+// React start, and a reload is what actually clears it — waiting longer on the
+// same navigation does not.
+async function prerenderRoute(page, route) {
+  let html = null;
+
+  for (let attempt = 1; attempt <= MAX_ATTEMPTS && !html; attempt++) {
+    html = await captureRoute(page, route);
+    if (!html && attempt < MAX_ATTEMPTS) {
+      console.log(`     ↻ ${route} — Helmet not ready, retry ${attempt}/${MAX_ATTEMPTS - 1}`);
+    }
+  }
+
+  if (!html) {
+    throw new Error(`Helmet canonical not injected after ${MAX_ATTEMPTS} attempts`);
+  }
 
   // Determine output path
   const outputDir =

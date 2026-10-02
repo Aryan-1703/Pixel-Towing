@@ -67,7 +67,7 @@ export const CITIES: Record<CitySlug, CityContent> = {
 		heading: "Towing and Roadside Help Across Mississauga",
 		towZoneHighways: "Highways 401, 403, 410 and 427 and the QEW",
 		metaDescription:
-			"Tow truck and roadside assistance in Mississauga — Hurontario, Dundas and parking-garage calls, accident towing, lockouts and boosts. 24/7 dispatch: 647-673-9755.",
+			"Tow truck and roadside help in Mississauga — accident towing, lockouts, boosts and parking-garage calls. 24/7 dispatch: 647-673-9755.",
 		intro:
 			"Most of our Mississauga calls come from its arterial roads and from the parking structures around its malls, offices and condo towers. We cover the whole city, from Lakeshore Road in the south to Heartland and Malton in the north.",
 		roads: "Hurontario Street, Mississauga Road, Dundas Street, Eglinton Avenue and Lakeshore Road",

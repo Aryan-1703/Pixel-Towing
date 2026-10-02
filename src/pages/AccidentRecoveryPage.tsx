@@ -336,7 +336,7 @@ const FaqSection = () => (
 					<Accordion flush className="border rounded-4 overflow-hidden">
 						{FAQS.map((faq, i) => (
 							<Accordion.Item eventKey={String(i)} key={faq.q}>
-								<Accordion.Header>{faq.q}</Accordion.Header>
+								<Accordion.Header as="h3">{faq.q}</Accordion.Header>
 								<Accordion.Body className="text-secondary lh-lg">{faq.a}</Accordion.Body>
 							</Accordion.Item>
 						))}
@@ -387,7 +387,7 @@ const AccidentRecoveryPage = () => (
 	<div style={{ paddingTop: "76px" }}>
 		<SEO
 			title="Accident Towing Brampton | 24/7 Recovery | Pixel Towing"
-			description="Accident in Brampton? Pixel Towing provides 24/7 accident towing, Collision Reporting Centre drop-off, and optional repair and rental coordination. Call 647-673-9755."
+			description="24/7 accident towing in Brampton and the GTA, Collision Reporting Centre drop-off, and optional repair and rental help. Call 647-673-9755."
 			canonical={PAGE_URL}
 			image={IMAGES.accidentTowing.src}
 			imageAlt={IMAGES.accidentTowing.alt}

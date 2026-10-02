@@ -28,6 +28,7 @@ const footerStyles = `
     font-weight: 700;
     margin-bottom: 1.25rem;
     font-size: 1.05rem;
+    line-height: 1.3;
     text-transform: uppercase;
     letter-spacing: 0.5px;
   }
@@ -72,7 +73,7 @@ const ComplianceInfo = () => {
 	return (
 		<Row className="mt-4">
 			<Col>
-				<h5 className="footer-title">Business &amp; Licensing Information</h5>
+				<h2 className="footer-title">Business &amp; Licensing Information</h2>
 				<p className="small mb-1">
 					{legalName && <>Legal name: {legalName} · </>}
 					Operating name: {operatingName}
@@ -129,7 +130,7 @@ const Footer: React.FC = () => {
 
 						{/* NAVIGATION */}
 						<Col lg={2} md={6} xs={6}>
-							<h5 className="footer-title">Navigation</h5>
+							<h2 className="footer-title">Navigation</h2>
 							<Stack as="ul" gap={2} className="list-unstyled">
 								<li>
 									<Link to="/">Home</Link>
@@ -159,7 +160,7 @@ const Footer: React.FC = () => {
 
 						{/* SERVICES */}
 						<Col lg={3} md={6} xs={6}>
-							<h5 className="footer-title">Our Services</h5>
+							<h2 className="footer-title">Our Services</h2>
 							<Stack as="ul" gap={2} className="list-unstyled">
 								<li>
 									<Link to={ACCIDENT_RECOVERY.path}>{ACCIDENT_RECOVERY.label}</Link>
@@ -174,7 +175,7 @@ const Footer: React.FC = () => {
 
 						{/* CONTACT + SERVICE AREAS */}
 						<Col lg={3} md={12}>
-							<h5 className="footer-title">Contact Dispatch</h5>
+							<h2 className="footer-title">Contact Dispatch</h2>
 
 							<Stack gap={3}>
 								<a href={BUSINESS.phoneHref} className="d-flex align-items-center">

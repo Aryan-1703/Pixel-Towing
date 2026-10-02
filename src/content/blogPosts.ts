@@ -42,7 +42,7 @@ export const BLOG_POSTS = [
 		title: "What To Do After a Car Accident in Brampton: Safety, Reporting, Towing and Insurance",
 		metaTitle: "What To Do After a Car Accident in Brampton | Pixel Towing",
 		excerpt:
-			"A step-by-step guide for the first hour after a Brampton collision — staying safe, when you have to report it, who gets to tow your car, and how your insurance claim fits in.",
+			"What to do in the first hour after a Brampton collision: staying safe, reporting it, who tows your car, and your insurance claim.",
 		category: "Know Your Rights",
 		categoryColor: "warning",
 		datePublished: "2025-01-15",
@@ -115,7 +115,7 @@ This article is general information, not legal or insurance advice.
 		title: "Ontario Towing Laws: Your Rights Under the TSSEA",
 		metaTitle: "Ontario Towing Laws & Your Rights (TSSEA) | Pixel Towing",
 		excerpt:
-			"Ontario's Towing and Storage Safety and Enforcement Act, 2021 sets the rules every tow operator must follow — consent, maximum rates, invoices, payment and disclosure. Here's what they mean for you.",
+			"Ontario's TSSEA sets the rules every tow operator must follow — consent, maximum rates, invoices, payment and disclosure. Here's what they mean.",
 		category: "Ontario Law",
 		categoryColor: "primary",
 		datePublished: "2025-02-03",
@@ -368,7 +368,7 @@ This article is general information, not insurance advice.
 		title: "My Car Is a Total Loss in Ontario — What Happens Next?",
 		metaTitle: "Total Loss Vehicle Ontario: What Happens Next | Pixel Towing",
 		excerpt:
-			"Insurance declared your car a total loss? Here's how valuations generally work in Ontario, what you can ask for, and how to respond to an offer you think is too low.",
+			"Car declared a total loss? How Ontario valuations generally work, what to ask your insurer, and how to respond to a low offer.",
 		category: "Total Loss",
 		categoryColor: "danger",
 		datePublished: "2025-03-15",
@@ -527,7 +527,7 @@ This article is general information, not legal or insurance advice.
 		title: "Getting a Rental Car After an Accident in Brampton — How It Works",
 		metaTitle: "Rental Car After an Accident in Brampton | Pixel Towing",
 		excerpt:
-			"How rental coverage works after a collision in Ontario, who can arrange the rental, and what to check with your insurer so you aren't left with an unexpected bill.",
+			"How rental coverage works after a collision in Ontario, who can arrange the rental, and what to check with your insurer first.",
 		category: "Rental Car",
 		categoryColor: "info",
 		datePublished: "2025-04-08",

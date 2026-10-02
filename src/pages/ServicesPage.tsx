@@ -89,7 +89,7 @@ const ServicesPage = () => {
 		<>
 			<SEO
 				title="Towing Services Brampton | 24/7 Roadside | Pixel Towing"
-				description="Pixel Towing Brampton — accident towing, car lockouts, flat tire changes, battery boosts, flatbed towing and scrap car removal. 24/7 dispatch: 647-673-9755."
+				description="Accident towing, car lockouts, flat tire changes, battery boosts, flatbed towing and scrap car removal in Brampton. 24/7: 647-673-9755."
 				canonical={pageUrl}
 			/>
 
@@ -146,7 +146,7 @@ const ServicesPage = () => {
 						<Col md={8}>
 							<Accordion flush>
 								<Accordion.Item eventKey="0">
-									<Accordion.Header>Which areas do you cover?</Accordion.Header>
+									<Accordion.Header as="h3">Which areas do you cover?</Accordion.Header>
 									<Accordion.Body>
 										We're based in Brampton and serve Peel Region and nearby GTA, Halton and
 										Wellington communities. See all of our{" "}
@@ -155,7 +155,7 @@ const ServicesPage = () => {
 									</Accordion.Body>
 								</Accordion.Item>
 								<Accordion.Item eventKey="1">
-									<Accordion.Header>How quickly can you get to me?</Accordion.Header>
+									<Accordion.Header as="h3">How quickly can you get to me?</Accordion.Header>
 									<Accordion.Body>{DISPATCH_MESSAGE.full}</Accordion.Body>
 								</Accordion.Item>
 							</Accordion>

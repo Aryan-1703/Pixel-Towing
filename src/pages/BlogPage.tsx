@@ -38,7 +38,7 @@ const BlogPage = () => {
 								<Card className="border-0 shadow-sm h-100 rounded-4 overflow-hidden">
 									<Card.Img
 										src={image.src}
-										alt=""
+										alt={image.alt}
 										width={image.width}
 										height={image.height}
 										loading="lazy"

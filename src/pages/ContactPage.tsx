@@ -198,13 +198,13 @@ const ContactPage = () => {
 					<h2 className="text-center fw-bold mb-4">Towing Contact Questions</h2>
 					<Accordion flush>
 						<Accordion.Item eventKey="0">
-							<Accordion.Header>How fast can a tow truck arrive?</Accordion.Header>
+							<Accordion.Header as="h3">How fast can a tow truck arrive?</Accordion.Header>
 							<Accordion.Body>
 								{DISPATCH_MESSAGE.full}
 							</Accordion.Body>
 						</Accordion.Item>
 						<Accordion.Item eventKey="1">
-							<Accordion.Header>Does insurance cover accident towing?</Accordion.Header>
+							<Accordion.Header as="h3">Does insurance cover accident towing?</Accordion.Header>
 							<Accordion.Body>
 								It may. Coverage depends on your policy and the circumstances of the claim, so
 								check with your insurer or broker. Breakdown towing is usually covered only by a
@@ -212,7 +212,7 @@ const ContactPage = () => {
 							</Accordion.Body>
 						</Accordion.Item>
 						<Accordion.Item eventKey="2">
-							<Accordion.Header>What payment methods do you accept?</Accordion.Header>
+							<Accordion.Header as="h3">What payment methods do you accept?</Accordion.Header>
 							<Accordion.Body>
 								We accept E-Transfer, Debit, Credit Cards, Apple Pay, Google Pay & Cash.
 							</Accordion.Body>

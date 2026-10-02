@@ -295,7 +295,7 @@ const ServiceFaq = ({ label, faqs }: { label: string; faqs: ServiceCopy["faqs"] 
 			<Accordion flush className="border rounded-3 overflow-hidden">
 				{faqs.map((faq, idx) => (
 					<Accordion.Item eventKey={idx.toString()} key={faq.question}>
-						<Accordion.Header className="fw-bold">{faq.question}</Accordion.Header>
+						<Accordion.Header as="h3" className="fw-bold">{faq.question}</Accordion.Header>
 						<Accordion.Body className="text-secondary">{faq.answer}</Accordion.Body>
 					</Accordion.Item>
 				))}

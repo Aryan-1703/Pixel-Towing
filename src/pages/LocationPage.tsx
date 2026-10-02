@@ -163,7 +163,7 @@ const CityFaq = ({ city }: { city: CityContent }) => (
 					<Accordion flush>
 						{city.faq.map((item, idx) => (
 							<Accordion.Item key={item.q} eventKey={String(idx)}>
-								<Accordion.Header>{item.q}</Accordion.Header>
+								<Accordion.Header as="h3">{item.q}</Accordion.Header>
 								<Accordion.Body>{item.a}</Accordion.Body>
 							</Accordion.Item>
 						))}

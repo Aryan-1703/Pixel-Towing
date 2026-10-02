@@ -25,6 +25,8 @@ const SITE_ORIGIN = "https://pixeltowing.com";
 const PORT = Number(process.env.PRERENDER_PORT) || 0;
 const HOST = "127.0.0.1";
 const MAX_ATTEMPTS = 3;
+// Search results truncate descriptions at roughly 155-160 characters.
+const MAX_DESCRIPTION_LENGTH = 160;
 let BASE_URL = "";
 
 // Start static file server with SPA fallback (prerendered files don't exist yet)
@@ -78,6 +80,7 @@ function inspectHead(page) {
 		return {
 			titles: document.querySelectorAll("head > title").length,
 			descriptions: document.head.querySelectorAll('meta[name="description"]').length,
+			descriptionText: document.head.querySelector('meta[name="description"]')?.content ?? "",
 			canonicals: [...document.querySelectorAll('link[rel="canonical"]')].map(el => el.href),
 			robots: document.querySelector('meta[name="robots"]')?.content ?? "",
 			schemaTypes,
@@ -90,6 +93,9 @@ function auditHead(head, route, indexable) {
 	const problems = [];
 	if (head.titles !== 1) problems.push(`${head.titles} <title> tags`);
 	if (head.descriptions !== 1) problems.push(`${head.descriptions} meta descriptions`);
+	if (head.descriptionText.length > MAX_DESCRIPTION_LENGTH) {
+		problems.push(`meta description is ${head.descriptionText.length} chars (max ${MAX_DESCRIPTION_LENGTH})`);
+	}
 	if (head.schemaTypes.includes("INVALID_JSON")) problems.push("invalid JSON-LD");
 	if (head.schemaTypes.includes("FAQPage")) problems.push("FAQPage schema present");
 	const businessNodes = head.schemaTypes.filter(type => type === "AutomotiveBusiness").length;

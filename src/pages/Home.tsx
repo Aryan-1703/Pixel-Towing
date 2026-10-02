@@ -193,7 +193,7 @@ const ServicesSection = () => (
 							<Card className="h-100 border-0 text-white text-center rounded-4 position-relative">
 								<Card.Img
 									src={service.image.src}
-									alt=""
+									alt={service.image.alt}
 									width={service.image.width}
 									height={service.image.height}
 									className="service-card-img rounded-4"
@@ -286,7 +286,7 @@ const FaqSection = () => (
 					<Accordion flush>
 						{FAQS.map((faq, i) => (
 							<Accordion.Item eventKey={String(i)} key={faq.q}>
-								<Accordion.Header>{faq.q}</Accordion.Header>
+								<Accordion.Header as="h3">{faq.q}</Accordion.Header>
 								<Accordion.Body>{faq.a}</Accordion.Body>
 							</Accordion.Item>
 						))}
@@ -408,7 +408,7 @@ const Home = () => (
 	<div className="bg-light">
 		<SEO
 			title="24/7 Tow Truck Brampton | Roadside & Towing | Pixel Towing"
-			description="Need a tow truck in Brampton? Pixel Towing provides 24/7 emergency towing, accident towing, flatbed towing and roadside assistance across Brampton and the GTA. Call 647-673-9755."
+			description="24/7 tow truck in Brampton — emergency towing, accident towing, flatbed towing and roadside assistance across the GTA. Call 647-673-9755."
 			canonical={`${SITE_ORIGIN}/`}
 		/>
 		<HeroSection />

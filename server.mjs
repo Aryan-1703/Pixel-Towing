@@ -205,6 +205,6 @@ createServer((req, res) => {
 		}
 		res.end("Internal server error");
 	}
-}).listen(PORT, () => {
+}).listen(PORT, "0.0.0.0", () => {
 	console.log(`Pixel Towing server listening on port ${PORT}`);
 });

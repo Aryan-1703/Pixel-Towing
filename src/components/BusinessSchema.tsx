@@ -1,6 +1,7 @@
 import { Helmet } from "react-helmet-async";
 import { BUSINESS, SITE_ORIGIN, absoluteUrl } from "../content/site";
 import { SERVICE_AREAS } from "../content/cities";
+import { SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
 
 /**
  * The one authoritative Pixel Towing business entity, rendered once in App.tsx.
@@ -40,6 +41,18 @@ const businessSchema = {
 		dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
 		opens: "00:00",
 		closes: "23:59",
+	},
+	hasOfferCatalog: {
+		"@type": "OfferCatalog",
+		name: "Towing and roadside services",
+		itemListElement: SERVICE_SLUGS.map(slug => ({
+			"@type": "Offer",
+			itemOffered: {
+				"@type": "Service",
+				name: SERVICE_LINKS[slug].anchor,
+				url: absoluteUrl(servicePath(slug)),
+			},
+		})),
 	},
 	paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
 	hasMap: BUSINESS.googleProfileUrl,

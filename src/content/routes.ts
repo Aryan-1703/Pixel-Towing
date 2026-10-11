@@ -12,7 +12,7 @@
  */
 import { CITY_SLUGS, CITIES } from "./cities";
 import { SERVICE_SLUGS, SERVICE_LINKS, servicePath } from "./services";
-import { BLOG_POSTS } from "./blogPosts";
+import { BLOG_POSTS, type BlogPost } from "./blogPosts";
 
 export interface SiteRoute {
 	path: string;
@@ -23,7 +23,7 @@ export interface SiteRoute {
 }
 
 const STATIC_ROUTES: readonly SiteRoute[] = [
-	{ path: "/", indexable: true, lastmod: "2026-09-30" },
+	{ path: "/", indexable: true, lastmod: "2026-10-11" },
 	{ path: "/services", indexable: true, lastmod: "2026-09-30" },
 	{ path: "/accident-recovery", indexable: true, lastmod: "2026-09-30" },
 	{ path: "/locations", indexable: true, lastmod: "2026-09-30" },
@@ -45,7 +45,7 @@ export const SITE_ROUTES: readonly SiteRoute[] = [
 		indexable: true,
 		lastmod: CITIES[slug].lastmod,
 	})),
-	...BLOG_POSTS.map(post => ({
+	...BLOG_POSTS.map((post: BlogPost) => ({
 		path: `/blog/${post.slug}`,
 		indexable: true,
 		lastmod: post.dateModified ?? post.datePublished,

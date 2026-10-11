@@ -21,7 +21,7 @@ export const isServiceSlug = (value: string): value is ServiceSlug =>
 
 /** Short labels and descriptive anchor text used in nav, footer and cross-links. */
 export const SERVICE_LINKS: Record<ServiceSlug, { label: string; anchor: string; lastmod: string }> = {
-	lockout: { label: "Car Lockout", anchor: "Car lockout service", lastmod: "2026-09-30" },
+	lockout: { label: "Car Lockout", anchor: "24/7 car lockout service", lastmod: "2026-10-11" },
 	"tire-change": { label: "Flat Tire Change", anchor: "Flat tire change", lastmod: "2026-09-30" },
 	"jump-start": { label: "Battery Boost", anchor: "Battery boost and jump start", lastmod: "2026-09-30" },
 	"vehicle-transport": {

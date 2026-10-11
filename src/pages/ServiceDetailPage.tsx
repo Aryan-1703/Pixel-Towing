@@ -19,31 +19,87 @@ interface ServiceCopy {
 	icon: LucideIcon;
 	/** Paragraphs; **text** renders bold. */
 	details: readonly string[];
+	/** Optional deeper sections, each rendered under its own H2. */
+	sections?: readonly { heading: string; paragraphs: readonly string[] }[];
+	/** Other names people search for this service; emitted as schema alternateName. */
+	alternateNames?: readonly string[];
 	features: readonly string[];
 	faqs: readonly { question: string; answer: string }[];
 }
 
 const SERVICES: Record<ServiceSlug, ServiceCopy> = {
 	lockout: {
-		title: "Car Lockout Service",
-		metaTitle: "Car Lockout Brampton | 24/7 Vehicle Unlocking | Pixel Towing",
+		title: "24/7 Car Lockout Service in Brampton",
+		metaTitle: "Car Lockout Brampton | Locked Keys in Car 24/7 | Pixel Towing",
 		metaDesc:
-			"Keys locked in your car in Brampton or the GTA? Pixel Towing opens most makes and models using professional entry tools. 24/7 dispatch — call 647-673-9755.",
-		tagline: "Keys locked inside? We'll come to you, day or night.",
+			"Locked out of your car in Brampton? 24/7 car lockout service — we unlock car doors and trunks when keys or a fob are locked inside. Call 647-673-9755.",
+		tagline: "Locked your keys in the car? We'll come to you and get you back in — day or night.",
 		image: IMAGES.carLockout,
 		icon: KeyRound,
+		alternateNames: [
+			"Car lockout service",
+			"Vehicle lockout service",
+			"Car unlock service",
+			"Locked keys in car",
+			"Emergency car door unlocking",
+		],
 		details: [
-			"Locking your keys in the car is stressful, especially at night or in bad weather. Call us with your location and the make and model, and we'll dispatch a technician.",
+			"Locked out of your car in Brampton, Mississauga or anywhere in Peel Region? Call us with your location and your vehicle's make, model and year, and we'll dispatch a technician to unlock your car — 24 hours a day, 7 days a week, including holidays.",
 			"**Professional entry tools:** Our technicians use professional vehicle-entry tools — air wedges and long-reach tools — designed to minimize the risk of damage to paint, glass and weather stripping.",
-			"**Most makes and models:** We open most passenger cars, SUVs and pickups. Some newer vehicles with advanced security systems may need dealer assistance; we'll tell you up front if that's the case.",
+			"**Most makes and models:** We open most passenger cars, SUVs, minivans and pickups. Some newer vehicles with advanced security systems may need dealer assistance; we'll tell you up front if that's the case.",
+		],
+		sections: [
+			{
+				heading: "Keys Locked in the Car, Trunk or Running Vehicle",
+				paragraphs: [
+					"Most lockout calls are simple: the keys are on the seat, in the ignition, or the car locked itself with the engine running. We also handle **keys locked in the trunk** — on many vehicles we can open the cabin and use the interior trunk release or fold-down seats.",
+					"If the engine is running, tell dispatch. A running car with locked doors can't be left unattended for long, and we'll treat it as a priority.",
+				],
+			},
+			{
+				heading: "Push-to-Start and Key Fob Locked Inside",
+				paragraphs: [
+					"Many push-to-start vehicles are designed not to lock with the fob inside, but it still happens — a weak fob battery, a fob in the trunk, or a second key left in the cabin. We can usually open the door so you can retrieve the fob. If the fob is dead, the car may still start with the fob held against the start button; check your owner's manual.",
+				],
+			},
+			{
+				heading: "Car Lockout Help Across Brampton and the GTA",
+				paragraphs: [
+					"We're based in Brampton and take lockout calls across the city — Bramalea, Springdale, Heart Lake, Mount Pleasant, Castlemore and downtown — plus Mississauga, Caledon, Georgetown, Etobicoke, Vaughan and nearby areas. Common call-outs include mall and plaza parking lots, condo and office garages, gas stations and driveways.",
+					"Tell us whether you're in an underground garage and the posted height limit so we can plan access.",
+				],
+			},
+			{
+				heading: "Lost Your Keys? Locksmith or Tow",
+				paragraphs: [
+					"A lockout service opens the car when the key is inside it. If your key is **lost, broken or won't start the car**, you'll need a new key cut and programmed by a dealer or an automotive locksmith. We can tow your vehicle to the dealer or locksmith of your choice.",
+				],
+			},
 		],
 		features: [
-			"24/7 dispatch",
+			"24/7 dispatch, including nights and holidays",
 			"Professional vehicle-entry tools",
-			"Most makes and models",
+			"Cars, SUVs, minivans and pickups",
+			"Keys locked in trunk or running car",
+			"Price quoted before dispatch",
 			"Tow to a dealer if a key needs replacing",
 		],
 		faqs: [
+			{
+				question: "I locked my keys in my car — what should I do?",
+				answer:
+					"Stay with the vehicle in a safe, well-lit spot, check every door and the trunk, and look for a spare key nearby. If none of that works, call 647-673-9755 with your location and the make, model and year. If a child or pet is inside, call 911 first.",
+			},
+			{
+				question: "How much does a car lockout cost in Brampton?",
+				answer:
+					"It depends on the time of day, your location and the vehicle. We quote the price over the phone before we dispatch, so you know the cost before the technician arrives. Many roadside assistance plans and some credit cards include lockout service — check yours.",
+			},
+			{
+				question: "How long does it take to unlock a car?",
+				answer:
+					"Once our technician is on site, most vehicles are opened fairly quickly, though some models with extra security take longer. Arrival time varies by location, traffic, weather and current demand.",
+			},
 			{
 				question: "Is there a child or pet locked inside the vehicle?",
 				answer:
@@ -63,6 +119,11 @@ const SERVICES: Record<ServiceSlug, ServiceCopy> = {
 				question: "Can you make a new key if mine is lost?",
 				answer:
 					"No — we open vehicles when the keys are inside. If the key is lost, we can tow the vehicle to a dealership or locksmith of your choice.",
+			},
+			{
+				question: "Do I need to prove the car is mine?",
+				answer:
+					"Yes. Once the door is open, our technician will ask to see the vehicle registration or ID that matches it. This protects you and every other driver from someone else unlocking your car.",
 			},
 		],
 	},
@@ -268,7 +329,24 @@ const ServiceIntro = ({ service }: { service: ServiceCopy }) => (
 	</Row>
 );
 
-const ServiceFeatures = ({ features }: { features: readonly string[] }) => (
+const ServiceSections = ({ sections }: { sections: NonNullable<ServiceCopy["sections"]> }) => (
+	<Row className="justify-content-center">
+		<Col lg={10}>
+			{sections.map(section => (
+				<section key={section.heading} className="mb-4">
+					<h2 className="h4 fw-bold mb-3">{section.heading}</h2>
+					{section.paragraphs.map((p, i) => (
+						<p key={i} className="text-secondary lh-lg mb-3">
+							{renderBold(p)}
+						</p>
+					))}
+				</section>
+			))}
+		</Col>
+	</Row>
+);
+
+const ServiceFeatures =({ features }: { features: readonly string[] }) => (
 	<Row className="mt-5 justify-content-center">
 		<Col lg={10}>
 			<Card className="border-0 bg-light p-4 rounded-4 shadow-sm mb-5">
@@ -343,6 +421,7 @@ const buildServiceSchema = (slug: ServiceSlug, service: ServiceCopy, pageUrl: st
 	"@id": `${pageUrl}#service`,
 	name: service.title,
 	serviceType: SERVICE_LINKS[slug].label,
+	...(service.alternateNames ? { alternateName: service.alternateNames } : {}),
 	description: service.metaDesc,
 	url: pageUrl,
 	image: absoluteUrl(service.image.src),
@@ -376,6 +455,7 @@ const ServiceDetailPage = () => {
 			/>
 			<Container className="py-4">
 				<ServiceIntro service={service} />
+				{service.sections && <ServiceSections sections={service.sections} />}
 				<ServiceFeatures features={service.features} />
 				<ServiceFaq label={label} faqs={service.faqs} />
 				<ServiceAreaLinks label={label} />

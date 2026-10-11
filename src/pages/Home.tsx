@@ -1,6 +1,6 @@
 import { Container, Row, Col, Button, Card, Stack, Accordion } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { Phone, Shield, Truck, Star, ArrowRight, Wrench, Award, ShieldAlert, MapPin } from "lucide-react";
+import { Phone, Shield, Truck, Star, ArrowRight, Wrench, Award, ShieldAlert, MapPin, KeyRound } from "lucide-react";
 import SEO from "../components/SEO";
 import TowZoneNotice from "../components/TowZoneNotice";
 import { IMAGES } from "../assets/images";
@@ -19,8 +19,16 @@ const HOME_SERVICES = [
 		image: IMAGES.accidentTowing,
 	},
 	{
+		title: "Car Lockout",
+		description: "Locked your keys in the car? We unlock car doors and trunks 24/7.",
+		icon: KeyRound,
+		link: servicePath("lockout"),
+		anchor: "Car lockout service in Brampton",
+		image: IMAGES.carLockout,
+	},
+	{
 		title: "Roadside Assistance",
-		description: "Flat tire changes, battery boosts and car lockouts, 24/7.",
+		description: "Flat tire changes and battery boosts, 24/7.",
 		icon: Wrench,
 		link: servicePath("jump-start"),
 		anchor: "Battery boost and roadside help",
@@ -54,6 +62,10 @@ const FAQS = [
 		a: "Coverage depends on your policy and the circumstances of the claim. Ask your insurer or broker what your policy covers for towing and storage. Whoever pays, you're entitled to an itemized invoice before payment.",
 	},
 	{
+		q: "I locked my keys in my car in Brampton — can you help?",
+		a: "Yes. Our car lockout service runs 24/7 across Brampton and the GTA. Call with your location and your vehicle's make, model and year and we'll quote the price before dispatch. If a child or pet is locked inside, call 911 first.",
+	},
+	{
 		q: "Do you tow AWD and luxury vehicles?",
 		a: "Yes. Flatbed towing keeps all four wheels off the ground and is commonly preferred for AWD and many 4WD vehicles. Tell us your drivetrain when you call.",
 	},
@@ -80,8 +92,8 @@ const HeroSection = () => (
 			<div className="mt-4">
 				<h1 className="fw-bold text-white mb-4">24/7 Tow Truck & Roadside Assistance in Brampton</h1>
 				<p className="lead mb-5 text-white-50 mx-auto" style={{ maxWidth: "42rem" }}>
-					Emergency towing, accident towing, flatbed towing and roadside assistance across
-					Brampton and the GTA. {DISPATCH_MESSAGE.short}.
+					Emergency towing, accident towing, flatbed towing, car lockouts and roadside
+					assistance across Brampton and the GTA. {DISPATCH_MESSAGE.short}.
 				</p>
 				<Stack gap={3} className="justify-content-center align-items-center flex-md-row">
 					<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg">
@@ -186,7 +198,7 @@ const ServicesSection = () => (
 			<div className="text-center mb-5">
 				<h2 className="display-5 fw-bold">Core Towing Services</h2>
 			</div>
-			<Row xs={1} lg={3} className="g-4">
+			<Row xs={1} md={2} xl={4} className="g-4">
 				{HOME_SERVICES.map(service => (
 					<Col key={service.link}>
 						<Link to={service.link} className="text-decoration-none h-100 d-block">
@@ -317,10 +329,10 @@ const BLOG_TEASERS = [
 	{
 		badge: "Car Tips",
 		bg: "success",
-		title: "Dead Battery vs Bad Alternator",
-		text: "How to tell which one you're dealing with before you buy parts.",
-		to: "/blog/dead-battery-vs-bad-alternator",
-		anchor: "Dead battery vs alternator",
+		title: "Locked Your Keys in the Car?",
+		text: "What to check first, when to call 911, and how to get back in without damage.",
+		to: "/blog/locked-keys-in-car-what-to-do",
+		anchor: "What to do when keys are locked in your car",
 	},
 ] as const;
 
@@ -408,7 +420,7 @@ const Home = () => (
 	<div className="bg-light">
 		<SEO
 			title="24/7 Tow Truck Brampton | Roadside & Towing | Pixel Towing"
-			description="24/7 tow truck in Brampton — emergency towing, accident towing, flatbed towing and roadside assistance across the GTA. Call 647-673-9755."
+			description="24/7 tow truck in Brampton — emergency, accident and flatbed towing, car lockouts and roadside assistance across the GTA. Call 647-673-9755."
 			canonical={`${SITE_ORIGIN}/`}
 		/>
 		<HeroSection />

@@ -62,6 +62,22 @@ _Last updated: September 30, 2026 (production SEO pass)._
 - [ ] After deploying: Search Console URL Inspection on key pages, Rich Results
       Test on a service, location and blog page, and resubmit the sitemap.
 
+## Car lockout ranking (October 11, 2026)
+On-site: `/services/lockout` rewritten around "car lockout Brampton", "locked keys
+in car", "keys locked in trunk", push-to-start fob lockouts; homepage now has a
+Car Lockout card + FAQ; new article `/blog/locked-keys-in-car-what-to-do`;
+business schema lists every service in `hasOfferCatalog`.
+
+"Near me" lockout searches are decided mostly by the Google Map Pack, not the site:
+- [ ] Google Business Profile → Services: add "Car lockout service" with a description
+      and link it to `https://pixeltowing.com/services/lockout`.
+- [ ] Post a GBP update about 24/7 car lockouts with a real photo from a job.
+- [ ] After lockout jobs, ask customers for a review that mentions the lockout
+      (send them to `/review`). Steady new reviews matter more than the total count.
+- [ ] Confirm the "we check ID / registration after opening" policy is accurate
+      (lockout FAQ). Remove it if not.
+- [ ] Search Console: request indexing for `/services/lockout` and the new article.
+
 ## Off-site (unchanged, still worth doing)
 - Keep Google Business Profile NAP exactly matching the site; add real photos.
 - Respond to reviews; ask satisfied customers to review via `/review`.

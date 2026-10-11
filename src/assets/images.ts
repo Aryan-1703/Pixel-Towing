@@ -45,7 +45,7 @@ export const IMAGES = {
 		src: carLockout,
 		width: 612,
 		height: 408,
-		alt: "Technician opening a locked car door",
+		alt: "Technician unlocking a car door with keys locked inside during a car lockout call",
 	},
 	scrapCarRemoval: {
 		src: scrapCarRemoval,

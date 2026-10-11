@@ -15,4 +15,5 @@ export const BLOG_IMAGES: Record<BlogSlug, SiteImage> = {
 	"oem-vs-aftermarket-parts-collision-repair": IMAGES.accidentTowing,
 	"deductible-waived-collision-repair-brampton": IMAGES.accidentTowing,
 	"collision-repair-rental-car-brampton": IMAGES.flatbedTowing,
+	"locked-keys-in-car-what-to-do": IMAGES.carLockout,
 };

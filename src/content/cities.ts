@@ -366,11 +366,36 @@ export const CITIES: Record<CitySlug, CityContent> = {
 	},
 };
 
+/**
+ * Wikipedia article for each area. Emitted as schema `sameAs` so search and AI
+ * engines resolve "Acton" or "Erin" to the Ontario place, not a namesake.
+ */
+const AREA_WIKIPEDIA: Record<CitySlug | "brampton", string> = {
+	brampton: "https://en.wikipedia.org/wiki/Brampton",
+	mississauga: "https://en.wikipedia.org/wiki/Mississauga",
+	caledon: "https://en.wikipedia.org/wiki/Caledon,_Ontario",
+	etobicoke: "https://en.wikipedia.org/wiki/Etobicoke",
+	vaughan: "https://en.wikipedia.org/wiki/Vaughan",
+	toronto: "https://en.wikipedia.org/wiki/Toronto",
+	georgetown: "https://en.wikipedia.org/wiki/Georgetown,_Ontario",
+	"halton-hills": "https://en.wikipedia.org/wiki/Halton_Hills",
+	acton: "https://en.wikipedia.org/wiki/Acton,_Ontario",
+	erin: "https://en.wikipedia.org/wiki/Erin,_Ontario",
+};
+
 /** Every service area shown on the /locations hub, nav and footer. Brampton is the homepage. */
 export const SERVICE_AREAS: readonly { slug: CitySlug | "brampton"; name: string; path: string }[] = [
 	{ slug: "brampton", name: "Brampton", path: "/" },
 	...CITY_SLUGS.map(slug => ({ slug, name: CITIES[slug].name, path: `/locations/${slug}` })),
 ];
+
+/** schema.org City node for a service area, pinned to Ontario. */
+export const areaServedSchema = (slug: CitySlug | "brampton") => ({
+	"@type": "City",
+	name: slug === "brampton" ? "Brampton" : CITIES[slug].name,
+	sameAs: AREA_WIKIPEDIA[slug],
+	containedInPlace: { "@type": "State", name: "Ontario", sameAs: "https://en.wikipedia.org/wiki/Ontario" },
+});
 
 export const serviceAreaBySlug = (slug: string) =>
 	SERVICE_AREAS.find(area => area.slug === slug);

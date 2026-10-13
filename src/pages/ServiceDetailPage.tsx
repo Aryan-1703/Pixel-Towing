@@ -7,7 +7,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import NotFound from "./NotFound";
 import { IMAGES, type SiteImage } from "../assets/images";
 import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
-import { SERVICE_AREAS } from "../content/cities";
+import { SERVICE_AREAS, areaServedSchema } from "../content/cities";
 import { SERVICE_LINKS, isServiceSlug, servicePath, type ServiceSlug } from "../content/services";
 
 interface ServiceCopy {
@@ -426,7 +426,7 @@ const buildServiceSchema = (slug: ServiceSlug, service: ServiceCopy, pageUrl: st
 	url: pageUrl,
 	image: absoluteUrl(service.image.src),
 	provider: BUSINESS_REF,
-	areaServed: SERVICE_AREAS.map(area => ({ "@type": "City", name: area.name })),
+	areaServed: SERVICE_AREAS.map(area => areaServedSchema(area.slug)),
 });
 
 const ServiceDetailPage = () => {

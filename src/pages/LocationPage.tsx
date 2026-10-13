@@ -8,12 +8,19 @@ import TowZoneNotice from "../components/TowZoneNotice";
 import NotFound from "./NotFound";
 import { IMAGES } from "../assets/images";
 import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
-import { CITIES, isCitySlug, serviceAreaBySlug, type CityContent } from "../content/cities";
+import {
+	CITIES,
+	areaServedSchema,
+	isCitySlug,
+	serviceAreaBySlug,
+	type CityContent,
+	type CitySlug,
+} from "../content/cities";
 import { SERVICE_SLUGS, SERVICE_LINKS, ACCIDENT_RECOVERY, servicePath } from "../content/services";
 
 import heroBg from "/tow.jpg";
 
-const buildServiceSchema = (city: CityContent, pageUrl: string) => ({
+const buildServiceSchema = (slug: CitySlug, city: CityContent, pageUrl: string) => ({
 	"@context": "https://schema.org",
 	"@type": "Service",
 	"@id": `${pageUrl}#service`,
@@ -22,7 +29,7 @@ const buildServiceSchema = (city: CityContent, pageUrl: string) => ({
 	description: city.metaDescription,
 	url: pageUrl,
 	provider: BUSINESS_REF,
-	areaServed: { "@type": "City", name: city.name },
+	areaServed: areaServedSchema(slug),
 });
 
 const CityServices = ({ city }: { city: CityContent }) => (
@@ -203,7 +210,7 @@ const LocationPage = () => {
 				imageAlt={IMAGES.flatbedTowing.alt}
 			/>
 			<Helmet>
-				<script type="application/ld+json">{JSON.stringify(buildServiceSchema(city, pageUrl))}</script>
+				<script type="application/ld+json">{JSON.stringify(buildServiceSchema(cityId, city, pageUrl))}</script>
 			</Helmet>
 			<CityHero city={city} />
 			<Breadcrumbs

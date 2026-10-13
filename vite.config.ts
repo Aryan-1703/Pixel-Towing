@@ -7,6 +7,7 @@ import {
 	NOT_FOUND_PRERENDER_PATH,
 	SITE_MANIFEST_FILE,
 } from "./src/content/routes";
+import { buildLlmsTxt } from "./src/content/llms";
 
 const ISO_DATE = /^\d{4}-\d{2}-\d{2}$/;
 
@@ -36,7 +37,7 @@ function buildSitemap(): string {
 	return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
-/** Emits sitemap.xml and the prerender/server manifest from src/content/routes.ts. */
+/** Emits sitemap.xml, llms.txt and the prerender/server manifest from the content modules. */
 function siteManifestPlugin(): Plugin {
 	return {
 		name: "pixel-site-manifest",
@@ -46,6 +47,7 @@ function siteManifestPlugin(): Plugin {
 		},
 		generateBundle() {
 			this.emitFile({ type: "asset", fileName: "sitemap.xml", source: buildSitemap() });
+			this.emitFile({ type: "asset", fileName: "llms.txt", source: buildLlmsTxt() });
 			this.emitFile({
 				type: "asset",
 				fileName: SITE_MANIFEST_FILE,

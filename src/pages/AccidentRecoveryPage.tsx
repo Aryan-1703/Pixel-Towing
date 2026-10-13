@@ -7,7 +7,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import TowZoneNotice from "../components/TowZoneNotice";
 import { IMAGES } from "../assets/images";
 import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
-import { SERVICE_AREAS } from "../content/cities";
+import { SERVICE_AREAS, areaServedSchema } from "../content/cities";
 
 const PAGE_URL = absoluteUrl("/accident-recovery");
 const PEEL_COLLISION_REPORTING_URL =
@@ -26,7 +26,7 @@ const accidentServiceSchema = {
 	url: PAGE_URL,
 	image: absoluteUrl(IMAGES.accidentTowing.src),
 	provider: BUSINESS_REF,
-	areaServed: SERVICE_AREAS.map(area => ({ "@type": "City", name: area.name })),
+	areaServed: SERVICE_AREAS.map(area => areaServedSchema(area.slug)),
 };
 
 const ADVANTAGES = [

@@ -78,6 +78,37 @@ business schema lists every service in `hasOfferCatalog`.
       (lockout FAQ). Remove it if not.
 - [ ] Search Console: request indexing for `/services/lockout` and the new article.
 
+## AI search: ChatGPT, Claude, Perplexity, Gemini, Copilot (October 13, 2026)
+AI assistants answer "tow truck in Brampton" by searching the web (mostly Bing for
+ChatGPT/Copilot, Google for Gemini, their own crawlers for Claude/Perplexity) and
+citing pages they can read without JavaScript. Prerendering already covers that.
+- `public/robots.txt` explicitly allows the AI search, user-fetch and training bots.
+- `/llms.txt` is generated at build time (`src/content/llms.ts`) from the same
+  content modules as the pages: key facts, services, areas and guides as Markdown.
+  Service one-liners are `summary` in `services.ts`; keep them matching the page copy.
+- Schema: service areas carry Wikipedia `sameAs` + Ontario (so "Acton"/"Erin" are
+  not confused with namesakes); business node adds `contactPoint`, `founder`
+  (links to the About page Person), `knowsAbout` and Accident Recovery in the
+  offer catalogue; a `WebSite` node names the business as publisher.
+- IndexNow: `npm run indexnow` after each deploy pushes every sitemap URL to Bing
+  (which feeds ChatGPT search and Copilot); pass paths to submit only those. The
+  key file is `public/cd50e408811dc2a962978440ded267f4.txt` — don't delete it.
+
+What moves AI answers most is off-site. Assistants repeat what many independent
+sources agree on:
+- [ ] Bing Webmaster Tools: verify pixeltowing.com (import from Search Console),
+      submit the sitemap. ChatGPT search relies heavily on Bing's index.
+- [ ] Bing Places for Business: claim the listing with NAP identical to Google.
+- [ ] Apple Business Connect: claim the listing (Siri / Apple Maps / Apple Intelligence).
+- [ ] Get listed with identical NAP on the directories assistants cite most for
+      local services: Yelp, YellowPages.ca, BBB, HomeStars, 411.ca, Canada411.
+- [ ] Reviews on Google *and* Yelp/BBB that mention the service and city
+      ("car lockout in Mississauga"). Assistants quote review themes.
+- [ ] Local mentions: Brampton community sites, local news, sponsorships. Unpaid,
+      genuine mentions only. Don't post fake recommendations on Reddit or forums.
+- [ ] Monthly check: ask ChatGPT, Claude, Perplexity and Gemini "best tow truck in
+      Brampton" / "locked keys in car Brampton" and note whether Pixel Towing is named.
+
 ## Off-site (unchanged, still worth doing)
 - Keep Google Business Profile NAP exactly matching the site; add real photos.
 - Respond to reviews; ask satisfied customers to review via `/review`.

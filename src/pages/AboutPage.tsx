@@ -5,7 +5,7 @@ import { Phone, Mail, Shield, BookOpen } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { AUTHOR } from "../content/author";
-import { BUSINESS_REF, absoluteUrl } from "../content/site";
+import { BUSINESS_REF, ROADLIFT, absoluteUrl } from "../content/site";
 
 const PAGE_URL = absoluteUrl("/about");
 
@@ -38,7 +38,16 @@ const AboutPage = () => {
 		name: AUTHOR.name,
 		jobTitle: AUTHOR.jobTitle,
 		url: PAGE_URL,
-		worksFor: BUSINESS_REF,
+		// RoadLift's Organization node names this same @id as its founder.
+		worksFor: [
+			BUSINESS_REF,
+			{
+				"@type": "Organization",
+				"@id": `${ROADLIFT.siteUrl}/#organization`,
+				name: ROADLIFT.name,
+				url: ROADLIFT.siteUrl,
+			},
+		],
 		email: "mailto:info@pixeltowing.com",
 		telephone: "+16476739755",
 	};

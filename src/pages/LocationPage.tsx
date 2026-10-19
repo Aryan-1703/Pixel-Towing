@@ -6,8 +6,9 @@ import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import TowZoneNotice from "../components/TowZoneNotice";
 import NotFound from "./NotFound";
+import { RoadLiftCard } from "../components/RoadLiftPromo";
 import { IMAGES } from "../assets/images";
-import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
+import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, ROADLIFT, absoluteUrl } from "../content/site";
 import {
 	CITIES,
 	areaServedSchema,
@@ -219,6 +220,11 @@ const LocationPage = () => {
 			/>
 			<CityOverview city={city} />
 			<CityServices city={city} />
+			{ROADLIFT.citySlugs.includes(cityId) && (
+				<Container>
+					<RoadLiftCard roadLiftPath={`/${cityId}`} task={`roadside help in ${city.name}`} />
+				</Container>
+			)}
 			<CityFaq city={city} />
 			<NearbyAreas city={city} />
 			<CityCta city={city} />

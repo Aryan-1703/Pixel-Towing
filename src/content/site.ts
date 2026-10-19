@@ -68,3 +68,43 @@ export const DISPATCH_MESSAGE = {
 	short: "Fast 24/7 dispatch",
 	full: "Fast 24/7 dispatch. Response time varies by location, traffic, weather and current demand.",
 } as const;
+
+/**
+ * RoadLift — the roadside assistance app from the team behind Pixel Towing.
+ *
+ * Every claim here must match roadlift.ca and the live app: iPhone only for
+ * now, Mississauga and Brampton only, towing / boosts / flat tires / lockouts /
+ * fuel delivery. The promo code must exist and be active in the RoadLift admin
+ * panel; set `promo` to null to hide the offer everywhere.
+ */
+interface RoadLiftConfig {
+	readonly name: string;
+	readonly siteUrl: string;
+	readonly appStoreUrl: string;
+	/** Appended to roadlift.ca links so RoadLift's analytics credit this site. */
+	readonly utm: string;
+	readonly androidAvailable: boolean;
+	readonly promo: { readonly code: string; readonly offer: string } | null;
+	readonly features: readonly string[];
+	/** Pixel Towing city slugs RoadLift currently serves ("brampton" is the homepage). */
+	readonly citySlugs: readonly string[];
+}
+
+export const ROADLIFT: RoadLiftConfig = {
+	name: "RoadLift",
+	siteUrl: "https://roadlift.ca",
+	appStoreUrl: "https://apps.apple.com/ca/app/roadlift/id6761619708",
+	utm: "utm_source=pixeltowing&utm_medium=referral&utm_campaign=cross_promo",
+	androidAvailable: false,
+	promo: { code: "PIXEL15", offer: "$15 off" },
+	// Don't say "fixed price": the search-radius travel fee can raise the price after confirming.
+	features: [
+		"Upfront price before you confirm — no calling around for quotes",
+		"Live dispatch: see when a driver accepts and track them on the map",
+		"Chat with your driver and pay in the app",
+	],
+	citySlugs: ["brampton", "mississauga"],
+};
+
+/** roadlift.ca URL for a path, tagged with this site's UTM parameters. */
+export const roadLiftUrl = (path = "/"): string => `${ROADLIFT.siteUrl}${path}?${ROADLIFT.utm}`;

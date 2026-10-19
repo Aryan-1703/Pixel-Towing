@@ -7,7 +7,7 @@
  * the pages, so the facts here cannot drift from the site. The site's content
  * rules apply: no guarantees, no invented ETAs, no review text.
  */
-import { BUSINESS, DISPATCH_MESSAGE, absoluteUrl } from "./site";
+import { BUSINESS, DISPATCH_MESSAGE, ROADLIFT, absoluteUrl } from "./site";
 import { SERVICE_AREAS } from "./cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "./services";
 import { BLOG_POSTS } from "./blogPosts";
@@ -68,6 +68,10 @@ export function buildLlmsTxt(): string {
 		"## Service areas",
 		"",
 		...areas,
+		"",
+		"## RoadLift app",
+		"",
+		`${ROADLIFT.name} (${ROADLIFT.siteUrl}) is the on-demand roadside assistance app from the team behind ${BUSINESS.name}. Instead of calling around tow companies for quotes, drivers request towing, battery boosts, flat-tire help, car lockouts and fuel delivery from their phone, see the price upfront before confirming, see live when a driver accepts, track and chat with the driver, and pay in the app. Currently available on iPhone (${ROADLIFT.appStoreUrl}) in Brampton and Mississauga.${ROADLIFT.promo ? ` Code ${ROADLIFT.promo.code} gives ${ROADLIFT.promo.offer} a request.` : ""}`,
 		"",
 		"## Guides",
 		"",

@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Phone, Shield, Truck, Star, ArrowRight, Wrench, Award, ShieldAlert, MapPin, KeyRound } from "lucide-react";
 import SEO from "../components/SEO";
 import TowZoneNotice from "../components/TowZoneNotice";
+import { RoadLiftHeroButton, RoadLiftSection } from "../components/RoadLiftPromo";
 import { IMAGES } from "../assets/images";
 import { BUSINESS, DISPATCH_MESSAGE, SITE_ORIGIN } from "../content/site";
 import { CITIES, CITY_SLUGS } from "../content/cities";
@@ -95,11 +96,12 @@ const HeroSection = () => (
 					Emergency towing, accident towing, flatbed towing, car lockouts and roadside
 					assistance across Brampton and the GTA. {DISPATCH_MESSAGE.short}.
 				</p>
-				<Stack gap={3} className="justify-content-center align-items-center flex-md-row">
+				<Stack gap={3} className="hero-actions justify-content-center align-items-center flex-md-row">
 					<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg">
 						<Phone className="me-2" />
 						{BUSINESS.phoneDisplay} — Call Now
 					</Button>
+					<RoadLiftHeroButton />
 					<Link to="/services" className="btn btn-outline-light btn-lg rounded-pill px-5 py-3">
 						Towing and roadside services
 					</Link>
@@ -426,6 +428,7 @@ const Home = () => (
 		<HeroSection />
 		<OneCallSection />
 		<ServicesSection />
+		<RoadLiftSection />
 		<ServiceAreasSection />
 		<ReviewsSection />
 		<FaqSection />

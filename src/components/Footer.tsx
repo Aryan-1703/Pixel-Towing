@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Shield } from "lucide-react";
 import { BUSINESS, COMPLIANCE } from "../content/site";
 import { SERVICE_AREAS } from "../content/cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
+import { RoadLiftFooterNote } from "./RoadLiftPromo";
 
 const footerStyles = `
   .footer-bg {
@@ -209,6 +210,10 @@ const Footer: React.FC = () => {
 					</Row>
 
 					<ComplianceInfo />
+
+					<div className="mt-4 text-center text-md-start small">
+						<RoadLiftFooterNote />
+					</div>
 
 					{/* FOOTER BOTTOM */}
 					<Row className="mt-5 pt-4 footer-bottom align-items-center">

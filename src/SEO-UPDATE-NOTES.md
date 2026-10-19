@@ -109,6 +109,26 @@ sources agree on:
 - [ ] Monthly check: ask ChatGPT, Claude, Perplexity and Gemini "best tow truck in
       Brampton" / "locked keys in car Brampton" and note whether Pixel Towing is named.
 
+## RoadLift cross-promotion (October 19, 2026)
+RoadLift (roadlift.ca) is the roadside app from the team behind Pixel Towing.
+All facts and the promo code live in `ROADLIFT` in `src/content/site.ts`; UI is
+`src/components/RoadLiftPromo.tsx`. Phone dispatch stays the primary action.
+- Homepage: "Book in the RoadLift app" hero button (jumps to `#roadlift`) and a
+  full section with the promo code, after Core Towing Services.
+- Service pages: a card deep-linking to the matching roadlift.ca page, on every
+  service RoadLift offers (not scrap removal or accident recovery).
+- City pages: a card only where RoadLift operates (`citySlugs`: Brampton,
+  Mississauga). Footer: one line on every page. `/llms.txt`: a RoadLift section.
+- roadlift.ca links carry `utm_source=pixeltowing` for RoadLift's GA4. The promo
+  code is the real attribution: its usage count = app customers from this site.
+
+Keep it true:
+- [ ] Create `PIXEL15` ($15 fixed, active) in the RoadLift admin panel **before
+      deploying**. Consider a minimum order amount and an expiry.
+- [ ] When Android launches, set `androidAvailable: true` and add the Play link.
+- [ ] When RoadLift adds a city, add its slug to `citySlugs`. When the offer
+      ends, set `promo: null` (it disappears everywhere).
+
 ## Off-site (unchanged, still worth doing)
 - Keep Google Business Profile NAP exactly matching the site; add real photos.
 - Respond to reviews; ask satisfied customers to review via `/review`.

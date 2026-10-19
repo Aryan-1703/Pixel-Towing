@@ -127,3 +127,10 @@ a {
 .accordion-button:not(.collapsed)::after {
 	filter: sepia(100%) hue-rotate(5deg) saturate(500%);
 }
+
+/* Three hero actions (call, RoadLift, services) only fit on one row from xl up. */
+@media (min-width: 1200px) {
+	.hero-actions .btn {
+		white-space: nowrap;
+	}
+}

@@ -5,6 +5,7 @@ import { Phone, KeyRound, Wrench, Zap, Truck, CheckCircle, MapPin, type LucideIc
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import NotFound from "./NotFound";
+import { RoadLiftCard } from "../components/RoadLiftPromo";
 import { IMAGES, type SiteImage } from "../assets/images";
 import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
 import { SERVICE_AREAS, areaServedSchema } from "../content/cities";
@@ -26,6 +27,14 @@ interface ServiceCopy {
 	features: readonly string[];
 	faqs: readonly { question: string; answer: string }[];
 }
+
+/** Matching service page on roadlift.ca. Scrap removal isn't offered in the app. */
+const ROADLIFT_SERVICES: Partial<Record<ServiceSlug, { path: string; task: string }>> = {
+	lockout: { path: "/car-lockout", task: "a car lockout" },
+	"tire-change": { path: "/flat-tire-assistance", task: "flat-tire help" },
+	"jump-start": { path: "/battery-boost", task: "a battery boost" },
+	"vehicle-transport": { path: "/towing", task: "a tow" },
+};
 
 const SERVICES: Record<ServiceSlug, ServiceCopy> = {
 	lockout: {
@@ -436,6 +445,7 @@ const ServiceDetailPage = () => {
 	const service = SERVICES[serviceId];
 	const pageUrl = absoluteUrl(servicePath(serviceId));
 	const label = SERVICE_LINKS[serviceId].label;
+	const roadLift = ROADLIFT_SERVICES[serviceId];
 
 	return (
 		<div style={{ paddingTop: "76px" }}>
@@ -457,6 +467,7 @@ const ServiceDetailPage = () => {
 				<ServiceIntro service={service} />
 				{service.sections && <ServiceSections sections={service.sections} />}
 				<ServiceFeatures features={service.features} />
+				{roadLift && <RoadLiftCard roadLiftPath={roadLift.path} task={roadLift.task} />}
 				<ServiceFaq label={label} faqs={service.faqs} />
 				<ServiceAreaLinks label={label} />
 			</Container>

@@ -5,7 +5,7 @@ import { Phone, Mail, Shield, BookOpen } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { AUTHOR } from "../content/author";
-import { BUSINESS_REF, ROADLIFT, absoluteUrl } from "../content/site";
+import { BUSINESS, BUSINESS_REF, ROADLIFT, absoluteUrl, roadLiftUrl } from "../content/site";
 
 const PAGE_URL = absoluteUrl("/about");
 
@@ -34,7 +34,7 @@ const AboutPage = () => {
 	const personSchema = {
 		"@context": "https://schema.org",
 		"@type": "Person",
-		"@id": `${PAGE_URL}#author`,
+		"@id": AUTHOR.schemaId,
 		name: AUTHOR.name,
 		jobTitle: AUTHOR.jobTitle,
 		url: PAGE_URL,
@@ -48,8 +48,8 @@ const AboutPage = () => {
 				url: ROADLIFT.siteUrl,
 			},
 		],
-		email: "mailto:info@pixeltowing.com",
-		telephone: "+16476739755",
+		email: `mailto:${BUSINESS.email}`,
+		telephone: BUSINESS.phoneE164,
 	};
 
 	return (
@@ -98,6 +98,17 @@ const AboutPage = () => {
 								article states a legal or regulatory requirement, it links to the
 								government source so you can check it yourself.
 							</p>
+
+							{/* Visible counterpart of the schema's worksFor link to RoadLift. */}
+							<p className="text-secondary lh-lg mt-3 mb-0">
+								{AUTHOR.name} is also the founder of{" "}
+								<a href={roadLiftUrl()} target="_blank" rel="noopener">
+									{ROADLIFT.name}
+									<span className="visually-hidden"> (opens in a new tab)</span>
+								</a>
+								, a separate roadside assistance app. Calls to {BUSINESS.phoneDisplay} go to
+								Pixel Towing dispatch.
+							</p>
 						</Card>
 
 						<h2 className="h5 fw-bold mb-3 d-flex align-items-center gap-2">
@@ -134,18 +145,18 @@ const AboutPage = () => {
 							</p>
 							<div className="d-flex flex-wrap gap-3 mt-2">
 								<a
-									href="mailto:info@pixeltowing.com"
+									href={`mailto:${BUSINESS.email}`}
 									className="d-flex align-items-center gap-2 text-decoration-none"
 								>
 									<Mail size={16} className="text-secondary" />
-									info@pixeltowing.com
+									{BUSINESS.email}
 								</a>
 								<a
-									href="tel:+16476739755"
+									href={BUSINESS.phoneHref}
 									className="d-flex align-items-center gap-2 text-decoration-none"
 								>
 									<Phone size={16} className="text-warning" />
-									647-673-9755
+									{BUSINESS.phoneDisplay}
 								</a>
 							</div>
 						</Card>

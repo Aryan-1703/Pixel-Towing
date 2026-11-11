@@ -1,0 +1,45 @@
+/* Sticky bottom call bar — phones and tablets only (Bootstrap below lg). */
+
+:root {
+	--call-bar-padding: 8px;
+	--call-bar-button-height: 56px;
+	--call-bar-height: calc(var(--call-bar-button-height) + 2 * var(--call-bar-padding));
+}
+
+.mobile-call-bar {
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	/* Same layer as Bootstrap's fixed navbar; below modals and dropdown menus. */
+	z-index: 1030;
+	padding: var(--call-bar-padding) 12px calc(var(--call-bar-padding) + env(safe-area-inset-bottom, 0px));
+	background-color: #0f172a;
+	box-shadow: 0 -4px 16px rgba(0, 0, 0, 0.25);
+}
+
+.mobile-call-bar .btn {
+	min-height: var(--call-bar-button-height);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.125rem;
+	white-space: nowrap;
+}
+
+/* Keep the end of every page (footer links, copyright) clear of the bar. */
+@media (max-width: 991.98px) {
+	body {
+		padding-bottom: calc(var(--call-bar-height) + env(safe-area-inset-bottom, 0px));
+	}
+}
+
+@media print {
+	.mobile-call-bar {
+		display: none !important;
+	}
+
+	body {
+		padding-bottom: 0;
+	}
+}

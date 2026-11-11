@@ -1,7 +1,18 @@
 import { Container, Row, Col, Card, Button, Accordion, Stack, Badge } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
 import { Link } from "react-router-dom";
-import { Phone, CheckCircle, ShieldAlert, Car, Wrench, FileText, DollarSign, Award, MessageSquare } from "lucide-react";
+import {
+	Phone,
+	CheckCircle,
+	ShieldAlert,
+	Car,
+	Wrench,
+	FileText,
+	DollarSign,
+	Award,
+	MessageSquare,
+	type LucideIcon,
+} from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import TowZoneNotice from "../components/TowZoneNotice";
@@ -29,36 +40,50 @@ const accidentServiceSchema = {
 	areaServed: SERVICE_AREAS.map(area => areaServedSchema(area.slug)),
 };
 
-const ADVANTAGES = [
+interface Advantage {
+	icon: LucideIcon;
+	color: string;
+	title: string;
+	desc: string;
+	/** Supporting article, linked under the card. */
+	guide?: { to: string; label: string };
+}
+
+const ADVANTAGES: readonly Advantage[] = [
 	{
 		icon: ShieldAlert,
 		color: "text-warning",
 		title: "Collision Reporting Centre Drop-Off",
 		desc: "If your vehicle can't be driven, we can tow it to a Collision Reporting Centre so you can make your report, then on to the shop you choose.",
+		guide: { to: "/blog/what-to-do-after-car-accident-brampton", label: "What to do after a Brampton accident" },
 	},
 	{
 		icon: Wrench,
 		color: "text-primary",
 		title: "Collision Repair Coordination",
-		desc: "Repairs at a collision facility we have an interest in, with OEM parts as our standard where they're available and approved on your estimate. Ask us for the written warranty terms.",
+		desc: "Repairs at a collision facility we have an interest in. On newer vehicles we install OEM parts when your insurer approves them on the estimate; on older vehicles, insurers usually direct aftermarket parts. Ask us for the written warranty terms.",
+		guide: { to: "/blog/oem-vs-aftermarket-parts-collision-repair", label: "OEM vs aftermarket parts explained" },
 	},
 	{
 		icon: Car,
 		color: "text-success",
 		title: "Rental Vehicles",
 		desc: "Rental vehicles through a business we have an interest in — often the same day, subject to availability. What your insurer pays depends on your coverage.",
+		guide: { to: "/blog/collision-repair-rental-car-brampton", label: "How rental coverage works" },
 	},
 	{
 		icon: DollarSign,
 		color: "text-success",
 		title: "Deductible Help on Some Claims",
 		desc: "On some claims we can reduce our own repair price to help with your deductible. It is never billed to your insurer and is written into your repair paperwork.",
+		guide: { to: "/blog/deductible-waived-collision-repair-brampton", label: "What to ask about deductible offers" },
 	},
 	{
 		icon: FileText,
 		color: "text-danger",
 		title: "Total-Loss Support",
-		desc: "If your car is written off, we can move it out of a storage yard and explain what to ask your insurer. See our total loss guide.",
+		desc: "If your car is written off, we can move it out of a storage yard and explain what to ask your insurer.",
+		guide: { to: "/blog/total-loss-vehicle-ontario-guide", label: "Read our total loss guide" },
 	},
 	{
 		icon: Award,
@@ -66,7 +91,7 @@ const ADVANTAGES = [
 		title: "Disclosure Up Front",
 		desc: "We tell you about our interest in the repair facility and rental fleet before any referral. You can choose any other shop or rental company.",
 	},
-] as const;
+];
 
 const PROCESS_STEPS = [
 	{
@@ -141,10 +166,10 @@ const Hero = () => (
 			<Row className="align-items-center g-5">
 				<Col lg={7}>
 					<Badge bg="warning" text="dark" className="rounded-pill mb-3 px-3 py-2">
-						24/7 Accident Towing — Brampton & GTA
+						Available 24/7 — Brampton & GTA
 					</Badge>
 					<h1 className="display-4 fw-bold mb-4 lh-sm">
-						Accident in Brampton or the GTA?
+						Accident Towing in Brampton and the GTA
 						<br />
 						<span style={{ color: "#FBBF24" }}>We'll Tow It and Help With What's Next.</span>
 					</h1>
@@ -153,9 +178,15 @@ const Hero = () => (
 						repair and rental coordination. You decide where your vehicle goes.
 					</p>
 					<Stack gap={3} direction="horizontal" className="flex-wrap">
-						<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg">
+						<Button
+							href={BUSINESS.phoneHref}
+							variant="warning"
+							size="lg"
+							className="fw-bold rounded-pill px-5 py-3 shadow-lg"
+							data-cta="accident-hero-call"
+						>
 							<Phone size={20} className="me-2" />
-							Call Now — {BUSINESS.phoneDisplay}
+							Call {BUSINESS.phoneDisplay}
 						</Button>
 						<Button
 							href={BUSINESS.whatsappUrl}
@@ -174,13 +205,14 @@ const Hero = () => (
 				<Col lg={5}>
 					<Card className="border-0 rounded-4 shadow-lg p-4 bg-white">
 						<h2 className="h5 fw-bold mb-4 text-dark text-center">Just Had an Accident?</h2>
-						<ol className="text-dark fw-medium mb-0 ps-3">
-							<li className="mb-2">Check for injuries — call 911 if anyone is hurt</li>
+						<ul className="text-dark fw-medium mb-3 ps-3">
+							<li className="mb-2">Call 911 if anyone is hurt</li>
 							<li className="mb-2">Move out of traffic and turn on your hazards</li>
-							<li className="mb-2">Photograph the scene and exchange details</li>
-							<li className="mb-2">Don't sign anything you haven't read</li>
 							<li>Call {BUSINESS.phoneDisplay} for a tow</li>
-						</ol>
+						</ul>
+						<Link to="/blog/what-to-do-after-car-accident-brampton" className="small fw-bold">
+							Full step-by-step: what to do after a car accident in Brampton →
+						</Link>
 					</Card>
 				</Col>
 			</Row>
@@ -204,6 +236,11 @@ const AdvantagesSection = () => (
 							<item.icon size={40} className={`${item.color} mb-3`} />
 							<h3 className="h5 fw-bold mb-2">{item.title}</h3>
 							<p className="text-muted small mb-0">{item.desc}</p>
+							{item.guide && (
+								<Link to={item.guide.to} className="small fw-medium mt-3">
+									{item.guide.label} →
+								</Link>
+							)}
 						</Card>
 					</Col>
 				))}
@@ -376,7 +413,7 @@ const AreasAndCta = () => (
 				</p>
 				<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg text-dark">
 					<Phone size={22} className="me-2" />
-					{BUSINESS.phoneDisplay} — Call Now
+					Call {BUSINESS.phoneDisplay}
 				</Button>
 			</Container>
 		</section>

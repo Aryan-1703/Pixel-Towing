@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { Calendar, Clock, Phone } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
-import { BLOG_POSTS, formatPostDate } from "../content/blogPosts";
+import { BLOG_POSTS, formatPostDate, formatReadTime } from "../content/blogPosts";
 import { BLOG_IMAGES } from "../content/blogImages";
 import { BUSINESS, absoluteUrl } from "../content/site";
 
@@ -61,7 +61,7 @@ const BlogPage = () => {
 												<Calendar size={13} /> {formatPostDate(post.datePublished)}
 											</span>
 											<span className="d-flex align-items-center gap-1">
-												<Clock size={13} /> {post.readTime}
+												<Clock size={13} /> {formatReadTime(post.content)}
 											</span>
 										</div>
 									</Card.Body>

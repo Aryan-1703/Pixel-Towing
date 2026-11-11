@@ -39,13 +39,24 @@ const AppNavbar = () => {
 					onClick={() => setExpanded(false)}
 					title="Pixel Towing — 24/7 tow truck in Brampton and the GTA"
 				>
-					<span style={{ color: "#FBBF24" }}>PIXEL</span> TOWING GTA
+					<span style={{ color: "#FBBF24" }}>PIXEL</span> TOWING
 				</Navbar.Brand>
 
-				<Navbar.Toggle
-					aria-controls="basic-navbar-nav"
-					onClick={() => setExpanded(!expanded)}
-				/>
+				{/* Below lg the menu is collapsed, so keep a call button beside the toggle. */}
+				<div className="d-flex align-items-center gap-2 d-lg-none">
+					<a
+						href={BUSINESS.phoneHref}
+						className="btn btn-warning rounded-circle navbar-call-btn"
+						aria-label={`Call Pixel Towing ${BUSINESS.phoneDisplay}`}
+						data-cta="navbar-call-icon"
+					>
+						<Phone size={20} aria-hidden="true" />
+					</a>
+					<Navbar.Toggle
+						aria-controls="basic-navbar-nav"
+						onClick={() => setExpanded(!expanded)}
+					/>
+				</div>
 
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="ms-auto align-items-center text-center">
@@ -83,6 +94,8 @@ const AppNavbar = () => {
 							title="Locations"
 							id="locations-dropdown"
 							className="fw-medium mx-1"
+							// Puts the city links in the prerendered HTML, not only after the first click.
+							renderMenuOnMount
 						>
 							<NavDropdown.Item as={Link} to="/locations" onClick={() => setExpanded(false)} className="fw-bold">
 								All service areas

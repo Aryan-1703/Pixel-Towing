@@ -3,6 +3,7 @@ import AppNavbar from "./components/AppNavbar";
 import Footer from "./components/Footer";
 import ScrollToTop from "./components/ScrollToTop";
 import BusinessSchema from "./components/BusinessSchema";
+import MobileCallBar from "./components/MobileCallBar";
 
 import Home from "./pages/Home";
 import ServicesPage from "./pages/ServicesPage";
@@ -47,6 +48,7 @@ function App() {
 				</Routes>
 			</main>
 			<Footer />
+			<MobileCallBar />
 		</>
 	);
 }

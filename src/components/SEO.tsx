@@ -27,10 +27,12 @@ const SEO = ({
 	canonical,
 	noindex = false,
 	image = BUSINESS.defaultImagePath,
-	imageAlt = "Pixel Towing tow truck in Brampton, Ontario",
+	imageAlt = "Pixel Towing — 24/7 tow truck and roadside assistance in Brampton, Ontario. Call 647-673-9755.",
 	type = "website",
 }: SEOProps) => {
 	const imageUrl = toAbsolute(image);
+	// Only the default card has a known size; page images vary.
+	const isDefaultImage = image === BUSINESS.defaultImagePath;
 
 	return (
 		<Helmet>
@@ -49,6 +51,8 @@ const SEO = ({
 			<meta property="og:description" content={description} />
 			{canonical && <meta property="og:url" content={canonical} />}
 			<meta property="og:image" content={imageUrl} />
+			{isDefaultImage && <meta property="og:image:width" content={String(BUSINESS.defaultImageSize.width)} />}
+			{isDefaultImage && <meta property="og:image:height" content={String(BUSINESS.defaultImageSize.height)} />}
 			<meta property="og:image:alt" content={imageAlt} />
 
 			<meta name="twitter:card" content="summary_large_image" />

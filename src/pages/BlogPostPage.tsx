@@ -1,4 +1,3 @@
-import type { ReactNode } from "react";
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Card, Button, Badge } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
@@ -6,67 +5,68 @@ import { Phone, Calendar, Clock } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import NotFound from "./NotFound";
-import { BLOG_POSTS, findBlogPost, formatPostDate } from "../content/blogPosts";
+import {
+	BLOG_POSTS,
+	RELATED_POSTS,
+	findBlogPost,
+	formatPostDate,
+	formatReadTime,
+	type BlogSlug,
+} from "../content/blogPosts";
 import { BLOG_IMAGES } from "../content/blogImages";
 import type { SiteImage } from "../assets/images";
 import { AUTHOR } from "../content/author";
 import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
 import { SERVICE_SLUGS, SERVICE_LINKS, ACCIDENT_RECOVERY, servicePath } from "../content/services";
+import { renderInline } from "../utils/renderInline";
 
-// Renders **bold** and [text](url) inside a line of body copy.
-// External links open in a new tab so official sources open cleanly.
-const renderInline = (text: string, keyPrefix: string): ReactNode[] => {
-	const tokens = text.split(/(\[[^\]]+\]\([^)]+\)|\*\*[^*]+\*\*)/g);
-	return tokens.filter(Boolean).map((token, i) => {
-		const link = /^\[([^\]]+)\]\(([^)]+)\)$/.exec(token);
-		if (link && link[2].startsWith("/")) {
-			return (
-				<Link key={`${keyPrefix}-${i}`} to={link[2]}>
-					{link[1]}
-				</Link>
-			);
-		}
-		if (link) {
-			const isExternal = link[2].startsWith("http");
-			return (
-				<a
-					key={`${keyPrefix}-${i}`}
-					href={link[2]}
-					{...(isExternal ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-				>
-					{link[1]}
-				</a>
-			);
-		}
-		const bold = /^\*\*([^*]+)\*\*$/.exec(token);
-		if (bold) return <strong key={`${keyPrefix}-${i}`}>{bold[1]}</strong>;
-		return <span key={`${keyPrefix}-${i}`}>{token}</span>;
-	});
+const LIST_MARKER = "- ";
+
+interface ContentLine {
+	text: string;
+	index: number;
+}
+
+/** Consecutive "- " lines become one list block; every other line stays on its own. */
+type ContentBlock = { kind: "line"; line: ContentLine } | { kind: "list"; items: readonly ContentLine[] };
+
+const groupBlocks = (lines: readonly string[]): readonly ContentBlock[] =>
+	lines.reduce<readonly ContentBlock[]>((blocks, text, index) => {
+		if (!text.startsWith(LIST_MARKER)) return [...blocks, { kind: "line", line: { text, index } }];
+		const item = { text: text.slice(LIST_MARKER.length), index };
+		const last = blocks[blocks.length - 1];
+		return last?.kind === "list"
+			? [...blocks.slice(0, -1), { kind: "list", items: [...last.items, item] }]
+			: [...blocks, { kind: "list", items: [item] }];
+	}, []);
+
+const renderLine = ({ text, index: key }: ContentLine) => {
+	if (text.startsWith("## ")) return <h2 key={key} className="fw-bold mt-5 mb-3 h3">{text.slice(3)}</h2>;
+	if (text.startsWith("### ")) return <h3 key={key} className="fw-bold mt-4 mb-2 h5">{text.slice(4)}</h3>;
+	if (text.startsWith("---")) return <hr key={key} className="my-4" />;
+	if (text.trim() === "") return <div key={key} className="mb-2" />;
+	return (
+		<p key={key} className="text-secondary lh-lg mb-3">
+			{renderInline(text, `p${key}`)}
+		</p>
+	);
 };
 
 // Minimal markdown-like renderer for the article bodies in blogPosts.ts.
 const renderContent = (content: string) =>
-	content
-		.trim()
-		.split("\n")
-		.map((line, key) => {
-			if (line.startsWith("## ")) return <h2 key={key} className="fw-bold mt-5 mb-3 h3">{line.slice(3)}</h2>;
-			if (line.startsWith("### ")) return <h3 key={key} className="fw-bold mt-4 mb-2 h5">{line.slice(4)}</h3>;
-			if (line.startsWith("---")) return <hr key={key} className="my-4" />;
-			if (line.startsWith("- ")) {
-				return (
-					<li key={key} className="mb-2 ms-3">
-						{renderInline(line.slice(2), `li${key}`)}
+	groupBlocks(content.trim().split("\n")).map(block =>
+		block.kind === "line" ? (
+			renderLine(block.line)
+		) : (
+			<ul key={`ul${block.items[0].index}`} className="mb-3">
+				{block.items.map(item => (
+					<li key={item.index} className="mb-2">
+						{renderInline(item.text, `li${item.index}`)}
 					</li>
-				);
-			}
-			if (line.trim() === "") return <div key={key} className="mb-2" />;
-			return (
-				<p key={key} className="text-secondary lh-lg mb-3">
-					{renderInline(line, `p${key}`)}
-				</p>
-			);
-		});
+				))}
+			</ul>
+		),
+	);
 
 type Post = (typeof BLOG_POSTS)[number];
 
@@ -76,12 +76,13 @@ const buildArticleSchema = (post: Post, pageUrl: string, image: SiteImage) => {
 	const dateModified = dateModifiedOf(post);
 	return {
 		"@context": "https://schema.org",
-		"@type": "Article",
+		"@type": "BlogPosting",
 		"@id": `${pageUrl}#article`,
 		headline: post.title,
 		description: post.excerpt,
 		image: [absoluteUrl(image.src)],
-		author: { "@type": "Person", name: AUTHOR.name, jobTitle: AUTHOR.jobTitle, url: AUTHOR.url },
+		// Same @id as the Person on /about and the business founder, so it's one entity.
+		author: { "@type": "Person", "@id": AUTHOR.schemaId, name: AUTHOR.name, url: AUTHOR.url },
 		publisher: BUSINESS_REF,
 		datePublished: post.datePublished,
 		...(dateModified ? { dateModified } : {}),
@@ -105,7 +106,7 @@ const ArticleHeader = ({ post, image }: { post: Post; image: SiteImage }) => {
 					{dateModified && ` · Updated ${formatPostDate(dateModified)}`}
 				</span>
 				<span className="d-flex align-items-center gap-1">
-					<Clock size={14} /> {post.readTime}
+					<Clock size={14} /> {formatReadTime(post.content)}
 				</span>
 				<span>
 					By <Link to="/about" className="text-muted">{AUTHOR.name}</Link> — Pixel Towing, {AUTHOR.location}
@@ -140,14 +141,15 @@ const ArticleCta = () => (
 	</Card>
 );
 
-const RelatedPosts = ({ currentSlug }: { currentSlug: string }) => (
+const RelatedPosts = ({ currentSlug }: { currentSlug: BlogSlug }) => (
 	<>
 		<h2 className="h3 fw-bold mb-4">More Guides</h2>
 		<Row className="g-4">
-			{BLOG_POSTS.filter(p => p.slug !== currentSlug)
-				.slice(0, 2)
+			{RELATED_POSTS[currentSlug]
+				.map(slug => BLOG_POSTS.find(p => p.slug === slug))
+				.filter(related => related !== undefined)
 				.map(related => (
-					<Col key={related.slug} sm={6}>
+					<Col key={related.slug} md={4}>
 						<Card className="border-0 shadow-sm h-100 rounded-4">
 							<Card.Body className="p-4">
 								<Badge bg={related.categoryColor} className="rounded-pill mb-2 small">

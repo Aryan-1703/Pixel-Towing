@@ -17,6 +17,14 @@ a {
 	position: relative;
 	text-align: center;
 	text-shadow: 0 2px 4px rgba(0, 0, 0, 0.6);
+	/* Clear the fixed navbar, so tall hero content never slides under it. */
+	padding-top: 96px;
+	padding-bottom: 48px;
+}
+
+/* Secondary hero text: lighter than Bootstrap's text-white-50 for readable contrast. */
+.hero-muted {
+	color: rgba(255, 255, 255, 0.8);
 }
 
 .hero-overlay {
@@ -128,8 +136,8 @@ a {
 	filter: sepia(100%) hue-rotate(5deg) saturate(500%);
 }
 
-/* Three hero actions (call, RoadLift, services) only fit on one row from xl up. */
-@media (min-width: 1200px) {
+/* Keep each hero action on one line once they sit side by side. */
+@media (min-width: 768px) {
 	.hero-actions .btn {
 		white-space: nowrap;
 	}

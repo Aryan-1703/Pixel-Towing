@@ -1,7 +1,10 @@
 import { Container, Row, Col, Card, Button, Accordion, Stack } from "react-bootstrap";
 import { Phone, Mail, MapPin, Clock, MessageSquare, ShieldCheck } from "lucide-react";
 import SEO from "../components/SEO";
-import { DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
+import { BUSINESS, DISPATCH_MESSAGE, absoluteUrl, paymentMethodsText } from "../content/site";
+import { SERVICE_AREAS } from "../content/cities";
+
+const SERVICE_AREA_LIST = SERVICE_AREAS.map(area => area.name).join(", ");
 
 const WhatsAppIcon = () => (
 	<svg
@@ -61,12 +64,12 @@ const ContactPage = () => {
 					</p>
 					<div className="mt-4">
 						<Button
-							href="tel:+16476739755"
+							href={BUSINESS.phoneHref}
 							variant="warning"
 							size="lg"
 							className="rounded-pill px-5 fw-bold shadow-lg"
 						>
-							<Phone className="me-2" /> 647-673-9755
+							<Phone className="me-2" /> {BUSINESS.phoneDisplay}
 						</Button>
 					</div>
 				</Container>
@@ -88,13 +91,13 @@ const ContactPage = () => {
 									<div className="d-flex align-items-center p-4 rounded-4 border bg-white shadow-sm">
 										<Phone size={32} className="text-danger me-4" />
 										<div className="flex-grow-1">
-											<h4 className="fw-bold mb-1">Emergency Towing</h4>
+											<h3 className="h4 fw-bold mb-1">Emergency Towing</h3>
 											<p className="mb-0 text-muted small">
 												Accidents, breakdowns & flatbeds
 											</p>
 										</div>
 										<Button
-											href="tel:+16476739755"
+											href={BUSINESS.phoneHref}
 											variant="danger"
 											className="rounded-pill fw-bold"
 										>
@@ -107,11 +110,11 @@ const ContactPage = () => {
 											<WhatsAppIcon />
 										</div>
 										<div className="flex-grow-1">
-											<h4 className="fw-bold mb-1">WhatsApp Dispatch</h4>
+											<h3 className="h4 fw-bold mb-1">WhatsApp Dispatch</h3>
 											<p className="mb-0 text-muted small">Send GPS for faster pickup</p>
 										</div>
 										<Button
-											href="https://wa.link/sq54ln"
+											href={BUSINESS.whatsappUrl}
 											target="_blank"
 											rel="noopener noreferrer"
 											variant="success"
@@ -124,13 +127,13 @@ const ContactPage = () => {
 									<div className="d-flex align-items-center p-4 rounded-4 border bg-white shadow-sm">
 										<Mail size={32} className="text-primary me-4" />
 										<div className="flex-grow-1">
-											<h4 className="fw-bold mb-1">Scheduled Towing</h4>
+											<h3 className="h4 fw-bold mb-1">Scheduled Towing</h3>
 											<p className="mb-0 text-muted small">
 												Long distance & planned transport
 											</p>
 										</div>
 										<Button
-											href="mailto:info@pixeltowing.com"
+											href={`mailto:${BUSINESS.email}`}
 											variant="outline-primary"
 											className="rounded-pill fw-bold"
 										>
@@ -153,7 +156,7 @@ const ContactPage = () => {
 								<span>
 									<strong>Service Area:</strong>
 									<br />
-									Brampton, Mississauga, Caledon, Toronto, Vaughan and nearby areas
+									{SERVICE_AREA_LIST}
 								</span>
 							</div>
 
@@ -214,7 +217,7 @@ const ContactPage = () => {
 						<Accordion.Item eventKey="2">
 							<Accordion.Header as="h3">What payment methods do you accept?</Accordion.Header>
 							<Accordion.Body>
-								We accept E-Transfer, Debit, Credit Cards, Apple Pay, Google Pay & Cash.
+								We accept {paymentMethodsText("and").toLowerCase()}.
 							</Accordion.Body>
 						</Accordion.Item>
 					</Accordion>

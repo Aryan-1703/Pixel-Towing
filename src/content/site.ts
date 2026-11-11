@@ -30,8 +30,27 @@ export const BUSINESS = {
 	googleWriteReviewUrl:
 		"https://search.google.com/local/writereview?placeid=ChIJ609ewdK2uUQRy0NgCt5WLWk",
 	instagramUrl: "https://www.instagram.com/pixel_towing",
-	defaultImagePath: "/tow.jpg",
+	/** Square brand image: favicon and schema `logo`. */
+	logoPath: "/tow.jpg",
+	/** 1200×630 social preview used when a page has no image of its own. */
+	defaultImagePath: "/og-default.jpg",
+	defaultImageSize: { width: 1200, height: 630 },
 } as const;
+
+/**
+ * Payment methods, in the one place every page, the schema and llms.txt read
+ * from — so the site can never list two different sets. Only list methods the
+ * business actually takes on every job.
+ */
+export const PAYMENT_METHODS: readonly string[] = ["Cash", "Credit card", "Debit card"];
+
+/** "Cash, credit card or debit card" — for running text. */
+export const paymentMethodsText = (conjunction: "and" | "or"): string => {
+	const lower = PAYMENT_METHODS.map((method, i) => (i === 0 ? method : method.toLowerCase()));
+	return lower.length === 1
+		? lower[0]
+		: `${lower.slice(0, -1).join(", ")} ${conjunction} ${lower[lower.length - 1]}`;
+};
 
 /** Reference to the business node for use inside page-level JSON-LD. */
 export const BUSINESS_REF = { "@id": BUSINESS.schemaId } as const;
@@ -98,8 +117,9 @@ export const ROADLIFT: RoadLiftConfig = {
 	androidAvailable: false,
 	promo: { code: "PIXEL15", offer: "$15 off" },
 	// Don't say "fixed price": the search-radius travel fee can raise the price after confirming.
+	// Don't frame RoadLift against phoning: the phone is Pixel Towing's primary action.
 	features: [
-		"Upfront price before you confirm — no calling around for quotes",
+		"Upfront price before you confirm",
 		"Live dispatch: see when a driver accepts and track them on the map",
 		"Chat with your driver and pay in the app",
 	],

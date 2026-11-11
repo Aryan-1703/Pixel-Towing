@@ -3,9 +3,9 @@ import { Link } from "react-router-dom";
 import { Phone, Shield, Truck, Star, ArrowRight, Wrench, Award, ShieldAlert, MapPin, KeyRound } from "lucide-react";
 import SEO from "../components/SEO";
 import TowZoneNotice from "../components/TowZoneNotice";
-import { RoadLiftHeroButton, RoadLiftSection } from "../components/RoadLiftPromo";
+import { RoadLiftHeroLink, RoadLiftSection } from "../components/RoadLiftPromo";
 import { IMAGES } from "../assets/images";
-import { BUSINESS, DISPATCH_MESSAGE, SITE_ORIGIN } from "../content/site";
+import { BUSINESS, DISPATCH_MESSAGE, SITE_ORIGIN, paymentMethodsText } from "../content/site";
 import { CITIES, CITY_SLUGS } from "../content/cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
 import "../css/Home.css";
@@ -76,8 +76,9 @@ const HeroSection = () => (
 	<section className="hero-section">
 		<div className="hero-overlay" />
 		<Container className="position-relative">
-			{/* Decorative branding — the only animated part of the hero. */}
-			<div aria-hidden="true">
+			{/* Decorative branding — the only animated part of the hero. Hidden on phones,
+			    where it collided with the navbar logo and pushed the call button down. */}
+			<div aria-hidden="true" className="d-none d-md-block">
 				<Stack direction="horizontal" gap={3} className="justify-content-center mb-2">
 					{"PIXEL".split("").map((letter, i) => (
 						<span key={i} className="display-1 fw-bold pixel-letter-css">
@@ -90,26 +91,34 @@ const HeroSection = () => (
 				</div>
 			</div>
 
-			<div className="mt-4">
+			<div className="mt-md-4">
 				<h1 className="fw-bold text-white mb-4">24/7 Tow Truck & Roadside Assistance in Brampton</h1>
-				<p className="lead mb-5 text-white-50 mx-auto" style={{ maxWidth: "42rem" }}>
+				<p className="lead mb-5 hero-muted mx-auto" style={{ maxWidth: "42rem" }}>
 					Emergency towing, accident towing, flatbed towing, car lockouts and roadside
 					assistance across Brampton and the GTA. {DISPATCH_MESSAGE.short}.
 				</p>
 				<Stack gap={3} className="hero-actions justify-content-center align-items-center flex-md-row">
-					<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-5 py-3 shadow-lg">
+					<Button
+						href={BUSINESS.phoneHref}
+						variant="warning"
+						size="lg"
+						className="fw-bold rounded-pill px-5 py-3 shadow-lg"
+						data-cta="hero-call"
+					>
 						<Phone className="me-2" />
-						{BUSINESS.phoneDisplay} — Call Now
+						Call {BUSINESS.phoneDisplay}
 					</Button>
-					<RoadLiftHeroButton />
 					<Link to="/services" className="btn btn-outline-light btn-lg rounded-pill px-5 py-3">
 						Towing and roadside services
 					</Link>
 				</Stack>
-				<div className="mt-4 d-flex justify-content-center gap-4 flex-wrap text-white-50 small">
+				<div className="mt-3">
+					<RoadLiftHeroLink />
+				</div>
+				<div className="mt-4 d-flex justify-content-center gap-4 flex-wrap hero-muted small">
 					<span>✅ Licensed & Insured</span>
 					<span>✅ Available 24/7</span>
-					<span>✅ Card, Debit or Cash</span>
+					<span>✅ {paymentMethodsText("or")}</span>
 				</div>
 			</div>
 		</Container>

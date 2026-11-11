@@ -23,13 +23,13 @@ export interface SiteRoute {
 }
 
 const STATIC_ROUTES: readonly SiteRoute[] = [
-	{ path: "/", indexable: true, lastmod: "2026-10-11" },
+	{ path: "/", indexable: true, lastmod: "2026-11-11" },
 	{ path: "/services", indexable: true, lastmod: "2026-09-30" },
-	{ path: "/accident-recovery", indexable: true, lastmod: "2026-09-30" },
+	{ path: "/accident-recovery", indexable: true, lastmod: "2026-11-11" },
 	{ path: "/locations", indexable: true, lastmod: "2026-09-30" },
 	{ path: "/blog", indexable: true, lastmod: "2026-09-30" },
-	{ path: "/about", indexable: true, lastmod: "2026-09-30" },
-	{ path: "/contact", indexable: true, lastmod: "2026-09-30" },
+	{ path: "/about", indexable: true, lastmod: "2026-11-11" },
+	{ path: "/contact", indexable: true, lastmod: "2026-11-11" },
 	{ path: "/review", indexable: false, lastmod: "2026-09-30" },
 ];
 

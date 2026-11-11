@@ -218,7 +218,7 @@ const Footer: React.FC = () => {
 					{/* FOOTER BOTTOM */}
 					<Row className="mt-5 pt-4 footer-bottom align-items-center">
 						<Col md={6} className="text-center text-md-start mb-2 mb-md-0">
-							© {currentYear} Pixel Towing Brampton. All Rights Reserved.
+							© {currentYear} {BUSINESS.name}, Brampton, Ontario. All Rights Reserved.
 						</Col>
 						<Col md={6} className="text-center text-md-end">
 							<small className="text-muted">

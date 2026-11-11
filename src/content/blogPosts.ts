@@ -18,7 +18,6 @@ export interface BlogPost {
 	datePublished: string;
 	dateModified?: string;
 	reviewedNote?: string;
-	readTime: string;
 	content: string;
 }
 
@@ -32,9 +31,17 @@ const SOURCES = {
 		"https://www.peelpolice.ca/reporting-records/report-a-crime-or-incident/collision-reporting/",
 	fsraClaims:
 		"https://www.fsrao.ca/consumers/auto-insurance/protect-yourself/after-accident-understanding-claims-process",
+	fsraUnderstandingAuto: "https://www.fsrao.ca/media/7376/download",
+	fsraMinorAccidents: "https://www.fsrao.ca/media/6801/download",
+	fsraTowScams: "https://www.fsrao.ca/media/7511/download",
+	fsraOpcf43: "https://www.fsrao.ca/opcf-43-removing-depreciation-deduction",
+	vehicleBranding: "https://www.ontario.ca/page/mandatory-vehicle-branding-program",
+	compulsoryInsuranceAct: "https://www.ontario.ca/laws/statute/90c25",
+	towOperatorRegulation: "https://www.ontario.ca/laws/regulation/r23167",
 } as const;
 
 const REVIEWED_2026_09 = "Reviewed September 2026 against current Ontario government, FSRA and Peel Regional Police guidance.";
+const REVIEWED_2026_11 = "Reviewed November 2026 against current Ontario government and FSRA guidance.";
 
 export const BLOG_POSTS = [
 	{
@@ -48,7 +55,6 @@ export const BLOG_POSTS = [
 		datePublished: "2025-01-15",
 		dateModified: "2026-09-30",
 		reviewedNote: REVIEWED_2026_09,
-		readTime: "7 min read",
 		content: `
 ## The First Few Minutes
 
@@ -67,7 +73,7 @@ If no one is injured and the vehicles can be driven, Ontario generally expects y
 - Note the cross-street or highway kilometre marker
 - Get contact details from any witnesses
 
-## Reporting the Collision
+## When Do You Have to Report the Collision?
 
 The legal requirement and the local procedure are two different things.
 
@@ -85,9 +91,9 @@ In Brampton and Mississauga, Peel Regional Police currently direct drivers as fo
 
 Peel lists its Collision Reporting Centre locations and hours on its [collision reporting page](${SOURCES.peelCollisionReporting}). Check it before you go: centre locations, hours and procedures can change. If your vehicle can't be driven, a tow operator can take it to the centre for you.
 
-## Who Tows Your Car
+## Who Decides Which Tow Truck Takes Your Car?
 
-**Towing is governed by Ontario's Towing and Storage Safety and Enforcement Act, 2021 (TSSEA).** Outside the province's restricted highway tow zones, you choose which company tows your vehicle and where it goes, and an operator needs your consent before towing. When asking for consent they must disclose their maximum rate schedule. See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}).
+**Outside Ontario's restricted highway tow zones, you do.** Towing is governed by Ontario's Towing and Storage Safety and Enforcement Act, 2021 (TSSEA): you choose which company tows your vehicle and where it goes, and an operator needs your consent before towing. When asking for consent they must disclose their maximum rate schedule. See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}) and our guide to [Ontario towing laws and your rights](/blog/ontario-towing-laws-driver-rights).
 
 **On some GTA highways the rules are different.** Sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW are in Ontario's [Tow Zone Program](${SOURCES.ontarioTowZones}). In those zones only the ministry's contracted operator can tow you off the highway. Once your vehicle is outside the zone you can choose the next tow company and destination, unless police direct otherwise.
 
@@ -97,11 +103,11 @@ Tow trucks that arrive uninvited are not entitled to your car. Outside a tow zon
 
 **Repairs and rentals are an insurance matter, separate from towing.** FSRA, Ontario's insurance regulator, states that as long as your insurance company approves the estimate, you may have your vehicle repaired at the shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
 
-What your insurer pays for — towing, storage, repairs, a rental — depends on your policy and the circumstances of the claim. Read your policy or ask your insurer or broker before you assume something is covered.
+What your insurer pays for — towing, storage, repairs, a rental — depends on your policy and the circumstances of the claim. Read your policy or ask your insurer or broker before you assume something is covered. Our guide to [what car insurance covers for towing in Ontario](/blog/car-insurance-towing-coverage-ontario) breaks this into four separate questions.
 
 ## Where Pixel Towing Fits In
 
-If you call us, we can tow your vehicle (outside the tow zones), take it to a Collision Reporting Centre if it can't be driven there, and deliver it to the repair shop you choose. We also offer collision repair and rental vehicles through businesses we have an interest in — we tell you that up front, and you are free to use any shop or rental company you prefer.
+If you call us for [accident towing in Brampton](/accident-recovery), we can tow your vehicle (outside the tow zones), take it to a Collision Reporting Centre if it can't be driven there, and deliver it to the repair shop you choose. We also offer collision repair and rental vehicles through businesses we have an interest in — we tell you that up front, and you are free to use any shop or rental company you prefer.
 
 ---
 
@@ -121,7 +127,6 @@ This article is general information, not legal or insurance advice.
 		datePublished: "2025-02-03",
 		dateModified: "2026-09-30",
 		reviewedNote: REVIEWED_2026_09,
-		readTime: "7 min read",
 		content: `
 ## The Law That Governs Towing in Ontario
 
@@ -164,6 +169,8 @@ An operator cannot refer you to a repair shop, storage facility or other busines
 - Pressure to sign quickly, or to sign a blank or incomplete form
 - No certificate number on the truck
 
+For the tactics chaser trucks use at collision scenes, see [how to avoid predatory tow trucks in the GTA](/blog/how-to-avoid-predatory-towing-gta).
+
 ### How to Protect Yourself
 
 1. **Save a tow company's number** before you need one
@@ -197,7 +204,6 @@ Questions about a tow? Call Pixel Towing at **647-673-9755**.
 		categoryColor: "success",
 		datePublished: "2025-02-20",
 		dateModified: "2026-09-30",
-		readTime: "5 min read",
 		content: `
 ## Dead Battery vs Bad Alternator — How to Tell
 
@@ -228,7 +234,7 @@ A failing alternator can wear out a healthy battery over a few weeks, and a deep
 
 ### When to Call for a Boost vs a Tow
 
-- **Car was fine yesterday and won't start today:** a battery boost is usually the first step
+- **Car was fine yesterday and won't start today:** a [battery boost](/services/jump-start) is usually the first step
 - **Car won't start soon after a new battery:** likely the charging system — a tow to a mechanic makes sense
 - **Car died while driving:** likely the alternator or another electrical fault — call for a tow
 
@@ -248,7 +254,6 @@ A failing alternator can wear out a healthy battery over a few weeks, and a deep
 		datePublished: "2025-03-01",
 		dateModified: "2026-09-30",
 		reviewedNote: REVIEWED_2026_09,
-		readTime: "6 min read",
 		content: `
 ## How Predatory Towing Works — And How to Protect Yourself
 
@@ -279,13 +284,14 @@ Outside a restricted tow zone, say calmly and clearly: **"I did not call you. I'
 - You can pay by credit card, debit card or cash
 - The operator must tell you if it has an interest in the shop or yard it refers you to
 
-See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}).
+See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}) and our plain-language guide to [Ontario towing laws and your rights](/blog/ontario-towing-laws-driver-rights).
 
 ### Steps to Take Now, Before You Need a Tow
 
 1. **Save a tow company's number** in your phone
 2. **Know your roadside assistance number** if your policy or a membership includes one
 3. **Don't sign anything at the scene** that you haven't read in full
+4. **Know the steps after a collision** — our [after-accident guide for Brampton drivers](/blog/what-to-do-after-car-accident-brampton) covers safety, reporting and towing
 
 ### If You Think You Were Treated Unfairly
 
@@ -304,27 +310,49 @@ Pixel Towing doesn't chase collisions. Call us at **647-673-9755** when you need
 		title: "Does Car Insurance Cover Towing in Ontario? (And Do You Have to Use Their Shop?)",
 		metaTitle: "Does Car Insurance Cover Towing in Ontario? | Pixel Towing",
 		excerpt:
-			"What Ontario car insurance may cover for towing, repairs and rentals after a collision or breakdown — and the choices that stay yours.",
+			"Does insurance cover towing after an accident in Ontario? What's covered, what isn't, whether a tow raises your premium, and the choices that stay yours.",
 		category: "Insurance",
 		categoryColor: "info",
 		datePublished: "2025-03-10",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
-		readTime: "7 min read",
+		dateModified: "2026-11-11",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
-## The Short Answer: It Depends on Your Policy
+## Does Insurance Cover Towing After an Accident?
 
-Whether towing is covered depends on **your policy, the coverages you bought and the reason for the tow.** Coverage depends on your policy and the circumstances of the claim — so treat everything below as questions to ask your insurer or broker, not promises.
+**Not automatically — it depends on your policy and on who was at fault.** Here's what Ontario's rules say, and what to confirm with your insurer before you assume the tow is covered.
 
-### Towing After a Collision
+- **Damage to your own vehicle** is usually claimed through your own insurer under Direct Compensation – Property Damage (DCPD), to the extent you're not at fault. FSRA says that if you're 100% at fault, DCPD won't cover your repairs; optional Collision coverage can, minus your deductible.
+- **Towing isn't named.** FSRA's list of what DCPD can pay for is repairs or replacement of your vehicle, a temporary rental vehicle and damaged contents. Ask your adjuster, in writing, whether the tow and any storage are part of your claim.
+- **Moving the car twice can cost you.** FSRA warns that if your vehicle is moved from one shop to another, the first shop may still bill you for towing, storage and administrative fees — and your insurer may not cover them.
 
-If you have a collision claim, towing from the scene is often part of what the insurer pays for, but how much, and whether your deductible applies, depends on your policy and the circumstances. Ask your insurer before you assume the tow is covered.
+See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}) and FSRA's [tips for avoiding tow truck and storage scams](${SOURCES.fsraTowScams}).
 
-### Breakdown Towing
+## Does Insurance Cover Towing for a Breakdown?
 
-A mechanical breakdown is usually not an insurance claim. Breakdown towing is typically covered only if you have a roadside assistance add-on or a separate roadside membership. Otherwise you pay the tow operator directly.
+**Usually not.** A mechanical breakdown isn't a collision claim. Breakdown towing is typically covered only if you have a roadside assistance add-on from your insurer or a separate roadside membership. Otherwise you pay the tow operator directly — and you're still entitled to its maximum rate schedule before the tow and an itemized invoice before you pay.
 
-## Four Separate Questions
+## Will Getting Towed Raise My Insurance?
+
+**Paying for a tow on its own isn't an insurance claim.** What can change your premium is an accident claim in which you're found at fault:
+
+- FSRA says any driver found more than 0% at fault will have an at-fault accident on their insurance record, and that if you're found **more than 25% at fault**, your premium will likely go up at renewal. See [FSRA: Understanding Automobile Insurance](${SOURCES.fsraUnderstandingAuto}).
+- **Minor accidents:** for accidents on or after June 1, 2016, an insurer can't use a minor at-fault accident to set your premium if no one was injured, no insurer paid anything, and damage to each vehicle (including property damage) was $2,000 or less and paid by the at-fault driver. It applies to one minor accident every three years. See [FSRA Bulletin A-06/15](${SOURCES.fsraMinorAccidents}).
+
+## Car Towed and You Can't Pay — Do You Still Need Insurance?
+
+Ontario's [Compulsory Automobile Insurance Act](${SOURCES.compulsoryInsuranceAct}) requires a vehicle to be insured when it's operated on a highway. Whether to keep, reduce or pause coverage while a car sits in a storage yard is a decision to make with your insurer or broker, because:
+
+- Comprehensive coverage is what protects a parked or stored car against theft, fire and vandalism
+- A car loan or lease may require you to keep the vehicle insured — check your agreement
+- The car has to be insured again before anyone drives it
+
+Don't let the car sit while you decide. Daily storage fees keep adding up, and FSRA warns that the business holding your vehicle may be able to sell it to recover unpaid fees under Ontario's Repair and Storage Liens Act. Before you pay, you're entitled to an itemized invoice, and you can pay by credit card, debit card or cash — see [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}). If the tow followed a collision, call your insurer now and ask whether towing and storage are part of the claim.
+
+### Who insures the car while it's being towed?
+
+Certified tow operators must carry their own insurance. Ontario requires at least $100,000 of coverage for damage to a vehicle while it's in the operator's care, custody or control. See [O. Reg. 167/23 under the TSSEA](${SOURCES.towOperatorRegulation}).
+
+## Four Separate Questions After a Collision
 
 These often get mixed together. They are governed by different rules.
 
@@ -340,11 +368,11 @@ Insurer-preferred shops are not bad shops. If you choose a different one, ask ho
 
 ### 3. Whether you get a rental — rental coverage
 
-A rental or replacement vehicle after a collision is usually optional coverage (often called transportation replacement coverage, or OPCF 20), with a daily and total limit set in your policy. If you're not at fault, your policy's Direct Compensation – Property Damage (DCPD) coverage may also be relevant — check whether your policy includes it. Who arranges the rental is your choice; what the insurer will pay for depends on your coverage.
+A rental or replacement vehicle after a collision is usually optional coverage (often called transportation replacement coverage, or OPCF 20), with a daily and total limit set in your policy. If you're not at fault, your policy's Direct Compensation – Property Damage (DCPD) coverage may also be relevant — check whether your policy includes it. Who arranges the rental is your choice; what the insurer will pay for depends on your coverage. See [getting a rental car after an accident](/blog/collision-repair-rental-car-brampton) for the questions to ask first.
 
 ### 4. What you owe — your deductible and limits
 
-Your deductible, coverage limits and any amounts the insurer declines are set by your policy and the claim decision. Ask your insurer before you authorize work.
+Your deductible, coverage limits and any amounts the insurer declines are set by your policy and the claim decision. Ask your insurer before you authorize work. If a shop offers to cover your deductible, read [what to ask before you agree](/blog/deductible-waived-collision-repair-brampton).
 
 ## Using Your Coverage Without Giving Up Control
 
@@ -353,7 +381,7 @@ Your deductible, coverage limits and any amounts the insurer declines are set by
 3. **Arrange the tow** with the company you choose (outside a tow zone)
 4. **Tell your insurer which repair shop you've chosen** and let them approve the estimate
 
-Pixel Towing offers collision repair and rental vehicles through businesses we have an interest in. We disclose that before any referral, and you are free to choose any other shop or rental company.
+Along with [accident towing](/accident-recovery), Pixel Towing offers collision repair and rental vehicles through businesses we have an interest in. We disclose that before any referral, and you are free to choose any other shop or rental company.
 
 This article is general information, not insurance advice.
 
@@ -368,29 +396,40 @@ This article is general information, not insurance advice.
 		title: "My Car Is a Total Loss in Ontario — What Happens Next?",
 		metaTitle: "Total Loss Vehicle Ontario: What Happens Next | Pixel Towing",
 		excerpt:
-			"Car declared a total loss? How Ontario valuations generally work, what to ask your insurer, and how to respond to a low offer.",
+			"Car written off in Ontario? How the payout is calculated, whether your premium goes up, what happens to the car, and how to respond to a low offer.",
 		category: "Total Loss",
 		categoryColor: "danger",
 		datePublished: "2025-03-15",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
-		readTime: "8 min read",
+		dateModified: "2026-11-11",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
 ## What "Total Loss" Means
 
-When an insurer declares your vehicle a total loss (a write-off), it has decided that repairing it would cost too much relative to the vehicle's actual cash value (ACV). The threshold and method vary by insurer and policy.
+When an insurer declares your vehicle a total loss (a write-off), it has decided that repairing it would cost too much relative to the vehicle's actual cash value (ACV). FSRA's claims guide puts it this way: your insurer will likely treat the vehicle as a total loss and offer a cash settlement if the repairs would cost more than its actual cash value — and in most cases, buying a replacement is up to you.
 
 A total loss doesn't necessarily mean the car is destroyed — it means the insurer has concluded paying out is more economical than repairing it.
 
-## How the Offer Is Usually Calculated
+## How Much Will Insurance Pay for a Totaled Car?
 
-Insurers typically estimate ACV using:
+**Usually the vehicle's actual cash value at the time of the loss, minus your deductible.** FSRA describes actual cash value as the amount needed to replace your vehicle with a comparable used vehicle, plus applicable sales tax, taking into account its mileage, age, overall condition and average retail selling price. For example, a car with an actual cash value of $12,000 and a $500 deductible would pay out $11,500.
+
+Insurers typically estimate that value using:
 
 - **Valuation tools and book values**
 - **Comparable vehicles** for sale in your market
 - **Age, mileage, options and condition**
 
-Automated valuations can miss things — recent major repairs, new tires, a high trim level or documented maintenance. If something was missed, you can raise it.
+Automated valuations can miss things — recent major repairs, new tires, a high trim level or documented maintenance. FSRA advises telling your adjuster about recent work that could increase the vehicle's value; they may ask for receipts. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
+
+### Bought the car new? Check for OPCF 43
+
+The standard policy lets your insurer deduct depreciation when it settles. The optional [OPCF 43 endorsement](${SOURCES.fsraOpcf43}) removes that right if you're the original owner, the vehicle was new when you took delivery, and the loss happens within the period stated on your policy. Your deductible still applies. Check your certificate of insurance to see whether you have it.
+
+## Will My Insurance Premium Go Up After a Total Loss?
+
+**The write-off itself doesn't decide it — fault does.** A total loss is settled like any other claim. FSRA says any driver found more than 0% at fault will have an at-fault accident on their record, and that if you're found **more than 25% at fault**, your premium will likely go up at renewal. See [FSRA: Understanding Automobile Insurance](${SOURCES.fsraUnderstandingAuto}).
+
+Fault is decided under Ontario's Fault Determination Rules, not by how badly the car was damaged. If you think the fault decision is wrong, ask your adjuster to explain how it was reached and to review it. Our guide to [what car insurance covers after a collision](/blog/car-insurance-towing-coverage-ontario) covers how fault affects the rest of your claim.
 
 ## Responding to an Offer You Think Is Too Low
 
@@ -410,13 +449,20 @@ Send your evidence and the value you believe is fair. Ask your insurer how its d
 
 ## What Happens to the Car
 
-If you accept the settlement, the insurer usually takes ownership of the vehicle and the payout is reduced by any deductible that applies under your policy. Some insurers allow you to keep the vehicle for a reduced settlement; that vehicle may then carry a branded title that affects registration and resale.
+If you accept the settlement, the insurer usually takes ownership of the vehicle. Some insurers allow you to keep it for a reduced settlement.
 
-Rental coverage, if you have it, usually has limits on how long it continues after a total-loss decision. Ask your insurer when your rental coverage ends.
+Either way, Ontario brands written-off vehicles under its [Mandatory Vehicle Branding Program](${SOURCES.vehicleBranding}):
+
+- **Irreparable:** written off as a total loss; it can only be used for parts or scrap and can't be driven again in Ontario
+- **Salvage:** written off, but it can be repaired or used for parts or scrap. A repaired Salvage vehicle must pass a structural inspection at a registered DriveON Vehicle Inspection Centre to be re-branded **Rebuilt**
+
+The registered owner has 90 days to appeal a Salvage or Irreparable brand. A vehicle you keep that's branded Irreparable can only go for parts or scrap — our [scrap car removal](/services/scrap-car-removal) includes free towing.
+
+Rental coverage, if you have it, usually has limits on how long it continues after a total-loss decision. Ask your insurer when your rental coverage ends — our [rental car guide](/blog/collision-repair-rental-car-brampton) lists what to check. Once the claim is settled, call your insurer or broker to take the vehicle off your policy or move the coverage to its replacement.
 
 ## Storage Costs While You Wait
 
-If the vehicle is sitting in a storage yard, daily storage fees may apply while the claim is decided. Ask who is paying storage and whether the vehicle should be moved.
+If the vehicle is sitting in a storage yard, daily storage fees may apply while the claim is decided. Ask who is paying storage and whether the vehicle should be moved. FSRA warns that if a vehicle is moved from one shop to another, the first may still bill towing, storage and administrative fees that your insurer may not cover — so agree on the move with your adjuster first. If it does need moving, a [flatbed tow](/services/vehicle-transport) can take it to wherever you choose.
 
 This article is general information, not legal or insurance advice.
 
@@ -435,8 +481,7 @@ This article is general information, not legal or insurance advice.
 		category: "Repair Knowledge",
 		categoryColor: "primary",
 		datePublished: "2025-03-20",
-		dateModified: "2026-09-30",
-		readTime: "6 min read",
+		dateModified: "2026-11-11",
 		content: `
 ## What Are OEM Parts?
 
@@ -448,7 +493,11 @@ Aftermarket parts are made by other companies to fit a range of vehicles. Qualit
 
 ## Why Repair Estimates Include Non-OEM Parts
 
-Aftermarket and recycled parts usually cost less. Many policies allow repairs with parts of "like kind and quality", so an approved estimate may include them. Check your policy wording to see what yours says.
+Aftermarket and recycled parts usually cost less. Many policies allow repairs with parts of "like kind and quality", so an approved estimate may include them. Check your policy wording to see what yours says; our guide to [what Ontario car insurance covers after a collision](/blog/car-insurance-towing-coverage-ontario) lists the questions to ask.
+
+## What We See on Our Own Repair Files
+
+At the collision repair facility we have an interest in, the parts decision usually follows the age of the car. On newer vehicles, we install OEM parts when the insurer approves them on the estimate. On older vehicles, insurers usually tell us to install aftermarket parts instead. Either way, it's the approved estimate — not the shop — that sets which parts the insurer pays for, so ask to see the parts list before you sign.
 
 ## Differences That Can Matter to You
 
@@ -473,7 +522,7 @@ This article is general information, not insurance advice.
 
 ---
 
-**Need a tow to the repair shop of your choice in Brampton or the GTA? Call 647-673-9755.**
+**Need an [accident tow to the repair shop of your choice](/accident-recovery) in Brampton or the GTA? Call 647-673-9755.**
     `,
 	},
 
@@ -488,7 +537,6 @@ This article is general information, not insurance advice.
 		datePublished: "2025-04-01",
 		dateModified: "2026-09-30",
 		reviewedNote: REVIEWED_2026_09,
-		readTime: "5 min read",
 		content: `
 ## What "Deductible Assistance" Can Mean
 
@@ -512,7 +560,7 @@ If you're unsure, ask your insurer how they treat deductible offers from repair 
 
 ## Pixel Towing's Position
 
-We have an interest in a collision repair facility, and we tell customers that before any referral. Any deductible help we discuss must come off our own price, never be billed to your insurer, and be written into your repair paperwork. Not every claim qualifies, and you are free to choose any repair shop.
+We have an interest in a collision repair facility (see [our accident recovery service](/accident-recovery)), and we tell customers that before any referral. Any deductible help we discuss must come off our own price, never be billed to your insurer, and be written into your repair paperwork. Not every claim qualifies, and you are free to choose any repair shop.
 
 This article is general information, not legal or insurance advice.
 
@@ -533,13 +581,12 @@ This article is general information, not legal or insurance advice.
 		datePublished: "2025-04-08",
 		dateModified: "2026-09-30",
 		reviewedNote: REVIEWED_2026_09,
-		readTime: "5 min read",
 		content: `
 ## Is a Rental Covered?
 
 Coverage depends on your policy and the circumstances of the claim. In Ontario, a rental or replacement vehicle after a collision is usually optional coverage (often called transportation replacement coverage, or OPCF 20), with a daily limit and a total limit.
 
-If you were not at fault, your own policy's Direct Compensation – Property Damage (DCPD) coverage may help pay for a replacement vehicle, if your policy includes DCPD. Your insurer can tell you which coverage applies.
+If you were not at fault, your own policy's Direct Compensation – Property Damage (DCPD) coverage may help pay for a replacement vehicle, if your policy includes DCPD. Your insurer can tell you which coverage applies. For towing and repairs, see [does car insurance cover towing in Ontario?](/blog/car-insurance-towing-coverage-ontario)
 
 ## Before You Pick Up a Rental, Ask Your Insurer
 
@@ -564,7 +611,7 @@ Rental coverage usually ends when the repair is complete, the total limit is rea
 
 ## Pixel Towing's Rental Option
 
-We offer rental vehicles through a business we have an interest in, and we disclose that before any referral. We'll tell you up front what we can bill to your insurer and what you would owe if your coverage doesn't extend to the full rental. You are free to choose any rental company.
+Alongside [accident towing and recovery](/accident-recovery), we offer rental vehicles through a business we have an interest in, and we disclose that before any referral. We'll tell you up front what we can bill to your insurer and what you would owe if your coverage doesn't extend to the full rental. You are free to choose any rental company.
 
 This article is general information, not insurance advice.
 
@@ -583,7 +630,6 @@ This article is general information, not insurance advice.
 		categoryColor: "success",
 		datePublished: "2026-10-11",
 		dateModified: "2026-10-11",
-		readTime: "4 min read",
 		content: `
 ## Locked Out of Your Car? Start Here
 
@@ -607,7 +653,7 @@ Many roadside assistance plans, some car insurance add-ons and some credit cards
 
 ### Step 5: Call a Car Lockout Service
 
-If none of that works, call a professional. Have ready:
+If none of that works, call a professional [car lockout service](/services/lockout). Have ready:
 
 - Your exact location (cross streets, parking level, or store name)
 - Your vehicle's make, model and year
@@ -646,6 +692,77 @@ export type BlogSlug = (typeof BLOG_POSTS)[number]["slug"];
 
 export const findBlogPost = (slug: string | undefined): (typeof BLOG_POSTS)[number] | undefined =>
 	BLOG_POSTS.find(post => post.slug === slug);
+
+/**
+ * "More Guides" under each article: topical neighbours, chosen so every post
+ * is linked from at least one other post (not just the first two in the list).
+ */
+export const RELATED_POSTS: Record<BlogSlug, readonly BlogSlug[]> = {
+	"what-to-do-after-car-accident-brampton": [
+		"ontario-towing-laws-driver-rights",
+		"car-insurance-towing-coverage-ontario",
+		"collision-repair-rental-car-brampton",
+	],
+	"ontario-towing-laws-driver-rights": [
+		"how-to-avoid-predatory-towing-gta",
+		"what-to-do-after-car-accident-brampton",
+		"car-insurance-towing-coverage-ontario",
+	],
+	"dead-battery-vs-bad-alternator": [
+		"locked-keys-in-car-what-to-do",
+		"ontario-towing-laws-driver-rights",
+		"how-to-avoid-predatory-towing-gta",
+	],
+	"how-to-avoid-predatory-towing-gta": [
+		"ontario-towing-laws-driver-rights",
+		"what-to-do-after-car-accident-brampton",
+		"total-loss-vehicle-ontario-guide",
+	],
+	"car-insurance-towing-coverage-ontario": [
+		"what-to-do-after-car-accident-brampton",
+		"collision-repair-rental-car-brampton",
+		"deductible-waived-collision-repair-brampton",
+	],
+	"total-loss-vehicle-ontario-guide": [
+		"car-insurance-towing-coverage-ontario",
+		"oem-vs-aftermarket-parts-collision-repair",
+		"what-to-do-after-car-accident-brampton",
+	],
+	"oem-vs-aftermarket-parts-collision-repair": [
+		"deductible-waived-collision-repair-brampton",
+		"total-loss-vehicle-ontario-guide",
+		"car-insurance-towing-coverage-ontario",
+	],
+	"deductible-waived-collision-repair-brampton": [
+		"oem-vs-aftermarket-parts-collision-repair",
+		"car-insurance-towing-coverage-ontario",
+		"collision-repair-rental-car-brampton",
+	],
+	"collision-repair-rental-car-brampton": [
+		"car-insurance-towing-coverage-ontario",
+		"deductible-waived-collision-repair-brampton",
+		"total-loss-vehicle-ontario-guide",
+	],
+	"locked-keys-in-car-what-to-do": [
+		"dead-battery-vs-bad-alternator",
+		"how-to-avoid-predatory-towing-gta",
+		"ontario-towing-laws-driver-rights",
+	],
+};
+
+const WORDS_PER_MINUTE = 200;
+const MARKDOWN_LINK_URL = /\]\([^)]*\)/g;
+const MARKDOWN_SYNTAX = /[#*[\]]/g;
+
+/** Read time computed from the article body, so it can't drift from the content. */
+export const formatReadTime = (content: string): string => {
+	const words = content
+		.replace(MARKDOWN_LINK_URL, " ")
+		.replace(MARKDOWN_SYNTAX, " ")
+		.split(/\s+/)
+		.filter(word => /\w/.test(word)).length;
+	return `${Math.max(1, Math.ceil(words / WORDS_PER_MINUTE))} min read`;
+};
 
 /** "2025-01-15" → "January 15, 2025" (UTC, so the day never shifts by timezone). */
 export const formatPostDate = (isoDate: string): string =>

@@ -7,7 +7,7 @@
  * the pages, so the facts here cannot drift from the site. The site's content
  * rules apply: no guarantees, no invented ETAs, no review text.
  */
-import { BUSINESS, DISPATCH_MESSAGE, ROADLIFT, absoluteUrl } from "./site";
+import { BUSINESS, DISPATCH_MESSAGE, ROADLIFT, absoluteUrl, paymentMethodsText } from "./site";
 import { SERVICE_AREAS } from "./cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "./services";
 import { BLOG_POSTS } from "./blogPosts";
@@ -30,7 +30,7 @@ const keyFacts = [
 	`- Service area: ${areaList}, Ontario.`,
 	`- Response time: ${DISPATCH_MESSAGE.full}`,
 	"- Pricing: depends on the service, distance and vehicle. The price is quoted by phone before dispatch, and the maximum rate schedule is provided before any work starts, as Ontario requires.",
-	"- Payment: cash, credit card and debit card.",
+	`- Payment: ${paymentMethodsText("and").toLowerCase()}.`,
 	"- Insurance: whether an insurer pays for towing depends on the policy and the circumstances of the claim.",
 	`- Highway tow zones: on sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, Ontario's Tow Zone Program (${TOW_ZONE_URL}) allows only the ministry's contracted operator to tow. Pixel Towing can tow once the vehicle is outside the zone.`,
 	`- Google Business Profile and reviews: ${BUSINESS.googleProfileUrl}`,
@@ -71,7 +71,8 @@ export function buildLlmsTxt(): string {
 		"",
 		"## RoadLift app",
 		"",
-		`${ROADLIFT.name} (${ROADLIFT.siteUrl}) is the on-demand roadside assistance app from the team behind ${BUSINESS.name}. Instead of calling around tow companies for quotes, drivers request towing, battery boosts, flat-tire help, car lockouts and fuel delivery from their phone, see the price upfront before confirming, see live when a driver accepts, track and chat with the driver, and pay in the app. Currently available on iPhone (${ROADLIFT.appStoreUrl}) in Brampton and Mississauga.${ROADLIFT.promo ? ` Code ${ROADLIFT.promo.code} gives ${ROADLIFT.promo.offer} a request.` : ""}`,
+		// No promo code here: AI answers can repeat it long after the offer ends.
+		`${ROADLIFT.name} (${ROADLIFT.siteUrl}) is a separate on-demand roadside assistance app from the team behind ${BUSINESS.name}. In the app, drivers request towing, battery boosts, flat-tire help, car lockouts and fuel delivery, see the price upfront before confirming, see live when a driver accepts, track and chat with the driver, and pay in the app. Currently available on iPhone (${ROADLIFT.appStoreUrl}) in Brampton and Mississauga. To reach ${BUSINESS.name} dispatch directly, call ${BUSINESS.phoneDisplay}.`,
 		"",
 		"## Guides",
 		"",

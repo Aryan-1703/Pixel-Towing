@@ -129,6 +129,58 @@ Keep it true:
 - [ ] When RoadLift adds a city, add its slug to `citySlugs`. When the offer
       ends, set `promo: null` (it disappears everywhere).
 
+## Audit Phase 1 (November 11, 2026)
+Code-only fixes from `pixeltowing.com-audit/ACTION-PLAN.md`, Phase 1:
+- **Call first on mobile:** sticky bottom call bar below `lg` (`MobileCallBar.tsx`),
+  call icon beside the hamburger, and on service pages the H1 + call button come
+  before the image on phones. Every call link carries `data-cta="…"` for tracking.
+- **Homepage hero:** decorative PIXEL wordmark hidden below `md` (it overlapped the
+  navbar logo); RoadLift is a text link, not a third equal-weight button.
+- **RoadLift:** one block per page with a relationship line ("a separate app from
+  the team behind Pixel Towing… call 647-673-9755"); no "skip calling around"
+  framing; promo code removed from `llms.txt` (still on-page via `ROADLIFT.promo`).
+- **One source for facts:** payment methods are `PAYMENT_METHODS` in `site.ts`
+  (schema, hero, Contact FAQ, llms.txt). Contact page lists all 10 service areas.
+- **Schema:** business `founder` is an inline Person with the `/about#author` id;
+  blog posts are `BlogPosting` with `author.@id`; logo stays the square `/tow.jpg`,
+  social previews default to the 1200×630 `/og-default.jpg`.
+- **Targeting & links:** "in Brampton" in service H1s; "Accident Towing" in the
+  accident H1; its 5-step box cut to 3 bullets + link to the full guide;
+  contextual links service ↔ guide and between guides; curated `RELATED_POSTS`;
+  read times computed from word count; Locations menu prerendered.
+
+Search Console follow-up (same day, baseline in `pixeltowing.com-audit/GSC-BASELINE-2026-11-11.md`):
+- The insurance and total-loss guides had 2,265 impressions at positions 18–22. Both now
+  open with answer-first sections for the real queries ("does insurance cover towing
+  after an accident", "premium after a totaled car", "car towed, can't pay, do I still
+  need insurance", "how much will insurance pay"). Every rule cites FSRA, ontario.ca or
+  e-Laws. Two claims were left out because no official source confirmed them: a
+  blanket "not-at-fault can't raise premiums" rule, and towing being a named DCPD cost.
+- Tire page FAQ now says plainly that we install the customer's spare and don't repair
+  or plug tires (owner, November 11, 2026). Don't target "flat tire repair".
+
+Still owner-blocked (see the action plan, Phases 0 and 2–3):
+- [x] Cloudflare → Scrape Shield → Email Address Obfuscation: **off** (verified
+      November 11, 2026: the email is in the raw HTML of `/contact`). Still check
+      AI Crawl Control / "Block AI bots" is off.
+- [x] Google Search Console is already set up (confirmed by the owner, November 11,
+      2026). Before deploying this batch, export Performance → Queries and Pages
+      (last 3 months) as the baseline for the audit's "fails if" checks.
+- [ ] After deploying: resubmit the sitemap, and URL Inspection → Request indexing
+      for `/`, `/accident-recovery`, the 5 service pages, `/about`, `/contact` and the
+      OEM article.
+- [ ] TSSEA: fill `COMPLIANCE` in `site.ts`, upload the certificate and maximum rate
+      schedule to `public/compliance/`. Then a `/rates` page and real price FAQs.
+      (Deferred by the owner, November 11, 2026.)
+- [ ] Confirm `PAYMENT_METHODS`: the old Contact page also listed E-Transfer, Apple
+      Pay and Google Pay. Add any you really take on every job.
+- [x] OEM parts (owner, November 11, 2026): OEM on newer vehicles when the insurer
+      approves it on the estimate; on older vehicles insurers usually direct
+      aftermarket. `/accident-recovery` and the OEM article now say exactly that.
+- [ ] Confirm or remove on `/accident-recovery`: the written warranty and the
+      deductible help. Confirm "Licensed & Insured".
+- [ ] Real photos, job notes and ETA data for city and service pages.
+
 ## Off-site (unchanged, still worth doing)
 - Keep Google Business Profile NAP exactly matching the site; add real photos.
 - Respond to reviews; ask satisfied customers to review via `/review`.

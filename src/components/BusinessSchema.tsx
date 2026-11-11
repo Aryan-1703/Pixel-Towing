@@ -1,11 +1,8 @@
 import { Helmet } from "react-helmet-async";
-import { BUSINESS, SITE_ORIGIN, absoluteUrl } from "../content/site";
-import { AUTHOR } from "../content/author";
+import { BUSINESS, PAYMENT_METHODS, SITE_ORIGIN, absoluteUrl } from "../content/site";
+import { AUTHOR_SCHEMA_NODE } from "../content/author";
 import { SERVICE_AREAS, areaServedSchema } from "../content/cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
-
-/** Matches the Person node on the About page, so both describe one person. */
-const AUTHOR_REF = { "@id": `${AUTHOR.url}#author` } as const;
 
 /**
  * The one authoritative Pixel Towing business entity, rendered once in App.tsx.
@@ -21,8 +18,8 @@ const businessSchema = {
 	"@id": BUSINESS.schemaId,
 	name: BUSINESS.name,
 	url: `${SITE_ORIGIN}/`,
-	logo: absoluteUrl(BUSINESS.defaultImagePath),
-	image: absoluteUrl(BUSINESS.defaultImagePath),
+	logo: absoluteUrl(BUSINESS.logoPath),
+	image: absoluteUrl(BUSINESS.logoPath),
 	description:
 		"24/7 towing and roadside assistance based in Brampton, Ontario — accident towing, flatbed towing, lockouts, battery boosts, tire changes and scrap car removal.",
 	telephone: BUSINESS.phoneE164,
@@ -60,7 +57,8 @@ const businessSchema = {
 			closes: "23:59",
 		},
 	},
-	founder: AUTHOR_REF,
+	// Inline (not a bare @id reference) so it resolves on every page, not only /about.
+	founder: AUTHOR_SCHEMA_NODE,
 	knowsAbout: [
 		"Towing",
 		"Accident towing",
@@ -88,7 +86,7 @@ const businessSchema = {
 			},
 		})),
 	},
-	paymentAccepted: ["Cash", "Credit Card", "Debit Card"],
+	paymentAccepted: PAYMENT_METHODS,
 	hasMap: BUSINESS.googleProfileUrl,
 	sameAs: [BUSINESS.instagramUrl, BUSINESS.googleProfileUrl],
 };

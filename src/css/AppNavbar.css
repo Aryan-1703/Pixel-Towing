@@ -20,3 +20,13 @@
 .navbar-custom.scrolled .navbar-brand {
 	color: #333;
 }
+
+/* Round call button beside the hamburger (below lg only). */
+.navbar-call-btn {
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+}

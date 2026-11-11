@@ -31,9 +31,17 @@ const SOURCES = {
 		"https://www.peelpolice.ca/reporting-records/report-a-crime-or-incident/collision-reporting/",
 	fsraClaims:
 		"https://www.fsrao.ca/consumers/auto-insurance/protect-yourself/after-accident-understanding-claims-process",
+	fsraUnderstandingAuto: "https://www.fsrao.ca/media/7376/download",
+	fsraMinorAccidents: "https://www.fsrao.ca/media/6801/download",
+	fsraTowScams: "https://www.fsrao.ca/media/7511/download",
+	fsraOpcf43: "https://www.fsrao.ca/opcf-43-removing-depreciation-deduction",
+	vehicleBranding: "https://www.ontario.ca/page/mandatory-vehicle-branding-program",
+	compulsoryInsuranceAct: "https://www.ontario.ca/laws/statute/90c25",
+	towOperatorRegulation: "https://www.ontario.ca/laws/regulation/r23167",
 } as const;
 
 const REVIEWED_2026_09 = "Reviewed September 2026 against current Ontario government, FSRA and Peel Regional Police guidance.";
+const REVIEWED_2026_11 = "Reviewed November 2026 against current Ontario government and FSRA guidance.";
 
 export const BLOG_POSTS = [
 	{
@@ -302,26 +310,49 @@ Pixel Towing doesn't chase collisions. Call us at **647-673-9755** when you need
 		title: "Does Car Insurance Cover Towing in Ontario? (And Do You Have to Use Their Shop?)",
 		metaTitle: "Does Car Insurance Cover Towing in Ontario? | Pixel Towing",
 		excerpt:
-			"What Ontario car insurance may cover for towing, repairs and rentals after a collision or breakdown — and the choices that stay yours.",
+			"Does insurance cover towing after an accident in Ontario? What's covered, what isn't, whether a tow raises your premium, and the choices that stay yours.",
 		category: "Insurance",
 		categoryColor: "info",
 		datePublished: "2025-03-10",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
+		dateModified: "2026-11-11",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
-## The Short Answer: It Depends on Your Policy
+## Does Insurance Cover Towing After an Accident?
 
-Whether towing is covered depends on **your policy, the coverages you bought and the reason for the tow.** Coverage depends on your policy and the circumstances of the claim — so treat everything below as questions to ask your insurer or broker, not promises.
+**Not automatically — it depends on your policy and on who was at fault.** Here's what Ontario's rules say, and what to confirm with your insurer before you assume the tow is covered.
 
-### Towing After a Collision
+- **Damage to your own vehicle** is usually claimed through your own insurer under Direct Compensation – Property Damage (DCPD), to the extent you're not at fault. FSRA says that if you're 100% at fault, DCPD won't cover your repairs; optional Collision coverage can, minus your deductible.
+- **Towing isn't named.** FSRA's list of what DCPD can pay for is repairs or replacement of your vehicle, a temporary rental vehicle and damaged contents. Ask your adjuster, in writing, whether the tow and any storage are part of your claim.
+- **Moving the car twice can cost you.** FSRA warns that if your vehicle is moved from one shop to another, the first shop may still bill you for towing, storage and administrative fees — and your insurer may not cover them.
 
-If you have a collision claim, towing from the scene is often part of what the insurer pays for, but how much, and whether your deductible applies, depends on your policy and the circumstances. Ask your insurer before you assume the tow is covered.
+See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}) and FSRA's [tips for avoiding tow truck and storage scams](${SOURCES.fsraTowScams}).
 
-### Breakdown Towing
+## Does Insurance Cover Towing for a Breakdown?
 
-A mechanical breakdown is usually not an insurance claim. Breakdown towing is typically covered only if you have a roadside assistance add-on or a separate roadside membership. Otherwise you pay the tow operator directly.
+**Usually not.** A mechanical breakdown isn't a collision claim. Breakdown towing is typically covered only if you have a roadside assistance add-on from your insurer or a separate roadside membership. Otherwise you pay the tow operator directly — and you're still entitled to its maximum rate schedule before the tow and an itemized invoice before you pay.
 
-## Four Separate Questions
+## Will Getting Towed Raise My Insurance?
+
+**Paying for a tow on its own isn't an insurance claim.** What can change your premium is an accident claim in which you're found at fault:
+
+- FSRA says any driver found more than 0% at fault will have an at-fault accident on their insurance record, and that if you're found **more than 25% at fault**, your premium will likely go up at renewal. See [FSRA: Understanding Automobile Insurance](${SOURCES.fsraUnderstandingAuto}).
+- **Minor accidents:** for accidents on or after June 1, 2016, an insurer can't use a minor at-fault accident to set your premium if no one was injured, no insurer paid anything, and damage to each vehicle (including property damage) was $2,000 or less and paid by the at-fault driver. It applies to one minor accident every three years. See [FSRA Bulletin A-06/15](${SOURCES.fsraMinorAccidents}).
+
+## Car Towed and You Can't Pay — Do You Still Need Insurance?
+
+Ontario's [Compulsory Automobile Insurance Act](${SOURCES.compulsoryInsuranceAct}) requires a vehicle to be insured when it's operated on a highway. Whether to keep, reduce or pause coverage while a car sits in a storage yard is a decision to make with your insurer or broker, because:
+
+- Comprehensive coverage is what protects a parked or stored car against theft, fire and vandalism
+- A car loan or lease may require you to keep the vehicle insured — check your agreement
+- The car has to be insured again before anyone drives it
+
+Don't let the car sit while you decide. Daily storage fees keep adding up, and FSRA warns that the business holding your vehicle may be able to sell it to recover unpaid fees under Ontario's Repair and Storage Liens Act. Before you pay, you're entitled to an itemized invoice, and you can pay by credit card, debit card or cash — see [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}). If the tow followed a collision, call your insurer now and ask whether towing and storage are part of the claim.
+
+### Who insures the car while it's being towed?
+
+Certified tow operators must carry their own insurance. Ontario requires at least $100,000 of coverage for damage to a vehicle while it's in the operator's care, custody or control. See [O. Reg. 167/23 under the TSSEA](${SOURCES.towOperatorRegulation}).
+
+## Four Separate Questions After a Collision
 
 These often get mixed together. They are governed by different rules.
 
@@ -365,28 +396,40 @@ This article is general information, not insurance advice.
 		title: "My Car Is a Total Loss in Ontario — What Happens Next?",
 		metaTitle: "Total Loss Vehicle Ontario: What Happens Next | Pixel Towing",
 		excerpt:
-			"Car declared a total loss? How Ontario valuations generally work, what to ask your insurer, and how to respond to a low offer.",
+			"Car written off in Ontario? How the payout is calculated, whether your premium goes up, what happens to the car, and how to respond to a low offer.",
 		category: "Total Loss",
 		categoryColor: "danger",
 		datePublished: "2025-03-15",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
+		dateModified: "2026-11-11",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
 ## What "Total Loss" Means
 
-When an insurer declares your vehicle a total loss (a write-off), it has decided that repairing it would cost too much relative to the vehicle's actual cash value (ACV). The threshold and method vary by insurer and policy.
+When an insurer declares your vehicle a total loss (a write-off), it has decided that repairing it would cost too much relative to the vehicle's actual cash value (ACV). FSRA's claims guide puts it this way: your insurer will likely treat the vehicle as a total loss and offer a cash settlement if the repairs would cost more than its actual cash value — and in most cases, buying a replacement is up to you.
 
 A total loss doesn't necessarily mean the car is destroyed — it means the insurer has concluded paying out is more economical than repairing it.
 
-## How the Offer Is Usually Calculated
+## How Much Will Insurance Pay for a Totaled Car?
 
-Insurers typically estimate ACV using:
+**Usually the vehicle's actual cash value at the time of the loss, minus your deductible.** FSRA describes actual cash value as the amount needed to replace your vehicle with a comparable used vehicle, plus applicable sales tax, taking into account its mileage, age, overall condition and average retail selling price. For example, a car with an actual cash value of $12,000 and a $500 deductible would pay out $11,500.
+
+Insurers typically estimate that value using:
 
 - **Valuation tools and book values**
 - **Comparable vehicles** for sale in your market
 - **Age, mileage, options and condition**
 
-Automated valuations can miss things — recent major repairs, new tires, a high trim level or documented maintenance. If something was missed, you can raise it.
+Automated valuations can miss things — recent major repairs, new tires, a high trim level or documented maintenance. FSRA advises telling your adjuster about recent work that could increase the vehicle's value; they may ask for receipts. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
+
+### Bought the car new? Check for OPCF 43
+
+The standard policy lets your insurer deduct depreciation when it settles. The optional [OPCF 43 endorsement](${SOURCES.fsraOpcf43}) removes that right if you're the original owner, the vehicle was new when you took delivery, and the loss happens within the period stated on your policy. Your deductible still applies. Check your certificate of insurance to see whether you have it.
+
+## Will My Insurance Premium Go Up After a Total Loss?
+
+**The write-off itself doesn't decide it — fault does.** A total loss is settled like any other claim. FSRA says any driver found more than 0% at fault will have an at-fault accident on their record, and that if you're found **more than 25% at fault**, your premium will likely go up at renewal. See [FSRA: Understanding Automobile Insurance](${SOURCES.fsraUnderstandingAuto}).
+
+Fault is decided under Ontario's Fault Determination Rules, not by how badly the car was damaged. If you think the fault decision is wrong, ask your adjuster to explain how it was reached and to review it. Our guide to [what car insurance covers after a collision](/blog/car-insurance-towing-coverage-ontario) covers how fault affects the rest of your claim.
 
 ## Responding to an Offer You Think Is Too Low
 
@@ -406,13 +449,20 @@ Send your evidence and the value you believe is fair. Ask your insurer how its d
 
 ## What Happens to the Car
 
-If you accept the settlement, the insurer usually takes ownership of the vehicle and the payout is reduced by any deductible that applies under your policy. Some insurers allow you to keep the vehicle for a reduced settlement; that vehicle may then carry a branded title that affects registration and resale.
+If you accept the settlement, the insurer usually takes ownership of the vehicle. Some insurers allow you to keep it for a reduced settlement.
 
-Rental coverage, if you have it, usually has limits on how long it continues after a total-loss decision. Ask your insurer when your rental coverage ends — our [rental car guide](/blog/collision-repair-rental-car-brampton) lists what to check.
+Either way, Ontario brands written-off vehicles under its [Mandatory Vehicle Branding Program](${SOURCES.vehicleBranding}):
+
+- **Irreparable:** written off as a total loss; it can only be used for parts or scrap and can't be driven again in Ontario
+- **Salvage:** written off, but it can be repaired or used for parts or scrap. A repaired Salvage vehicle must pass a structural inspection at a registered DriveON Vehicle Inspection Centre to be re-branded **Rebuilt**
+
+The registered owner has 90 days to appeal a Salvage or Irreparable brand. A vehicle you keep that's branded Irreparable can only go for parts or scrap — our [scrap car removal](/services/scrap-car-removal) includes free towing.
+
+Rental coverage, if you have it, usually has limits on how long it continues after a total-loss decision. Ask your insurer when your rental coverage ends — our [rental car guide](/blog/collision-repair-rental-car-brampton) lists what to check. Once the claim is settled, call your insurer or broker to take the vehicle off your policy or move the coverage to its replacement.
 
 ## Storage Costs While You Wait
 
-If the vehicle is sitting in a storage yard, daily storage fees may apply while the claim is decided. Ask who is paying storage and whether the vehicle should be moved. If it does need moving, a [flatbed tow](/services/vehicle-transport) can take it to wherever you choose.
+If the vehicle is sitting in a storage yard, daily storage fees may apply while the claim is decided. Ask who is paying storage and whether the vehicle should be moved. FSRA warns that if a vehicle is moved from one shop to another, the first may still bill towing, storage and administrative fees that your insurer may not cover — so agree on the move with your adjuster first. If it does need moving, a [flatbed tow](/services/vehicle-transport) can take it to wherever you choose.
 
 This article is general information, not legal or insurance advice.
 

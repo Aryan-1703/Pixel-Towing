@@ -149,6 +149,16 @@ Code-only fixes from `pixeltowing.com-audit/ACTION-PLAN.md`, Phase 1:
   contextual links service ↔ guide and between guides; curated `RELATED_POSTS`;
   read times computed from word count; Locations menu prerendered.
 
+Search Console follow-up (same day, baseline in `pixeltowing.com-audit/GSC-BASELINE-2026-11-11.md`):
+- The insurance and total-loss guides had 2,265 impressions at positions 18–22. Both now
+  open with answer-first sections for the real queries ("does insurance cover towing
+  after an accident", "premium after a totaled car", "car towed, can't pay, do I still
+  need insurance", "how much will insurance pay"). Every rule cites FSRA, ontario.ca or
+  e-Laws. Two claims were left out because no official source confirmed them: a
+  blanket "not-at-fault can't raise premiums" rule, and towing being a named DCPD cost.
+- Tire page FAQ now says plainly that we install the customer's spare and don't repair
+  or plug tires (owner, November 11, 2026). Don't target "flat tire repair".
+
 Still owner-blocked (see the action plan, Phases 0 and 2–3):
 - [x] Cloudflare → Scrape Shield → Email Address Obfuscation: **off** (verified
       November 11, 2026: the email is in the raw HTML of `/contact`). Still check

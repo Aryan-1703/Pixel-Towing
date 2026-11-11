@@ -168,6 +168,11 @@ const SERVICES: Record<ServiceSlug, ServiceCopy> = {
 		],
 		faqs: [
 			{
+				question: "Do you repair or plug flat tires at the roadside?",
+				answer:
+					"No. We install the spare that's already in your vehicle so you can drive to a tire shop for the repair. If there's no usable spare, we can tow you to the tire shop of your choice.",
+			},
+			{
 				question: "Do you supply a spare tire?",
 				answer:
 					"No, we install the spare that came with your vehicle. If you don't have one, we can tow you to a tire shop.",

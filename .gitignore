@@ -22,3 +22,8 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Local-only: personal Claude Code settings and SEO audit output.
+# This repo is public, so audit findings and Search Console data stay off GitHub.
+.claude/
+pixeltowing.com-audit/

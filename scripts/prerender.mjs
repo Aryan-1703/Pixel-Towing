@@ -70,12 +70,17 @@ async function captureRoute(page, route) {
 /** Head facts used to enforce one title / description / canonical per page. */
 function inspectHead(page) {
 	return page.evaluate(() => {
-		const schemaTypes = [...document.querySelectorAll('script[type="application/ld+json"]')].map(el => {
+		// A block may hold one node, an array of nodes, or an @graph; audit every node.
+		const nodesOf = parsed =>
+			[parsed].flat().flatMap(node => (Array.isArray(node?.["@graph"]) ? node["@graph"] : [node]));
+		const schemaTypes = [...document.querySelectorAll('script[type="application/ld+json"]')].flatMap(el => {
+			let parsed;
 			try {
-				return JSON.parse(el.textContent)["@type"];
+				parsed = JSON.parse(el.textContent);
 			} catch {
-				return "INVALID_JSON";
+				return ["INVALID_JSON"];
 			}
+			return nodesOf(parsed).map(node => node?.["@type"]);
 		});
 		return {
 			titles: document.querySelectorAll("head > title").length,

@@ -39,6 +39,10 @@ const footerStyles = `
     font-size: 0.875rem;
   }
 
+  .footer-tagline {
+    color: #cbd5e1;
+  }
+
   .footer-phone {
     font-weight: 800;
     color: #fbbf24 !important;
@@ -149,7 +153,7 @@ const Footer: React.FC = () => {
 									<Link to="/review">Leave a Review</Link>
 								</li>
 								<li>
-									<Link to="/about">About the Author</Link>
+									<Link to="/about">About Pixel Towing</Link>
 								</li>
 								<li>
 									<a href="/sitemap.xml" target="_blank" rel="noopener noreferrer">
@@ -221,9 +225,7 @@ const Footer: React.FC = () => {
 							© {currentYear} {BUSINESS.name}, Brampton, Ontario. All Rights Reserved.
 						</Col>
 						<Col md={6} className="text-center text-md-end">
-							<small className="text-muted">
-								Fast • Reliable • 24/7 Emergency Towing
-							</small>
+							<small className="footer-tagline">Fast • Reliable • 24/7 Emergency Towing</small>
 						</Col>
 					</Row>
 				</Container>

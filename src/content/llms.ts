@@ -26,14 +26,14 @@ const keyFacts = [
 	"- Hours: 24 hours a day, 7 days a week, including holidays.",
 	`- Phone (calls and dispatch): ${BUSINESS.phoneDisplay}`,
 	`- Email: ${BUSINESS.email}`,
-	`- WhatsApp: ${BUSINESS.whatsappUrl}`,
+	`- WhatsApp: [Message Pixel Towing on WhatsApp](${BUSINESS.whatsappUrl})`,
 	`- Service area: ${areaList}, Ontario.`,
 	`- Response time: ${DISPATCH_MESSAGE.full}`,
 	"- Pricing: depends on the service, distance and vehicle. The price is quoted by phone before dispatch, and the maximum rate schedule is provided before any work starts, as Ontario requires.",
 	`- Payment: ${paymentMethodsText("and").toLowerCase()}.`,
 	"- Insurance: whether an insurer pays for towing depends on the policy and the circumstances of the claim.",
-	`- Highway tow zones: on sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, Ontario's Tow Zone Program (${TOW_ZONE_URL}) allows only the ministry's contracted operator to tow. Pixel Towing can tow once the vehicle is outside the zone.`,
-	`- Google Business Profile and reviews: ${BUSINESS.googleProfileUrl}`,
+	`- Highway tow zones: on sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, Ontario's [Tow Zone Program](${TOW_ZONE_URL}) allows only the ministry's contracted operator to tow. Pixel Towing can tow once the vehicle is outside the zone.`,
+	`- Google reviews: [Pixel Towing on Google](${BUSINESS.googleProfileUrl})`,
 ];
 
 export function buildLlmsTxt(): string {
@@ -82,7 +82,7 @@ export function buildLlmsTxt(): string {
 		"",
 		"## Optional",
 		"",
-		link("About the author", "/about"),
+		link("About Pixel Towing", "/about"),
 		link("Contact", "/contact"),
 		link("Sitemap", "/sitemap.xml"),
 		"",

@@ -53,8 +53,8 @@ _Last updated: September 30, 2026 (production SEO pass)._
       rate schedule (e.g. `public/compliance/…`). The footer block appears
       automatically once set. TSSEA requires these on the website.
 - [ ] Confirm the claims that remain on the site are accurate: "Licensed &
-      Insured", repair facility and rental fleet ownership, OEM parts as standard,
-      the written workmanship warranty, and the deductible-help policy.
+      Insured" and repair facility / rental fleet ownership. (OEM wording, the
+      written warranty and deductible help were confirmed in November 2026.)
 - [ ] Add real photos: trucks, equipment, team and (with consent) real jobs.
       Replace the generic photos in `src/assets/` and update `images.ts`.
 - [ ] Add real, privacy-safe local job examples to each city in `cities.ts`.
@@ -177,9 +177,36 @@ Still owner-blocked (see the action plan, Phases 0 and 2–3):
 - [x] OEM parts (owner, November 11, 2026): OEM on newer vehicles when the insurer
       approves it on the estimate; on older vehicles insurers usually direct
       aftermarket. `/accident-recovery` and the OEM article now say exactly that.
-- [ ] Confirm or remove on `/accident-recovery`: the written warranty and the
-      deductible help. Confirm "Licensed & Insured".
+- [x] Written repair warranty and deductible help on `/accident-recovery`
+      (owner, November 13, 2026): both are real policies. Keep the wording.
+- [ ] Confirm "Licensed & Insured".
 - [ ] Real photos, job notes and ETA data for city and service pages.
+
+## SEO audit phase 2 (November 13, 2026)
+Second audit: `pixeltowing.com-audit/2026-11-13/` (local only, not in git).
+- Fact fixes: Ontario's collision reporting threshold is **$5,000** since
+  January 1, 2025 (was $2,000) — after-accident guide and `/accident-recovery`.
+  The minor-accident premium rule is now **$5,000** (O. Reg. 56/25). FSRA's current
+  claims page says a premium is likely to rise at **50% or more** at fault — the
+  old "more than 25%" figure came from an FSCO-era guide. FSCO documents are now
+  labelled as FSCO; tow-consent text mentions police-ordered tows.
+- Mobile: navbar turns solid when the menu is open on `/`; the Locations menu is
+  `LocationsMenu.tsx` (no Popper); `g-5` rows no longer overflow phones; call-bar
+  spacing lives on the footer. Component CSS loads before Bootstrap (`main.tsx`
+  imports `App` first), so overriding a Bootstrap `!important` utility needs a
+  more specific selector.
+- Content: service copy is in `src/content/serviceCopy.ts` with deeper tire,
+  battery, flatbed and scrap sections; city FAQs can contain links; `/about` is a
+  company page; blog posts show the first answer before the image.
+- Server: `Content-Security-Policy-Report-Only` and `Permissions-Policy` headers.
+  Check the live console for CSP reports (Cloudflare can inject scripts) before
+  switching to an enforcing `Content-Security-Policy`. HTML now carries
+  `s-maxage=300, stale-while-revalidate=86400`; it only takes effect at Cloudflare
+  with a Cache Rule for HTML, and then needs a purge on each deploy.
+- [ ] After deploying: `npm run indexnow`, then Search Console → Request indexing
+      for the three insurance/accident guides, `/accident-recovery`, `/about`, the
+      four expanded service pages and the edited city pages.
+- [ ] No analytics is installed, so call taps (`data-cta`) aren't counted yet.
 
 ## Off-site (unchanged, still worth doing)
 - Keep Google Business Profile NAP exactly matching the site; add real photos.

@@ -1,10 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
-import { Navbar, Nav, Container, Button, NavDropdown } from "react-bootstrap";
+import { Navbar, Nav, Container, Button } from "react-bootstrap";
 import { Phone, ShieldAlert } from "lucide-react";
-import { SERVICE_AREAS } from "../content/cities";
 import { BUSINESS } from "../content/site";
+import LocationsMenu from "./LocationsMenu";
 import "../css/AppNavbar.css";
+
+/** Scroll distance after which the transparent homepage navbar turns solid. */
+const SOLID_AFTER_SCROLL_PX = 50;
 
 const AppNavbar = () => {
 	const [isScrolled, setIsScrolled] = useState(false);
@@ -13,15 +16,16 @@ const AppNavbar = () => {
 
 	useEffect(() => {
 		const handleScroll = () => {
-			setIsScrolled(window.scrollY > 50);
+			setIsScrolled(window.scrollY > SOLID_AFTER_SCROLL_PX);
 		};
-		window.addEventListener("scroll", handleScroll);
+		window.addEventListener("scroll", handleScroll, { passive: true });
 		return () => {
 			window.removeEventListener("scroll", handleScroll);
 		};
 	}, []);
 
-	const isSolid = isScrolled || location.pathname !== "/";
+	// An open mobile menu needs a solid background, or its links sit on the hero.
+	const isSolid = isScrolled || expanded || location.pathname !== "/";
 
 	return (
 		<Navbar
@@ -90,23 +94,8 @@ const AppNavbar = () => {
 							Services
 						</Nav.Link>
 
-						<NavDropdown
-							title="Locations"
-							id="locations-dropdown"
-							className="fw-medium mx-1"
-							// Puts the city links in the prerendered HTML, not only after the first click.
-							renderMenuOnMount
-						>
-							<NavDropdown.Item as={Link} to="/locations" onClick={() => setExpanded(false)} className="fw-bold">
-								All service areas
-							</NavDropdown.Item>
-							<NavDropdown.Divider />
-							{SERVICE_AREAS.map(area => (
-								<NavDropdown.Item key={area.path} as={Link} to={area.path} onClick={() => setExpanded(false)}>
-									{area.name}
-								</NavDropdown.Item>
-							))}
-						</NavDropdown>
+						{/* Remount when the mobile menu opens or closes, so the submenu starts closed. */}
+						<LocationsMenu key={expanded ? "expanded" : "collapsed"} onNavigate={() => setExpanded(false)} />
 
 						<Nav.Link
 							as={Link}

@@ -45,11 +45,33 @@ const MIME_TYPES = {
 
 const COMPRESSIBLE = new Set([".html", ".js", ".css", ".json", ".xml", ".txt", ".svg"]);
 
+/**
+ * Report-only for now: Cloudflare can inject its own scripts at the edge, so
+ * watch the browser console for violations on the live site before enforcing.
+ * Inline styles are allowed because the prerendered HTML carries style
+ * attributes; JSON-LD <script> blocks aren't executed, so script-src stays 'self'.
+ */
+const CONTENT_SECURITY_POLICY = [
+	"default-src 'self'",
+	"script-src 'self'",
+	"style-src 'self' 'unsafe-inline'",
+	"img-src 'self' data:",
+	"font-src 'self'",
+	"connect-src 'self'",
+	"frame-src https://www.google.com",
+	"frame-ancestors 'self'",
+	"base-uri 'self'",
+	"form-action 'self'",
+	"object-src 'none'",
+].join("; ");
+
 const SECURITY_HEADERS = {
 	"X-Content-Type-Options": "nosniff",
 	"X-Frame-Options": "SAMEORIGIN",
 	"Referrer-Policy": "strict-origin-when-cross-origin",
 	"Strict-Transport-Security": "max-age=31536000",
+	"Content-Security-Policy-Report-Only": CONTENT_SECURITY_POLICY,
+	"Permissions-Policy": "camera=(), microphone=(), geolocation=(), payment=(), usb=()",
 };
 
 function loadRedirects() {
@@ -84,12 +106,23 @@ function resolveFile(pathname) {
 	return isFile(candidate) ? candidate : null;
 }
 
+/**
+ * Browsers always revalidate HTML. A shared cache (Cloudflare, once a cache rule
+ * for HTML is enabled) may keep a page for 5 minutes, plus 1 minute stale while
+ * it refreshes. Kept short because a deploy replaces the hashed /assets files an
+ * old page links to; purge the cache on deploy anyway.
+ */
+const HTML_CACHE_CONTROL = "public, max-age=0, must-revalidate, s-maxage=300, stale-while-revalidate=60";
+
 function cacheControlFor(pathname, status) {
 	if (status === 200 && pathname.startsWith("/assets/")) {
 		return "public, max-age=31536000, immutable";
 	}
-	if (extname(pathname) === "" || pathname.endsWith(".html") || status !== 200) {
+	if (status !== 200) {
 		return "public, max-age=0, must-revalidate";
+	}
+	if (extname(pathname) === "" || pathname.endsWith(".html")) {
+		return HTML_CACHE_CONTROL;
 	}
 	return "public, max-age=3600";
 }

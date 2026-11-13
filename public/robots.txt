@@ -22,7 +22,9 @@ User-agent: PerplexityBot
 User-agent: Perplexity-User
 Allow: /
 
-# Google Gemini / AI Overviews, Apple Intelligence, Microsoft Copilot (Bing)
+# Google-Extended controls Gemini training and grounding only; Google Search,
+# AI Overviews and AI Mode use Googlebot (covered by the * group above).
+# Applebot-Extended controls Apple Intelligence; Bingbot feeds Bing and Copilot.
 User-agent: Google-Extended
 User-agent: Applebot
 User-agent: Applebot-Extended

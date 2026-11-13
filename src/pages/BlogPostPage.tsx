@@ -52,9 +52,21 @@ const renderLine = ({ text, index: key }: ContentLine) => {
 	);
 };
 
+const SECTION_BREAK = "\n## ";
+
+/**
+ * Splits an article after its first "## " section, so the direct answer comes
+ * before the featured image instead of below it.
+ */
+const splitAfterFirstSection = (content: string): readonly [string, string] => {
+	const body = content.trim();
+	const second = body.indexOf(SECTION_BREAK, body.startsWith("## ") ? 1 : 0);
+	return second === -1 ? [body, ""] : [body.slice(0, second), body.slice(second + 1)];
+};
+
 // Minimal markdown-like renderer for the article bodies in blogPosts.ts.
 const renderContent = (content: string) =>
-	groupBlocks(content.trim().split("\n")).map(block =>
+	groupBlocks(content.split("\n")).map(block =>
 		block.kind === "line" ? (
 			renderLine(block.line)
 		) : (
@@ -90,7 +102,7 @@ const buildArticleSchema = (post: Post, pageUrl: string, image: SiteImage) => {
 	};
 };
 
-const ArticleHeader = ({ post, image }: { post: Post; image: SiteImage }) => {
+const ArticleHeader = ({ post }: { post: Post }) => {
 	const dateModified = dateModifiedOf(post);
 	const reviewedNote = "reviewedNote" in post ? post.reviewedNote : undefined;
 	return (
@@ -113,33 +125,90 @@ const ArticleHeader = ({ post, image }: { post: Post; image: SiteImage }) => {
 				</span>
 			</div>
 			{reviewedNote && <p className="text-muted small fst-italic mb-4">{reviewedNote}</p>}
+		</>
+	);
+};
+
+const ArticleBody = ({ content, image }: { content: string; image: SiteImage }) => {
+	const [answer, rest] = splitAfterFirstSection(content);
+	return (
+		<Card className="border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5 bg-white">
+			{renderContent(answer)}
 			<img
 				src={image.src}
 				alt={image.alt}
 				width={image.width}
 				height={image.height}
-				className="img-fluid rounded-4 shadow-sm mb-4 w-100"
+				className="img-fluid rounded-4 shadow-sm my-4 w-100"
 				style={{ height: "auto" }}
+				loading="lazy"
 			/>
-		</>
+			{rest && renderContent(rest)}
+		</Card>
 	);
 };
 
-const ArticleCta = () => (
-	<Card className="border-0 rounded-4 text-white p-4 mb-5" style={{ background: "linear-gradient(135deg, #1e293b, #1e3a8a)" }}>
-		<Row className="align-items-center">
-			<Col md={8}>
-				<h2 className="h3 fw-bold mb-1">Need a Tow in Brampton or the GTA?</h2>
-				<p className="text-white-50 mb-0">{DISPATCH_MESSAGE.full}</p>
-			</Col>
-			<Col md={4} className="text-md-end mt-3 mt-md-0">
-				<Button href={BUSINESS.phoneHref} variant="warning" size="lg" className="fw-bold rounded-pill px-4">
-					<Phone size={18} className="me-2" /> Call Now
-				</Button>
-			</Col>
-		</Row>
-	</Card>
-);
+interface CtaCopy {
+	heading: string;
+	service?: { to: string; label: string };
+}
+
+const DEFAULT_CTA: CtaCopy = { heading: "Need a Tow in Brampton or the GTA?" };
+const ACCIDENT_CTA: CtaCopy = {
+	heading: "Need an Accident Tow in Brampton or the GTA?",
+	service: { to: ACCIDENT_RECOVERY.path, label: ACCIDENT_RECOVERY.anchor },
+};
+
+/** The call to action matches what a reader of each guide is most likely to need. */
+const CTA_BY_SLUG: Partial<Record<BlogSlug, CtaCopy>> = {
+	"locked-keys-in-car-what-to-do": {
+		heading: "Locked Out in Brampton or the GTA?",
+		service: { to: servicePath("lockout"), label: SERVICE_LINKS.lockout.anchor },
+	},
+	"dead-battery-vs-bad-alternator": {
+		heading: "Need a Battery Boost?",
+		service: { to: servicePath("jump-start"), label: SERVICE_LINKS["jump-start"].anchor },
+	},
+	"total-loss-vehicle-ontario-guide": {
+		heading: "Need a Written-Off Car Moved or Scrapped?",
+		service: { to: servicePath("scrap-car-removal"), label: SERVICE_LINKS["scrap-car-removal"].anchor },
+	},
+	"what-to-do-after-car-accident-brampton": ACCIDENT_CTA,
+	"car-insurance-towing-coverage-ontario": ACCIDENT_CTA,
+	"collision-repair-rental-car-brampton": ACCIDENT_CTA,
+	"deductible-waived-collision-repair-brampton": ACCIDENT_CTA,
+	"oem-vs-aftermarket-parts-collision-repair": ACCIDENT_CTA,
+};
+
+const ArticleCta = ({ slug }: { slug: BlogSlug }) => {
+	const cta = CTA_BY_SLUG[slug] ?? DEFAULT_CTA;
+	return (
+		<Card className="border-0 rounded-4 text-white p-4 mb-5" style={{ background: "linear-gradient(135deg, #1e293b, #1e3a8a)" }}>
+			<Row className="align-items-center">
+				<Col md={8}>
+					<h2 className="h3 fw-bold mb-1">{cta.heading}</h2>
+					<p className="text-white-50 mb-0">{DISPATCH_MESSAGE.full}</p>
+					{cta.service && (
+						<Link to={cta.service.to} className="text-warning small fw-medium d-inline-block mt-2">
+							{cta.service.label} →
+						</Link>
+					)}
+				</Col>
+				<Col md={4} className="text-md-end mt-3 mt-md-0">
+					<Button
+						href={BUSINESS.phoneHref}
+						variant="warning"
+						size="lg"
+						className="fw-bold rounded-pill px-4"
+						data-cta="blog-call"
+					>
+						<Phone size={18} className="me-2" /> Call {BUSINESS.phoneDisplay}
+					</Button>
+				</Col>
+			</Row>
+		</Card>
+	);
+};
 
 const RelatedPosts = ({ currentSlug }: { currentSlug: BlogSlug }) => (
 	<>
@@ -205,9 +274,9 @@ const BlogPostPage = () => {
 			<Container className="py-5">
 				<Row className="justify-content-center">
 					<Col lg={8}>
-						<ArticleHeader post={post} image={image} />
-						<Card className="border-0 shadow-sm rounded-4 p-4 p-md-5 mb-5 bg-white">{renderContent(post.content)}</Card>
-						<ArticleCta />
+						<ArticleHeader post={post} />
+						<ArticleBody content={post.content} image={image} />
+						<ArticleCta slug={post.slug} />
 						<RelatedPosts currentSlug={post.slug} />
 						<ServiceLinks />
 					</Col>

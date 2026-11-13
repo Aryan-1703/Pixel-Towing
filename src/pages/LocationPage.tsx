@@ -18,8 +18,12 @@ import {
 	type CitySlug,
 } from "../content/cities";
 import { SERVICE_SLUGS, SERVICE_LINKS, ACCIDENT_RECOVERY, servicePath } from "../content/services";
+import { renderInline } from "../utils/renderInline";
 
 import heroBg from "/tow.jpg";
+
+/** The hero background is the LCP element, so fetch it first. */
+const HERO_PRELOAD = { rel: "preload", as: "image", href: heroBg, fetchpriority: "high" } as Record<string, string>;
 
 const buildServiceSchema = (slug: CitySlug, city: CityContent, pageUrl: string) => ({
 	"@context": "https://schema.org",
@@ -139,7 +143,7 @@ const CityFacts = ({ city }: { city: CityContent }) => {
 const CityOverview = ({ city }: { city: CityContent }) => (
 	<section className="py-5 bg-white">
 		<Container>
-			<Row className="align-items-start g-5">
+			<Row className="align-items-start gx-lg-5 gy-4">
 				<Col lg={6}>
 					<h2 className="fw-bold mb-3">{city.heading}</h2>
 					<p className="lead text-secondary">{city.intro}</p>
@@ -172,7 +176,7 @@ const CityFaq = ({ city }: { city: CityContent }) => (
 						{city.faq.map((item, idx) => (
 							<Accordion.Item key={item.q} eventKey={String(idx)}>
 								<Accordion.Header as="h3">{item.q}</Accordion.Header>
-								<Accordion.Body>{item.a}</Accordion.Body>
+								<Accordion.Body>{renderInline(item.a, `faq${idx}`)}</Accordion.Body>
 							</Accordion.Item>
 						))}
 					</Accordion>
@@ -211,6 +215,7 @@ const LocationPage = () => {
 				imageAlt={IMAGES.flatbedTowing.alt}
 			/>
 			<Helmet>
+				<link {...HERO_PRELOAD} />
 				<script type="application/ld+json">{JSON.stringify(buildServiceSchema(cityId, city, pageUrl))}</script>
 			</Helmet>
 			<CityHero city={city} />

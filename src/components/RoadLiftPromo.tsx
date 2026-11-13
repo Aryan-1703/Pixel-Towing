@@ -103,7 +103,7 @@ export const RoadLiftHeroLink = () => (
 export const RoadLiftSection = () => (
 	<section id={ROADLIFT_SECTION_ID} className="py-5 bg-white" style={{ scrollMarginTop: "76px" }}>
 		<Container>
-			<Row className="align-items-center g-5">
+			<Row className="align-items-center gx-lg-5 gy-4">
 				<Col lg={7}>
 					<div className="small text-uppercase fw-bold text-secondary mb-2">
 						From the team behind Pixel Towing

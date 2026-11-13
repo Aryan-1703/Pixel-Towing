@@ -21,6 +21,19 @@
 	color: #333;
 }
 
+/* Desktop Locations menu: keep all cities reachable on short screens. */
+@media (min-width: 992px) {
+	#locations-menu {
+		max-height: 70vh;
+		overflow-y: auto;
+	}
+}
+
+/* 44px minimum touch target for the hamburger. */
+.navbar-custom .navbar-toggler {
+	min-height: 44px;
+}
+
 /* Round call button beside the hamburger (below lg only). */
 .navbar-call-btn {
 	width: 44px;

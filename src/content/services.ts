@@ -2,8 +2,8 @@
  * Service catalogue — slugs, labels and sitemap dates.
  *
  * Pure data so routes.ts can build the sitemap from it. Page copy, images and
- * icons for each slug live in ServiceDetailPage, typed against ServiceSlug so
- * a service cannot exist in one place and be missing from the other.
+ * icons for each slug live in serviceCopy.ts, typed against ServiceSlug so a
+ * service cannot exist in one place and be missing from the other.
  */
 
 export const SERVICE_SLUGS = [
@@ -41,28 +41,28 @@ export const SERVICE_LINKS: Record<ServiceSlug, ServiceLink> = {
 		anchor: "Flat tire change",
 		summary:
 			"Roadside flat tire change: we install your spare and check its pressure. No usable spare? We tow you to a tire shop.",
-		lastmod: "2026-11-11",
+		lastmod: "2026-11-13",
 	},
 	"jump-start": {
 		label: "Battery Boost",
 		anchor: "Battery boost and jump start",
 		summary:
 			"24/7 battery boost with a professional booster pack, plus a basic battery and charging-system check.",
-		lastmod: "2026-11-11",
+		lastmod: "2026-11-13",
 	},
 	"vehicle-transport": {
 		label: "Flatbed Towing",
 		anchor: "Flatbed towing for AWD vehicles",
 		summary:
 			"Flatbed towing for AWD, 4WD, luxury and low-clearance vehicles and motorcycles, plus long-distance towing across Ontario.",
-		lastmod: "2026-11-11",
+		lastmod: "2026-11-13",
 	},
 	"scrap-car-removal": {
 		label: "Scrap Car Removal",
 		anchor: "Scrap car removal",
 		summary:
 			"Scrap car removal with free towing, an upfront cash offer based on the vehicle, and help with the ownership paperwork.",
-		lastmod: "2026-11-11",
+		lastmod: "2026-11-13",
 	},
 };
 

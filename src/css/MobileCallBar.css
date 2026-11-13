@@ -27,10 +27,15 @@
 	white-space: nowrap;
 }
 
-/* Keep the end of every page (footer links, copyright) clear of the bar. */
+/*
+ * Keep the end of every page (footer links, copyright) clear of the bar. The
+ * space goes inside the dark footer, not on <body>, so no white strip shows
+ * below the footer. 1.5rem matches the footer's own pb-4; the element
+ * selector outranks Bootstrap's .pb-4, which loads after this file.
+ */
 @media (max-width: 991.98px) {
-	body {
-		padding-bottom: calc(var(--call-bar-height) + env(safe-area-inset-bottom, 0px));
+	footer.footer-bg {
+		padding-bottom: calc(1.5rem + var(--call-bar-height) + env(safe-area-inset-bottom, 0px)) !important;
 	}
 }
 
@@ -39,7 +44,7 @@
 		display: none !important;
 	}
 
-	body {
-		padding-bottom: 0;
+	footer.footer-bg {
+		padding-bottom: 1.5rem !important;
 	}
 }

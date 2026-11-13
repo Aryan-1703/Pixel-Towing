@@ -117,13 +117,13 @@ const PROCESS_STEPS = [
 ] as const;
 
 const COLLISION_REPORTING_ANSWER =
-	"Ontario's Highway Traffic Act requires a collision to be reported to police when anyone is injured, when combined damage exceeds $2,000, or when there is damage to highway property. In Peel Region (Brampton and Mississauga), Peel Regional Police currently direct drivers to call 911 if anyone needs to go to hospital or there is any sign of criminality; to report collisions over $2,000 with no injuries at a Collision Reporting Centre (within 48 hours if the vehicle can be driven); and, under $2,000, to report the details to their insurer. Peel publishes current centre locations and hours on its collision reporting page, and procedures can change, so check it before you go.";
+	"Report it to police if anyone is injured, if combined damage is more than $5,000, or if there is damage to highway property — that's Ontario's Highway Traffic Act rule, and the threshold rose from $2,000 to $5,000 on January 1, 2025. In Peel Region (Brampton and Mississauga), Peel Regional Police currently direct drivers to call 911 if anyone needs to go to hospital or there is any sign of criminality; to report collisions over $5,000 with no injuries at a Collision Reporting Centre (within 48 hours if the vehicle can be driven); and, for very minor damage, to contact their insurance company. Peel publishes current centre locations and hours on its collision reporting page, and procedures can change, so check it before you go.";
 
 const FAQS = [
 	{ q: "When do I have to report a collision in Brampton or Mississauga?", a: COLLISION_REPORTING_ANSWER },
 	{
 		q: "Who decides which tow truck takes my car?",
-		a: "Outside Ontario's restricted highway tow zones, you do: an operator needs your consent before towing and must disclose its maximum rate schedule. On tow-zone sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, only the ministry's contracted operator can tow you off the highway; once you're outside the zone you can choose the next tow company and destination.",
+		a: "Outside Ontario's restricted highway tow zones, you do — unless police or another authorized official order the tow: an operator needs your consent before towing and must disclose its maximum rate schedule. On tow-zone sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, only the ministry's contracted operator can tow you off the highway; once you're outside the zone you can choose the next tow company and destination.",
 	},
 	{
 		q: "Do I have to use my insurance company's preferred shop?",
@@ -163,7 +163,7 @@ const Hero = () => (
 		}}
 	>
 		<Container>
-			<Row className="align-items-center g-5">
+			<Row className="align-items-center gx-lg-5 gy-4">
 				<Col lg={7}>
 					<Badge bg="warning" text="dark" className="rounded-pill mb-3 px-3 py-2">
 						Available 24/7 — Brampton & GTA
@@ -271,7 +271,7 @@ const RIGHTS = [
 const RightsSection = () => (
 	<section className="py-5" style={{ background: "#0f172a" }}>
 		<Container>
-			<Row className="align-items-center g-5">
+			<Row className="align-items-center gx-lg-5 gy-4">
 				<Col lg={6}>
 					<Badge bg="warning" text="dark" className="rounded-pill mb-3">
 						Ontario rules

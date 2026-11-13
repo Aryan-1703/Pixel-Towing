@@ -31,10 +31,13 @@ const SOURCES = {
 		"https://www.peelpolice.ca/reporting-records/report-a-crime-or-incident/collision-reporting/",
 	fsraClaims:
 		"https://www.fsrao.ca/consumers/auto-insurance/protect-yourself/after-accident-understanding-claims-process",
-	fsraUnderstandingAuto: "https://www.fsrao.ca/media/7376/download",
-	fsraMinorAccidents: "https://www.fsrao.ca/media/6801/download",
-	fsraTowScams: "https://www.fsrao.ca/media/7511/download",
+	/** FSRA's printable claims booklet (carries over FSCO-era wording). */
+	fsraClaimsBooklet: "https://www.fsrao.ca/media/7386/download",
+	/** Archived tip sheet first published by FSCO, FSRA's predecessor, in 2017. */
+	fscoTowScams: "https://www.fsrao.ca/media/7511/download",
 	fsraOpcf43: "https://www.fsrao.ca/opcf-43-removing-depreciation-deduction",
+	/** O. Reg. 56/25 raised the minor-accident limit in Reg. 664 from $2,000 to $5,000. */
+	minorAccidentRegulation: "https://www.ontario.ca/laws/regulation/r25056",
 	vehicleBranding: "https://www.ontario.ca/page/mandatory-vehicle-branding-program",
 	compulsoryInsuranceAct: "https://www.ontario.ca/laws/statute/90c25",
 	towOperatorRegulation: "https://www.ontario.ca/laws/regulation/r23167",
@@ -42,6 +45,8 @@ const SOURCES = {
 
 const REVIEWED_2026_09 = "Reviewed September 2026 against current Ontario government, FSRA and Peel Regional Police guidance.";
 const REVIEWED_2026_11 = "Reviewed November 2026 against current Ontario government and FSRA guidance.";
+const REVIEWED_2026_11_PEEL =
+	"Reviewed November 2026 against current Ontario government, FSRA and Peel Regional Police guidance.";
 
 export const BLOG_POSTS = [
 	{
@@ -53,8 +58,8 @@ export const BLOG_POSTS = [
 		category: "Know Your Rights",
 		categoryColor: "warning",
 		datePublished: "2025-01-15",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
+		dateModified: "2026-11-13",
+		reviewedNote: REVIEWED_2026_11_PEEL,
 		content: `
 ## The First Few Minutes
 
@@ -79,21 +84,21 @@ The legal requirement and the local procedure are two different things.
 
 ### Ontario's legal requirement
 
-Ontario's Highway Traffic Act requires a collision to be reported to police when anyone is injured, when combined damage to the vehicles and property exceeds $2,000, or when there is damage to highway property.
+**Report to police if anyone is injured, if combined damage is more than $5,000, or if there is damage to highway property.** That's Ontario's Highway Traffic Act rule. The damage threshold rose from $2,000 to $5,000 on January 1, 2025, so older guides — and a few older police pages — still show $2,000.
 
 ### Peel Regional Police procedure
 
 In Brampton and Mississauga, Peel Regional Police currently direct drivers as follows:
 
 - **Call 911** if anyone needs to go to hospital, or there is any sign of criminality — and in other situations Peel lists, such as a suspected impaired or unlicensed driver, an uninsured vehicle, a hit-and-run, hazardous goods, or a major traffic blockage
-- **Combined damage over $2,000 and no injuries:** take the vehicle to a Collision Reporting Centre with your driver's licence, ownership and insurance. If the vehicle can be driven, Peel currently allows 48 hours to report
-- **Combined damage under $2,000:** Peel's current guidance is that you don't need a police report — report the details to your insurance company
+- **Combined damage over $5,000 and no injuries:** report it at a Collision Reporting Centre and bring your driver's licence, ownership and insurance. The driver has to attend with the vehicle. If the vehicle can be driven, Peel allows 48 hours to report
+- **Very minor damage ($5,000 or less, no injuries):** a police report isn't required. Peel's guidance is to contact your insurance company about your options
 
-Peel lists its Collision Reporting Centre locations and hours on its [collision reporting page](${SOURCES.peelCollisionReporting}). Check it before you go: centre locations, hours and procedures can change. If your vehicle can't be driven, a tow operator can take it to the centre for you.
+At the centre, staff photograph the damage and give you an incident number — your insurer will ask for it. Peel lists its Collision Reporting Centre locations and hours on its [collision reporting page](${SOURCES.peelCollisionReporting}). Check it before you go: centre locations, hours and procedures can change. If your vehicle can't be driven, a tow operator can take it to the centre for you.
 
 ## Who Decides Which Tow Truck Takes Your Car?
 
-**Outside Ontario's restricted highway tow zones, you do.** Towing is governed by Ontario's Towing and Storage Safety and Enforcement Act, 2021 (TSSEA): you choose which company tows your vehicle and where it goes, and an operator needs your consent before towing. When asking for consent they must disclose their maximum rate schedule. See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}) and our guide to [Ontario towing laws and your rights](/blog/ontario-towing-laws-driver-rights).
+**Outside Ontario's restricted highway tow zones, you do — unless police or another authorized official order the tow.** Towing is governed by Ontario's Towing and Storage Safety and Enforcement Act, 2021 (TSSEA): you choose which company tows your vehicle and where it goes, and an operator needs your consent before towing. When asking for consent they must disclose their maximum rate schedule. See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}) and our guide to [Ontario towing laws and your rights](/blog/ontario-towing-laws-driver-rights).
 
 **On some GTA highways the rules are different.** Sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW are in Ontario's [Tow Zone Program](${SOURCES.ontarioTowZones}). In those zones only the ministry's contracted operator can tow you off the highway. Once your vehicle is outside the zone you can choose the next tow company and destination, unless police direct otherwise.
 
@@ -101,7 +106,7 @@ Tow trucks that arrive uninvited are not entitled to your car. Outside a tow zon
 
 ## Your Insurance Claim
 
-**Repairs and rentals are an insurance matter, separate from towing.** FSRA, Ontario's insurance regulator, states that as long as your insurance company approves the estimate, you may have your vehicle repaired at the shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
+**Repairs and rentals are an insurance matter, separate from towing.** FSRA, Ontario's insurance regulator, states that as long as your insurance company approves the estimate, you may have your vehicle repaired at the shop of your choice, and that you have the right to choose a repair shop, tow operator or vehicle rental company. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}) and FSRA's [claims booklet](${SOURCES.fsraClaimsBooklet}).
 
 What your insurer pays for — towing, storage, repairs, a rental — depends on your policy and the circumstances of the claim. Read your policy or ask your insurer or broker before you assume something is covered. Our guide to [what car insurance covers for towing in Ontario](/blog/car-insurance-towing-coverage-ontario) breaks this into four separate questions.
 
@@ -125,8 +130,8 @@ This article is general information, not legal or insurance advice.
 		category: "Ontario Law",
 		categoryColor: "primary",
 		datePublished: "2025-02-03",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
+		dateModified: "2026-11-13",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
 ## The Law That Governs Towing in Ontario
 
@@ -147,7 +152,9 @@ Outside the restricted highway tow zones, you have the right to:
 - Choose where the vehicle is taken
 - Give — or refuse — written consent before the tow
 
-**Restricted tow zones are the exception.** Sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW are in Ontario's [Tow Zone Program](${SOURCES.ontarioTowZones}), where only the ministry's contracted operator can tow vehicles off the highway. Once your vehicle is outside the zone, you can choose the next tow company and destination unless police direct otherwise.
+**Police-ordered tows are different.** Ontario's consent rule applies unless police or another authorized official initiate the tow — for example, if your car is parked illegally. See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}).
+
+**Restricted tow zones are the other exception.** Sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW are in Ontario's [Tow Zone Program](${SOURCES.ontarioTowZones}), where only the ministry's contracted operator can tow vehicles off the highway. Once your vehicle is outside the zone, you can choose the next tow company and destination unless police direct otherwise.
 
 ### Rates, Invoices and Payment
 
@@ -314,18 +321,18 @@ Pixel Towing doesn't chase collisions. Call us at **647-673-9755** when you need
 		category: "Insurance",
 		categoryColor: "info",
 		datePublished: "2025-03-10",
-		dateModified: "2026-11-11",
+		dateModified: "2026-11-13",
 		reviewedNote: REVIEWED_2026_11,
 		content: `
 ## Does Insurance Cover Towing After an Accident?
 
-**Not automatically — it depends on your policy and on who was at fault.** Here's what Ontario's rules say, and what to confirm with your insurer before you assume the tow is covered.
+**Not automatically.** In Ontario, damage to your car after a collision is claimed through your own insurer — under Direct Compensation – Property Damage (DCPD) for the share you're not at fault, or Collision coverage if you carry it. Towing isn't on FSRA's list of what DCPD pays for, so ask your adjuster, in writing, whether the tow and any storage are covered.
 
-- **Damage to your own vehicle** is usually claimed through your own insurer under Direct Compensation – Property Damage (DCPD), to the extent you're not at fault. FSRA says that if you're 100% at fault, DCPD won't cover your repairs; optional Collision coverage can, minus your deductible.
-- **Towing isn't named.** FSRA's list of what DCPD can pay for is repairs or replacement of your vehicle, a temporary rental vehicle and damaged contents. Ask your adjuster, in writing, whether the tow and any storage are part of your claim.
-- **Moving the car twice can cost you.** FSRA warns that if your vehicle is moved from one shop to another, the first shop may still bill you for towing, storage and administrative fees — and your insurer may not cover them.
+- **If you're 100% at fault,** FSRA says DCPD won't cover your repairs; optional Collision coverage can, minus your deductible.
+- **What DCPD lists:** FSRA's list is repairs or replacement of your vehicle, a temporary rental vehicle and damaged contents. Towing and storage aren't named, so get the answer from your adjuster before you assume.
+- **Moving the car twice can cost you.** If your vehicle is moved from one shop to another, the first shop may still bill you for towing, storage and administrative fees — and your insurer may not cover them.
 
-See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}) and FSRA's [tips for avoiding tow truck and storage scams](${SOURCES.fsraTowScams}).
+See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}) and the archived [tow truck and storage scam tips](${SOURCES.fscoTowScams}) first published by FSCO, FSRA's predecessor.
 
 ## Does Insurance Cover Towing for a Breakdown?
 
@@ -335,8 +342,8 @@ See [FSRA: after an accident — understanding the claims process](${SOURCES.fsr
 
 **Paying for a tow on its own isn't an insurance claim.** What can change your premium is an accident claim in which you're found at fault:
 
-- FSRA says any driver found more than 0% at fault will have an at-fault accident on their insurance record, and that if you're found **more than 25% at fault**, your premium will likely go up at renewal. See [FSRA: Understanding Automobile Insurance](${SOURCES.fsraUnderstandingAuto}).
-- **Minor accidents:** for accidents on or after June 1, 2016, an insurer can't use a minor at-fault accident to set your premium if no one was injured, no insurer paid anything, and damage to each vehicle (including property damage) was $2,000 or less and paid by the at-fault driver. It applies to one minor accident every three years. See [FSRA Bulletin A-06/15](${SOURCES.fsraMinorAccidents}).
+- **Being found at fault goes on your record.** FSRA's current guidance: fault is assessed from 0 to 100 percent, any at-fault finding is recorded on your insurance record, and if you're found **50 percent or more at fault**, there's a good chance your premium will go up at your next renewal. How a smaller share of fault affects your rate depends on your insurer's rating rules — ask your insurer or broker. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
+- **Minor accidents:** an insurer can't use a minor at-fault accident to set your premium if no one was injured, no insurer paid anything, and the damage to each vehicle and any other property was **$5,000 or less** and paid by the at-fault driver. It applies to one minor accident every three years. The limit was $2,000 until [O. Reg. 56/25](${SOURCES.minorAccidentRegulation}) raised it, so ask your insurer which limit applies to your accident date.
 
 ## Car Towed and You Can't Pay — Do You Still Need Insurance?
 
@@ -358,11 +365,11 @@ These often get mixed together. They are governed by different rules.
 
 ### 1. Who tows the car — towing rights
 
-Ontario's Towing and Storage Safety and Enforcement Act, 2021 (TSSEA) lets you choose your tow company and destination, except on highway sections inside the province's [Tow Zone Program](${SOURCES.ontarioTowZones}). See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}).
+Ontario's Towing and Storage Safety and Enforcement Act, 2021 (TSSEA) lets you choose your tow company and destination. There are two exceptions: highway sections inside the province's [Tow Zone Program](${SOURCES.ontarioTowZones}), and tows ordered by police or another authorized official — for example, when a car is blocking traffic or parked illegally. See [Ontario: know your rights when getting a tow](${SOURCES.ontarioTowRights}).
 
 ### 2. Where it's repaired — repair-shop choice
 
-FSRA, Ontario's insurance regulator, states that as long as your insurance company approves the estimate, you may have your vehicle repaired at the shop of your choice. Your insurer may suggest a preferred shop; that is a suggestion. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
+FSRA, Ontario's insurance regulator, states that as long as your insurance company approves the estimate, you may have your vehicle repaired at the shop of your choice. Your insurer may suggest a preferred shop; that is a suggestion. See FSRA's [claims booklet](${SOURCES.fsraClaimsBooklet}) and its [claims process page](${SOURCES.fsraClaims}).
 
 Insurer-preferred shops are not bad shops. If you choose a different one, ask how the estimate will be approved and whether the shop deals with your insurer directly.
 
@@ -400,18 +407,18 @@ This article is general information, not insurance advice.
 		category: "Total Loss",
 		categoryColor: "danger",
 		datePublished: "2025-03-15",
-		dateModified: "2026-11-11",
+		dateModified: "2026-11-13",
 		reviewedNote: REVIEWED_2026_11,
 		content: `
-## What "Total Loss" Means
+## What Does "Total Loss" Mean?
 
-When an insurer declares your vehicle a total loss (a write-off), it has decided that repairing it would cost too much relative to the vehicle's actual cash value (ACV). FSRA's claims guide puts it this way: your insurer will likely treat the vehicle as a total loss and offer a cash settlement if the repairs would cost more than its actual cash value — and in most cases, buying a replacement is up to you.
+When an insurer declares your vehicle a total loss (a write-off), it has decided that repairing it would cost more than the vehicle's actual cash value (ACV). FSRA's [claims booklet](${SOURCES.fsraClaimsBooklet}) puts it this way: your insurer will likely treat the vehicle as a total loss and offer a cash settlement if the necessary repairs would cost more than its actual cash value — and in most cases, buying a replacement is your responsibility.
 
-A total loss doesn't necessarily mean the car is destroyed — it means the insurer has concluded paying out is more economical than repairing it.
+A total loss doesn't necessarily mean the car is destroyed — it means the insurer pays the lower of the repair cost and the car's value, and here the value is lower.
 
 ## How Much Will Insurance Pay for a Totaled Car?
 
-**Usually the vehicle's actual cash value at the time of the loss, minus your deductible.** FSRA describes actual cash value as the amount needed to replace your vehicle with a comparable used vehicle, plus applicable sales tax, taking into account its mileage, age, overall condition and average retail selling price. For example, a car with an actual cash value of $12,000 and a $500 deductible would pay out $11,500.
+**Usually the vehicle's actual cash value at the time of the loss, minus any deductible that applies.** FSRA says actual cash value takes into account the vehicle's mileage, age, overall condition and average retail selling price. For example, a car with an actual cash value of $12,000 and a $500 deductible would pay out $11,500. FSRA also notes that you can expect to pay your full deductible unless the accident wasn't your fault or was only partly your fault — so if you weren't at fault, the deduction may be smaller or nothing.
 
 Insurers typically estimate that value using:
 
@@ -419,7 +426,7 @@ Insurers typically estimate that value using:
 - **Comparable vehicles** for sale in your market
 - **Age, mileage, options and condition**
 
-Automated valuations can miss things — recent major repairs, new tires, a high trim level or documented maintenance. FSRA advises telling your adjuster about recent work that could increase the vehicle's value; they may ask for receipts. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
+Automated valuations can miss things — recent major repairs, new tires, a high trim level or documented maintenance. FSRA advises telling your adjuster about recent work that could increase the vehicle's value; they may ask for receipts. Routine repairs that only keep the car in good running order may not raise its value. See FSRA's [claims booklet](${SOURCES.fsraClaimsBooklet}).
 
 ### Bought the car new? Check for OPCF 43
 
@@ -427,11 +434,11 @@ The standard policy lets your insurer deduct depreciation when it settles. The o
 
 ## Will My Insurance Premium Go Up After a Total Loss?
 
-**The write-off itself doesn't decide it — fault does.** A total loss is settled like any other claim. FSRA says any driver found more than 0% at fault will have an at-fault accident on their record, and that if you're found **more than 25% at fault**, your premium will likely go up at renewal. See [FSRA: Understanding Automobile Insurance](${SOURCES.fsraUnderstandingAuto}).
+**The write-off itself doesn't decide it — fault does.** A total loss is settled like any other claim. FSRA's current guidance: any at-fault finding is recorded on your insurance record, and if you're found **50 percent or more at fault**, there's a good chance your premium will go up at your next renewal. How a smaller share of fault affects your rate depends on your insurer's rating rules. See [FSRA: after an accident — understanding the claims process](${SOURCES.fsraClaims}).
 
 Fault is decided under Ontario's Fault Determination Rules, not by how badly the car was damaged. If you think the fault decision is wrong, ask your adjuster to explain how it was reached and to review it. Our guide to [what car insurance covers after a collision](/blog/car-insurance-towing-coverage-ontario) covers how fault affects the rest of your claim.
 
-## Responding to an Offer You Think Is Too Low
+## What If the Total-Loss Offer Is Too Low?
 
 Your policy and your insurer's claims process govern how disputes are handled. In general, it helps to:
 
@@ -447,22 +454,22 @@ Ask the adjuster for the valuation report and the comparables used, and point ou
 ### 4. Put your response in writing
 Send your evidence and the value you believe is fair. Ask your insurer how its dispute or appraisal process works if you still disagree. FSRA's [claims guidance](${SOURCES.fsraClaims}) explains where to go if you can't resolve a dispute with your insurer.
 
-## What Happens to the Car
+## What Happens to My Car After a Write-Off?
 
 If you accept the settlement, the insurer usually takes ownership of the vehicle. Some insurers allow you to keep it for a reduced settlement.
 
-Either way, Ontario brands written-off vehicles under its [Mandatory Vehicle Branding Program](${SOURCES.vehicleBranding}):
+Either way, Ontario brands written-off vehicles under its [Mandatory Vehicle Branding Program](${SOURCES.vehicleBranding}). Only vehicles branded "None" or "Rebuilt" can be driven on Ontario roads:
 
 - **Irreparable:** written off as a total loss; it can only be used for parts or scrap and can't be driven again in Ontario
 - **Salvage:** written off, but it can be repaired or used for parts or scrap. A repaired Salvage vehicle must pass a structural inspection at a registered DriveON Vehicle Inspection Centre to be re-branded **Rebuilt**
 
-The registered owner has 90 days to appeal a Salvage or Irreparable brand. A vehicle you keep that's branded Irreparable can only go for parts or scrap — our [scrap car removal](/services/scrap-car-removal) includes free towing.
+The registered owner has 90 days to appeal a Salvage or Irreparable brand — Ontario says that window is set by the Highway Traffic Act and can't be extended. A vehicle you keep that's branded Irreparable can only go for parts or scrap — our [scrap car removal](/services/scrap-car-removal) includes free towing.
 
 Rental coverage, if you have it, usually has limits on how long it continues after a total-loss decision. Ask your insurer when your rental coverage ends — our [rental car guide](/blog/collision-repair-rental-car-brampton) lists what to check. Once the claim is settled, call your insurer or broker to take the vehicle off your policy or move the coverage to its replacement.
 
-## Storage Costs While You Wait
+## Who Pays Storage While the Claim Is Decided?
 
-If the vehicle is sitting in a storage yard, daily storage fees may apply while the claim is decided. Ask who is paying storage and whether the vehicle should be moved. FSRA warns that if a vehicle is moved from one shop to another, the first may still bill towing, storage and administrative fees that your insurer may not cover — so agree on the move with your adjuster first. If it does need moving, a [flatbed tow](/services/vehicle-transport) can take it to wherever you choose.
+If the vehicle is sitting in a storage yard, daily storage fees may apply while the claim is decided. Ask your adjuster who is paying storage and whether the vehicle should be moved. If a vehicle is moved from one shop to another, the first may still bill towing, storage and administrative fees that your insurer may not cover — so agree on the move with your adjuster first. If it does need moving, a [flatbed tow](/services/vehicle-transport) can take it to wherever you choose.
 
 This article is general information, not legal or insurance advice.
 

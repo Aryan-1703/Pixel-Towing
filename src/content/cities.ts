@@ -92,10 +92,22 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "I broke down on the 401, 403, 410 or QEW in Mississauga. Can you tow me?",
 				a: "Those highways are inside Ontario's Tow Zone Program, so only the ministry's contracted operator can tow you off them. Once your vehicle is outside the zone, you can choose who tows it next and where it goes — including calling us.",
 			},
+			{
+				q: "How much does a tow in Mississauga cost?",
+				a: "It depends on the distance, the vehicle and the time of day, and we quote the price before we dispatch. Under Ontario's towing rules, an operator must give you its rates before providing any service, you're entitled to an itemized invoice before you pay, and you can pay by credit card, debit card or cash. See [Ontario towing laws and your rights](/blog/ontario-towing-laws-driver-rights).",
+			},
+			{
+				q: "Where do I report a collision in Mississauga?",
+				a: "Mississauga is policed by Peel Regional Police, so Peel's rules apply: if no one is hurt and combined damage is over $5,000, report it at a Peel Collision Reporting Centre — within 48 hours if the car can be driven. If it can't, we can tow it to the centre for you. Our [after-accident guide](/blog/what-to-do-after-car-accident-brampton) has the details.",
+			},
+			{
+				q: "Do you handle car lockouts and dead batteries in Mississauga?",
+				a: "Yes, 24/7 — in driveways, plaza lots and condo or office garages. See our [car lockout service](/services/lockout) and [battery boost service](/services/jump-start) for what to expect.",
+			},
 		],
 		nearby: ["brampton", "etobicoke", "toronto"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 
 	caledon: {
@@ -200,10 +212,18 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "Can you take my car to my dealership in Vaughan?",
 				a: "Yes. You choose the destination. If the car is all-wheel drive we'll use a flatbed.",
 			},
+			{
+				q: "Is Highway 7 a tow zone in Vaughan?",
+				a: "No. Ontario's Tow Zone Program covers sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW — not Highway 7 or Highway 27. On those roads, as anywhere outside a tow zone, you choose who tows your car and where it goes, unless police direct otherwise.",
+			},
+			{
+				q: "Can you meet me at Vaughan Mills or Canada's Wonderland?",
+				a: "Yes. Both have large parking lots, so tell dispatch the entrance or lot number and a nearby landmark, and keep your phone on so the driver can call when they arrive.",
+			},
 		],
 		nearby: ["brampton", "caledon", "toronto"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 
 	toronto: {
@@ -232,10 +252,18 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "Can you tow me off the 401 in Toronto?",
 				a: "Highway 401 through Toronto is inside Ontario's Tow Zone Program, so only the ministry's contracted operator can tow you off it. Once your vehicle is outside the zone, you can choose who tows it next — including us.",
 			},
+			{
+				q: "My car was towed in Toronto and I didn't call anyone. How do I find it?",
+				a: "If police or parking enforcement had it towed, Ontario's consent rule doesn't apply and the car goes where they direct — contact the Toronto Police Service non-emergency line to find out where it was taken. Our guide to [avoiding predatory towing](/blog/how-to-avoid-predatory-towing-gta) explains your rights when a tow truck turns up uninvited.",
+			},
+			{
+				q: "Can you tow a car out of a North York condo or apartment garage?",
+				a: "Usually. Underground garages often have low clearance and tight ramps, so tell dispatch the posted height limit and which level you're on. If a truck can't get in, the car may need to be brought up to street level first.",
+			},
 		],
 		nearby: ["etobicoke", "mississauga", "vaughan"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 
 	georgetown: {
@@ -264,10 +292,14 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "Do you cover Glen Williams and Norval?",
 				a: "Yes, along with the rest of Georgetown and the surrounding rural roads.",
 			},
+			{
+				q: "Can you meet me at the Georgetown GO Station lot?",
+				a: "Yes — tell dispatch which part of the lot you're in and what's wrong. Cold-morning battery boosts and lockouts at the GO lot are common calls; see our [battery boost service](/services/jump-start).",
+			},
 		],
 		nearby: ["brampton", "halton-hills", "acton"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 
 	acton: {
@@ -296,10 +328,14 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "Can you tow from Acton to Brampton or Guelph?",
 				a: "Yes. Tell us where you want the vehicle to go and we'll quote the tow before dispatch.",
 			},
+			{
+				q: "Is there a tow zone near Acton?",
+				a: "No. Acton's main roads, Highway 7 and Highway 25, aren't part of Ontario's Tow Zone Program, so you choose who tows you and where the vehicle goes.",
+			},
 		],
 		nearby: ["georgetown", "halton-hills", "erin"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 
 	"halton-hills": {
@@ -327,10 +363,18 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "Can you help at the Toronto Premium Outlets?",
 				a: "Yes. Tell dispatch which lot and the nearest store entrance so the driver can find you quickly.",
 			},
+			{
+				q: "Can you help with a breakdown on Steeles Avenue or Trafalgar Road?",
+				a: "Yes. If you can, pull into a lot or side road before you stop — the Steeles Avenue industrial strip and the outlets bring a lot of traffic. Turn on your hazard lights and stay in the vehicle until the truck arrives.",
+			},
+			{
+				q: "Do you cover Terra Cotta, Stewarttown and Limehouse?",
+				a: "Yes, along with Ballinafad and the other hamlets. On rural roads, give us the nearest crossroads — for example, Trafalgar Road and Steeles Avenue — rather than relying on a GPS address.",
+			},
 		],
 		nearby: ["georgetown", "acton", "brampton"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 
 	erin: {
@@ -359,10 +403,14 @@ export const CITIES: Record<CitySlug, CityContent> = {
 				q: "What's the best way to get a tow from Erin to Brampton?",
 				a: "Call 647-673-9755 with your location and destination. We'll quote the tow before dispatch.",
 			},
+			{
+				q: "My car slid off the road in the snow near Hillsburgh. What should I do?",
+				a: "If it's safe, stay in the vehicle with your hazard lights on. If you keep the engine running for heat, make sure the exhaust pipe isn't blocked by snow. Call us with the nearest crossroads — winter winch-outs are a regular call around Erin.",
+			},
 		],
 		nearby: ["acton", "halton-hills", "georgetown"],
 		etaRange: null,
-		lastmod: CONTENT_REVIEWED,
+		lastmod: "2026-11-13",
 	},
 };
 

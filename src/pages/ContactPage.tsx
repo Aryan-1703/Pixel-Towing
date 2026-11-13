@@ -77,7 +77,7 @@ const ContactPage = () => {
 
 			<div className="py-5 bg-light">
 				<Container>
-					<Row className="g-5 align-items-stretch">
+					<Row className="gx-lg-5 gy-4 align-items-stretch">
 						{/* CONTACT METHODS */}
 						<Col lg={7}>
 							<Card className="p-4 p-md-5 border-0 shadow-lg h-100 rounded-4">

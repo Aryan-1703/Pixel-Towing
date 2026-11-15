@@ -70,6 +70,18 @@ export const TIRE_CHANGE_RATE: RoadsideRate = {
 
 export const ROADSIDE_RATES: readonly RoadsideRate[] = [LOCKOUT_RATE, BOOST_RATE, TIRE_CHANGE_RATE];
 
+/**
+ * Accident (collision) tows. The hook-up applies in Brampton. With collision
+ * and comprehensive coverage the driver's insurance covers the tow; an
+ * at-fault driver with third-party liability only gets a separate quote.
+ */
+export const ACCIDENT_TOW_RATE = {
+	id: "accident",
+	name: "Accident tow",
+	area: "Brampton",
+	hookup: 995,
+} as const;
+
 export interface TowEstimate {
 	readonly drive: DriveType;
 	/** Tow distance rounded up to whole kilometres. */

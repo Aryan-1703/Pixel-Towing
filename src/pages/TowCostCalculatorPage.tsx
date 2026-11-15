@@ -9,6 +9,7 @@ import { ACCIDENT_RECOVERY } from "../content/services";
 import { BUSINESS, BUSINESS_REF, absoluteUrl, paymentMethodsText } from "../content/site";
 import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
 import {
+	ACCIDENT_TOW_RATE,
 	BOOST_RATE,
 	DRIVE_TYPES,
 	EXAMPLE_TOW_DISTANCES_KM,
@@ -37,6 +38,12 @@ const TWO_WD = TOW_RATES.twoWheelDrive;
 const LOCKOUT_BOOST_FROM = formatCad(Math.min(LOCKOUT_RATE.price, BOOST_RATE.price));
 const sampleEstimate = estimateTow("twoWheelDrive", SAMPLE_KM);
 const SAMPLE_EXTRA_KM = sampleEstimate.ok ? sampleEstimate.estimate.extraKm : 0;
+const ACCIDENT_HOOKUP = formatCad(ACCIDENT_TOW_RATE.hookup);
+/** Official sources for the rate rules the page states. */
+const BRAMPTON_TOW_LICENSING_URL = "https://www.brampton.ca/EN/Business/Licensing/Pages/Tow-Trucks.aspx";
+const ONTARIO_TOW_RIGHTS_URL = "https://www.ontario.ca/page/know-your-rights-when-getting-tow";
+/** Brampton's last city-set collision tow rate (By-law 1-2022), before the TSSEA replaced city licensing. */
+const OLD_BRAMPTON_COLLISION_RATE = 400;
 const KM_HINT_ID = "calc-km-hint";
 const RESULT_ID = "calc-result";
 
@@ -105,11 +112,112 @@ const RoadsideOutput = ({ rate }: { rate: RoadsideRate }) => (
 	</>
 );
 
+const COVERAGE_OPTIONS = [
+	{ id: "full", label: "Full coverage (collision and comprehensive)" },
+	{ id: "third-party-at-fault", label: "Third-party liability only, and I'm at fault" },
+	{ id: "unsure", label: "Not sure / something else" },
+] as const;
+
+type CoverageId = (typeof COVERAGE_OPTIONS)[number]["id"];
+
+const isCoverageId = (value: string): value is CoverageId => COVERAGE_OPTIONS.some(option => option.id === value);
+
+const ACCIDENT_HOOKUP_TEXT = `Our accident tow hook-up in ${ACCIDENT_TOW_RATE.area} is ${ACCIDENT_HOOKUP}; outside ${ACCIDENT_TOW_RATE.area}, call for the rate.`;
+
+const ACCIDENT_RESULTS: Readonly<Record<CoverageId, { headline: string; detail: string }>> = {
+	full: {
+		headline: "Covered by your insurance",
+		detail: `With collision and comprehensive coverage, your insurance covers the tow. ${ACCIDENT_HOOKUP_TEXT}`,
+	},
+	"third-party-at-fault": {
+		headline: "Separate quote",
+		detail:
+			"If you're at fault and only have third-party liability, your insurance won't pay for your tow. We'll give you a separate price for your situation before we hook up.",
+	},
+	unsure: {
+		headline: "Call for your price",
+		detail: `We'll go over your coverage and confirm the price before we hook up. ${ACCIDENT_HOOKUP_TEXT}`,
+	},
+};
+
+const AccidentOutput = ({ coverage }: { coverage: CoverageId }) => (
+	<>
+		<p className="h3 fw-bold mb-1">{ACCIDENT_RESULTS[coverage].headline}</p>
+		<p className="small text-secondary mb-0">
+			{ACCIDENT_RESULTS[coverage].detail} {TAX_NOTE}
+		</p>
+	</>
+);
+
+type SelectChange = ChangeEvent<HTMLSelectElement>;
+
+const ServiceSelect = ({ value, onChange }: { value: string; onChange: (value: string) => void }) => (
+	<Form.Group className="mb-3" controlId="calc-service">
+		<Form.Label className="fw-medium">What do you need?</Form.Label>
+		<Form.Select value={value} onChange={(event: SelectChange) => onChange(event.target.value)}>
+			{DRIVE_TYPES.map(type => (
+				<option key={type} value={type}>
+					Tow: {TOW_RATES[type].label}
+				</option>
+			))}
+			<option value={ACCIDENT_TOW_RATE.id}>{ACCIDENT_TOW_RATE.name} (collision)</option>
+			{ROADSIDE_RATES.map(rate => (
+				<option key={rate.id} value={rate.id}>
+					{rate.name}
+				</option>
+			))}
+		</Form.Select>
+	</Form.Group>
+);
+
+const CoverageSelect = ({ value, onChange }: { value: CoverageId; onChange: (value: CoverageId) => void }) => (
+	<Form.Group className="mb-4" controlId="calc-coverage">
+		<Form.Label className="fw-medium">Your car insurance</Form.Label>
+		<Form.Select
+			value={value}
+			aria-describedby={RESULT_ID}
+			onChange={(event: SelectChange) => isCoverageId(event.target.value) && onChange(event.target.value)}
+		>
+			{COVERAGE_OPTIONS.map(option => (
+				<option key={option.id} value={option.id}>
+					{option.label}
+				</option>
+			))}
+		</Form.Select>
+	</Form.Group>
+);
+
+interface DistanceFieldProps {
+	value: string;
+	invalid: boolean;
+	onChange: (value: string) => void;
+}
+
+const DistanceField = ({ value, invalid, onChange }: DistanceFieldProps) => (
+	<Form.Group className="mb-4" controlId="calc-km">
+		<Form.Label className="fw-medium">Tow distance (km)</Form.Label>
+		<Form.Control
+			type="number"
+			inputMode="numeric"
+			min={1}
+			max={MAX_ESTIMATE_KM}
+			step={1}
+			value={value}
+			aria-describedby={`${KM_HINT_ID} ${RESULT_ID}`}
+			aria-invalid={invalid}
+			onChange={(event: ChangeEvent<HTMLInputElement>) => onChange(event.target.value)}
+		/>
+		<Form.Text id={KM_HINT_ID}>From where the vehicle is to where it's going.</Form.Text>
+	</Form.Group>
+);
+
 const TowCalculator = () => {
 	const [service, setService] = useState<string>("twoWheelDrive");
 	const [kmText, setKmText] = useState(String(SAMPLE_KM));
+	const [coverage, setCoverage] = useState<CoverageId>("full");
 	const roadside = ROADSIDE_RATES.find(rate => rate.id === service);
 	const drive = isDriveType(service) ? service : null;
+	const isAccident = service === ACCIDENT_TOW_RATE.id;
 	const kmInvalid = drive !== null && !estimateTow(drive, Number(kmText)).ok;
 
 	return (
@@ -119,46 +227,15 @@ const TowCalculator = () => {
 				Tow cost calculator
 			</h2>
 			<Form onSubmit={event => event.preventDefault()}>
-				<Form.Group className="mb-3" controlId="calc-service">
-					<Form.Label className="fw-medium">What do you need?</Form.Label>
-					<Form.Select
-						value={service}
-						onChange={(event: ChangeEvent<HTMLSelectElement>) => setService(event.target.value)}
-					>
-						{DRIVE_TYPES.map(type => (
-							<option key={type} value={type}>
-								Tow: {TOW_RATES[type].label}
-							</option>
-						))}
-						{ROADSIDE_RATES.map(rate => (
-							<option key={rate.id} value={rate.id}>
-								{rate.name}
-							</option>
-						))}
-					</Form.Select>
-				</Form.Group>
-				{drive && (
-					<Form.Group className="mb-4" controlId="calc-km">
-						<Form.Label className="fw-medium">Tow distance (km)</Form.Label>
-						<Form.Control
-							type="number"
-							inputMode="numeric"
-							min={1}
-							max={MAX_ESTIMATE_KM}
-							step={1}
-							value={kmText}
-							aria-describedby={`${KM_HINT_ID} ${RESULT_ID}`}
-							aria-invalid={kmInvalid}
-							onChange={(event: ChangeEvent<HTMLInputElement>) => setKmText(event.target.value)}
-						/>
-						<Form.Text id={KM_HINT_ID}>From where the vehicle is to where it's going.</Form.Text>
-					</Form.Group>
-				)}
+				<ServiceSelect value={service} onChange={setService} />
+				{drive && <DistanceField value={kmText} invalid={kmInvalid} onChange={setKmText} />}
+				{isAccident && <CoverageSelect value={coverage} onChange={setCoverage} />}
 			</Form>
 			<div id={RESULT_ID} className="rounded-3 bg-light p-4 mb-4" role="status" aria-atomic="true">
 				<p className="small text-uppercase fw-bold text-secondary mb-2">Estimated price</p>
 				{drive && <EstimateOutput drive={drive} kmText={kmText} />}
 				{roadside && <RoadsideOutput rate={roadside} />}
+				{isAccident && <AccidentOutput coverage={coverage} />}
 			</div>
 			<CallButton cta="calculator-call" />
 		</Card>
@@ -186,6 +263,16 @@ const RateTable = () => (
 						</td>
 					</tr>
 				))}
+				<tr>
+					<td>
+						{ACCIDENT_TOW_RATE.name} ({ACCIDENT_TOW_RATE.area})
+					</td>
+					<td className="fw-bold text-nowrap">{ACCIDENT_HOOKUP}</td>
+					<td>
+						Hook-up. Covered by your insurance if you have collision and comprehensive coverage. At fault
+						with third-party liability only? We quote you a separate price.
+					</td>
+				</tr>
 				{ROADSIDE_RATES.map(rate => (
 					<tr key={rate.id}>
 						<td>{rate.name}</td>
@@ -196,7 +283,7 @@ const RateTable = () => (
 			</tbody>
 		</Table>
 		<p className="small text-secondary mb-0">
-			{TAX_NOTE} Winching, storage and accident scenes aren't covered by these rates; we quote them by phone.
+			{TAX_NOTE} Winching and storage aren't covered by these rates; we quote them by phone.
 		</p>
 	</Card>
 );
@@ -230,7 +317,8 @@ const PRICE_FACTORS = [
 	`Distance: the hook-up fee covers the first ${INCLUDED_KM} km, and every km after that is ${formatCad(PER_KM_RATE)}.`,
 	`Drive type: towing an all-wheel-drive vehicle starts at ${formatCad(AWD.hookup)} instead of ${formatCad(TWO_WD.hookup)}.`,
 	`Where you are: lockouts and boosts start at ${LOCKOUT_BOOST_FROM} in Brampton. Outside Brampton, the price depends on distance.`,
-	"Extra work: winching, storage and accident scenes aren't in the calculator. We quote them by phone.",
+	`Accidents: with collision and comprehensive coverage, your insurance covers the tow (${ACCIDENT_HOOKUP} hook-up in ${ACCIDENT_TOW_RATE.area}). If you're at fault with third-party liability only, we quote you separately.`,
+	"Extra work: winching and storage aren't in the calculator. We quote them by phone.",
 	"Before any work starts, you get our maximum rate schedule, as Ontario's towing rules require. We can't charge more than it.",
 ];
 
@@ -248,7 +336,13 @@ const PriceFactors = () => (
 	</Card>
 );
 
-const buildFaqs = () => [
+interface Faq {
+	readonly q: string;
+	readonly a: string;
+	readonly source?: { readonly label: string; readonly url: string };
+}
+
+const buildFaqs = (): readonly Faq[] => [
 	{
 		q: `How much does it cost to tow a car ${SAMPLE_KM} km in Brampton?`,
 		a: `About ${exampleTotal("twoWheelDrive", SAMPLE_KM)} for a front- or rear-wheel-drive car: ${formatCad(TWO_WD.hookup)} covers the first ${INCLUDED_KM} km, and the other ${SAMPLE_EXTRA_KM} km are ${formatCad(PER_KM_RATE)} each. An all-wheel-drive vehicle is about ${exampleTotal("allWheelDrive", SAMPLE_KM)}. ${TAX_NOTE}`,
@@ -256,6 +350,15 @@ const buildFaqs = () => [
 	{
 		q: "Is there a hook-up fee?",
 		a: `Yes. It's ${formatCad(TWO_WD.hookup)} for front- or rear-wheel drive and ${formatCad(AWD.hookup)} for all-wheel drive, and it includes the first ${INCLUDED_KM} km of the tow.`,
+	},
+	{
+		q: "How much does an accident tow cost in Brampton?",
+		a: `Our accident tow hook-up in ${ACCIDENT_TOW_RATE.area} is ${ACCIDENT_HOOKUP}. If you have collision and comprehensive coverage, your insurance covers the tow. If you're at fault and only have third-party liability, your insurance won't pay for it, so we give you a separate price before we hook up. ${TAX_NOTE}`,
+	},
+	{
+		q: "Does the City of Brampton still set tow rates?",
+		a: `No. Since January 1, 2024, the province regulates towing under the Towing and Storage Safety and Enforcement Act, and the City no longer licenses tow operators. You may still see Brampton's old ${formatCad(OLD_BRAMPTON_COLLISION_RATE)} collision rate online. Today each operator files a maximum rate schedule with the province and can't charge for anything that isn't on it.`,
+		source: { label: "City of Brampton: tow truck licensing changes", url: BRAMPTON_TOW_LICENSING_URL },
 	},
 	{
 		q: "How much is a car lockout or a battery boost?",
@@ -268,6 +371,7 @@ const buildFaqs = () => [
 	{
 		q: "Is the calculator price the final price?",
 		a: `It's an estimate. We confirm the price by phone before we dispatch, and you get our maximum rate schedule before any work starts. ${TAX_NOTE}`,
+		source: { label: "Ontario: know your rights when getting a tow", url: ONTARIO_TOW_RIGHTS_URL },
 	},
 	{
 		q: "How can I pay?",
@@ -278,10 +382,19 @@ const buildFaqs = () => [
 const Faqs = () => (
 	<Card className="border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
 		<h2 className="h4 fw-bold mb-4">Towing cost questions</h2>
-		{buildFaqs().map(({ q, a }) => (
+		{buildFaqs().map(({ q, a, source }) => (
 			<div key={q} className="mb-4">
 				<h3 className="h6 fw-bold">{q}</h3>
 				<p className="text-secondary mb-0">{a}</p>
+				{source && (
+					<p className="small mb-0 mt-1">
+						Source:{" "}
+						<a href={source.url} target="_blank" rel="noopener noreferrer">
+							{source.label}
+							<span className="visually-hidden"> (opens in a new tab)</span>
+						</a>
+					</p>
+				)}
 			</div>
 		))}
 	</Card>
@@ -291,7 +404,7 @@ const AccidentNote = () => (
 	<div className="d-flex align-items-start gap-2 text-secondary small mb-5">
 		<Info size={18} className="text-warning flex-shrink-0 mt-1" />
 		<span>
-			Been in a collision? Accident tows aren't priced in the calculator. See{" "}
+			Been in a collision? For what happens at the scene and with your insurer, see{" "}
 			<Link to={ACCIDENT_RECOVERY.path}>{ACCIDENT_RECOVERY.anchor}</Link> or call {BUSINESS.phoneDisplay}. All our
 			services are on the <Link to="/services">services page</Link>.
 		</span>

@@ -6,6 +6,7 @@ import { Calculator, Phone, CheckCircle, Info } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { ACCIDENT_RECOVERY } from "../content/services";
+import { SERVICE_AREAS } from "../content/cities";
 import { BUSINESS, BUSINESS_REF, absoluteUrl, paymentMethodsText } from "../content/site";
 import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
 import {
@@ -18,6 +19,7 @@ import {
 	LOCKOUT_RATE,
 	MAX_ESTIMATE_KM,
 	PER_KM_RATE,
+	RATES_YEAR,
 	ROADSIDE_RATES,
 	TAX_NOTE,
 	TIRE_CHANGE_RATE,
@@ -31,9 +33,11 @@ import {
 } from "../content/rates";
 
 const PAGE_URL = absoluteUrl(TOW_COST_CALCULATOR_PATH);
-const PAGE_HEADING = "How Much Does a Tow Cost in Brampton?";
+const PAGE_HEADING = `How Much Does a Tow Cost in Brampton and the GTA? (${RATES_YEAR} Rates)`;
 /** Distance the calculator opens with and the first FAQ answers for. */
 const SAMPLE_KM = 20;
+/** Distance used for the GTA example answer. */
+const GTA_SAMPLE_KM = 30;
 const AWD = TOW_RATES.allWheelDrive;
 const TWO_WD = TOW_RATES.twoWheelDrive;
 const LOCKOUT_BOOST_FROM = formatCad(Math.min(LOCKOUT_RATE.price, BOOST_RATE.price));
@@ -43,6 +47,8 @@ const ACCIDENT_HOOKUP = formatCad(ACCIDENT_TOW_RATE.hookup);
 /** Official sources for the rate rules the page states. */
 const BRAMPTON_TOW_LICENSING_URL = "https://www.brampton.ca/EN/Business/Licensing/Pages/Tow-Trucks.aspx";
 const ONTARIO_TOW_RIGHTS_URL = "https://www.ontario.ca/page/know-your-rights-when-getting-tow";
+const TOW_ZONE_URL = "https://www.ontario.ca/page/tow-zone-pilot-program";
+const MTO_RATE_LOOKUP_URL = "https://www.clientinformation.mto.gov.on.ca";
 /** Brampton's last city-set collision tow rate (By-law 1-2022), before the TSSEA replaced city licensing. */
 const OLD_BRAMPTON_COLLISION_RATE = 400;
 const KM_HINT_ID = "calc-km-hint";
@@ -325,6 +331,40 @@ const ExampleTable = () => (
 	</Card>
 );
 
+const ExternalLink = ({ href, children }: { href: string; children: string }) => (
+	<a href={href} target="_blank" rel="noopener noreferrer">
+		{children}
+		<span className="visually-hidden"> (opens in a new tab)</span>
+	</a>
+);
+
+const GtaRates = () => (
+	<Card className="border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
+		<h2 className="h4 fw-bold mb-3">Towing rates across the GTA</h2>
+		<p className="text-secondary lh-lg">
+			Tows anywhere we work use the same rates: {towRateSummary()} The distance decides the total, so a tow in
+			Mississauga or Toronto costs the same as a tow of the same length in Brampton. Lockouts and boosts outside
+			Brampton cost more because of the drive. Every price is an estimate until we confirm it by phone.
+		</p>
+		<div className="d-flex flex-wrap gap-2 mb-4">
+			{SERVICE_AREAS.map(area => (
+				<Link key={area.path} to={area.path} className="btn btn-sm btn-outline-secondary rounded-pill">
+					Towing in {area.name}
+				</Link>
+			))}
+		</div>
+		<p className="text-secondary lh-lg">
+			On sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW,{" "}
+			<ExternalLink href={TOW_ZONE_URL}>Ontario's Tow Zone Program</ExternalLink> allows only the province's
+			contracted operator to tow, at fees the province sets. We can tow your vehicle once it's outside the zone.
+		</p>
+		<p className="text-secondary lh-lg mb-0">
+			You can compare any tow operator's published maximum rates on the{" "}
+			<ExternalLink href={MTO_RATE_LOOKUP_URL}>Ministry of Transportation's operator lookup</ExternalLink>.
+		</p>
+	</Card>
+);
+
 const PRICE_FACTORS = [
 	`Distance: the hook-up fee covers the first ${INCLUDED_KM} km, and every km after that is ${formatCad(PER_KM_RATE)}.`,
 	`Drive type: towing an all-wheel-drive vehicle starts at ${formatCad(AWD.hookup)} instead of ${formatCad(TWO_WD.hookup)}.`,
@@ -358,6 +398,15 @@ const buildFaqs = (): readonly Faq[] => [
 	{
 		q: `How much does it cost to tow a car ${SAMPLE_KM} km in Brampton?`,
 		a: `About ${exampleTotal("twoWheelDrive", SAMPLE_KM)} for a front- or rear-wheel-drive car: ${formatCad(TWO_WD.hookup)} covers the first ${INCLUDED_KM} km, and the other ${SAMPLE_EXTRA_KM} km are ${formatCad(PER_KM_RATE)} each. An all-wheel-drive vehicle is about ${exampleTotal("allWheelDrive", SAMPLE_KM)}. ${TAX_NOTE}`,
+	},
+	{
+		q: "How much does a tow cost in Toronto, Mississauga or Vaughan?",
+		a: `We use the same rates across the GTA: ${formatCad(TWO_WD.hookup)} covers the first ${INCLUDED_KM} km, then ${formatCad(PER_KM_RATE)} per km, and all-wheel-drive vehicles start at ${formatCad(AWD.hookup)}. For example, a ${GTA_SAMPLE_KM} km tow is about ${exampleTotal("twoWheelDrive", GTA_SAMPLE_KM)}. ${TAX_NOTE} Nothing is final until we confirm the price with you by phone.`,
+	},
+	{
+		q: "What does a tow cost on the 401 or other GTA highways?",
+		a: "In Ontario's highway tow zones, only the province's contracted operator can tow, at fees the province sets. Once your vehicle is out of the zone, our normal rates apply.",
+		source: { label: "Ontario: Tow Zone Program", url: TOW_ZONE_URL },
 	},
 	{
 		q: "Is there a hook-up fee?",
@@ -400,11 +449,7 @@ const Faqs = () => (
 				<p className="text-secondary mb-0">{a}</p>
 				{source && (
 					<p className="small mb-0 mt-1">
-						Source:{" "}
-						<a href={source.url} target="_blank" rel="noopener noreferrer">
-							{source.label}
-							<span className="visually-hidden"> (opens in a new tab)</span>
-						</a>
+						Source: <ExternalLink href={source.url}>{source.label}</ExternalLink>
 					</p>
 				)}
 			</div>
@@ -426,8 +471,8 @@ const AccidentNote = () => (
 const TowCostCalculatorPage = () => (
 	<div className="bg-light" style={{ paddingTop: "76px" }}>
 		<SEO
-			title="Tow Truck Cost Calculator Brampton | Towing Rates"
-			description={`How much does a tow cost in Brampton? ${formatCad(TWO_WD.hookup)} for the first ${INCLUDED_KM} km, then ${formatCad(PER_KM_RATE)}/km (AWD from ${formatCad(AWD.hookup)}). Get an instant estimate.`}
+			title={`Towing Rates ${RATES_YEAR} Brampton & GTA | Tow Cost Calculator`}
+			description={`Towing rates for Brampton and the GTA (${RATES_YEAR}): ${formatCad(TWO_WD.hookup)} for the first ${INCLUDED_KM} km, then ${formatCad(PER_KM_RATE)}/km, AWD from ${formatCad(AWD.hookup)}. Instant estimate; call to confirm.`}
 			canonical={PAGE_URL}
 		/>
 		<Helmet>
@@ -447,6 +492,7 @@ const TowCostCalculatorPage = () => (
 					<TowCalculator />
 					<RateTable />
 					<ExampleTable />
+					<GtaRates />
 					<PriceFactors />
 					<Faqs />
 					<AccidentNote />

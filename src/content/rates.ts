@@ -11,6 +11,12 @@
  * with Node, and vite.config.ts reaches it through llms.ts.
  */
 
+/**
+ * Year these rates were last confirmed with the owner. It appears in the page
+ * title and heading, so update it whenever the rates are re-confirmed.
+ */
+export const RATES_YEAR = 2026;
+
 /** Prices on the site are shown before HST. */
 export const PRICES_INCLUDE_HST = false;
 

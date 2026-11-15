@@ -1,7 +1,7 @@
 import { useParams, Link } from "react-router-dom";
 import { Container, Row, Col, Button, Card, Accordion } from "react-bootstrap";
 import { Helmet } from "react-helmet-async";
-import { Phone, CheckCircle, MapPin, Clock } from "lucide-react";
+import { Phone, CheckCircle, MapPin, Clock, Banknote } from "lucide-react";
 import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import TowZoneNotice from "../components/TowZoneNotice";
@@ -19,6 +19,8 @@ import {
 } from "../content/cities";
 import { SERVICE_SLUGS, SERVICE_LINKS, ACCIDENT_RECOVERY, servicePath } from "../content/services";
 import { renderInline } from "../utils/renderInline";
+import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
+import { towRateSummary } from "../content/rates";
 
 import heroBg from "/tow.jpg";
 
@@ -127,12 +129,24 @@ const CityFacts = ({ city }: { city: CityContent }) => {
 						<div className="text-white-50 small">{responseLine}</div>
 					</div>
 				</div>
-				<div className="d-flex align-items-start">
+				<div className="d-flex align-items-start mb-3">
 					<MapPin size={24} className="text-warning me-3 flex-shrink-0" />
 					<div>
 						<div className="fw-bold">Roads we cover</div>
 						<div className="text-white-50 small">{city.roads}</div>
 						<div className="text-white-50 small mt-1">Near {city.landmarks}</div>
+					</div>
+				</div>
+				<div className="d-flex align-items-start">
+					<Banknote size={24} className="text-warning me-3 flex-shrink-0" />
+					<div>
+						<div className="fw-bold">Towing rates</div>
+						<div className="text-white-50 small">
+							{towRateSummary()} Estimates are confirmed by phone.{" "}
+							<Link to={TOW_COST_CALCULATOR_PATH} className="text-warning">
+								Estimate your tow cost in {city.name}
+							</Link>
+						</div>
 					</div>
 				</div>
 			</Card>

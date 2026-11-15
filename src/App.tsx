@@ -17,7 +17,8 @@ import ReviewPage from "./pages/ReviewPage";
 import BlogPage from "./pages/BlogPage";
 import BlogPostPage from "./pages/BlogPostPage";
 import AboutPage from "./pages/AboutPage";
-import { PERMANENT_REDIRECTS } from "./content/routes";
+import TowCostCalculatorPage from "./pages/TowCostCalculatorPage";
+import { PERMANENT_REDIRECTS, TOW_COST_CALCULATOR_PATH } from "./content/routes";
 
 // Every public URL must also be listed in src/content/routes.ts (or derived
 // from a content module there) so it is prerendered and in the sitemap.
@@ -43,6 +44,7 @@ function App() {
 					<Route path="/blog/:slug" element={<BlogPostPage />} />
 					<Route path="/about" element={<AboutPage />} />
 					<Route path="/contact" element={<ContactPage />} />
+					<Route path={TOW_COST_CALCULATOR_PATH} element={<TowCostCalculatorPage />} />
 					<Route path="/review" element={<ReviewPage />} />
 					<Route path="*" element={<NotFound />} />
 				</Routes>

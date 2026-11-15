@@ -19,6 +19,9 @@ import TowZoneNotice from "../components/TowZoneNotice";
 import { IMAGES } from "../assets/images";
 import { BUSINESS, BUSINESS_REF, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
 import { SERVICE_AREAS, areaServedSchema } from "../content/cities";
+import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
+import { ACCIDENT_TOW_RATE, formatCad } from "../content/rates";
+import { renderInline } from "../utils/renderInline";
 
 const PAGE_URL = absoluteUrl("/accident-recovery");
 const PEEL_COLLISION_REPORTING_URL =
@@ -124,6 +127,10 @@ const FAQS = [
 	{
 		q: "Who decides which tow truck takes my car?",
 		a: "Outside Ontario's restricted highway tow zones, you do — unless police or another authorized official order the tow: an operator needs your consent before towing and must disclose its maximum rate schedule. On tow-zone sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, only the ministry's contracted operator can tow you off the highway; once you're outside the zone you can choose the next tow company and destination.",
+	},
+	{
+		q: "How much does an accident tow cost?",
+		a: `Our accident tow hook-up in ${ACCIDENT_TOW_RATE.area} is ${formatCad(ACCIDENT_TOW_RATE.hookup)}. Insurance usually covers it if you have collision and comprehensive coverage, or if you're not at fault, even with third-party liability only. If you're at fault with third-party liability only, we quote you a separate price. Nothing is final until we confirm the price and your coverage by phone. [See all our towing rates](${TOW_COST_CALCULATOR_PATH}).`,
 	},
 	{
 		q: "Do I have to use my insurance company's preferred shop?",
@@ -374,7 +381,9 @@ const FaqSection = () => (
 						{FAQS.map((faq, i) => (
 							<Accordion.Item eventKey={String(i)} key={faq.q}>
 								<Accordion.Header as="h3">{faq.q}</Accordion.Header>
-								<Accordion.Body className="text-secondary lh-lg">{faq.a}</Accordion.Body>
+								<Accordion.Body className="text-secondary lh-lg">
+									{renderInline(faq.a, `accident-faq-${i}`)}
+								</Accordion.Body>
 							</Accordion.Item>
 						))}
 					</Accordion>

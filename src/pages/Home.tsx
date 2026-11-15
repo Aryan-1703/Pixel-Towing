@@ -8,6 +8,9 @@ import { IMAGES } from "../assets/images";
 import { BUSINESS, DISPATCH_MESSAGE, SITE_ORIGIN, paymentMethodsText } from "../content/site";
 import { CITIES, CITY_SLUGS } from "../content/cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
+import { renderInline } from "../utils/renderInline";
+import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
+import { TAX_NOTE, towRateSummary } from "../content/rates";
 import "../css/Home.css";
 
 const HOME_SERVICES = [
@@ -48,7 +51,7 @@ const HOME_SERVICES = [
 const FAQS = [
 	{
 		q: "How much does a tow truck cost in Brampton?",
-		a: "It depends on the service, distance and vehicle. We quote the price before we dispatch, and we'll give you our maximum rate schedule before any work starts, as Ontario requires. For accident towing, whether your insurer pays depends on your policy and the circumstances of the claim.",
+		a: `${towRateSummary()} ${TAX_NOTE} [Estimate your tow cost](${TOW_COST_CALCULATOR_PATH}). Nothing is final until we confirm the price by phone before we dispatch, and we'll give you our maximum rate schedule before any work starts, as Ontario requires. For accident towing, whether your insurer pays depends on your policy and the circumstances of the claim.`,
 	},
 	{
 		q: "Can you tow from underground parking?",
@@ -310,7 +313,7 @@ const FaqSection = () => (
 						{FAQS.map((faq, i) => (
 							<Accordion.Item eventKey={String(i)} key={faq.q}>
 								<Accordion.Header as="h3">{faq.q}</Accordion.Header>
-								<Accordion.Body>{faq.a}</Accordion.Body>
+								<Accordion.Body>{renderInline(faq.a, `home-faq-${i}`)}</Accordion.Body>
 							</Accordion.Item>
 						))}
 					</Accordion>

@@ -7,7 +7,9 @@ import SEO from "../components/SEO";
 import Breadcrumbs from "../components/Breadcrumbs";
 import { ACCIDENT_RECOVERY } from "../content/services";
 import { SERVICE_AREAS } from "../content/cities";
-import { BUSINESS, BUSINESS_REF, absoluteUrl, paymentMethodsText } from "../content/site";
+import { BUSINESS, BUSINESS_REF, SITE_ORIGIN, absoluteUrl, paymentMethodsText } from "../content/site";
+import { AUTHOR } from "../content/author";
+import { IMAGES } from "../assets/images";
 import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
 import {
 	ACCIDENT_TOW_RATE,
@@ -19,6 +21,7 @@ import {
 	LOCKOUT_RATE,
 	MAX_ESTIMATE_KM,
 	PER_KM_RATE,
+	RATES_CONFIRMED_ON,
 	RATES_YEAR,
 	ROADSIDE_RATES,
 	TAX_NOTE,
@@ -27,6 +30,7 @@ import {
 	estimateTow,
 	formatCad,
 	isDriveType,
+	ratesConfirmedLabel,
 	towRateSummary,
 	type DriveType,
 	type RoadsideRate,
@@ -63,6 +67,8 @@ const exampleTotal = (drive: DriveType, km: number): string => {
 const priceLabel = (rate: RoadsideRate): string =>
 	`${rate.startingFrom ? "From " : ""}${formatCad(rate.price)}`;
 
+const PAGE_IMAGE = IMAGES.flatbedTowing;
+
 const buildSchema = () => ({
 	"@context": "https://schema.org",
 	"@type": "WebPage",
@@ -70,8 +76,25 @@ const buildSchema = () => ({
 	url: PAGE_URL,
 	name: PAGE_HEADING,
 	description: towRateSummary(),
+	isPartOf: { "@id": `${SITE_ORIGIN}/#website` },
 	about: BUSINESS_REF,
+	dateModified: RATES_CONFIRMED_ON,
+	// Same @id as the Person node on /about, so the two merge into one entity.
+	author: { "@type": "Person", "@id": AUTHOR.schemaId, name: AUTHOR.name },
+	primaryImageOfPage: {
+		"@type": "ImageObject",
+		url: absoluteUrl(PAGE_IMAGE.src),
+		width: PAGE_IMAGE.width,
+		height: PAGE_IMAGE.height,
+	},
 });
+
+const RatesConfirmedLine = () => (
+	<p className="small text-secondary mb-5">
+		Prices last confirmed <time dateTime={RATES_CONFIRMED_ON}>{ratesConfirmedLabel()}</time> by{" "}
+		<Link to="/about">{AUTHOR.name}</Link>, {AUTHOR.jobTitle.toLowerCase()} of {BUSINESS.name}.
+	</p>
+);
 
 const CallButton = ({ cta }: { cta: string }) => (
 	<Button
@@ -341,6 +364,15 @@ const ExternalLink = ({ href, children }: { href: string; children: string }) =>
 const GtaRates = () => (
 	<Card className="border-0 shadow-sm rounded-4 p-4 p-md-5 mb-4 bg-white">
 		<h2 className="h4 fw-bold mb-3">Towing rates across the GTA</h2>
+		<img
+			src={PAGE_IMAGE.src}
+			alt={PAGE_IMAGE.alt}
+			width={PAGE_IMAGE.width}
+			height={PAGE_IMAGE.height}
+			className="img-fluid rounded-4 mb-4 w-100"
+			style={{ height: "auto" }}
+			loading="lazy"
+		/>
 		<p className="text-secondary lh-lg">
 			Tows anywhere we work use the same rates: {towRateSummary()} The distance decides the total, so a tow in
 			Mississauga or Toronto costs the same as a tow of the same length in Brampton. Lockouts and boosts outside
@@ -474,6 +506,8 @@ const TowCostCalculatorPage = () => (
 			title={`Towing Rates ${RATES_YEAR} Brampton & GTA | Tow Cost Calculator`}
 			description={`Towing rates for Brampton and the GTA (${RATES_YEAR}): ${formatCad(TWO_WD.hookup)} for the first ${INCLUDED_KM} km, then ${formatCad(PER_KM_RATE)}/km, AWD from ${formatCad(AWD.hookup)}. Instant estimate; call to confirm.`}
 			canonical={PAGE_URL}
+			image={PAGE_IMAGE.src}
+			imageAlt={PAGE_IMAGE.alt}
 		/>
 		<Helmet>
 			<script type="application/ld+json">{JSON.stringify(buildSchema())}</script>
@@ -485,10 +519,11 @@ const TowCostCalculatorPage = () => (
 			<Row className="justify-content-center">
 				<Col lg={8}>
 					<h1 className="fw-bold display-6 mb-3">{PAGE_HEADING}</h1>
-					<p className="lead text-muted mb-5">
+					<p className="lead text-muted mb-2">
 						{towRateSummary()} {TAX_NOTE} Everything on this page is an estimate: nothing is final until we
 						confirm the price with you by phone before we dispatch.
 					</p>
+					<RatesConfirmedLine />
 					<TowCalculator />
 					<RateTable />
 					<ExampleTable />

@@ -6,6 +6,7 @@ import Breadcrumbs from "../components/Breadcrumbs";
 import { IMAGES, type SiteImage } from "../assets/images";
 import { BUSINESS, DISPATCH_MESSAGE, absoluteUrl } from "../content/site";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, servicePath } from "../content/services";
+import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
 
 interface ServiceCard {
 	title: string;
@@ -101,6 +102,9 @@ const ServicesPage = () => {
 					<p className="lead text-white-50">
 						Serving Brampton, Mississauga, Caledon and the GTA 24 hours a day.
 					</p>
+					<Link to={TOW_COST_CALCULATOR_PATH} className="text-warning fw-medium">
+						See our towing rates and estimate your cost
+					</Link>
 				</Container>
 			</div>
 

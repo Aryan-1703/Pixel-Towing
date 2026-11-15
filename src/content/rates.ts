@@ -12,10 +12,19 @@
  */
 
 /**
- * Year these rates were last confirmed with the owner. It appears in the page
- * title and heading, so update it whenever the rates are re-confirmed.
+ * ISO date the owner last confirmed these rates. It drives the year in the
+ * page title, the "last confirmed" line, schema dateModified and the sitemap
+ * lastmod, so update it whenever the rates are re-confirmed.
  */
-export const RATES_YEAR = 2026;
+export const RATES_CONFIRMED_ON = "2026-11-15";
+
+export const RATES_YEAR = Number(RATES_CONFIRMED_ON.slice(0, 4));
+
+/** "November 2026": month and year the rates were last confirmed. */
+export const ratesConfirmedLabel = (): string =>
+	new Intl.DateTimeFormat("en-CA", { month: "long", year: "numeric", timeZone: "UTC" }).format(
+		new Date(`${RATES_CONFIRMED_ON}T00:00:00Z`),
+	);
 
 /** Prices on the site are shown before HST. */
 export const PRICES_INCLUDE_HST = false;

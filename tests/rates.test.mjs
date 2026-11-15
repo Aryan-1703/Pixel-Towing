@@ -7,7 +7,10 @@ import {
 	DRIVE_TYPES,
 	EXAMPLE_TOW_DISTANCES_KM,
 	MAX_ESTIMATE_KM,
+	RATES_CONFIRMED_ON,
+	RATES_YEAR,
 	estimateTow,
+	ratesConfirmedLabel,
 	formatCad,
 	isDriveType,
 	towRateSummary,
@@ -79,6 +82,12 @@ test("formats Canadian dollars without needless cents", () => {
 	assert.equal(formatCad(4.5), "$4.50");
 	assert.equal(formatCad(154.5), "$154.50");
 	assert.equal(formatCad(1455), "$1,455");
+});
+
+test("the confirmed date drives the year and the visible label", () => {
+	assert.match(RATES_CONFIRMED_ON, /^\d{4}-\d{2}-\d{2}$/);
+	assert.equal(RATES_YEAR, Number(RATES_CONFIRMED_ON.slice(0, 4)));
+	assert.equal(ratesConfirmedLabel(), "November 2026");
 });
 
 test("summary sentence states the published rates", () => {

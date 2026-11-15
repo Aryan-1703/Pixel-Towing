@@ -13,6 +13,7 @@
 import { CITY_SLUGS, CITIES } from "./cities";
 import { SERVICE_SLUGS, SERVICE_LINKS, servicePath } from "./services";
 import { BLOG_POSTS, type BlogPost } from "./blogPosts";
+import { RATES_CONFIRMED_ON } from "./rates";
 
 export interface SiteRoute {
 	path: string;
@@ -32,7 +33,7 @@ const STATIC_ROUTES: readonly SiteRoute[] = [
 	{ path: "/blog", indexable: true, lastmod: "2026-11-13" },
 	{ path: "/about", indexable: true, lastmod: "2026-11-13" },
 	{ path: "/contact", indexable: true, lastmod: "2026-11-11" },
-	{ path: TOW_COST_CALCULATOR_PATH, indexable: true, lastmod: "2026-11-15" },
+	{ path: TOW_COST_CALCULATOR_PATH, indexable: true, lastmod: RATES_CONFIRMED_ON },
 	{ path: "/review", indexable: false, lastmod: "2026-09-30" },
 ];
 

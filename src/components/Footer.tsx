@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Shield } from "lucide-react";
 import { BUSINESS, COMPLIANCE } from "../content/site";
 import { SERVICE_AREAS } from "../content/cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "../content/services";
+import { TOW_COST_CALCULATOR_PATH } from "../content/routes";
 import { RoadLiftFooterNote } from "./RoadLiftPromo";
 
 const footerStyles = `
@@ -148,6 +149,9 @@ const Footer: React.FC = () => {
 								</li>
 								<li>
 									<Link to="/contact">Get a Quote</Link>
+								</li>
+								<li>
+									<Link to={TOW_COST_CALCULATOR_PATH}>Towing Cost Calculator</Link>
 								</li>
 								<li>
 									<Link to="/review">Leave a Review</Link>

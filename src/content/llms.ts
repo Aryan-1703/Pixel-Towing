@@ -12,6 +12,8 @@ import { SERVICE_AREAS } from "./cities";
 import { ACCIDENT_RECOVERY, SERVICE_LINKS, SERVICE_SLUGS, servicePath } from "./services";
 import { BLOG_POSTS } from "./blogPosts";
 import { AUTHOR } from "./author";
+import { TOW_COST_CALCULATOR_PATH } from "./routes";
+import { BOOST_RATE, LOCKOUT_RATE, TAX_NOTE, TIRE_CHANGE_RATE, formatCad, towRateSummary } from "./rates";
 
 const TOW_ZONE_URL = "https://www.ontario.ca/page/tow-zone-pilot-program";
 
@@ -29,7 +31,7 @@ const keyFacts = [
 	`- WhatsApp: [Message Pixel Towing on WhatsApp](${BUSINESS.whatsappUrl})`,
 	`- Service area: ${areaList}, Ontario.`,
 	`- Response time: ${DISPATCH_MESSAGE.full}`,
-	"- Pricing: depends on the service, distance and vehicle. The price is quoted by phone before dispatch, and the maximum rate schedule is provided before any work starts, as Ontario requires.",
+	`- Pricing: ${towRateSummary()} Car lockouts start at ${formatCad(LOCKOUT_RATE.price)} and battery boosts at ${formatCad(BOOST_RATE.price)} in Brampton (outside Brampton the price depends on distance). A tire change, putting on the customer's own spare, is ${formatCad(TIRE_CHANGE_RATE.price)}. ${TAX_NOTE} Estimates: [tow cost calculator](${absoluteUrl(TOW_COST_CALCULATOR_PATH)}). The price is confirmed by phone before dispatch, and the maximum rate schedule is provided before any work starts, as Ontario requires.`,
 	`- Payment: ${paymentMethodsText("and").toLowerCase()}.`,
 	"- Insurance: whether an insurer pays for towing depends on the policy and the circumstances of the claim.",
 	`- Highway tow zones: on sections of Highways 400, 401, 403, 404, 409, 410 and 427 and the QEW, Ontario's [Tow Zone Program](${TOW_ZONE_URL}) allows only the ministry's contracted operator to tow. Pixel Towing can tow once the vehicle is outside the zone.`,

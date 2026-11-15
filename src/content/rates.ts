@@ -71,9 +71,10 @@ export const TIRE_CHANGE_RATE: RoadsideRate = {
 export const ROADSIDE_RATES: readonly RoadsideRate[] = [LOCKOUT_RATE, BOOST_RATE, TIRE_CHANGE_RATE];
 
 /**
- * Accident (collision) tows. The hook-up applies in Brampton. With collision
- * and comprehensive coverage the driver's insurance covers the tow; an
- * at-fault driver with third-party liability only gets a separate quote.
+ * Accident (collision) tows. The hook-up applies in Brampton. Insurance covers
+ * the tow with collision and comprehensive coverage, or when the driver isn't
+ * at fault (even with third-party liability only). An at-fault driver with
+ * third-party liability only gets a separate quote.
  */
 export const ACCIDENT_TOW_RATE = {
 	id: "accident",
@@ -139,3 +140,7 @@ export const towRateSummary = (): string =>
 	`All-wheel-drive vehicles start at ${formatCad(TOW_RATES.allWheelDrive.hookup)}.`;
 
 export const TAX_NOTE = PRICES_INCLUDE_HST ? "Prices include HST." : "Prices are before HST.";
+
+/** Shown with every price and coverage answer: nothing on the site is a final quote. */
+export const ESTIMATE_DISCLAIMER =
+	"This is an estimate, not a final price. Nothing is final until we confirm the price, and any insurance coverage, with you by phone.";

@@ -12,6 +12,7 @@ import {
 	ACCIDENT_TOW_RATE,
 	BOOST_RATE,
 	DRIVE_TYPES,
+	ESTIMATE_DISCLAIMER,
 	EXAMPLE_TOW_DISTANCES_KM,
 	INCLUDED_KM,
 	LOCKOUT_RATE,
@@ -75,7 +76,7 @@ const CallButton = ({ cta }: { cta: string }) => (
 		data-cta={cta}
 	>
 		<Phone size={20} className="me-2" />
-		Call {BUSINESS.phoneDisplay} for your exact price
+		Call {BUSINESS.phoneDisplay} to confirm your price
 	</Button>
 );
 
@@ -114,6 +115,7 @@ const RoadsideOutput = ({ rate }: { rate: RoadsideRate }) => (
 
 const COVERAGE_OPTIONS = [
 	{ id: "full", label: "Full coverage (collision and comprehensive)" },
+	{ id: "third-party-not-at-fault", label: "Third-party liability only, and I'm not at fault" },
 	{ id: "third-party-at-fault", label: "Third-party liability only, and I'm at fault" },
 	{ id: "unsure", label: "Not sure / something else" },
 ] as const;
@@ -124,10 +126,16 @@ const isCoverageId = (value: string): value is CoverageId => COVERAGE_OPTIONS.so
 
 const ACCIDENT_HOOKUP_TEXT = `Our accident tow hook-up in ${ACCIDENT_TOW_RATE.area} is ${ACCIDENT_HOOKUP}; outside ${ACCIDENT_TOW_RATE.area}, call for the rate.`;
 
+const COVERAGE_CONFIRM_TEXT = "Coverage depends on your policy and your claim, so we confirm it with you before we tow.";
+
 const ACCIDENT_RESULTS: Readonly<Record<CoverageId, { headline: string; detail: string }>> = {
 	full: {
-		headline: "Covered by your insurance",
-		detail: `With collision and comprehensive coverage, your insurance covers the tow. ${ACCIDENT_HOOKUP_TEXT}`,
+		headline: "Usually covered by your insurance",
+		detail: `With collision and comprehensive coverage, your insurance usually covers the tow. ${COVERAGE_CONFIRM_TEXT} ${ACCIDENT_HOOKUP_TEXT}`,
+	},
+	"third-party-not-at-fault": {
+		headline: "Usually covered by insurance",
+		detail: `If you're not at fault, insurance usually covers the tow, even with third-party liability only. ${COVERAGE_CONFIRM_TEXT} ${ACCIDENT_HOOKUP_TEXT}`,
 	},
 	"third-party-at-fault": {
 		headline: "Separate quote",
@@ -236,6 +244,7 @@ const TowCalculator = () => {
 				{drive && <EstimateOutput drive={drive} kmText={kmText} />}
 				{roadside && <RoadsideOutput rate={roadside} />}
 				{isAccident && <AccidentOutput coverage={coverage} />}
+				<p className="small fw-medium text-dark mt-3 mb-0">{ESTIMATE_DISCLAIMER}</p>
 			</div>
 			<CallButton cta="calculator-call" />
 		</Card>
@@ -269,8 +278,8 @@ const RateTable = () => (
 					</td>
 					<td className="fw-bold text-nowrap">{ACCIDENT_HOOKUP}</td>
 					<td>
-						Hook-up. Covered by your insurance if you have collision and comprehensive coverage. At fault
-						with third-party liability only? We quote you a separate price.
+						Hook-up. Covered by insurance if you have collision and comprehensive coverage, or if you're
+						not at fault. At fault with third-party liability only? We quote you a separate price.
 					</td>
 				</tr>
 				{ROADSIDE_RATES.map(rate => (
@@ -283,7 +292,8 @@ const RateTable = () => (
 			</tbody>
 		</Table>
 		<p className="small text-secondary mb-0">
-			{TAX_NOTE} Winching and storage aren't covered by these rates; we quote them by phone.
+			{TAX_NOTE} These are estimates; every price is confirmed by phone before we dispatch. Winching and storage
+			aren't covered by these rates; we quote them by phone.
 		</p>
 	</Card>
 );
@@ -309,7 +319,9 @@ const ExampleTable = () => (
 				))}
 			</tbody>
 		</Table>
-		<p className="small text-secondary mb-0">{TAX_NOTE}</p>
+		<p className="small text-secondary mb-0">
+			Estimates only. {TAX_NOTE} Call to confirm your price.
+		</p>
 	</Card>
 );
 
@@ -317,7 +329,7 @@ const PRICE_FACTORS = [
 	`Distance: the hook-up fee covers the first ${INCLUDED_KM} km, and every km after that is ${formatCad(PER_KM_RATE)}.`,
 	`Drive type: towing an all-wheel-drive vehicle starts at ${formatCad(AWD.hookup)} instead of ${formatCad(TWO_WD.hookup)}.`,
 	`Where you are: lockouts and boosts start at ${LOCKOUT_BOOST_FROM} in Brampton. Outside Brampton, the price depends on distance.`,
-	`Accidents: with collision and comprehensive coverage, your insurance covers the tow (${ACCIDENT_HOOKUP} hook-up in ${ACCIDENT_TOW_RATE.area}). If you're at fault with third-party liability only, we quote you separately.`,
+	`Accidents: insurance usually covers the tow (${ACCIDENT_HOOKUP} hook-up in ${ACCIDENT_TOW_RATE.area}) if you have collision and comprehensive coverage or you're not at fault. If you're at fault with third-party liability only, we quote you separately. We confirm coverage with you before we tow.`,
 	"Extra work: winching and storage aren't in the calculator. We quote them by phone.",
 	"Before any work starts, you get our maximum rate schedule, as Ontario's towing rules require. We can't charge more than it.",
 ];
@@ -353,7 +365,7 @@ const buildFaqs = (): readonly Faq[] => [
 	},
 	{
 		q: "How much does an accident tow cost in Brampton?",
-		a: `Our accident tow hook-up in ${ACCIDENT_TOW_RATE.area} is ${ACCIDENT_HOOKUP}. If you have collision and comprehensive coverage, your insurance covers the tow. If you're at fault and only have third-party liability, your insurance won't pay for it, so we give you a separate price before we hook up. ${TAX_NOTE}`,
+		a: `Our accident tow hook-up in ${ACCIDENT_TOW_RATE.area} is ${ACCIDENT_HOOKUP}. Insurance usually covers the tow if you have collision and comprehensive coverage, or if you're not at fault, even with third-party liability only. If you're at fault and only have third-party liability, insurance won't pay for it, so we give you a separate price before we hook up. ${COVERAGE_CONFIRM_TEXT} ${TAX_NOTE}`,
 	},
 	{
 		q: "Does the City of Brampton still set tow rates?",
@@ -370,7 +382,7 @@ const buildFaqs = (): readonly Faq[] => [
 	},
 	{
 		q: "Is the calculator price the final price?",
-		a: `It's an estimate. We confirm the price by phone before we dispatch, and you get our maximum rate schedule before any work starts. ${TAX_NOTE}`,
+		a: `No. Every price and insurance answer on this page is an estimate. Nothing is final until we confirm it with you by phone before we dispatch, and you get our maximum rate schedule before any work starts. ${TAX_NOTE}`,
 		source: { label: "Ontario: know your rights when getting a tow", url: ONTARIO_TOW_RIGHTS_URL },
 	},
 	{
@@ -429,8 +441,8 @@ const TowCostCalculatorPage = () => (
 				<Col lg={8}>
 					<h1 className="fw-bold display-6 mb-3">{PAGE_HEADING}</h1>
 					<p className="lead text-muted mb-5">
-						{towRateSummary()} {TAX_NOTE} Use the calculator for an estimate. We confirm the price by phone
-						before we dispatch.
+						{towRateSummary()} {TAX_NOTE} Everything on this page is an estimate: nothing is final until we
+						confirm the price with you by phone before we dispatch.
 					</p>
 					<TowCalculator />
 					<RateTable />

@@ -640,16 +640,20 @@ This article is general information, not legal or insurance advice.
 
 	{
 		slug: "collision-repair-rental-car-brampton",
-		title: "Getting a Rental Car After an Accident in Brampton — How It Works",
+		title: "Rental Car After an Accident in Brampton: How It Works, Even After Hours",
 		metaTitle: "Rental Car After an Accident in Brampton | Pixel Towing",
 		excerpt:
-			"How rental coverage works after a collision in Ontario, who can arrange the rental, and what to check with your insurer first.",
+			"How rental coverage works after a collision in Ontario, what to check with your insurer, and how we can get you a rental right away, even after hours.",
 		category: "Rental Car",
 		categoryColor: "info",
 		datePublished: "2025-04-08",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
+		dateModified: "2026-11-16",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
+## Can You Get a Rental Car Right After an Accident?
+
+Yes, if your insurance covers a rental for this claim. After a collision in Brampton, we can offer you a rental right away, even late at night when rental counters are closed, once we've confirmed your coverage. You don't have to use ours: you can choose any rental company.
+
 ## Is a Rental Covered?
 
 Coverage depends on your policy and the circumstances of the claim. In Ontario, a rental or replacement vehicle after a collision is usually optional coverage (often called transportation replacement coverage, or OPCF 20), with a daily limit and a total limit.
@@ -677,9 +681,35 @@ Coverage limits may not stretch to the same class of vehicle you drive. If you n
 
 Rental coverage usually ends when the repair is complete, the total limit is reached, or a set period after a total-loss settlement. Ask your insurer which applies so you know your end date.
 
-## Pixel Towing's Rental Option
+## How Our Rental Works
 
-Alongside [accident towing and recovery](/accident-recovery), we offer rental vehicles through a business we have an interest in, and we disclose that before any referral. We'll tell you up front what we can bill to your insurer and what you would owe if your coverage doesn't extend to the full rental. You are free to choose any rental company.
+Alongside [accident towing and recovery](/accident-recovery), we offer rental vehicles through a business we have an interest in, and we tell you that before any referral. Here's how it works.
+
+- **Right away, even after hours.** If your car can't be driven, or you don't feel safe driving it, we tow it and can have you in a rental the same night. Accidents don't wait for business hours, and neither do we.
+- **We check your coverage first.** Before we hand over the keys, we confirm your policy covers a rental for this claim. That way the rental isn't declined later, for example because you were at fault and only have third-party liability, or you opted out of rental coverage when you set up your policy. We'll also tell you up front what we can bill to your insurer and what you'd owe if your coverage doesn't stretch to the full rental.
+- **A $350 refundable deposit.** We hold $350 on a credit card in case of 407 ETR tolls or traffic and parking tickets during the rental. If one comes in, our rental office calls you to confirm it before anything is deducted. If everything's clear, the hold is released, usually within a week of returning the car.
+- **A little extra time when you need it.** If your insurer ends the rental on a Friday, many rental counters need the car back that same day. We can usually give you at least one extra day, at our own expense.
+- **Always your choice.** Using our rental is never a condition of a tow or a repair.
+
+Nothing is final until we confirm the details with you, including your coverage, your dates and the deposit.
+
+## Common Questions
+
+### Do I have to rent from you if you tow my car?
+
+No, it's your choice. You can use any rental company, including one your insurer arranges. We tell you about our interest in the rental business before we offer it.
+
+### What if I only have third-party liability?
+
+It depends on who was at fault. If you're not at fault at all, your insurer will usually cover a rental through your own policy's Direct Compensation – Property Damage (DCPD) coverage, unless you opted out of that coverage when you set up your policy. If you're at fault and only have third-party liability, a rental usually isn't covered and you'd owe the cost yourself. That's why we check your coverage before we hand over any keys.
+
+### What's the deposit for, and when do I get it back?
+
+It's a $350 hold on a credit card that covers 407 ETR tolls and traffic or parking tickets during the rental. If one comes in, we call you before deducting it. If there's nothing, the hold is released, usually within a week of returning the car.
+
+### Can I keep the rental an extra day?
+
+Usually, yes. If your insurer's rental ends on a Friday, we can usually give you at least one extra day at our own expense. We'll confirm the return date with you.
 
 This article is general information, not insurance advice.
 

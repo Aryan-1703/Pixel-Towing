@@ -36,6 +36,8 @@ const SOURCES = {
 	/** Archived tip sheet first published by FSCO, FSRA's predecessor, in 2017. */
 	fscoTowScams: "https://www.fsrao.ca/media/7511/download",
 	fsraOpcf43: "https://www.fsrao.ca/opcf-43-removing-depreciation-deduction",
+	fsraRepairBillingPenalty:
+		"https://www.fsrao.ca/announcements/fsra-imposes-administrative-penalties-and-compliance-order-against-1843538-ontario-inc-carrying-business-mclaren-collision-and-fady-warda",
 	/** O. Reg. 56/25 raised the minor-accident limit in Reg. 664 from $2,000 to $5,000. */
 	minorAccidentRegulation: "https://www.ontario.ca/laws/regulation/r25056",
 	vehicleBranding: "https://www.ontario.ca/page/mandatory-vehicle-branding-program",
@@ -535,39 +537,98 @@ This article is general information, not insurance advice.
 
 	{
 		slug: "deductible-waived-collision-repair-brampton",
-		title: "\"We'll Waive Your Deductible\" — What to Ask Before You Agree",
-		metaTitle: "Deductible Waived on Collision Repair? What to Ask | Pixel Towing",
+		title: "Deductible Help on a Collision Repair: How It Works and What to Ask",
+		metaTitle: "Deductible Help on Collision Repairs | Pixel Towing",
 		excerpt:
-			"Some collision shops advertise deductible waivers or assistance. Here's how to tell a legitimate offer from one that could put your claim at risk.",
+			"Some collision shops can lower what you pay toward your deductible. Here's how legitimate deductible help works, where the line is, and what to ask first.",
 		category: "Deductible Help",
 		categoryColor: "success",
 		datePublished: "2025-04-01",
-		dateModified: "2026-09-30",
-		reviewedNote: REVIEWED_2026_09,
+		dateModified: "2026-11-16",
+		reviewedNote: REVIEWED_2026_11,
 		content: `
-## What "Deductible Assistance" Can Mean
+## Can a Repair Shop Help With Your Deductible?
 
-Your deductible is the part of a claim you agreed to pay under your policy. When a shop offers to "waive" or "help with" it, the shop is offering to absorb some or all of that cost itself.
+Sometimes, yes. A collision shop can choose to lower what **you** pay toward your deductible by taking that reduction out of its own margin on the repair. Done properly, your insurer pays exactly the same share of the approved estimate it would pay at any other shop; the shop simply collects less from you, or nothing, when you pick up your car. What a shop must never do is recover that money from your insurer.
 
-Whether that is acceptable depends entirely on how it's done.
+## First: What Your Deductible Is
 
-## The Line You Must Not Cross
+Your deductible is the part of a claim your policy says you pay. Whether you pay one at all, and how much, depends on your coverage and on who was at fault, so your insurer is the one to confirm it. FSRA explains the steps in its [guide to the claims process](${SOURCES.fsraClaims}).
 
-**A legitimate offer:** the shop reduces its own price to you and bills your insurer only for the work actually done, at the approved estimate.
+On a repair claim, the money usually works like this:
 
-**Not acceptable:** the shop recovers the deductible by inflating the estimate or billing your insurer for work, parts or hours that weren't part of the real repair. That is misrepresenting the claim, and it can put your claim — and you — at risk even if the shop made the arrangement.
+- Your insurer's appraiser approves an estimate for the repair.
+- Your insurer pays the shop its share: the approved estimate minus your deductible.
+- You pay the shop the rest, which is your deductible.
+
+## How Legitimate Deductible Help Works
+
+Deductible help only changes that last line. The shop lowers the amount **you** owe it, and the reduction comes out of the shop's own margin on the job.
+
+- **The estimate doesn't change.** The insurer's appraiser decides what the repair includes. Nothing is added to make room for your deductible.
+- **The insurer pays its normal share.** It pays the approved estimate minus your deductible, the same as it would at any shop.
+- **The shop earns less on the job.** That's the cost of the help, and the shop carries it.
+- **You pay less at pickup.** Normally you'd pay your deductible to the shop when you collect your car. With deductible help, the shop collects less of it, or none.
+
+A simple way to picture it: with a $500 deductible, your insurer's payment is the same whether the shop reduces your share or not. The only difference is how much of that $500 you pay and how much the shop gives up.
+
+## Why It Depends on the Repair
+
+Because the help comes out of the shop's own margin, a shop can only offer what the job allows. On a larger repair it may be able to cover more of your deductible, sometimes all of it. On a smaller one it may only be able to help a little, or not at all. A good shop tells you which applies before you authorize the repair, not after.
+
+What should never change is the repair itself. The scope comes from the damage and your insurer's appraisal, never from what would make deductible help possible. If anyone suggests adding damage or work to "make it work," walk away.
+
+## The Line a Shop Must Never Cross
+
+The illegitimate version of a "waived deductible" recovers the money from your insurer instead of from the shop's own margin, for example by:
+
+- Inflating the estimate or adding labour hours that weren't needed
+- Billing for parts that weren't installed or work that wasn't done
+- Adding damage that your collision didn't cause
+
+That is misrepresenting a claim. It can put your claim at risk even if the shop arranged it, and Ontario's insurance regulator has [penalized a repair shop for charging an insurer for repairs that weren't done and parts that weren't replaced](${SOURCES.fsraRepairBillingPenalty}).
 
 ## Questions to Ask Before You Agree
 
-- "Will the amount billed to my insurer change because of this?"
-- "Is the deductible arrangement written on my repair authorization?"
-- "Will the final invoice to my insurer match the work actually done?"
+- "Does the amount billed to my insurer change at all because of this?"
+- "Will the final invoice to my insurer match the approved estimate and the work actually done?"
+- "How much of my deductible will you cover, and what will I owe at pickup?"
+- "If my claim doesn't qualify, what will I owe?"
 
-If you're unsure, ask your insurer how they treat deductible offers from repair shops before you authorize the repair. A trustworthy shop will be comfortable with you asking.
+A trustworthy shop will answer these plainly before you commit.
 
-## Pixel Towing's Position
+## Your Right to Choose the Shop
 
-We have an interest in a collision repair facility (see [our accident recovery service](/accident-recovery)), and we tell customers that before any referral. Any deductible help we discuss must come off our own price, never be billed to your insurer, and be written into your repair paperwork. Not every claim qualifies, and you are free to choose any repair shop.
+You decide where your vehicle is repaired. FSRA says that as long as your insurer approves the estimate, you may have your vehicle repaired at the shop of your choice. Deductible help should never be a condition of a tow, and you shouldn't feel pressured at the scene.
+
+Under Ontario's towing rules, a tow operator must also tell you if it has an interest in a shop it recommends. See [Ontario's tow rights page](${SOURCES.ontarioTowRights}) for what operators must do.
+
+## How Pixel Towing Handles It
+
+We have an interest in a collision repair facility (see [our accident recovery service](/accident-recovery)), and we tell you that before any referral. It's a suggestion, never a requirement: we'll tow your vehicle to the shop you choose.
+
+If you repair with us, any deductible help:
+
+- Comes only from our own margin on the repair
+- Is never billed to your insurer and never changes the approved estimate
+- Means you pay less of your deductible, or none, when you pick up your car
+- Depends on the repair: not every claim qualifies, and we tell you what applies before you commit
+
+Nothing is final until we confirm it with you before the repair starts.
+
+## Common Questions
+
+### Is deductible help the same as a "waived deductible"?
+
+Usually, yes. Both mean the shop covers some or all of your deductible. What matters is where the money comes from: the shop's own margin is a discount, while recovering it from your insurer is not. Ask the questions above and you'll know which one you're being offered.
+
+### Who stands behind the repair?
+
+The shop that does the work. When you choose your own shop, your insurer will usually tell you that the repair and its warranty are that shop's responsibility, so ask for the shop's warranty terms in writing before you authorize the repair.
+
+### Does it change my claim?
+
+It shouldn't. Your insurer's share is based on the approved estimate either way. Whether a claim affects your premium depends on your insurer and who was at fault, not on a shop's discount.
 
 This article is general information, not legal or insurance advice.
 

@@ -78,7 +78,7 @@ const ADVANTAGES: readonly Advantage[] = [
 		icon: DollarSign,
 		color: "text-success",
 		title: "Deductible Help on Some Claims",
-		desc: "On some claims we can reduce our own repair price to help with your deductible. It is never billed to your insurer and is written into your repair paperwork.",
+		desc: "On some claims we can reduce our own repair price to help with your deductible. It comes from our own margin and is never billed to your insurer.",
 		guide: { to: "/blog/deductible-waived-collision-repair-brampton", label: "What to ask about deductible offers" },
 	},
 	{
@@ -146,7 +146,7 @@ const FAQS = [
 	},
 	{
 		q: "Can you really help with my deductible?",
-		a: "Sometimes. On some claims we can reduce our own repair price to help with your deductible. That reduction comes out of our price only, is never billed to your insurer, and is written into your repair authorization. We'll tell you whether your claim qualifies before you commit.",
+		a: "Sometimes. On some claims we can reduce our own repair price to help with your deductible. That reduction comes out of our own margin only and is never billed to your insurer. We'll tell you whether your claim qualifies before you commit.",
 	},
 	{
 		q: "My car might be a total loss. What should I do?",

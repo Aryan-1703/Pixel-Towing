@@ -7,6 +7,7 @@
  * (policy wording + FSRA), and collision reporting (HTA + local police).
  * Only change dateModified when the article content actually changes.
  */
+import { BOOST_RATE, TAX_NOTE, formatCad } from "./rates";
 
 export interface BlogPost {
 	slug: string;
@@ -205,47 +206,93 @@ Questions about a tow? Call Pixel Towing at **647-673-9755**.
 	},
 	{
 		slug: "dead-battery-vs-bad-alternator",
-		title: "Dead Car Battery vs Bad Alternator: How to Tell the Difference",
+		title: "Dead Battery vs Bad Alternator: How to Tell, and When You Need a Boost or a Tow",
 		metaTitle: "Dead Battery vs Bad Alternator | Pixel Towing Brampton",
 		excerpt:
-			"Your car won't start — battery or alternator? Before buying a new battery, read this. A Brampton tow truck driver explains the symptoms of each.",
+			"Car won't start? How to tell a dead battery from a bad alternator, simple voltage checks, why winter makes it worse, and when a boost or a tow makes sense.",
 		category: "Car Tips",
 		categoryColor: "success",
 		datePublished: "2025-02-20",
-		dateModified: "2026-09-30",
+		dateModified: "2026-11-16",
 		content: `
-## Dead Battery vs Bad Alternator — How to Tell
+## Dead Battery or Bad Alternator? The Quick Answer
 
-When your car won't start or dies while driving, the two usual suspects are the **battery** and the **alternator**. Getting the diagnosis wrong means buying a new battery when you actually need an alternator, or the other way around.
+If your car starts after a boost and keeps starting normally over the next few days, the **battery** is the likely cause. If it starts after a boost and then dies again within minutes, or it dies while you're driving, suspect the **alternator** or another part of the charging system.
 
-### Signs of a Dead Battery
+The battery stores the power that starts the engine. The alternator recharges the battery and runs the car's electrics once the engine is going. When either one fails, the car can look the same from the driver's seat, so getting it wrong means buying a battery you didn't need, or the other way around.
 
-- The car cranks slowly or not at all, especially after sitting overnight
-- Lights are dim before you try to start it
+## Signs of a Dead Battery
+
+- The engine cranks slowly or just clicks, especially after the car sat overnight
+- Lights and the dash are dim before you even try to start it
 - The battery is three to five years old or more
-- The car starts after a boost and then keeps running normally
+- The car starts after a boost and then keeps running and restarting normally
+- It happens on the first cold morning of the season
 
-**The test:** Boost the car. If it starts and keeps starting normally over the next few days, the battery is the likely cause.
+## Signs of a Bad Alternator
 
-### Signs of a Bad Alternator
-
-- The car starts, then dies while driving
-- Flickering lights, a radio cutting out or unusual dash warnings
-- A burning smell from the belt or wiring
+- The car starts, then dies while you're driving
+- Lights flicker or dim as you drive, the radio cuts out, or warning lights appear
+- The battery warning light comes on while driving, not just for a second at start-up
+- A burning smell or a whining noise from the front of the engine
 - The car starts after a boost but dies again within minutes
-- The battery light comes on while driving, not just at start-up
 
-**The test:** After a boost, if the car dies again shortly after, the alternator (or the charging system) is the likely cause.
+## Check It Yourself With a Multimeter
 
-### The Chicken-and-Egg Problem
+A cheap multimeter set to DC volts gives you a good clue. Put the red probe on the battery's positive terminal and the black probe on the negative.
 
-A failing alternator can wear out a healthy battery over a few weeks, and a deeply drained battery can make a good alternator look faulty. If you've had repeated battery problems in the past year, have the charging system tested before replacing the battery again.
+- **Engine off, car rested a few hours:** about 12.6 volts means a full battery. Around 12.4 is about three-quarters charged, around 12.2 is about half, and below 12.0 the battery is flat.
+- **Engine running:** most cars read roughly 13.5 to 14.7 volts, which means the alternator is charging. If the reading stays near the engine-off number, or drops below about 13, the charging system is likely the problem.
 
-### When to Call for a Boost vs a Tow
+These are general guides, not a full test. A battery can show a healthy voltage and still fail under load, which is why a proper battery and charging check is worth doing.
+
+## Why Batteries Fail More in an Ontario Winter
+
+Cold slows the chemical reaction inside a battery, so it delivers less power, right when a cold engine needs more of it to turn over. A battery that was already weak often gives out on the first really cold morning. Short trips make it worse: the alternator doesn't run long enough to put back what starting the car took out. Summer heat matters too, because it wears batteries out faster, and the damage often shows up the following winter.
+
+## The Chicken-and-Egg Problem
+
+A failing alternator can wear out a healthy battery over a few weeks, and a deeply drained battery can make a good alternator look faulty. If you've had repeated battery problems in the past year, have the charging system tested before you replace the battery again.
+
+## Other Problems That Look Like a Dead Battery
+
+- **Loose or corroded terminals:** white or green crust on the battery posts can stop power getting through, even from a good battery
+- **A drain while parked:** an interior light, a phone charger or a faulty module can flatten a battery overnight
+- **A bad starter:** you hear a single click and the lights stay bright, but the engine doesn't turn
+- **No fuel or spark:** if the engine cranks at normal speed but won't fire, the battery probably isn't the problem, and a boost won't help
+
+## Boost or Tow?
 
 - **Car was fine yesterday and won't start today:** a [battery boost](/services/jump-start) is usually the first step
-- **Car won't start soon after a new battery:** likely the charging system — a tow to a mechanic makes sense
-- **Car died while driving:** likely the alternator or another electrical fault — call for a tow
+- **Car won't start soon after a new battery:** likely the charging system, so a tow to a mechanic makes sense
+- **Car died while driving:** likely the alternator or another electrical fault, so call for a tow
+- **Engine cranks normally but won't start:** not a battery problem; a tow to a mechanic is usually next
+
+When we boost a car, we use professional booster packs with built-in protection instead of cable-to-cable jumps from another running car. After the boost, we run a basic battery and charging-system check, so you know whether the battery, the alternator or something else is the likely problem.
+
+Battery boosts start at ${formatCad(BOOST_RATE.price)} in Brampton; outside Brampton the price depends on distance. ${TAX_NOTE} See all our prices on the [tow cost calculator](/tow-cost-calculator). Nothing is final until we confirm the price with you by phone.
+
+## Safety First
+
+Never try to boost a battery that is cracked, leaking, bulging or frozen. Don't attempt it yourself: tell dispatch what you see. If you do boost a car yourself, follow the order in your owner's manual and keep sparks and flames away from the battery.
+
+## Common Questions
+
+### Can a bad alternator kill a new battery?
+
+Yes. If the alternator isn't charging properly, even a new battery will run down. That's why a car that keeps needing boosts after a new battery usually needs its charging system checked.
+
+### How long does a car battery last?
+
+Often three to five years. Heat, cold, short trips and electrical drains can all shorten that.
+
+### Can you boost a hybrid or an electric car?
+
+Hybrids and EVs have a small 12-volt battery that runs their electronics, and it can go flat like any other. We boost that 12-volt battery.
+
+### How much is a battery boost in Brampton?
+
+Boosts start at ${formatCad(BOOST_RATE.price)} in Brampton. ${TAX_NOTE} Outside Brampton, the price depends on how far we have to drive, and we confirm it with you before we dispatch.
 
 ---
 
@@ -686,6 +733,8 @@ Rental coverage usually ends when the repair is complete, the total limit is rea
 Alongside [accident towing and recovery](/accident-recovery), we offer rental vehicles through a business we have an interest in, and we tell you that before any referral. Here's how it works.
 
 - **Right away, even after hours.** If your car can't be driven, or you don't feel safe driving it, we tow it and can have you in a rental the same night. Accidents don't wait for business hours, and neither do we.
+- **What you need.** The same as at any rental company: your driver's licence, proof of insurance and a credit card for the deposit. You sign a rental agreement before you drive away.
+- **We deal with your insurer for you.** Once you've opened your claim, send us the claim number within a couple of days. We then contact your insurer on your behalf to get the rental approved and sort out the billing.
 - **We check your coverage first.** Before we hand over the keys, we confirm your policy covers a rental for this claim. That way the rental isn't declined later, for example because you were at fault and only have third-party liability, or you opted out of rental coverage when you set up your policy. We'll also tell you up front what we can bill to your insurer and what you'd owe if your coverage doesn't stretch to the full rental.
 - **A $350 refundable deposit.** We hold $350 on a credit card in case of 407 ETR tolls or traffic and parking tickets during the rental. If one comes in, our rental office calls you to confirm it before anything is deducted. If everything's clear, the hold is released, usually within a week of returning the car.
 - **A little extra time when you need it.** If your insurer ends the rental on a Friday, many rental counters need the car back that same day. We can usually give you at least one extra day, at our own expense.
@@ -698,6 +747,10 @@ Nothing is final until we confirm the details with you, including your coverage,
 ### Do I have to rent from you if you tow my car?
 
 No, it's your choice. You can use any rental company, including one your insurer arranges. We tell you about our interest in the rental business before we offer it.
+
+### What do I need to rent from you?
+
+The same as at any rental company: your driver's licence, proof of insurance and a credit card for the $350 deposit hold. You'll sign a rental agreement before you drive away. Then open your claim with your insurer and send us the claim number within a couple of days, and we'll contact your insurer on your behalf for the rental approval and billing.
 
 ### What if I only have third-party liability?
 
